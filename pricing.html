@@ -210,6 +210,8 @@
             width: 350px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
         .pricing-card:hover {
@@ -256,6 +258,9 @@
 
         .pricing-card-body {
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .plan-includes {
@@ -267,6 +272,7 @@
         .feature-list {
             list-style: none;
             margin-bottom: 2rem;
+            flex-grow: 1;
         }
 
         .feature-item {
@@ -284,7 +290,8 @@
 
         .see-features {
             text-align: center;
-            margin-top: 1rem;
+            margin-top: auto;
+            margin-bottom: 1rem;
             color: #4361ee;
             text-decoration: none;
             font-size: 0.9rem;
@@ -308,10 +315,6 @@
 
         .choose-plan-btn:hover {
             background: #3250d4;
-        }
-
-        .lite-card .choose-plan-btn {
-            background: #4361ee;
         }
 
         /* Footer */
@@ -413,7 +416,7 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
                 <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
                 <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
                 <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
@@ -426,11 +429,11 @@
             <div class="account-container">
                 <div class="account-icon">👤</div>
                 <div class="account-dropdown">
-                    <a href="#" class="dropdown-item">Profile</a>
-                    <a href="#" class="dropdown-item">Setting</a>
-                    <a href="#" class="dropdown-item">Plan</a>
+                    <a href="profile.html" class="dropdown-item">Profile</a>
+                    <a href="setting.html" class="dropdown-item">Setting</a>
+                    <a href="pricing.html" class="dropdown-item">Pricing</a>
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item">Sign out</a>
+                    <a href="login.html" class="dropdown-item">Sign out</a>
                 </div>
             </div>
         </div>
@@ -452,6 +455,7 @@
             <h2>Start now your free plan</h2>
         </div>
         <div class="pricing-container">
+            <!-- Lite Plan Card -->
             <div class="pricing-card">
                 <div class="pricing-card-header lite-card">
                     <div class="plan-name">Lite</div>
@@ -463,17 +467,27 @@
                     <ul class="feature-list">
                         <li class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Standard recommendation and matching services.</span>
+                            <span>Standard recommendation and matching services</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Basic course navigation</span>
                         </li>
                         <li class="feature-item">
                             <span class="feature-icon">✓</span>
                             <span>Integrated chatbot (30 messages/day)</span>
                         </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Community forum access</span>
+                        </li>
                     </ul>
+                    <a href="#" class="see-features">See details</a>
                     <a href="#" class="choose-plan-btn">Choose the plan</a>
                 </div>
             </div>
 
+            <!-- Gold Plan Card -->
             <div class="pricing-card">
                 <div class="pricing-card-header gold-card">
                     <div class="plan-name">Gold</div>
@@ -485,7 +499,11 @@
                     <ul class="feature-list">
                         <li class="feature-item">
                             <span class="feature-icon">✓</span>
-                            <span>Personalized AI Assistant, Lecture summarization (AI Assistant)</span>
+                            <span>Personalized AI Assistant</span>
+                        </li>
+                        <li class="feature-item">
+                            <span class="feature-icon">✓</span>
+                            <span>Lecture summarization (AI Assistant)</span>
                         </li>
                         <li class="feature-item">
                             <span class="feature-icon">✓</span>
