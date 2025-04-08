@@ -14,7 +14,6 @@ data = pd.DataFrame({
     "x": np.arange(n_points),
     "y": np.random.randn(n_points)
 })
-
 # Hiển thị bảng dữ liệu
 st.write("Dữ liệu mẫu:")
 st.dataframe(data)
@@ -27,7 +26,6 @@ ax.set_xlabel("X")
 ax.set_ylabel("Y")
 ax.legend()
 st.pyplot(fig)
-
 # Thêm một nút để tương tác
 if st.button("Tạo lại dữ liệu"):
     st.write("Dữ liệu đã được làm mới!")
