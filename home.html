@@ -3,87 +3,593 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Home</title>
+    <title>EduConnectGPT - Home</title>
     <style>
-        body {
+        :root {
+            --primary-color: #0d1472;
+            --secondary-color: #f0f4ff;
+            --accent-color: #3c4fe0;
+            --text-color: #333;
+            --light-text: #888;
+            --white: #fff;
+            --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+        }
+        
+        * {
             margin: 0;
-            font-family: 'Open Sans', sans-serif;
-            overflow-x: hidden;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            background-color: var(--white);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a.active {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .nav-dropdown::after {
+            content: "▼";
+            font-size: 0.7em;
+            margin-left: 5px;
+            color: var(--light-text);
+        }
+        
+        .right-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .right-actions > * {
+            margin-left: 1rem;
+        }
+        
+        .search-icon, .credit-icon, .notification-icon, .account-icon {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .credit-icon {
+            background-color: #f5f5f5;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        .register-btn {
+            background-color: #0039cb;
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .hero-section {
+            background: var(--purple-gradient);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .learn-more-btn {
+            background-color: #ffdd00;
+            color: var(--text-color);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .learn-more-btn::after {
+            content: "→";
+            margin-left: 0.5rem;
+        }
+        
+        .hero-image {
+            position: absolute;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 300px;
+            z-index: 1;
+        }
+        
+        .hero-image img {
+            max-width: 100%;
+        }
+        
+        .features-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .message-list-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .message-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .message-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            background-color: #ddd;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .message-time {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .message-content {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .message-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .message-btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-left {
+            max-width: 300px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+        }
+        
+        .mission-statement {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .team-credit {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .footer-links {
+            text-align: center;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .payment-methods {
+            text-align: right;
+        }
+        
+        .payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            max-width: 300px;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            background-color: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .message-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-image {
+                position: static;
+                margin: 2rem auto 0;
+                transform: none;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .payment-methods, .footer-links, .footer-left {
+                text-align: center;
+                max-width: none;
+            }
+            
+            .payment-icons {
+                justify-content: center;
+                margin: 0 auto;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header style="background-color: #0d1472; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center;">
-        <!-- Logo -->
+    <header>
         <div class="logo">
-            <img src="logo.png" alt="EduConnect Logo" style="height: 40px;">
+            <img src="logo.png" alt="EduConnectGPT Logo">
         </div>
-        <!-- Navigation Menu -->
         <nav>
-            <ul style="list-style: none; display: flex; margin: 0; padding: 0;">
-                <li><a href="#" style="color: white; text-decoration: none; margin: 0 1rem;">Home</a></li>
-                <li><a href="#" style="color: white; text-decoration: none; margin: 0 1rem;">New Feed</a></li>
-                <li><a href="#" style="color: white; text-decoration: none; margin: 0 1rem;">Review</a></li>
-                <li><a href="#" style="color: white; text-decoration: none; margin: 0 1rem;">Profile</a></li>
-                <li><a href="#" style="color: white; text-decoration: none; margin: 0 1rem;">Support</a></li>
-                <li><a href="#" style="color: white; text-decoration: none; margin: 0 1rem; background-color: #3c4fe0; padding: 0.5rem 1rem; border-radius: 4px;">EduConnectGPT</a></li>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">New Feed</a></li>
+                <li><a href="#" class="nav-dropdown">Review</a></li>
+                <li><a href="#" class="nav-dropdown">Profile</a></li>
+                <li><a href="#" class="nav-dropdown">Support</a></li>
+                <li><a href="#" class="nav-dropdown">EduconnectGPT</a></li>
             </ul>
         </nav>
-        <!-- Right Actions -->
-        <div class="right-actions" style="display: flex; align-items: center;">
-            <div class="search-icon" style="margin: 0 1rem;">🔍</div>
-            <div class="notification-icon" style="margin: 0 1rem;">🔔</div>
-            <div class="account-icon" style="margin: 0 1rem;">Tran Chau CEO</div>
+        <div class="right-actions">
+            <div class="search-icon">🔍</div>
+            <div class="credit-icon">0.0 $</div>
+            <div class="notification-icon">🔔</div>
+            <div class="account-icon">👤</div>
         </div>
     </header>
-
-    <!-- Main Content Area -->
-    <main style="background: linear-gradient(to bottom, #0d1472, #3c4fe0); padding: 3rem; text-align: center; color: white; position: relative; min-height: 400px;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 1rem;">We are EduConnect</h1>
-        <p style="font-size: 1.5rem; font-weight: bold; margin-bottom: 2rem;">Connecting knowledge, stepping firmly into the future</p>
-        <button style="background-color: #ffd700; color: #0d1472; padding: 1rem 2rem; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">Enroll Now</button>
-        <div style="position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);">
-            <img src="educonnect-logo.png" alt="EduConnect Logo" style="height: 60px;">
+    
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>We are EduConnect</h1>
+            <h1>Connecting knowledge, stepping firmly into the future</h1>
+            <p>Join our growing community of learners and educators to expand your horizons.</p>
+            <button class="learn-more-btn">Learn More</button>
         </div>
-    </main>
-
-    <!-- Sidebar -->
-    <aside style="background-color: #f0f4ff; width: 250px; position: fixed; top: 0; left: 0; height: 100%; padding: 1rem; box-shadow: 2px 0 5px rgba(0,0,0,0.1);">
-        <div style="background-color: #0d1472; color: white; padding: 1rem; text-align: center; margin-bottom: 1rem;">Trần Châu - CEO</div>
-        <ul style="list-style: none; padding: 0;">
-            <li style="background-color: #3c4fe0; color: white; padding: 0.5rem; margin-bottom: 0.5rem; border-radius: 4px;">Dashboards</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Style</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Subject</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Profile</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Budget</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">User Profile</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Authentication</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Pricing</li>
-            <li style="padding: 0.5rem; margin-bottom: 0.5rem;">Task</li>
-        </ul>
-    </aside>
-
-    <!-- Message/Request Section -->
-    <section style="margin-left: 270px; padding: 2rem; display: flex; justify-content: space-between; background-color: #f9f9f9; min-height: 300px;">
-        <!-- First Column -->
-        <div style="width: 45%; background-color: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-            <img src="profile1.png" alt="Nguyễn Thu Trang" style="width: 60px; height: 60px; border-radius: 50%; margin-bottom: 1rem;">
-            <h3 style="color: #0d1472; margin: 0;">Nguyễn Thu Trang</h3>
-            <p style="color: #666; margin: 0.5rem 0;">2 hours ago</p>
-            <p style="margin-bottom: 1rem;">Cảm ơn bạn đã hỗ trợ tôi 10k vục Hà Nội. Minh cảm ơn mình sẽ hỗ trợ Tôán top 10, chúc bạn một ngày tốt lành, hôm nay là ngày đầu tiên, giúp tôi làm tốt hơn trong các môn học nhé, cảm ơn bạn.</p>
-            <button style="background-color: #0d1472; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; margin-right: 1rem; cursor: pointer;">Send message</button>
-            <button style="background-color: #0d1472; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;">Send Request</button>
-        </div>
-        <!-- Second Column -->
-        <div style="width: 45%; background-color: #fff; padding: 1rem; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-            <img src="profile2.png" alt="Mai Anh" style="width: 60px; height: 60px; border-radius: 50%; margin-bottom: 1rem;">
-            <h3 style="color: #0d1472; margin: 0;">Mai Anh</h3>
-            <p style="color: #666; margin: 0.5rem 0;">1 hour ago</p>
-            <p style="margin-bottom: 1rem;">Hello mọi người, mình là Mai Anh, học lớp 11 mái. Tối hôm lạy đi xin một chút thông tin về môn toán, mình đang học bài tập nhưng chưa hiểu rõ lắm, bạn nào tốt bụng giúp mình với nhé. Cảm ơn mọi người nhiều lắm.</p>
-            <button style="background-color: #0d1472; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; margin-right: 1rem; cursor: pointer;">Send message</button>
-            <button style="background-color: #0d1472; color: white; padding: 0.5rem 1rem; border: none; border-radius: 4px; cursor: pointer;">Send Request</button>
+        <div class="hero-image">
+            <img src="hero-image.png" alt="Education Illustration">
         </div>
     </section>
+    
+    <section class="features-section">
+        <h2 class="section-title">How EduConnect Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Connect with Tutors</h3>
+                <p class="feature-description">Find experienced tutors in various subjects who can help you master any topic.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">AI-Powered Learning</h3>
+                <p class="feature-description">Get instant help with our EduconnectGPT assistant for quick answers and guidance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3 class="feature-title">Track Your Progress</h3>
+                <p class="feature-description">Monitor your learning journey with detailed analytics and personalized insights.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="message-list-section">
+        <div class="message-list">
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar1.png" alt="Nguyen Thu Trang">
+                    </div>
+                    <div class="user-info">
+                        <h3>Nguyen Thu Trang</h3>
+                        <p class="message-time">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar2.png" alt="Mai Anh">
+                    </div>
+                    <div class="user-info">
+                        <h3>Mai Anh</h3>
+                        <p class="message-time">1 hour ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar3.png" alt="Nguyen Trong Minh">
+                    </div>
+                    <div class="user-info">
+                        <h3>Nguyen Trong Minh</h3>
+                        <p class="message-time">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar4.png" alt="Đặng Quang">
+                    </div>
+                    <div class="user-info">
+                        <h3>Đặng Quang</h3>
+                        <p class="message-time">1 hour ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="footer-logo.png" alt="EduConnectGPT Logo">
+                </div>
+                <p class="mission-statement">EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                <p class="team-credit">—EduConnect team</p>
+            </div>
+            
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">All pages</a></li>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund and Returns Policy</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">faq</a></li>
+                    <li><a href="#">Terms and condition</a></li>
+                </ul>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-icons">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
