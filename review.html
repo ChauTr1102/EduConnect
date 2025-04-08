@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Spreading Knowledge</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            padding: 8px 12px;
+            color: #555;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+
+        .animated-underline {
+        position: relative;
+        text-decoration: none;
+        }
+
+        .animated-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #1e40af; /* Blue color for the underline */
+        transition: width 0.3s ease-in-out;
+        }
+
+        .animated-underline:hover::after {
+        width: 100%;
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .credit-icon, .notification-icon {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .account-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            font-size: 1.2rem;
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 150px;
+            display: none;
+            padding: 8px 0;
+        }
+
+        .account-container:hover .account-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #4361ee;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #eee;
+            margin: 5px 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #3a0ca3 0%, #4361ee 100%);
+            color: white;
+            padding: 3rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Content Sections */
+        section {
+            padding: 2rem 5rem;
+            margin-bottom: 1rem;
+        }
+
+        section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tutor-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .tutor-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tutor-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .tutor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tutor-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .tutor-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .see-more-btn {
+            background: white;
+            border: 1px solid #4361ee;
+            color: #4361ee;
+            padding: 6px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 8px;
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .see-more-btn:hover {
+            background: #4361ee;
+            color: white;
+        }
+
+        .rating {
+            display: inline-block;
+            background: #4361ee;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .tutor-description {
+            margin: 1.5rem 5rem;
+            text-align: center;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a1172;
+            color: white;
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            width: 20%;
+        }
+
+        .footer-logo img {
+            max-width: 80px;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .footer-links h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-socials {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            max-width: 200px;
+        }
+
+        .social-icon {
+            background: rgba(255,255,255,0.2);
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="Home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
+                <li><a href="#" class="active">Review</a></li>
+                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="EduconnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+            </ul>
+        </nav>
+        <div class="right-actions">
+            <div class="credit-icon">0.0 $</div>
+            <div class="notification-icon">🔔</div>
+            <div class="account-container">
+                <div class="account-icon">👤</div>
+                <div class="account-dropdown">
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Setting</a>
+                    <a href="#" class="dropdown-item">Plan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Spreading knowledge – Creating a sustainable future with EduConnect.</h1>
+        </div>
+    </section>
+
+    <section>
+        <h2>Top Tutor</h2>
+        <div class="tutor-grid">
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Vũ Thanh Nhàn">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Vũ Thanh Nhàn</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Nguyễn Hoàng Ngân">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Nguyễn Hoàng Ngân</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Đặng Thanh Thủy">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Đặng Thanh Thủy</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Nguyễn Thủy Hiền">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Nguyễn Thủy Hiền</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Creative & Passion</h2>
+        <div class="tutor-grid">
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Đặng Trần Long">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Đặng Trần Long</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Dương Hoàng Yến">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Dương Hoàng Yến</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Vũ Tuyết Minh">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Vũ Tuyết Minh</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Phạm Anh Dương">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Phạm Anh Dương</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Free Courses</h2>
+        <div class="tutor-grid">
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Nguyễn Phương Thảo">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Nguyễn Phương Thảo</div>
+                    <div class="rating">★★★★★</div>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Nguyễn Hoa">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Nguyễn Hoa</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Phạm Anh Khoa">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Phạm Anh Khoa</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+            <div class="tutor-card">
+                <div class="tutor-image">
+                    <img src="/api/placeholder/200/200" alt="Nguyễn Hữu Tùng">
+                </div>
+                <div class="tutor-info">
+                    <div class="tutor-name">Nguyễn Hữu Tùng</div>
+                    <a href="#" class="see-more-btn">See more</a>
+                </div>
+            </div>
+        </div>
+        <div class="tutor-description">
+            These are our highest-rated tutors with extensive experience and exceptional teaching skills. Each tutor has completed over 500 hours of teaching, ensuring high-quality and effective learning for students.
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+            <div class="footer-tagline">
+                educonnect - Connecting knowledge, bringing learning into the future.<br>
+                - EduConnect Team
+            </div>
+        </div>
+        <div class="footer-links">
+            <div>
+                <h3>All pages</h3>
+                <ul>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">Account Billing</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund and Cancellation Policy</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h3>Social Media</h3>
+            <div class="footer-socials">
+                <div class="social-icon">f</div>
+                <div class="social-icon">t</div>
+                <div class="social-icon">in</div>
+                <div class="social-icon">YT</div>
+                <div class="social-icon">ig</div>
+                <div class="social-icon">P</div>
+                <div class="social-icon">T</div>
+                <div class="social-icon">L</div>
+                <div class="social-icon">D</div>
+                <div class="social-icon">G</div>
+                <div class="social-icon">R</div>
+                <div class="social-icon">S</div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
