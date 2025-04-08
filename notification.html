@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Notifications</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            padding: 8px 12px;
+            color: #555;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: #4361ee;
+            transition: all 0.3s;
+        }
+
+        .animated-underline:hover::after {
+            width: 80%;
+            left: 10%;
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .credit-icon, .notification-icon {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .notification-icon {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff4d4f;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .account-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            font-size: 1.2rem;
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 150px;
+            display: none;
+            padding: 8px 0;
+            z-index: 10;
+        }
+
+        .account-container:hover .account-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #4361ee;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #eee;
+            margin: 5px 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .page-title {
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+
+        .notification-filters {
+            display: flex;
+            margin-bottom: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .filter-button {
+            padding: 0.5rem 1rem;
+            border: none;
+            background: none;
+            color: #555;
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+
+        .filter-button:hover {
+            color: #4361ee;
+            background: #f5f7ff;
+        }
+
+        .filter-button.active {
+            color: #4361ee;
+            background: #eef1ff;
+        }
+
+        .mark-all-read {
+            margin-left: auto;
+            color: #4361ee;
+            cursor: pointer;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.2s;
+        }
+
+        .mark-all-read:hover {
+            background: #f5f7ff;
+        }
+
+        .notification-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .notification-item {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .notification-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .notification-item.unread {
+            border-left: 3px solid #4361ee;
+        }
+
+        .notification-icon-container {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #eef1ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #4361ee;
+            font-size: 1.2rem;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+            color: #333;
+        }
+
+        .notification-message {
+            color: #555;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .notification-time {
+            color: #777;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .notification-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .notification-action {
+            font-size: 0.8rem;
+            color: #4361ee;
+            cursor: pointer;
+            padding: 2px 5px;
+            border-radius: 3px;
+            transition: background 0.2s;
+        }
+
+        .notification-action:hover {
+            background: #eef1ff;
+        }
+
+        .notification-menu {
+            position: relative;
+        }
+
+        .notification-menu-icon {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .notification-menu-icon:hover {
+            background: #f5f5f5;
+        }
+
+        .notification-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            width: 120px;
+            padding: 5px 0;
+            display: none;
+            z-index: 10;
+        }
+
+        .notification-menu:hover .notification-dropdown {
+            display: block;
+        }
+
+        .notification-dropdown-item {
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            color: #555;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .notification-dropdown-item:hover {
+            background: #f5f5f5;
+            color: #4361ee;
+        }
+
+        .empty-notifications {
+            text-align: center;
+            padding: 2rem;
+            color: #777;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0a0057 0%, #2a3990 100%);
+            color: white;
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            width: 20%;
+        }
+
+        .footer-logo img {
+            max-width: 80px;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-socials {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+            max-width: 200px;
+        }
+
+        .social-icon {
+            background: rgba(255,255,255,0.2);
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
+                <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="EduconnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+            </ul>
+        </nav>
+        <div class="right-actions">
+            <div class="credit-icon">0.0 $</div>
+            <a href="notification.html" class="notification-icon" style="text-decoration: none;">
+                🔔
+                <span class="notification-badge">5</span>
+            </a>
+            <div class="account-container">
+                <div class="account-icon">👤</div>
+                <div class="account-dropdown">
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Setting</a>
+                    <a href="#" class="dropdown-item">Plan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h1 class="page-title">Notifications</h1>
+        
+        <div class="notification-filters">
+            <button class="filter-button active">All</button>
+            <button class="filter-button">Courses</button>
+            <button class="filter-button">Assignments</button>
+            <button class="filter-button">System</button>
+            <button class="filter-button">Announcements</button>
+            <div class="mark-all-read">Mark all as read</div>
+        </div>
+        
+        <div class="notification-list">
+            <div class="notification-item unread">
+                <div class="notification-icon-container">📚</div>
+                <div class="notification-content">
+                    <div class="notification-title">New course module available</div>
+                    <div class="notification-message">
+                        "Introduction to Machine Learning" has a new module available: "Neural Networks Basics".
+                    </div>
+                    <div class="notification-time">2 hours ago</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">View Course</div>
+                        <div class="notification-action">Mark as Read</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Mark as Read</div>
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notification-item unread">
+                <div class="notification-icon-container">✏️</div>
+                <div class="notification-content">
+                    <div class="notification-title">Assignment due soon</div>
+                    <div class="notification-message">
+                        "Data Analysis Project" for "Statistics for Data Science" is due in 48 hours.
+                    </div>
+                    <div class="notification-time">5 hours ago</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">View Assignment</div>
+                        <div class="notification-action">Mark as Read</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Mark as Read</div>
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notification-item unread">
+                <div class="notification-icon-container">🏆</div>
+                <div class="notification-content">
+                    <div class="notification-title">Achievement unlocked</div>
+                    <div class="notification-message">
+                        Congratulations! You've completed your first quiz with a perfect score and earned the "Quick Learner" badge.
+                    </div>
+                    <div class="notification-time">Yesterday</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">View Badge</div>
+                        <div class="notification-action">Mark as Read</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Mark as Read</div>
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-icon-container">📢</div>
+                <div class="notification-content">
+                    <div class="notification-title">System maintenance scheduled</div>
+                    <div class="notification-message">
+                        EduConnect will undergo scheduled maintenance on April 15th from 2:00 AM to 4:00 AM EST. Some features may be temporarily unavailable.
+                    </div>
+                    <div class="notification-time">2 days ago</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">Learn More</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notification-item unread">
+                <div class="notification-icon-container">💬</div>
+                <div class="notification-content">
+                    <div class="notification-title">New comment on your discussion post</div>
+                    <div class="notification-message">
+                        Sarah Johnson replied to your question in "Web Development Fundamentals" discussion forum.
+                    </div>
+                    <div class="notification-time">3 days ago</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">View Comment</div>
+                        <div class="notification-action">Mark as Read</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Mark as Read</div>
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-icon-container">📊</div>
+                <div class="notification-content">
+                    <div class="notification-title">Quiz graded</div>
+                    <div class="notification-message">
+                        Your quiz for "Introduction to Python Programming" has been graded. You scored 85%.
+                    </div>
+                    <div class="notification-time">5 days ago</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">View Results</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="notification-item">
+                <div class="notification-icon-container">🔔</div>
+                <div class="notification-content">
+                    <div class="notification-title">Live session reminder</div>
+                    <div class="notification-message">
+                        Don't miss the upcoming live Q&A session for "Advanced JavaScript" course tomorrow at 3:00 PM EST.
+                    </div>
+                    <div class="notification-time">1 week ago</div>
+                    <div class="notification-actions">
+                        <div class="notification-action">Add to Calendar</div>
+                    </div>
+                </div>
+                <div class="notification-menu">
+                    <div class="notification-menu-icon">⋮</div>
+                    <div class="notification-dropdown">
+                        <div class="notification-dropdown-item">Delete</div>
+                        <div class="notification-dropdown-item">Mute</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="/api/placeholder/80/80" alt="EduConnect Logo">
+            <div class="footer-tagline">
+                EduConnect - Connecting knowledge,<br>
+                stepping firmly into the future.<br>
+                —EduConnect team
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#">All pages</a>
+            <a href="#">All Courses</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Refund and Returns Policy</a>
+            <a href="#">About Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">Terms and Condition</a>
+        </div>
+        <div>
+            <div class="footer-socials">
+                <div class="social-icon">f</div>
+                <div class="social-icon">t</div>
+                <div class="social-icon">in</div>
+                <div class="social-icon">YT</div>
+                <div class="social-icon">ig</div>
+                <div class="social-icon">P</div>
+                <div class="social-icon">T</div>
+                <div class="social-icon">L</div>
+                <div class="social-icon">D</div>
+                <div class="social-icon">G</div>
+                <div class="social-icon">R</div>
+                <div class="social-icon">S</div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle filter buttons
+            const filterButtons = document.querySelectorAll('.filter-button');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    // Here you would normally filter the notifications based on the selected category
+                    // For this demo, we're just showing the UI interaction
+                });
+            });
+            
+            // Handle "Mark all as read"
+            const markAllReadButton = document.querySelector('.mark-all-read');
+            
+            markAllReadButton.addEventListener('click', function() {
+                const unreadItems = document.querySelectorAll('.notification-item.unread');
+                unreadItems.forEach(item => {
+                    item.classList.remove('unread');
+                });
+                
+                // Remove notification badge
+                const badge = document.querySelector('.notification-badge');
+                if (badge) {
+                    badge.style.display = 'none';
+                }
+            });
+            
+            // Handle individual "Mark as Read" actions
+            const markAsReadButtons = document.querySelectorAll('.notification-action:nth-child(2)');
+            
+            markAsReadButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const notificationItem = this.closest('.notification-item');
+                    notificationItem.classList.remove('unread');
+                    
+                    // Update badge count
+                    updateBadgeCount();
+                });
+            });
+            
+            // Handle dropdown "Mark as Read" actions
+            const dropdownMarkAsReadButtons = document.querySelectorAll('.notification-dropdown-item:first-child');
+            
+            dropdownMarkAsReadButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const notificationItem = this.closest('.notification-item');
+                    if (notificationItem.classList.contains('unread')) {
+                        notificationItem.classList.remove('unread');
+                        
+                        // Update badge count
+                        updateBadgeCount();
+                    }
+                });
+            });
+            
+            // Handle dropdown "Delete" actions
+            const deleteButtons = document.querySelectorAll('.notification-dropdown-item:nth-child(2)');
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const notificationItem = this.closest('.notification-item');
+                    notificationItem.style.opacity = '0';
+                    setTimeout(() => {
+                        notificationItem.remove();
+                        
+                        // Check if there are any notifications left
+                        const notificationList = document.querySelector('.notification-list');
+                        if (notificationList.children.length === 0) {
+                            showEmptyState();
+                        }
+                        
+                        // Update badge count
+                        updateBadgeCount();
+                    }, 300);
+                });
+            });
+            
+            // Function to update badge count
+            function updateBadgeCount() {
+                const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+                const badge = document.querySelector('.notification-badge');
+                
+                if (unreadCount === 0) {
+                    badge.style.display = 'none';
+                } else {
+                    badge.style.display = 'flex';
+                    badge.textContent = unreadCount;
+                }
+            }
+            
+            // Function to show empty state
+            function showEmptyState() {
+                const notificationList = document.querySelector('.notification-list');
+                notificationList.innerHTML = `
+                    <div class="empty-notifications">
+                        <div class="empty-icon">📭</div>
+                        <h3>No notifications</h3>
+                        <p>You're all caught up! Check back later for updates.</p>
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
