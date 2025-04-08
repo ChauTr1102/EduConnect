@@ -96,7 +96,75 @@
             font-size: 0.9rem;
         }
         
+        /* Account Dropdown Styles */
+        .account-container {
+            position: relative;
+        }
+        
+        .account-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--white);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .account-container:hover .account-dropdown {
+            display: block;
+        }
+        
+        .dropdown-item {
+            padding: 0.8rem 1.5rem;
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            font-size: 0.95rem;
+        }
+        
+        .dropdown-item:hover {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 0.3rem 0;
+        }
+        
         /* Search Bar Styles */
+        .animated-underline {
+        position: relative;
+        text-decoration: none;
+        }
+
+        .animated-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #1e40af; /* Blue color for the underline */
+        transition: width 0.3s ease-in-out;
+        }
+
+        .animated-underline:hover::after {
+        width: 100%;
+        }
         .search-container {
             position: relative;
             margin-top: 1rem;
@@ -486,7 +554,7 @@
         }
         
         .modal-title {
-            margin-bottom: a1.5rem;
+            margin-bottom: 1.5rem;
             font-size: 1.5rem;
             color: var(--accent-color);
         }
@@ -578,6 +646,11 @@
                 width: 50px;
                 height: 50px;
             }
+            
+            /* Ensure dropdown is properly positioned on mobile */
+            .account-dropdown {
+                right: -10px;
+            }
         }
     </style>
 </head>
@@ -589,16 +662,26 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">New Feed</a></li>
-                <li><a href="#">Review</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">EduconnectGPT</a></li>
+                <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="EduconnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
             </ul>
         </nav>
         <div class="right-actions">
             <div class="credit-icon">0.0 $</div>
             <div class="notification-icon">🔔</div>
-            <div class="account-icon">👤</div>
+            <!-- Updated account icon with dropdown -->
+            <div class="account-container">
+                <div class="account-icon">👤</div>
+                <div class="account-dropdown">
+                    <a href="#" class="dropdown-item">Profile</a>
+                    <a href="#" class="dropdown-item">Setting</a>
+                    <a href="#" class="dropdown-item">Plan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
         </div>
     </header>
     
