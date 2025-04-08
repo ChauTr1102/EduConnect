@@ -392,13 +392,19 @@
     </footer>
 
     <script>
-        // Prevent form submission (for demo purposes)
         document.getElementById('login-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Login functionality would go here in a real application.');
+            const form = e.target;
+            const username = form.querySelector('input[type="text"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            if (username === "manh" && password === "123") {
+                alert('Login successful!');
+            } else {
+                alert('Invalid username or password.');
+            }
         });
-        
-        // Back to account selection page
+
+        // Back to account selection page (unchanged from your original code)
         document.querySelector('.register-link').addEventListener('click', (e) => {
             e.preventDefault();
             window.location.href = 'index.html';
