@@ -56,20 +56,24 @@
             font-weight: 600;
         }
 
+        .animated-underline {
+        position: relative;
+        text-decoration: none;
+        }
+
         .animated-underline::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background-color: #4361ee;
-            transition: all 0.3s;
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #1e40af; /* Blue color for the underline */
+        transition: width 0.3s ease-in-out;
         }
 
         .animated-underline:hover::after {
-            width: 80%;
-            left: 10%;
+        width: 100%;
         }
 
         .right-actions {
@@ -139,18 +143,26 @@
         }
 
         .hero-content {
-            max-width: 60%;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
-
-        .hero h1 {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero h2 {
+        
+        .hero-content h1 {
             font-size: 2.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-button {
@@ -167,16 +179,6 @@
         .hero-button:hover {
             background-color: #ffd000;
             transform: translateY(-2px);
-        }
-
-        .hero-image {
-            width: 30%;
-            text-align: right;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 300px;
         }
 
         /* Main Content Sections */
@@ -379,11 +381,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#" class="active">Home</a></li>
+                <li><a href="home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
                 <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
-                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
-                <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
-                <li><a href="EduconnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+                <li><a href="#" class="active">Ranking</a></li>
+                <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -404,12 +406,7 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>We are EduConnect</h1>
-            <h2>Connecting knowledge, stepping firmly into the future</h2>
-            <a href="#" class="hero-button">Enroll Now →</a>
-        </div>
-        <div class="hero-image">
-            <img src="/api/placeholder/300/200" alt="EduConnect Book Logo">
+            <h1>Challenge each other, push your limits, and grow together—iron sharpens iron.</h1>
         </div>
     </section>
 
