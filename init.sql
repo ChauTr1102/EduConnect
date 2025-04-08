@@ -66,6 +66,7 @@ CREATE TABLE Logs_AI_matching (
     user_id varchar(20) REFERENCES Users(id) ON DELETE CASCADE,
     class_id varchar(20) REFERENCES Classes(id) ON DELETE SET NULL,
     post_id varchar(20) REFERENCES Posts(id) ON DELETE SET NULL,
-    matched_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+    matched_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (post_id, status)
 );
 
