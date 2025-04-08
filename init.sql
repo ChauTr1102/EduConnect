@@ -58,6 +58,12 @@ CREATE TABLE posts (
     content TEXT NOT NULL
 );
 
+CREATE TABLE suitable_teachers(
+	post_id varchar(20) references posts(post_id) on delete cascade,
+	teacher_id varchar(20) references teachers(user_id) on delete cascade,
+	primary key(post_id, teacher_id)
+);
+
 -- LOGS_AI_MATCHING
 CREATE TABLE logs_AI_matching (
     matching_log_id varchar(20) PRIMARY KEY,
@@ -70,3 +76,34 @@ CREATE TABLE logs_AI_matching (
 	UNIQUE (post_id, status)
 );
 
+CREATE TABLE messages(
+	message_id varchar(20),
+	teacher_id varchar(20) REFERENCES teachers(user_id) ON DELETE CASCADE,
+    student_id varchar(20) REFERENCES students(user_id) ON DELETE CASCADE,
+	message_text TEXT not null,
+	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+	primary key(message_id, teacher_id, student_id)
+);
+
+-- tạo function để message_id tự động tăng cho mỗi cuộc hội thoại giữa teacher_id và student_id
+CREATE OR REPLACE FUNCTION calculate_message_id()
+RETURNS TRIGGER AS $$
+DECLARE
+    max_id INT;
+BEGIN
+    SELECT COALESCE(MAX(message_id), 0) + 1 INTO max_id
+    FROM messages
+    WHERE teacher_id = NEW.teacher_id AND student_id = NEW.student_id;
+
+    NEW.message_id := max_id;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- chạy trigger
+DROP TRIGGER IF EXISTS set_message_id_new ON messages;
+
+CREATE TRIGGER set_message_id_new
+BEFORE INSERT ON messages
+FOR EACH ROW
+EXECUTE FUNCTION calculate_message_id();
