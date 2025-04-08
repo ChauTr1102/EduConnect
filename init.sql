@@ -107,3 +107,39 @@ CREATE TRIGGER set_message_id_new
 BEFORE INSERT ON messages
 FOR EACH ROW
 EXECUTE FUNCTION calculate_message_id();
+
+-- tạo function update avg_rate của giáo viên
+CREATE OR REPLACE FUNCTION update_teacher_avg_rate()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE teachers
+    SET avg_rate = (
+        SELECT ROUND(AVG(rate)::numeric, 2)
+        FROM reviews
+        WHERE teacher_id = NEW.teacher_id
+    )
+    WHERE user_id = NEW.teacher_id;
+
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+-- trigger update rate
+-- Khi thêm review
+CREATE TRIGGER trg_update_avg_rate_after_insert
+AFTER INSERT ON reviews
+FOR EACH ROW
+EXECUTE FUNCTION update_teacher_avg_rate();
+
+-- Khi xoá review
+CREATE TRIGGER trg_update_avg_rate_after_delete
+AFTER DELETE ON reviews
+FOR EACH ROW
+EXECUTE FUNCTION update_teacher_avg_rate();
+
+-- Khi chỉnh sửa điểm số review
+CREATE TRIGGER trg_update_avg_rate_after_update
+AFTER UPDATE OF rate ON reviews
+FOR EACH ROW
+EXECUTE FUNCTION update_teacher_avg_rate();
+
