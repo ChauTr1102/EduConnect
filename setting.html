@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Settings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            padding: 8px 12px;
+            color: #555;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+
+        .animated-underline {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #1e40af; /* Blue color for the underline */
+            transition: width 0.3s ease-in-out;
+        }
+
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .credit-icon, .notification-icon {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .notification-icon {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #ff4d4f;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .account-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            font-size: 1.2rem;
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 150px;
+            display: none;
+            padding: 8px 0;
+            z-index: 10;
+        }
+
+        .account-container:hover .account-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #4361ee;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #eee;
+            margin: 5px 0;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Settings Header */
+        .settings-header {
+            background: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+            border-radius: 10px;
+            padding: 2rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .settings-icon {
+            font-size: 2.5rem;
+        }
+
+        .settings-header-content h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .settings-header-content p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        /* Settings Container */
+        .settings-container {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .settings-sidebar {
+            width: 25%;
+        }
+
+        .settings-content {
+            width: 75%;
+        }
+
+        .sidebar-menu {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .sidebar-menu-item {
+            display: flex;
+            align-items: center;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s;
+            gap: 1rem;
+        }
+
+        .sidebar-menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-menu-item.active {
+            background: #eef1ff;
+            border-left: 4px solid #4361ee;
+        }
+
+        .sidebar-menu-item:hover:not(.active) {
+            background: #f7f8fc;
+        }
+
+        .sidebar-menu-icon {
+            font-size: 1.2rem;
+            color: #555;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-menu-item.active .sidebar-menu-icon,
+        .sidebar-menu-item.active .sidebar-menu-text {
+            color: #4361ee;
+            font-weight: 500;
+        }
+
+        /* Settings Content Panels */
+        .settings-panel {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        .panel-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .panel-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .panel-description {
+            margin-top: 0.5rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            transition: border 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #4361ee;
+            outline: none;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-col {
+            flex: 1;
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 0.3rem;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .toggle-label {
+            flex: 1;
+        }
+
+        .toggle-title {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        .toggle-description {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #4361ee;
+        }
+
+        input:focus + .slider {
+            box-shadow: 0 0 1px #4361ee;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-primary {
+            background: #4361ee;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3651d1;
+        }
+
+        .btn-secondary {
+            background: #f0f2f5;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background: #e4e7ed;
+        }
+
+        .btn-danger {
+            background: #ff4d4f;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #ff2c2f;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        /* Avatar Upload */
+        .avatar-upload {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .avatar-preview {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #777;
+            overflow: hidden;
+        }
+
+        .avatar-upload-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .upload-btn {
+            background: #eef1ff;
+            color: #4361ee;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            display: inline-block;
+        }
+
+        .upload-btn:hover {
+            background: #dce3ff;
+        }
+
+        .remove-btn {
+            background: transparent;
+            color: #ff4d4f;
+            cursor: pointer;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0a0057 0%, #2a3990 100%);
+            color: white;
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-logo {
+            width: 20%;
+        }
+
+        .footer-logo img {
+            max-width: 80px;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-socials {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 5px;
+            max-width: 200px;
+        }
+
+        .social-icon {
+            background: rgba(255,255,255,0.2);
+            width: 25px;
+            height: 25px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: white;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .settings-container {
+                flex-direction: column;
+            }
+
+            .settings-sidebar, .settings-content {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
+                <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="EduconnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+            </ul>
+        </nav>
+        <div class="right-actions">
+            <div class="credit-icon">0.0 $</div>
+            <div class="notification-icon">🔔</div>
+            <!-- Updated account icon with dropdown -->
+            <div class="account-container">
+                <div class="account-icon">👤</div>
+                <div class="account-dropdown">
+                    <a href="profile.html" class="dropdown-item">Profile</a>
+                    <a href="setting.html" class="dropdown-item">Setting</a>
+                    <a href="#" class="dropdown-item">Plan</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="settings-header">
+            <div class="settings-icon">⚙️</div>
+            <div class="settings-header-content">
+                <h1>Account Settings</h1>
+                <p>Manage your account preferences, notifications, and security options</p>
+            </div>
+        </div>
+
+        <div class="settings-container">
+            <div class="settings-sidebar">
+                <div class="sidebar-menu">
+                    <div class="sidebar-menu-item active">
+                        <div class="sidebar-menu-icon">👤</div>
+                        <div class="sidebar-menu-text">Profile Information</div>
+                    </div>
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">🔒</div>
+                        <div class="sidebar-menu-text">Password & Security</div>
+                    </div>
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">🔔</div>
+                        <div class="sidebar-menu-text">Notifications</div>
+                    </div>
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">💳</div>
+                        <div class="sidebar-menu-text">Billing & Plans</div>
+                    </div>
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">🌐</div>
+                        <div class="sidebar-menu-text">Language & Region</div>
+                    </div>
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">👁️</div>
+                        <div class="sidebar-menu-text">Privacy</div>
+                    </div>
+                    <div class="sidebar-menu-item">
+                        <div class="sidebar-menu-icon">🔄</div>
+                        <div class="sidebar-menu-text">Linked Accounts</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-content">
+                <!-- Profile Information Section -->
+                <div class="settings-panel" id="profile-info">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Profile Information</h2>
+                        <p class="panel-description">Update your personal information and how it appears on your profile</p>
+                    </div>
+
+                    <div class="avatar-upload">
+                        <div class="avatar-preview">👨‍🎓</div>
+                        <div class="avatar-upload-actions">
+                            <button class="upload-btn">Change Profile Picture</button>
+                            <button class="remove-btn">Remove Picture</button>
+                        </div>
+                    </div>
+
+                    <form>
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label class="form-label" for="first-name">First Name</label>
+                                    <input type="text" id="first-name" class="form-input" value="John">
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="form-group">
+                                    <label class="form-label" for="last-name">Last Name</label>
+                                    <input type="text" id="last-name" class="form-input" value="Anderson">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="display-name">Display Name</label>
+                            <input type="text" id="display-name" class="form-input" value="John Anderson">
+                            <div class="form-hint">This is how your name will appear on the platform</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email Address</label>
+                            <input type="email" id="email" class="form-input" value="john.anderson@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="title">Title/Occupation</label>
+                            <input type="text" id="title" class="form-input" value="Computer Science Student">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="location">Location</label>
+                            <input type="text" id="location" class="form-input" value="Boston, MA">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="bio">Bio</label>
+                            <textarea id="bio" class="form-input" rows="4">Hi there! I'm a Computer Science student with a passion for learning new technologies. Currently focusing on web development, artificial intelligence, and data science. I believe in continuous learning and personal growth through education.</textarea>
+                            <div class="form-hint">Brief description about yourself that appears on your profile</div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Password & Security Section (Hidden by default) -->
+                <div class="settings-panel" id="password-security" style="display: none;">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Password & Security</h2>
+                        <p class="panel-description">Manage your password and security settings</p>
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label" for="current-password">Current Password</label>
+                            <input type="password" id="current-password" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="new-password">New Password</label>
+                            <input type="password" id="new-password" class="form-input">
+                            <div class="form-hint">Password must be at least 8 characters long with a mix of letters, numbers, and symbols</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="confirm-password">Confirm New Password</label>
+                            <input type="password" id="confirm-password" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Two-Factor Authentication</h3>
+                            <div class="toggle-switch">
+                                <div class="toggle-label">
+                                    <div class="toggle-title">Enable Two-Factor Authentication</div>
+                                    <div class="toggle-description">Add an extra layer of security to your account</div>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="reset" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Update Password</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Notifications Section (Hidden by default) -->
+                <div class="settings-panel" id="notifications" style="display: none;">
+                    <div class="panel-header">
+                        <h2 class="panel-title">Notification Settings</h2>
+                        <p class="panel-description">Control how and when you receive notifications</p>
+                    </div>
+
+                    <div class="form-group">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Email Notifications</h3>
+                        
+                        <div class="toggle-switch">
+                            <div class="toggle-label">
+                                <div class="toggle-title">Course Updates</div>
+                                <div class="toggle-description">Receive notifications when courses are updated</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-switch">
+                            <div class="toggle-label">
+                                <div class="toggle-title">Assignment Reminders</div>
+                                <div class="toggle-description">Receive reminders about upcoming assignments</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-switch">
+                            <div class="toggle-label">
+                                <div class="toggle-title">New Course Recommendations</div>
+                                <div class="toggle-description">Get notified about new courses that match your interests</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-switch">
+                            <div class="toggle-label">
+                                <div class="toggle-title">Platform Updates</div>
+                                <div class="toggle-description">Receive notifications about new features and improvements</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3 style="margin-bottom: 1rem; font-size: 1.1rem;">Push Notifications</h3>
+                        
+                        <div class="toggle-switch">
+                            <div class="toggle-label">
+                                <div class="toggle-title">Enable Push Notifications</div>
+                                <div class="toggle-description">Receive notifications directly on your device</div>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-secondary">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+
+                <!-- Additional settings panels would follow the same pattern -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+            <div class="footer-tagline">Empowering education through technology and connectivity.</div>
+        </div>
+        
+        <div class="footer-links">
+            <h4>Resources</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Blog</a>
+        </div>
+        
+        <div class="footer-links">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Careers</a>
+            <a href="#">Press</a>
+            <a href="#">Contact</a>
+        </div>
+        
+        <div class="footer-socials">
+            <div class="social-icon">f</div>
+            <div class="social-icon">in</div>
+            <div class="social-icon">tw</div>
+            <div class="social-icon">ig</div>
+            <div class="social-icon">yt</div>
+            <div class="social-icon">li</div>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle between settings panels
+        document.querySelectorAll('.sidebar-menu-item').forEach((item, index) => {
+            item.addEventListener('click', function() {
+                // Remove active class from all items
+                document.querySelectorAll('.sidebar-menu-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                
+                // Add active class to clicked item
+                this.classList.add('active');
+                
+                // Hide all panels
+                document.querySelectorAll('.settings-panel').forEach(panel => {
+                    panel.style.display = 'none';
+                });
+                
+                // Show the corresponding panel
+                const panels = [
+                    'profile-info',
+                    'password-security',
+                    'notifications',
+                    // Add IDs for other panels
+                ];
+                
+                if (panels[index]) {
+                    document.getElementById(panels[index]).style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
