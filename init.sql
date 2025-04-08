@@ -18,11 +18,11 @@ CREATE TABLE users(
 );
 
 CREATE TABLE students(
-    user_id varchar(20) references users(user_id) ON DELETE CASCADE primary key
+    student_id varchar(20) references users(user_id) ON DELETE CASCADE primary key
 );
 
-CREATE TABLE teachers (
-    user_id varchar(20) REFERENCES users(user_id) ON DELETE CASCADE PRIMARY KEY,
+CREATE TABLE teachers(
+    teacher_id varchar(20) REFERENCES users(user_id) ON DELETE CASCADE PRIMARY KEY,
     avg_rate NUMERIC(3,2) DEFAULT 0
 );
 
@@ -34,19 +34,20 @@ CREATE TABLE subjects (
 CREATE TABLE classes (
     class_id varchar(20) PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
-    subject_id varchar(20) REFERENCES subjects(subject_id) ON DELETE SET NULL
+    subject_id varchar(20) REFERENCES subjects(subject_id) ON DELETE SET NULL,
+    teacher_id varchar(20) references teachers(teacher_id) on delete cascade
 );
 
 CREATE TABLE class_Student (
-    student_id varchar(20) REFERENCES students(user_id) ON DELETE CASCADE,
+    student_id varchar(20) REFERENCES students(student_id) ON DELETE CASCADE,
     class_id varchar(20) REFERENCES classes(class_id) ON DELETE CASCADE,
     PRIMARY KEY (student_id, class_id)
 );
 
 CREATE TABLE reviews (
     review_id varchar(20) PRIMARY KEY,
-    student_id varchar(20) REFERENCES students(user_id) ON DELETE CASCADE,
-    teacher_id varchar(20) REFERENCES teachers(user_id) ON DELETE CASCADE,
+    student_id varchar(20) REFERENCES students(student_id) ON DELETE CASCADE,
+    teacher_id varchar(20) REFERENCES teachers(teacher_id) ON DELETE CASCADE,
     rate INT CHECK (rate >= 0 AND rate <= 5),
     comment TEXT,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
@@ -60,15 +61,15 @@ CREATE TABLE posts (
 
 CREATE TABLE suitable_teachers(
 	post_id varchar(20) references posts(post_id) on delete cascade,
-	teacher_id varchar(20) references teachers(user_id) on delete cascade,
+	teacher_id varchar(20) references teachers(teacher_id) on delete cascade,
 	primary key(post_id, teacher_id)
 );
 
 -- LOGS_AI_MATCHING
 CREATE TABLE logs_AI_matching (
     matching_log_id varchar(20) PRIMARY KEY,
-    student_id varchar(20) REFERENCES students(user_id) ON DELETE CASCADE,
-	teacher_id varchar(20) REFERENCES teachers(user_id) ON DELETE CASCADE,
+    student_id varchar(20) REFERENCES students(student_id) ON DELETE CASCADE,
+	teacher_id varchar(20) REFERENCES teachers(teacher_id) ON DELETE CASCADE,
     class_id varchar(20) REFERENCES classes(class_id) ON DELETE SET NULL,
     post_id varchar(20) REFERENCES posts(post_id) ON DELETE SET NULL,
 	status VARCHAR(50) DEFAULT 'pending' check(status in ('pending', 'matched')),
@@ -76,37 +77,34 @@ CREATE TABLE logs_AI_matching (
 	UNIQUE (post_id, status)
 );
 
-CREATE TABLE messages(
-	message_id varchar(20),
-	teacher_id varchar(20) REFERENCES teachers(user_id) ON DELETE CASCADE,
-    student_id varchar(20) REFERENCES students(user_id) ON DELETE CASCADE,
-	message_text TEXT not null,
-	created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-	primary key(message_id, teacher_id, student_id)
+CREATE TABLE conversations (
+    conversation_id varchar(20) primary key,
+    conversation_name varchar(100),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
--- tạo function để message_id tự động tăng cho mỗi cuộc hội thoại giữa teacher_id và student_id
-CREATE OR REPLACE FUNCTION calculate_message_id()
-RETURNS TRIGGER AS $$
-DECLARE
-    max_id INT;
-BEGIN
-    SELECT COALESCE(MAX(message_id), 0) + 1 INTO max_id
-    FROM messages
-    WHERE teacher_id = NEW.teacher_id AND student_id = NEW.student_id;
+create table participants_conversation(
+    conversation_id varchar(20) references conversations(conversation_id),
+    user_id varchar(20) references users(user_id),
+    primary key(conversation_id, user_id)
+);
 
-    NEW.message_id := max_id;
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
+CREATE TABLE messages (
+    message_id serial PRIMARY KEY,
+    conversation_id VARCHAR(50) REFERENCES conversations(conversation_id) ON DELETE CASCADE,
+    sender_id VARCHAR(20) REFERENCES users(user_id) ON DELETE CASCADE,
+    message_text TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
 
--- chạy trigger
-DROP TRIGGER IF EXISTS set_message_id_new ON messages;
+-- tạo index cho bảng messages để mỗi khi query tin nhắn trong một conversations thì việc order by sẽ nhanh chóng hơn so với tạo trigger tự động tăng message_id
+CREATE INDEX idx_messages_convo_created_at
+ON messages(conversation_id, created_at);
 
-CREATE TRIGGER set_message_id_new
-BEFORE INSERT ON messages
-FOR EACH ROW
-EXECUTE FUNCTION calculate_message_id();
+--SELECT *
+--FROM messages
+--WHERE conversation_id = 'conv_001'
+--ORDER BY created_at;
 
 -- tạo function update avg_rate của giáo viên
 CREATE OR REPLACE FUNCTION update_teacher_avg_rate()
