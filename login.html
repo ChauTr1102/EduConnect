@@ -398,13 +398,14 @@
             const username = form.querySelector('input[type="text"]').value;
             const password = form.querySelector('input[type="password"]').value;
             if (username === "manh" && password === "123") {
-                alert('Login successful!');
+                // Redirect to home.html upon successful login
+                window.location.href = 'home.html';
             } else {
                 alert('Invalid username or password.');
             }
         });
 
-        // Back to account selection page (unchanged from your original code)
+        // Back to account selection page
         document.querySelector('.register-link').addEventListener('click', (e) => {
             e.preventDefault();
             window.location.href = 'index.html';
