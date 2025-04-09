@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "EduConnect"
+version = "0.0.1"
+description = "EduConnect project base"
+authors = ["Trịnh Minh Châu <121995378+ChauTr1102@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+streamlit = "^1.44.1"
+matplotlib = "^3.10.1"
+fastapi = "^0.115.12"
+langchain-community = "^0.3.21"
+uvicorn = "^0.34.0"
+langchain-openai = "^0.3.12"
+langchain-google-genai = "^2.1.2"
+psycopg2 = "^2.9.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
