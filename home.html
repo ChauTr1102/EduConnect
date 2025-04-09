@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnectGPT - Home</title>
+    <style>
+        :root {
+            --primary-color: #0d1472;
+            --secondary-color: #f0f4ff;
+            --accent-color: #3c4fe0;
+            --text-color: #333;
+            --light-text: #888;
+            --white: #fff;
+            --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            position: relative; /* For floating buttons positioning */
+        }
+        
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a.active {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .nav-dropdown::after {
+            content: "▼";
+            font-size: 0.7em;
+            margin-left: 5px;
+            color: var(--light-text);
+        }
+        
+        .right-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .right-actions > * {
+            margin-left: 1rem;
+        }
+        
+        .search-icon, .credit-icon, .notification-icon, .account-icon {
+            font-size: 1.2rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .credit-icon {
+            background-color: #f5f5f5;
+            padding: 0.3rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+        
+        /* Account Dropdown Styles */
+        .account-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            position: relative;
+            z-index: 1001; /* Make sure this is above the dropdown */
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--white);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            z-index: 1000;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Add this to create an invisible bridge between icon and dropdown */
+        .account-dropdown::before {
+            content: '';
+            position: absolute;
+            top: -10px; /* Adjust based on your margin-top value */
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-color: transparent;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(-10px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .account-container:hover .account-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 0.8rem 1.5rem;
+            display: block;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--secondary-color);
+            color: var(--accent-color);
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background-color: #eee;
+            margin: 0.3rem 0;
+        }
+        
+        /* Search Bar Styles */
+        .animated-underline {
+        position: relative;
+        text-decoration: none;
+        }
+
+        .animated-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #1e40af; /* Blue color for the underline */
+        transition: width 0.3s ease-in-out;
+        }
+
+        .animated-underline:hover::after {
+        width: 100%;
+        }
+        .search-container {
+            position: relative;
+            margin-top: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 3rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 2px 10px rgba(60, 79, 224, 0.15);
+        }
+        
+        .search-icon-input {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--light-text);
+            font-size: 1.2rem;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        .hero-section {
+            background: var(--purple-gradient);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+
+        
+        .learn-more-btn {
+            background-color: #ffdd00;
+            color: var(--text-color);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .learn-more-btn::after {
+            content: "→";
+            margin-left: 0.5rem;
+        }
+        
+        .features-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        .message-list-section {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .message-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .message-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+            background-color: #ddd;
+        }
+        
+        .user-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .user-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+        
+        .message-time {
+            color: var(--light-text);
+            font-size: 0.9rem;
+        }
+        
+        .message-content {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .message-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .message-btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-left {
+            max-width: 300px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+        }
+        
+        .mission-statement {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .team-credit {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .footer-links {
+            text-align: center;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .payment-methods {
+            text-align: right;
+        }
+        
+        .payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            max-width: 300px;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            background-color: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Floating Action Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+        
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+        
+        .post-btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            font-size: 24px;
+        }
+        
+        .chat-btn {
+            background-color: #25D366;
+            color: var(--white);
+        }
+        
+        .chat-btn img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        
+
+        .floating-buttons {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--accent-color, #4a6bff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .floating-btn img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Chat interface styles */
+        .chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            z-index: 1001;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {transform: translateY(20px); opacity: 0;}
+            to {transform: translateY(0); opacity: 1;}
+        }
+
+        .chat-header {
+            padding: 15px;
+            background-color: var(--accent-color, #4a6bff);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 1.1rem;
+        }
+
+        .close-chat {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: flex-start;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        .bot-message .message-avatar {
+            background-color: var(--accent-color, #4a6bff);
+            color: white;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-avatar {
+            margin-right: 0;
+            margin-left: 10px;
+            background-color: #25D366;
+            color: white;
+        }
+
+        .message-content {
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 15px;
+            max-width: 92%;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .user-message .message-content {
+            background-color: var(--accent-color, #4a6bff);
+            color: white;
+        }
+
+        .message-content p {
+            margin: 0;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .chat-input button {
+            background-color: var(--accent-color, #4a6bff);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+
+        /* Modal styles for post function */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalFade 0.3s ease;
+        }
+        
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+        
+        .modal-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        .post-form textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            resize: vertical;
+        }
+        
+        .post-form button {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .message-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding-bottom: 300px;
+            }
+            
+            .hero-content {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+            
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .payment-methods, .footer-links, .footer-left {
+                text-align: center;
+                max-width: none;
+            }
+            
+            .payment-icons {
+                justify-content: center;
+                margin: 0 auto;
+            }
+            
+            .search-container {
+                margin-top: 0.5rem;
+            }
+            
+            .search-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+            }
+            
+            /* Ensure dropdown is properly positioned on mobile */
+            .account-dropdown {
+                right: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+            </ul>
+        </nav>
+        <div class="right-actions">
+            <div class="credit-icon">0.0 $</div>
+            <a href="notification.html" class="notification-icon" style="text-decoration: none;">🔔</a>
+            <!-- Updated account icon with dropdown -->
+            <div class="account-container">
+                <div class="account-icon">👤</div>
+                <div class="account-dropdown">
+                    <a href="profile.html" class="dropdown-item">Profile</a>
+                    <a href="setting.html" class="dropdown-item">Setting</a>
+                    <a href="pricing.html" class="dropdown-item">Pricing</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="login.html" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>We are EduConnect</h1>
+            <h1>Connecting knowledge, stepping firmly into the future</h1>
+            <p>Join our growing community of learners and educators to expand your horizons.</p>
+            <button class="learn-more-btn">Learn More</button>
+        </div>
+
+    </section>
+    
+    <!-- Search Bar -->
+    <div class="search-container">
+        <span class="search-icon-input">🔍</span>
+        <input type="text" class="search-bar" placeholder="Search for tutors, courses, or topics...">
+        <button class="search-btn">Search</button>
+    </div>
+    
+    <section class="features-section">
+        <h2 class="section-title">How EduConnect Works</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📚</div>
+                <h3 class="feature-title">Connect with Tutors</h3>
+                <p class="feature-description">Find experienced tutors in various subjects who can help you master any topic.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">AI-Powered Learning</h3>
+                <p class="feature-description">Get instant help with our EduconnectGPT assistant for quick answers and guidance.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌟</div>
+                <h3 class="feature-title">Track Your Progress</h3>
+                <p class="feature-description">Monitor your learning journey with detailed analytics and personalized insights.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="message-list-section">
+        <div class="message-list">
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar1.png" alt="Nguyen Thu Trang">
+                    </div>
+                    <div class="user-info">
+                        <h3>Nguyen Thu Trang</h3>
+                        <p class="message-time">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar2.png" alt="Mai Anh">
+                    </div>
+                    <div class="user-info">
+                        <h3>Mai Anh</h3>
+                        <p class="message-time">1 hour ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar3.png" alt="Nguyen Trong Minh">
+                    </div>
+                    <div class="user-info">
+                        <h3>Nguyen Trong Minh</h3>
+                        <p class="message-time">2 hours ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+            
+            <div class="message-card">
+                <div class="message-header">
+                    <div class="user-avatar">
+                        <img src="avatar4.png" alt="Đặng Quang">
+                    </div>
+                    <div class="user-info">
+                        <h3>Đặng Quang</h3>
+                        <p class="message-time">1 hour ago</p>
+                    </div>
+                </div>
+                <div class="message-content">
+                    <p>Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓.</p>
+                </div>
+                <div class="message-actions">
+                    <button class="message-btn">Send message</button>
+                    <button class="message-btn">Send Request</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <div class="floating-btn chat-btn" id="chatBtn">
+            <img src="chaticon.png" alt="Chat">
+        </div>
+        <div class="floating-btn post-btn" id="postBtn">
+            <span>+</span>
+        </div>
+    </div>
+    
+    <div id="chatInterface" class="chat-container">
+        <div class="chat-header">
+          <h3>EduConnect Chat</h3>
+          <span class="close-chat" id="closeChat">&times;</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            <div class="message-avatar">🤖</div>
+            <div class="message-content">
+              <p>Hello! How can I help you with your learning needs today?</p>
+            </div>
+          </div>
+        </div>
+        <div class="chat-input">
+          <input type="text" id="messageInput" placeholder="Type your message...">
+          <button id="sendMessage">Send</button>
+        </div>
+      </div>
+
+
+    <!-- Post Modal -->
+    <div class="modal" id="postModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2 class="modal-title">Create a New Post</h2>
+            <form class="post-form">
+                <textarea placeholder="What do you need help with? Describe your learning needs..."></textarea>
+                <button type="button">Post</button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+                </div>
+                <p class="mission-statement">EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                <p class="team-credit">—EduConnect team</p>
+            </div>
+            
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">All pages</a></li>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund and Returns Policy</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">faq</a></li>
+                    <li><a href="#">Terms and condition</a></li>
+                </ul>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-icons">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar').value.trim();
+            if (searchTerm) {
+                alert('Searching for: ' + searchTerm);
+                // Here you would typically implement real search functionality
+                // For example: window.location.href = 'search-results.html?q=' + encodeURIComponent(searchTerm);
+            }
+        });
+        
+        // Allow search on Enter key press
+        document.querySelector('.search-bar').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+        
+        // Post Button Modal
+        const postBtn = document.getElementById('postBtn');
+        const postModal = document.getElementById('postModal');
+        const closeModal = document.getElementById('closeModal');
+        
+        postBtn.addEventListener('click', function() {
+            postModal.style.display = 'flex';
+        });
+        
+        closeModal.addEventListener('click', function() {
+            postModal.style.display = 'none';
+        });
+        
+        // Close modal when clicking outside of it
+        window.addEventListener('click', function(event) {
+            if (event.target === postModal) {
+                postModal.style.display = 'none';
+            }
+        });
+        
+        // Chat Button
+        const chatBtn = document.getElementById('chatBtn');
+
+        document.addEventListener('DOMContentLoaded', function() {
+        const chatBtn = document.getElementById('chatBtn');
+        const chatInterface = document.getElementById('chatInterface');
+        const closeChat = document.getElementById('closeChat');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Show chat when clicking chat button
+        chatBtn.addEventListener('click', function() {
+        chatInterface.style.display = 'flex';
+        });
+
+        // Close chat when clicking close button
+        closeChat.addEventListener('click', function() {
+        chatInterface.style.display = 'none';
+        });
+
+        // Send message function
+        function sendUserMessage() {
+        const messageText = messageInput.value.trim();
+        
+        if (messageText) {
+            // Add user message
+            const userMessageHTML = `
+            <div class="message user-message">
+                <div class="message-avatar">👤</div>
+                <div class="message-content">
+                <p>${messageText}</p>
+                </div>
+            </div>
+            `;
+            chatMessages.innerHTML += userMessageHTML;
+            
+            // Clear input
+            messageInput.value = '';
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate bot response (after a small delay)
+            setTimeout(() => {
+            let botResponse = "Thanks for your message! Our tutors will get back to you shortly.";
+            
+            // Simple keyword responses (you can expand this)
+            if (messageText.toLowerCase().includes('math') || messageText.toLowerCase().includes('toán')) {
+                botResponse = "We have excellent math tutors available. Would you like me to help you find one?";
+            } else if (messageText.toLowerCase().includes('price') || messageText.toLowerCase().includes('cost')) {
+                botResponse = "Our tutoring prices start at $15/hour. Would you like to see our full pricing?";
+            } else if (messageText.toLowerCase().includes('hello') || messageText.toLowerCase().includes('hi')) {
+                botResponse = "Hello! How can I help with your education needs today?";
+            }
+            
+            const botMessageHTML = `
+                <div class="message bot-message">
+                <div class="message-avatar">🤖</div>
+                <div class="message-content">
+                    <p>${botResponse}</p>
+                </div>
+                </div>
+            `;
+            chatMessages.innerHTML += botMessageHTML;
+            
+            // Scroll to bottom again
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 800);
+        }
+        }
+
+        // Send message when clicking send button
+        sendMessage.addEventListener('click', sendUserMessage);
+        
+        // Send message when pressing Enter key
+        messageInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendUserMessage();
+        }
+        });
+    });
+    
+    </script>
+</body>
+</html>

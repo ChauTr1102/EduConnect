@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnectGPT - Login</title>
+    <style>
+        :root {
+            --primary-color: #0d1472;
+            --secondary-color: #f0f4ff;
+            --accent-color: #3c4fe0;
+            --text-color: #333;
+            --light-text: #888;
+            --white: #fff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-dropdown::after {
+            content: "▼";
+            font-size: 0.7em;
+            margin-left: 5px;
+            color: var(--light-text);
+        }
+        
+        .right-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .right-actions > * {
+            margin-left: 1rem;
+        }
+        
+        
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        /* Login Form Styles */
+        .login-container {
+            max-width: 400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            border-radius: 8px;
+            background-color: var(--white);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+        
+        .login-header {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        
+        .form-checkbox {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        
+        .form-checkbox input {
+            margin-right: 0.5rem;
+        }
+        
+        .forgot-link {
+            display: block;
+            text-align: right;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sign-in-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #0039cb;
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        
+        .register-prompt {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .register-link {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .google-btn {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--white);
+            color: var(--text-color);
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .google-icon {
+            margin-right: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+        }
+
+        .google-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 3rem 2rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-left {
+            max-width: 300px;
+        }
+        
+        .footer-logo {
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .footer-logo img {
+            height: 60px;
+        }
+        
+        .mission-statement {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .team-credit {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .footer-links {
+            text-align: center;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .payment-methods {
+            text-align: right;
+        }
+        
+        .payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 0.5rem;
+            max-width: 300px;
+        }
+        
+        .payment-icon {
+            width: 40px;
+            height: 25px;
+            background-color: var(--white);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .payment-methods, .footer-links, .footer-left {
+                text-align: center;
+                max-width: none;
+            }
+            
+            .payment-icons {
+                justify-content: center;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">New Feed</a></li>
+                <li><a href="#">Pricing</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="main-content">
+        <div class="login-container">
+            <h2 class="login-header">Hi, Welcome back!</h2>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username or Email Address" required>
+                </div>
+                
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" required>
+                </div>
+                
+                <div class="form-checkbox">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Keep me signed in</label>
+                </div>
+                
+                <a href="#" class="forgot-link">Forgot?</a>
+                
+                <button type="submit" class="sign-in-btn">Sign In</button>
+                
+                <p class="register-prompt">Don't have an account? <a href="#" class="register-link">Register Now</a></p>
+                
+                <button type="button" class="google-btn">
+                    <span class="google-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                          <path d="M1 1h22v22H1z" fill="none"/>
+                        </svg>
+                      </span>
+                    Register with Google
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <div class="footer-logo">
+                    <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+                </div>
+                <p class="mission-statement">EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                <p class="team-credit">—EduConnect team</p>
+            </div>
+            
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">All pages</a></li>
+                    <li><a href="#">All Courses</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Refund and Returns Policy</a></li>
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">faq</a></li>
+                    <li><a href="#">Terms and condition</a></li>
+                </ul>
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-icons">
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                    <div class="payment-icon">💳</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const username = form.querySelector('input[type="text"]').value;
+            const password = form.querySelector('input[type="password"]').value;
+            if (username === "manh" && password === "123") {
+                // Redirect to home.html upon successful login
+                window.location.href = 'home.html';
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+
+        // Back to account selection page
+        document.querySelector('.register-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

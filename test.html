@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Connecting knowledge, stepping firmly into the future</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .page {
+            display: none;
+        }
+        .active-page {
+            display: block;
+        }
+        .logo {
+            width: 120px;
+        }
+        .nav-item {
+            position: relative;
+        }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #3730a3;
+            transition: width 0.3s;
+        }
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        .pentagon {
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            background-color: #172554;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .chat-container {
+            height: 500px;
+        }
+        .message-bubble {
+            max-width: 70%;
+            border-radius: 1rem;
+            padding: 0.75rem 1rem;
+            margin: 0.5rem 0;
+        }
+        .incoming {
+            background-color: #f3f4f6;
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem;
+        }
+        .outgoing {
+            background-color: #1d4ed8;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .star-rating {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .star {
+            font-size: 2rem;
+            color: #d1d5db;
+            cursor: pointer;
+        }
+        .star.active {
+            color: #fbbf24;
+        }
+        .sidebar-menu {
+            background-color: #172554;
+            color: white;
+            width: 240px;
+        }
+        .sidebar-item {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            margin: 0.25rem 0;
+            transition: background-color 0.3s;
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Navigation Bar -->
+    <nav class="sticky top-0 z-50 w-full bg-white shadow-md flex justify-between items-center px-6 py-2">
+        <div class="flex items-center">
+            <div class="logo py-2">
+                <svg width="100" height="40" viewBox="0 0 100 40" class="fill-current text-blue-900">
+                    <circle cx="20" cy="20" r="15" fill="#172554"/>
+                    <path d="M20 5 L35 20 L20 35 L5 20 Z" fill="white"/>
+                    <text x="45" y="25" font-family="Arial" font-size="14" fill="#172554" font-weight="bold">EduConnect</text>
+                </svg>
+            </div>
+        </div>
+        <div class="flex items-center space-x-6">
+            <a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900" onclick="showPage('home')">Home</a>
+            <a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900" onclick="showPage('feed')">New Feed</a>
+            <a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900" onclick="showPage('review')">Review</a>
+            <div class="relative group">
+                <a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 flex items-center" onclick="showPage('profile')">
+                    Profile <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                </a>
+            </div>
+            <div class="relative group">
+                <a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 flex items-center" onclick="showPage('support')">
+                    Support <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                </a>
+            </div>
+            <div class="relative group">
+                <a href="#" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 flex items-center" onclick="showPage('educonnect')">
+                    EduConnectPT <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                </a>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <div class="relative">
+                <i class="fas fa-search text-gray-500"></i>
+            </div>
+            <div class="text-center text-sm">
+                <span class="block text-blue-900 font-semibold">0.0 $</span>
+            </div>
+            <div class="relative">
+                <i class="far fa-bell text-gray-700"></i>
+            </div>
+            <button class="bg-blue-900 text-white px-4 py-1.5 rounded-md hover:bg-blue-800 transition" onclick="showPage('register')">Register</button>
+        </div>
+    </nav>
+
+    <!-- Welcome Page -->
+    <div id="welcome" class="page active-page py-16">
+        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-8">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Welcome!</h1>
+            <p class="text-gray-600 text-center mb-8">To begin this journey, tell us what type of account you'd be opening.</p>
+            
+            <div class="grid grid-cols-1 gap-6">
+                <div class="border border-blue-200 rounded-lg p-6 hover:shadow-md transition cursor-pointer" onclick="showPage('register')">
+                    <div class="flex items-center">
+                        <div class="pentagon mr-4">
+                            <i class="fas fa-graduation-cap text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-800">Tutor</h2>
+                            <p class="text-sm text-gray-600">Get into your tutor account and start teaching</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border border-blue-200 rounded-lg p-6 hover:shadow-md transition cursor-pointer" onclick="showPage('register')">
+                    <div class="flex items-center">
+                        <div class="pentagon mr-4" style="clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);">
+                            <i class="fas fa-user-graduate text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-800">Student</h2>
+                            <p class="text-sm text-gray-600">Set up your student account and start learning</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="bg-blue-900 text-white mt-20 py-10 px-6">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="mb-4">
+                        <svg width="120" height="50" viewBox="0 0 120 50" class="fill-current text-white">
+                            <circle cx="25" cy="25" r="20" fill="white"/>
+                            <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="#172554"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm mb-2">"EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                    <p class="text-sm">—EduConnect team</p>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-2">
+                    <a href="#" class="text-sm hover:underline">All pages</a>
+                    <a href="#" class="text-sm hover:underline">All Courses</a>
+                    <a href="#" class="text-sm hover:underline">Contact</a>
+                    <a href="#" class="text-sm hover:underline">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:underline">Refund and Returns Policy</a>
+                    <a href="#" class="text-sm hover:underline">About us</a>
+                    <a href="#" class="text-sm hover:underline">faq</a>
+                    <a href="#" class="text-sm hover:underline">Terms and condition</a>
+                </div>
+                
+                <div class="grid grid-cols-6 gap-2">
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-blue-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-twitter text-blue-400"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-instagram text-pink-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-youtube text-red-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-linkedin-in text-blue-700"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-pinterest text-red-600"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-snapchat-ghost text-yellow-400"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-telegram-plane text-blue-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-whatsapp text-green-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-discord text-indigo-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-tiktok text-black"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-reddit-alien text-orange-600"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="page py-16">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+            <h1 class="text-xl font-semibold text-center text-gray-800 mb-6">Hi, Welcome back!</h1>
+            
+            <form class="space-y-4">
+                <div>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Username or Email Address">
+                </div>
+                <div>
+                    <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Password">
+                </div>
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center">
+                        <input type="checkbox" class="form-checkbox h-4 w-4 text-blue-600">
+                        <span class="ml-2 text-sm text-gray-600">Keep me signed in</span>
+                    </label>
+                    <a href="#" class="text-sm text-gray-600 hover:underline">Forgot?</a>
+                </div>
+                <button type="button" class="w-full bg-blue-900 text-white py-2 rounded-md hover:bg-blue-800 transition" onclick="showPage('dashboard')">Sign in</button>
+            </form>
+            
+            <div class="mt-6 text-center">
+                <p class="text-sm text-gray-600">Don't have an account? <a href="#" class="text-blue-600 hover:underline" onclick="showPage('register')">Register Now</a></p>
+            </div>
+            
+            <div class="mt-6">
+                <button type="button" class="w-full flex items-center justify-center border border-gray-300 rounded-md py-2 px-4 text-sm text-gray-700 hover:bg-gray-50 transition">
+                    <i class="fab fa-google text-red-500 mr-3"></i> Register with Google
+                </button>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="bg-blue-900 text-white mt-20 py-10 px-6">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="mb-4">
+                        <svg width="120" height="50" viewBox="0 0 120 50" class="fill-current text-white">
+                            <circle cx="25" cy="25" r="20" fill="white"/>
+                            <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="#172554"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm mb-2">"EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                    <p class="text-sm">—EduConnect team</p>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-2">
+                    <a href="#" class="text-sm hover:underline">All pages</a>
+                    <a href="#" class="text-sm hover:underline">All Courses</a>
+                    <a href="#" class="text-sm hover:underline">Contact</a>
+                    <a href="#" class="text-sm hover:underline">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:underline">Refund and Returns Policy</a>
+                    <a href="#" class="text-sm hover:underline">About us</a>
+                    <a href="#" class="text-sm hover:underline">faq</a>
+                    <a href="#" class="text-sm hover:underline">Terms and condition</a>
+                </div>
+                
+                <div class="grid grid-cols-6 gap-2">
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-blue-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-twitter text-blue-400"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-instagram text-pink-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-youtube text-red-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-linkedin-in text-blue-700"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-pinterest text-red-600"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Register Page -->
+    <div id="register" class="page py-16">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+            <form class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="First Name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Last Name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">User Name</label>
+                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="User Name">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">E-Mail</label>
+                    <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="E-Mail">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Password">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password confirmation</label>
+                    <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Password Confirmation">
+                </div>
+                <div class="text-sm text-gray-600">
+                    By signing up, I agree with the website's <a href="#" class="text-blue-600 hover:underline">Terms and Conditions</a>
+                </div>
+                <button type="button" class="w-full bg-blue-900 text-white py-2 rounded-md hover:bg-blue-800 transition" onclick="showPage('dashboard')">Register</button>
+            </form>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="bg-blue-900 text-white mt-20 py-10 px-6">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="mb-4">
+                        <svg width="120" height="50" viewBox="0 0 120 50" class="fill-current text-white">
+                            <circle cx="25" cy="25" r="20" fill="white"/>
+                            <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="#172554"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm mb-2">"EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                    <p class="text-sm">—EduConnect team</p>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-2">
+                    <a href="#" class="text-sm hover:underline">All pages</a>
+                    <a href="#" class="text-sm hover:underline">All Courses</a>
+                    <a href="#" class="text-sm hover:underline">Contact</a>
+                    <a href="#" class="text-sm hover:underline">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:underline">Refund and Returns Policy</a>
+                    <a href="#" class="text-sm hover:underline">About us</a>
+                    <a href="#" class="text-sm hover:underline">faq</a>
+                    <a href="#" class="text-sm hover:underline">Terms and condition</a>
+                </div>
+                
+                <div class="grid grid-cols-6 gap-2">
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-blue-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-twitter text-blue-400"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-instagram text-pink-500"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Dashboard Page -->
+    <div id="dashboard" class="page">
+        <!-- Hero Section -->
+        <div class="bg-blue-900 text-white py-12 px-6">
+            <div class="max-w-6xl mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-8 md:mb-0 md:w-1/2">
+                        <h1 class="text-4xl font-bold mb-4">We are EduConnect</h1>
+                        <p class="text-2xl font-semibold mb-6">Connecting knowledge, stepping firmly into the future</p>
+                        <button class="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-300 transition">Enroll Now</button>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300x200" alt="Education Illustration" class="rounded-lg">
+                            <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-blue-800 text-white px-4 py-1 rounded-lg text-sm">EDUCONNECT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex">
+            <!-- Sidebar -->
+            <aside class="sidebar-menu h-screen sticky top-0">
+                <div class="p-4 border-b border-blue-800">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gray-300 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Trịnh Chau - CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="mb-6">
+                        <h3 class="text-xs uppercase tracking-wide mb-3 text-blue-300">Inspect</h3>
+                        <div class="sidebar-item active">
+                            <i class="fas fa-tachometer-alt mr-2"></i> Dashboards
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-paint-brush mr-2"></i> Style
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-book-open mr-2"></i> Subject
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-chart-line mr-2"></i> proficiency
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-dollar-sign mr-2"></i> Budget
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-xs uppercase tracking-wide mb-3 text-blue-300">Account</h3>
+                        <div class="sidebar-item">
+                            <i class="fas fa-user mr-2"></i> User Profile
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-lock mr-2"></i> Authentication
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-credit-card mr-2"></i> Pricing
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-tasks mr-2"></i> Task
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-xs uppercase tracking-wide mb-3 text-blue-300">Tools</h3>
+                        <div class="sidebar-item">
+                            <i class="fas fa-comment-alt mr-2"></i> Messages
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-calendar-alt mr-2"></i> Calendar
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-file-alt mr-2"></i> Files & Library
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-tasks mr-2"></i> Practice Manager
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-xs uppercase tracking-wide mb-3 text-blue-300">Manage</h3>
+                        <div class="sidebar-item">
+                            <i class="fas fa-users mr-2"></i> Team
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-user-friends mr-2"></i> Clients
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-plug mr-2"></i> Integration
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-auto p-4 border-t border-blue-800 text-xs text-blue-300">
+                    <p>Trinh Minh Chau - CEO</p>
+                    <p>trinhminhchau@gmail.com</p>
+                </div>
+            </aside>
+
+            <!-- Messages Dashboard -->
+            <div class="flex-1 p-6 bg-gray-100">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Message Card 1 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between mb-4">
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send message</button>
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send Request</button>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-800 mb-4">
+                                Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Điểm hiện tại học sinh khoảng 7. Mục tiêu cuối năm Đạt số điểm học tập trên 8...
+                            </p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Lịch học: T6 3 - 5 (17h - 19h), chủ tuần có thể đổi sang.</li>
+                                <li>• Học phí: 200k/buổi, học online</li>
+                                <li>• Khu vực: Cầu Giấy, Hà Nội</li>
+                                <li>• Yêu cầu: Giáo viên có kinh nghiệm dạy cấp 3.</li>
+                            </ul>
+                            <p class="text-sm text-gray-600">
+                                Kiên nhẫn, dạy dễ hiểu, giảng kiểu lý thuyết trước, hướng dẫn làm bài tập với đơn cơ cơ bản đến khó.
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                                <img src="https://via.placeholder.com/40" alt="Nguyễn Thu Trang">
+                            </div>
+                            <div>
+                                <p class="font-medium">Nguyễn Thu Trang</p>
+                                <p class="text-xs text-gray-500">2 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Card 2 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between mb-4">
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send message</button>
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send Request</button>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-800 mb-4">
+                                Hello! Mình tên là Mai Anh, học lớp 11 mà Toàn đang học dưới mức trung bình. Mình muốn tìm gia sư dạy Hóa và Đạo hàm, mình học không giỏi...
+                            </p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Lịch học: T6 3 - 5 (17h - 21h), chủ tuần cũng được.</li>
+                                <li>• Học phí: 200k - 250k/buổi, có thể học online</li>
+                                <li>• Khu vực: Thanh Xuân, Hà Nội</li>
+                                <li>• Yêu cầu: Giáo viên nhiều kinh nghiệm</li>
+                            </ul>
+                            <p class="text-sm text-gray-600">
+                                Nếu có giáo trình bài bản thì tốt. Mình làm theo phương pháp dạy của thầy/cô, nhưng vẫn chăm chỉ bài tập và không nói là không hiểu khi cô thầy đã giải thích rồi mà mình không hiểu tại sao là chăm bám 😊
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                                <img src="https://via.placeholder.com/40" alt="Mai Anh">
+                            </div>
+                            <div>
+                                <p class="font-medium">Mai Anh</p>
+                                <p class="text-xs text-gray-500">1 hour ago</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Card 3 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between mb-4">
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send message</button>
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send Request</button>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-800 mb-4">
+                                Hello! Mình tên là Minh, học lớp 12 mà Toán đang trung bình. Mình cần tìm gia sư Hóa và Hình học...
+                            </p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Lịch học: T6 2 - 4 (lúc 18h - 21h), chủ tuần</li>
+                                <li>• Học phí: 250k - 300k/buổi, học online</li>
+                                <li>• Khu vực: Cầu Giấy, Hà Nội</li>
+                                <li>• Yêu cầu: Kinh nghiệm dạy thi đại học</li>
+                            </ul>
+                            <p class="text-sm text-gray-600">
+                                Có thể chỉ cho mình cách học đúng, hỗ trợ mình làm đề, giải đáp băn khoản. Mình rất chăm chỉ nhưng vẫn không hiểu tại sao là chăm bám 😊
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                                <img src="https://via.placeholder.com/40" alt="Nguyễn Trọng Minh">
+                            </div>
+                            <div>
+                                <p class="font-medium">Nguyễn Trọng Minh</p>
+                                <p class="text-xs text-gray-500">2 hours ago</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Card 4 -->
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="flex justify-between mb-4">
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send message</button>
+                            <button class="bg-blue-600 text-white px-4 py-1 rounded-md text-sm">Send Request</button>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-800 mb-4">
+                                Tìm gia sư Toán của với cuộc sống em ở Quận 1, học lớp 11 mà Toán đang học dưới điểm 4. Muốn học toán để lên điểm 6...
+                            </p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Lịch học: T6 3 - 5 (17h - 22h), cuối tuần</li>
+                                <li>• Học phí: 200k - 250k/buổi, học online</li>
+                                <li>• Khu vực: Quận Thanh Xuân, Hà Nội</li>
+                                <li>• Yêu cầu: Kinh nghiệm dạy</li>
+                            </ul>
+                            <p class="text-sm text-gray-600">
+                                Cần gia sư kiên nhẫu, có cách giải logics nhưng không khô khan...
+                            </p>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full overflow-hidden mr-3">
+                                <img src="https://via.placeholder.com/40" alt="Đăng Quang">
+                            </div>
+                            <div>
+                                <p class="font-medium">Đăng Quang</p>
+                                <p class="text-xs text-gray-500">1 hour ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Detail Page -->
+    <div id="chat-detail" class="page">
+        <!-- Navigation Bar (Same as previous) -->
+        <nav class="sticky top-0 z-50 w-full bg-white shadow-md flex justify-between items-center px-6 py-2">
+            <div class="flex items-center">
+                <div class="logo py-2">
+                    <svg width="100" height="40" viewBox="0 0 100 40" class="fill-current text-blue-900">
+                        <circle cx="20" cy="20" r="15" fill="#172554"/>
+                        <path d="M20 5 L35 20 L20 35 L5 20 Z" fill="white"/>
+                        <text x="45" y="25" font-family="Arial" font-size="14" fill="#172554" font-weight="bold">EduConnect</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="relative">
+                    <i class="fas fa-search text-gray-500"></i>
+                </div>
+                <div class="text-center text-sm">
+                    <span class="block text-blue-900 font-semibold">0.0 $</span>
+                </div>
+                <div class="relative">
+                    <i class="far fa-bell text-gray-700"></i>
+                </div>
+                <button class="bg-indigo-600 text-white px-4 py-1.5 rounded-md">Trịnh Chau - CEO</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="flex">
+            <!-- Sidebar -->
+            <aside class="sidebar-menu h-screen sticky top-0">
+                <div class="p-4 border-b border-blue-800">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-gray-300 rounded-full overflow-hidden">
+                            <img src="https://via.placeholder.com/40" alt="User Avatar">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-sm">Trịnh Chau - CEO</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="mb-6">
+                        <h3 class="text-xs uppercase tracking-wide mb-3 text-blue-300">Tools</h3>
+                        <div class="sidebar-item active">
+                            <i class="fas fa-comment-alt mr-2"></i> Messages
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-calendar-alt mr-2"></i> Calendar
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-file-alt mr-2"></i> Files & Library
+                        </div>
+                        <div class="sidebar-item">
+                            <i class="fas fa-tasks mr-2"></i> Practice Manager
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chat Window -->
+            <div class="flex-1 flex">
+                <!-- Message List -->
+                <div class="w-1/3 border-r border-gray-200 bg-white">
+                    <div class="p-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold">Messages</h2>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center mb-4">
+                            <input type="text" placeholder="Search chat..." class="w-full px-3 py-2 border border-gray-300 rounded-l focus:outline-none">
+                            <button class="bg-blue-600 text-white px-4 py-2 rounded-r">
+                                <i class="fas fa-plus"></i> CHAT
+                            </button>
+                        </div>
+                        
+                        <div class="border-b border-gray-200 py-4">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                                    <img src="https://via.placeholder.com/40" alt="Võ Thanh Nhàn">
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-medium">Võ Thanh Nhàn</p>
+                                    <p class="text-xs text-gray-500">00:31:00</p>
+                                </div>
+                                <div>
+                                    <i class="fas fa-play text-blue-600"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Detail -->
+                <div class="w-2/3 flex flex-col">
+                    <div class="p-4 border-b border-gray-200 flex items-center justify-between">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+                                <img src="https://via.placeholder.com/40" alt="Nguyễn Thu Trang">
+                            </div>
+                            <div>
+                                <p class="font-medium">Nguyễn Thu Trang</p>
+                                <p class="text-xs text-gray-500">#CKD678H</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <button class="bg-blue-600 text-white px-4 py-1.5 rounded-md">Send Request</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300">
+                                <i class="fas fa-phone"></i>
+                            </button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300">
+                                <i class="fas fa-video"></i>
+                            </button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300">
+                                <i class="fas fa-info"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 p-4 overflow-y-auto flex flex-col">
+                        <div class="message-bubble incoming">
+                            <p>Dạ qua dịch 45 em em học ở Mỹ học với cách học của em ạ</p>
+                            <p class="text-xs text-gray-500 text-right">8:00 PM</p>
+                        </div>
+                        
+                        <div class="message-bubble outgoing">
+                            <p>Thế hay quá</p>
+                            <p class="text-xs text-gray-400 text-right">8:02 PM</p>
+                        </div>
+                        
+                        <div class="message-bubble incoming">
+                            <p>Em em giờ học điều chỉnh em môn khoản 20 điểm ạ</p>
+                            <p class="text-xs text-gray-500 text-right">8:02 PM</p>
+                        </div>
+                        
+                        <div class="message-bubble outgoing">
+                            <p>Chắc thế đó ý gì nhỉ</p>
+                            <p class="text-xs text-gray-400 text-right">8:03 PM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4 border-t border-gray-200">
+                        <div class="relative">
+                            <input type="text" class="w-full px-4 py-2 pr-12 border border-gray-300 rounded-full focus:outline-none" placeholder="Type a message...">
+                            <div class="absolute right-2 top-2 flex space-x-2">
+                                <button class="text-blue-600">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                                <button class="text-gray-500">
+                                    <i class="far fa-image"></i>
+                                </button>
+                                <button class="text-gray-500">
+                                    <i class="fas fa-microphone"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Page -->
+    <div id="feedback" class="page py-16">
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+            <h1 class="text-xl font-bold text-center text-gray-800 mb-6">looks like you have just finished your lesson</h1>
+            
+            <div class="mb-6">
+                <p class="text-center text-gray-600 mb-4">Give vote</p>
+                <div class="star-rating">
+                    <i class="fas fa-star star" onclick="toggleStar(1)"></i>
+                    <i class="fas fa-star star" onclick="toggleStar(2)"></i>
+                    <i class="fas fa-star star" onclick="toggleStar(3)"></i>
+                    <i class="fas fa-star star" onclick="toggleStar(4)"></i>
+                    <i class="fas fa-star star" onclick="toggleStar(5)"></i>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <p class="text-center text-gray-600 mb-4">Give feedback</p>
+                <textarea class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" rows="4"></textarea>
+            </div>
+            
+            <div class="mb-6">
+                <p class="text-center text-gray-600 mb-4">Pay Now</p>
+                <div class="flex justify-center">
+                    <div class="w-48 h-48">
+                        <img src="https://via.placeholder.com/200" alt="QR Code" class="w-full h-full object-contain">
+                    </div>
+                </div>
+            </div>
+            
+            <button class="w-full bg-blue-900 text-white py-2 rounded-md hover:bg-blue-800 transition" onclick="showPage('dashboard')">Done</button>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="bg-blue-900 text-white mt-20 py-10 px-6">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="mb-4">
+                        <svg width="120" height="50" viewBox="0 0 120 50" class="fill-current text-white">
+                            <circle cx="25" cy="25" r="20" fill="white"/>
+                            <path d="M25 5 L45 25 L25 45 L5 25 Z" fill="#172554"/>
+                        </svg>
+                    </div>
+                    <p class="text-sm mb-2">"EduConnect - Connecting knowledge, stepping firmly into the future."</p>
+                    <p class="text-sm">—EduConnect team</p>
+                </div>
+                
+                <div class="grid grid-cols-1 gap-2">
+                    <a href="#" class="text-sm hover:underline">All pages</a>
+                    <a href="#" class="text-sm hover:underline">All Courses</a>
+                    <a href="#" class="text-sm hover:underline">Contact</a>
+                    <a href="#" class="text-sm hover:underline">Privacy Policy</a>
+                    <a href="#" class="text-sm hover:underline">Refund and Returns Policy</a>
+                    <a href="#" class="text-sm hover:underline">About us</a>
+                    <a href="#" class="text-sm hover:underline">faq</a>
+                    <a href="#" class="text-sm hover:underline">Terms and condition</a>
+                </div>
+                
+                <div class="grid grid-cols-6 gap-2">
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-facebook-f text-blue-500"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-twitter text-blue-400"></i>
+                    </div>
+                    <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                        <i class="fab fa-instagram text-pink-500"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Function to show a specific page and hide others
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active-page');
+            });
+            
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active-page');
+            }
+        }
+        
+        // Star rating functionality
+        function toggleStar(num) {
+            const stars = document.querySelectorAll('.star');
+            
+            for (let i = 0; i < stars.length; i++) {
+                if (i < num) {
+                    stars[i].classList.add('active');
+                } else {
+                    stars[i].classList.remove('active');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
