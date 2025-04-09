@@ -18,12 +18,20 @@ CREATE TABLE users(
 );
 
 CREATE TABLE students(
-    student_id varchar(20) references users(user_id) ON DELETE CASCADE primary key
+    student_id varchar(20) references users(user_id) ON DELETE CASCADE primary key,
+    introduction text,
+    hobby text
 );
 
 CREATE TABLE teachers(
     teacher_id varchar(20) REFERENCES users(user_id) ON DELETE CASCADE PRIMARY KEY,
-    avg_rate NUMERIC(3,2) DEFAULT 0
+    introduction text,
+    degree text,
+    experience text,
+    teaching_style text,
+    hobby text,
+    avg_rate NUMERIC(3,2) DEFAULT 0,
+    is_finding_student boolean DEFAULT true
 );
 
 CREATE TABLE subjects (
@@ -56,7 +64,21 @@ CREATE TABLE reviews (
 CREATE TABLE posts (
     post_id varchar(20) PRIMARY KEY,
     user_id varchar(20) REFERENCES users(user_id) ON DELETE CASCADE,
-    content TEXT NOT NULL
+    content TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE  TABLE post_likes(
+    like_id varchar(20) primary key,
+    post_id varchar(20) references posts(post_id) on delete cascade,
+    owner_id varchar(20) references users(user_id) on delete cascade
+);
+
+create table post_comments(
+    post_comment_id varchar(20) primary key,
+    post_id varchar(20) references posts(post_id) on delete cascade,
+    owner_id varchar(20) references users(user_id) on delete cascade,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE suitable_teachers(

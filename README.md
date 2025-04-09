@@ -1,0 +1,1 @@
+![ERD for EduConnect ERD](images/database_erd.png)
