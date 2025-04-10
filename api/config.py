@@ -1,4 +1,4 @@
-DATABASE = 'EduConnect'
+DATABASE = 'Educonnect'
 HOST = 'postgres'
 PORT = '5432'
 USER = 'bojjoo'
