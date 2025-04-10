@@ -1,5 +1,7 @@
-DATABASE = 'Educonnect'
-HOST = 'postgres'
-PORT = '5432'
-USER = 'bojjoo'
-PASSWORD = '12345678'
+DATABASE_CONFIG = {
+    "dbname": "EduConnect",
+    "user": "postgres",
+    "password": "Trinhchau310104",
+    "host": "localhost",
+    "port": 5432
+}
