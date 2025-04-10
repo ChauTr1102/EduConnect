@@ -1,3 +1,4 @@
+
 DATABASE_CONFIG = {
     "dbname": "EduConnect",
     "user": "postgres",
