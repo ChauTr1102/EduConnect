@@ -85,94 +85,151 @@ VALUES
  'Văn thơ');
 
 
-
 INSERT INTO posts (post_id, user_id, content) VALUES
--- Quang
-('post_001', 'stu_001', 
-'Tìm gia sư Toán cứu vớt cuộc đời em!\n\
-Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng lặp học → quên → hoang mang → làm sai 😩\n\
-Em cần một anh/chị gia sư chill chill nhưng dạy chắc kiến thức, giúp em lấy lại phong độ với mấy phần Hàm số, Đạo hàm, Giới hạn, Hình học không gian.\n\
-🎯 Mục tiêu: qua môn ngon lành, làm bài không sợ sai và có tí nền ôn thi đại học.\n\
-🕒 Lịch học: Tối 3 - 5 - 7 (20h - 22h), cuối tuần cũng được nếu thầy/cô rảnh.\n\
-💰 Học phí: 200k - 250k/buổi. Học online hoặc offline nếu gần Thanh Xuân, Hà Nội.\n\
-📌 Yêu cầu: Dạy dễ hiểu, không nhồi lý thuyết nhưng chắc gốc, hỗ trợ bài tập và sửa lỗi sai chi tiết.'),
+-- post_001 - Quang (Toán)
+('post_001', 'stu_001',
+'📌 *TÌM GIA SƯ TOÁN LỚP 11 - CẦN NGƯỜI “HỒI SINH” TINH THẦN HỌC TẬP*\n\
+Em tên là Quang, học sinh lớp 11 trường THPT Nhân Chính. Em từng khá ổn môn Toán, nhưng từ học kỳ 1 lớp 11, khi chương trình bắt đầu chuyển sang các chuyên đề khó như hàm số, giới hạn, đạo hàm và hình học không gian, em tụt lại. Dù chăm chỉ nhưng em học không hiệu quả, làm bài sai nhiều, điểm kiểm tra thấp khiến em ngày càng mất tự tin và không còn động lực học.\n\n\
+Em mong muốn tìm được một anh/chị/thầy/cô có thể:\n\
+• Dạy lại em từ những phần nền tảng với cách tiếp cận gần gũi, dễ hiểu\n\
+• Giải thích bản chất, không chỉ đưa ra công thức rồi bắt chép\n\
+• Sửa lỗi sai trong cách trình bày, giúp em tránh lặp lại lỗi cũ\n\
+• Truyền cảm hứng để em cảm thấy Toán không còn khô khan, nhàm chán\n\n\
+🎯 Mục tiêu của em là: lấy lại kiến thức cơ bản lớp 11, chuẩn bị nền tảng ôn thi đại học, và đạt tối thiểu 7 điểm trong các bài thi học kỳ.\n\
+🕒 Em rảnh các buổi tối T2 - T4 - T6 sau 19h30, hoặc cả ngày Chủ nhật.\n\
+💰 Học phí: từ 200k - 250k/buổi. Em có thể học online (qua Google Meet) hoặc offline nếu gần khu vực Thanh Xuân, Hà Nội.\n\n\
+Em là người nghiêm túc, chịu khó, chỉ là đang bị “mất lửa”. Em mong sẽ tìm được người giúp em “bật lại mode học hành”.'),
 
--- Linh
-('post_002', 'stu_002', 
-'Tìm gia sư Văn ôn thi đại học gấp gáp nhưng chill 😭\n\
-Em là Linh, học sinh lớp 12, và môn Văn đang là ác mộng lớn nhất trong kỳ thi tới. Em cần một cô giáo nhẹ nhàng nhưng có cách khai mở tư duy viết bài và ôn luyện chắc các đề thi.\n\
-📖 Các phần cần luyện: Đọc hiểu văn bản, nghị luận xã hội và văn học. Càng nhiều tips càng tốt.\n\
-🕒 Lịch học: Buổi sáng T7 & CN hoặc tối 2 - 4.\n\
-💰 Học phí: 180k - 230k/buổi, học online qua Zoom.\n\
-🎯 Ưu tiên người từng luyện thi đại học và có cách tiếp cận linh hoạt, không ép khuôn.'),
+-- post_002 - Linh (Văn)
+('post_002', 'stu_002',
+'📖 *TÌM GIA SƯ VĂN ÔN THI ĐẠI HỌC - “VIẾT GÌ CŨNG DỞ” LÀ EM 😔*\n\
+Chào các thầy cô và anh chị, em là Linh – học sinh lớp 12, đang ôn thi đại học và cực kỳ khủng hoảng với môn Ngữ Văn. Em không ghét môn Văn, em thích đọc sách, xem phim, thậm chí rất hay suy nghĩ về cuộc sống. Nhưng đến khi viết bài thì em lại... “viết không ra chữ”. Em lạc đề, triển khai ý lộn xộn, bài văn không có trọng tâm, kết bài thì cạn từ. \n\n\
+Em cần một cô giáo có thể:\n\
+• Giúp em tư duy logic hơn trong việc lập dàn ý\n\
+• Luyện từng đoạn văn cụ thể (mở – thân – kết)\n\
+• Phân tích các tác phẩm trọng tâm sát đề thi\n\
+• Chỉnh sửa bài viết chi tiết, góp ý thẳng thắn nhưng nhẹ nhàng\n\
+• Truyền được cảm hứng viết – biến môn Văn từ “nỗi sợ” thành điều thú vị\n\n\
+🎯 Em đặt mục tiêu đạt ít nhất 7 điểm Văn trong kỳ thi tốt nghiệp. Em cần bắt đầu từ căn bản vì đang bị “mất nền”.\n\
+🕒 Thời gian học: tối 2 - 4 - 6 hoặc sáng cuối tuần.\n\
+💻 Ưu tiên học online qua Google Meet.\n\
+💰 Học phí: 200k - 230k/buổi.\n\n\
+Em rất mong tìm được một người có thể đồng hành và kiên nhẫn, vì em tin nếu có người hướng dẫn đúng cách, em có thể tiến bộ nhanh chóng.'),
 
--- Minh
-('post_003', 'stu_003', 
-'Cần cứu môn HÓA trước khi “nổ não” vì phản ứng! 🧪\n\
-Em tên Minh, lớp 10, môn Hóa là nỗi lo lớn nhất. Em học lý thuyết không đến nỗi nhưng vào bài tập là... xong phim.\n\
-📌 Muốn học từ đầu phần hoá vô cơ + nhận biết chất, cân bằng phản ứng, dãy điện hóa.\n\
-🕒 Thời gian linh hoạt, học tối từ 19h trở đi, 2-3 buổi/tuần.\n\
-💰 Học phí tầm 200k/buổi.\n\
-🧠 Cần gia sư dạy kỹ phần bản chất, cho ví dụ đời thường, có kiên nhẫn cao và không chê học sinh gà.'),
+-- post_003 - Minh (Hóa)
+('post_003', 'stu_003',
+'🧪 *CẦN GIA SƯ HÓA CƠ BẢN - CỨU VỚT MỘT TÂM HỒN ĐANG MÊ MÀN HÌNH PHẢN ỨNG*\n\
+Em là Minh, học sinh lớp 10. Em thấy Hóa học rất... đẹp và kỳ diệu, nhưng chỉ là khi xem video TikTok 🤯. Còn khi vào bài học trên lớp thì em không hiểu gì, không biết bắt đầu từ đâu. Em bị rối khi học bảng tuần hoàn, không hiểu được phản ứng oxi hóa – khử và toàn bị nhầm lẫn giữa chất này với chất kia. Em đã thử học thêm online nhưng học mãi không vô đầu.\n\n\
+Em cần một gia sư có thể:\n\
+• Dạy lại từ gốc, kể cả những kiến thức lớp 8 – 9 nếu cần\n\
+• Giải thích bằng sơ đồ, ví dụ đời thường để em dễ nhớ\n\
+• Luyện em làm bài tập theo mức độ từ dễ → trung bình → nâng cao\n\
+• Động viên và cho bài tập thực hành ngắn sau mỗi buổi học\n\n\
+📚 Em muốn học các phần: hóa trị, phản ứng, dãy hoạt động kim loại, nhận biết chất.\n\
+🕒 Em học buổi tối từ 19h, các ngày chẵn trong tuần (T2 - T4 - T6).\n\
+💻 Online qua Zoom hoặc Google Meet là tốt nhất.\n\
+💰 Em có thể chi trả khoảng 200k/buổi.\n\n\
+Em học không nhanh, nhưng cực kỳ chăm chỉ. Mong thầy/cô kiên nhẫn và có phong cách dạy vui vẻ, khơi gợi được sự tò mò của em!'),
 
--- Thu
-('post_004', 'stu_004', 
-'Tìm cô giáo tiếng Anh luyện thi đại học (gấp gáp & có tâm) 🇬🇧\n\
-Em là Thu, đang luyện thi đại học và phần Listening + Writing là điểm yếu nhất. Em cần một cô giáo giúp em tăng phản xạ nghe nói, mở rộng vốn từ, và chỉnh sửa chi tiết khi viết.\n\
-🎧 Chủ đề mong muốn: đời sống, giáo dục, môi trường, công nghệ.\n\
-🕒 Lịch học: 2 buổi/tuần, tối T3 - T5 hoặc sáng T7.\n\
-💰 Học phí: 220k - 250k/buổi. Chỉ cần học online qua Google Meet.\n\
-👩‍🏫 Ưu tiên giáo viên từng học/đi nước ngoài hoặc có phát âm chuẩn, dễ nghe.'),
+-- post_004 - Thu (Tiếng Anh)
+('post_004', 'stu_004',
+'🇬🇧 *TÌM CÔ GIÁO TIẾNG ANH ÔN THI - NGHE KHÔNG RA, VIẾT KHÔNG XONG* 😥\n\
+Em là Thu, lớp 12. Trong kỳ thi đại học sắp tới, em muốn lấy tiếng Anh làm điểm mạnh, nhưng hiện tại thì lại đang rất yếu. Em không nghe được audio, khi viết essay thì thiếu từ vựng, sai ngữ pháp, thiếu ý. Em đã thử học theo app, xem phim có phụ đề, nhưng không hiệu quả vì không có người chỉnh sửa.\n\n\
+Em muốn tìm cô giáo:\n\
+• Luyện phản xạ Listening bằng cách làm đề từng dạng (MCQ, điền từ…)\n\
+• Hướng dẫn viết từng dạng Writing task, sửa bài chi tiết\n\
+• Mở rộng vốn từ theo chủ đề: môi trường, giáo dục, xã hội, công nghệ\n\
+• Giúp em sửa phát âm và luyện nói nếu có thể\n\n\
+🕒 Em có thể học tối 3 - 5 hoặc sáng T7.\n\
+💻 Học online.\n\
+💰 Học phí từ 220k - 250k/buổi. \n\n\
+Em hy vọng cô giáo có thể truyền cảm hứng và động lực, giúp em vững tin để thi đạt 8.0+ môn tiếng Anh.'),
 
--- Sơn
-('post_005', 'stu_005', 
-'Gia sư Toán truyền lửa cần gấp 🔥\n\
-Em tên là Sơn, lớp 11. Từ đầu năm đến giờ học Toán kiểu cho có, giờ sắp kiểm tra mà hoảng loạn luôn.\n\
-Muốn tìm thầy/cô dạy từ nền tảng đến giải đề, đặc biệt là Đại số: bất phương trình, hệ phương trình, bài toán cực trị.\n\
-🕒 Lịch: tối T2 - T4 - T6, từ 19h30, hoặc cuối tuần.\n\
-💰 Học phí: linh hoạt từ 200k/buổi.\n\
-🎯 Cần người hiểu tâm lý, không ép quá nhiều bài tập nhưng theo sát tiến độ.'),
+-- post_005 - Sơn (Toán)
+('post_005', 'stu_005',
+'🔥 *GIA SƯ TOÁN CẦN LẮM NGƯỜI DẪN ĐƯỜNG – EM KHÔNG MUỐN TRẦM CẢM VÌ TOÁN NỮA*\n\
+Chào mọi người, em là Sơn – học lớp 11, một học sinh “sợ Toán nhưng lại bắt buộc phải giỏi Toán”. Học lực của em trung bình khá, nhưng riêng Toán thì rất chật vật. Em hiểu bài trên lớp nhưng không biết áp dụng, làm bài sai hoài. Em bị rối trong bất phương trình, cực trị, hệ phương trình, đạo hàm…\n\n\
+Em muốn có:\n\
+• Một thầy/cô dạy từ nền, phân tích từng dạng bài đơn giản trước rồi nâng cấp\n\
+• Có phương pháp luyện đề theo mức độ, giúp em không bị rối\n\
+• Đặc biệt là có sự kiên nhẫn, không la mắng khi em sai hoài 🙏\n\n\
+🕒 Thời gian: tối T2 - T4 - T6, sau 19h30. Cuối tuần thì buổi sáng.\n\
+💰 Học phí: 220k/buổi.\n\
+💻 Online học qua Google Meet hoặc Zalo call đều được.\n\n\
+Em cam kết học chăm, làm bài đầy đủ – chỉ cần có người hướng dẫn đúng cách thôi ạ!'),
 
--- Hạnh
-('post_006', 'stu_006', 
-'Cần gia sư Sinh học cho kỳ kiểm tra cuối kỳ 🧬\n\
-Em là Hạnh, học sinh lớp 12. Sắp tới có bài kiểm tra Sinh nhưng em khá yếu phần Di truyền học, Gen – ADN – phân li độc lập, v.v.\n\
-🎯 Mục tiêu: 7+ điểm kiểm tra. Học qua Zoom là tốt nhất.\n\
-🕒 Có thể học sáng thứ 7 & chiều CN.\n\
+
+-- post_006 - Hạnh (Sinh học)
+('post_006', 'stu_006',
+'🧬 *CẦN GIA SƯ SINH CẤP TỐC - CỨU EM KHỎI “CHẾT CHÌM” TRONG DI TRUYỀN HỌC*\n\
+Em là Hạnh, học sinh lớp 12. Em chưa từng ghét môn Sinh học, nhưng vì thiếu người định hướng, em bị trôi giữa một “rừng” khái niệm: gen, mã di truyền, ADN, ARN, đột biến, biến dị tổ hợp... Em học rất chăm, ghi chép đầy đủ nhưng vẫn không hiểu, và sắp tới em có bài kiểm tra rất quan trọng.\n\n\
+Em muốn tìm một cô giáo có thể:\n\
+• Dạy thật chậm, từ vựng dễ hiểu, sử dụng sơ đồ tư duy và ví dụ minh họa\n\
+• Chia bài học theo chuyên đề, luyện các dạng trắc nghiệm nâng dần độ khó\n\
+• Hướng dẫn cách phân tích đề, làm nhanh mà không sai vặt\n\
+• Có thể truyền cho em chút cảm hứng để học không bị căng thẳng\n\n\
+🎯 Mục tiêu: ít nhất 7.5 điểm kiểm tra, dần hướng tới ôn thi tốt nghiệp.\n\
+🕒 Em rảnh sáng thứ 7, chiều CN, tối T3 - T5.\n\
 💰 Học phí mong muốn: 180k - 230k/buổi.\n\
-📌 Cần người dạy rõ ràng, có sơ đồ tư duy, không nhồi nhét.'),
+💻 Học online qua Zoom là tiện nhất.\n\n\
+Em là người kiên trì, nhưng cần cô giáo có tâm lý tốt để không tạo áp lực thêm. Mong được đồng hành ạ!'),
 
--- Khoa
-('post_007', 'stu_007', 
-'Lý lớp 11 khiến em chật vật 😵\n\
-Mấy phần Điện học, Mạch điện xoay chiều, Dao động cơ em học rồi nhưng không hiểu bản chất, toàn học vẹt.\n\
-Muốn tìm thầy/cô dạy logic, không học kiểu “trăm công thức”. Em cần giải thích gốc rễ vấn đề.\n\
-🕒 Tối 3-5 hoặc sáng CN.\n\
-💰 Học phí 200k/buổi.\n\
-📌 Em cần người có ví dụ sinh động, giảng bài lôi cuốn và có bài tập mẫu.'),
+-- post_007 - Khoa (Vật lý)
+('post_007', 'stu_007',
+'⚡ *TÌM GIA SƯ LÝ - GIẢI THÍCH GIÚP EM “KHÔNG HỌC VẸT” NỮA* 📉\n\
+Em là Khoa, học sinh lớp 11. Vật lý với em như một bài nhạc nước ngoài - có giai điệu hay, nhưng không hiểu lời. Những phần như dao động điều hòa, dòng điện xoay chiều, mạch RLC… đọc thì hiểu “na ná” nhưng vào bài tập là em không biết bắt đầu từ đâu.\n\n\
+Em cần một thầy/cô:\n\
+• Giải thích bản chất hiện tượng lý – ví dụ dễ hình dung (bằng hoạt hình, sơ đồ)\n\
+• Hướng dẫn kỹ cách lập phương trình, vẽ đồ thị, suy luận từ đề bài\n\
+• Dạy theo hướng ứng dụng thực tế – học là để hiểu, không phải học thuộc\n\
+• Luôn động viên khi em làm sai, và tạo môi trường học tích cực\n\n\
+📚 Em muốn được học từ cơ bản tới làm đề luyện thi học kỳ.\n\
+🕒 Tối T3 - T5 (sau 20h) hoặc sáng CN.\n\
+💰 200k - 250k/buổi là hợp lý với khả năng của em.\n\
+💻 Em học online hoặc offline nếu ở gần Long Biên, Hà Nội.\n\n\
+Hy vọng tìm được người “giải mã” được sự khó hiểu của môn Lý ạ!'),
 
--- Thảo
-('post_008', 'stu_008', 
-'Tìm gia sư Hóa ôn vào 10 cho bé gái đáng yêu đây ạ! 😇\n\
-Em là Thảo, chuẩn bị thi vào lớp 10, môn Hóa hơi “tù”. Đã học hết chương trình nhưng chưa chắc phần bài tập.\n\
-📚 Cần học kỹ phản ứng, giải bài tập, nhận biết chất, viết phương trình.\n\
-🕒 Lịch học: chiều T6 và sáng CN.\n\
-💰 Học phí: 150k - 200k/buổi. Online là tốt nhất.\n\
-🎯 Ưu tiên cô giáo nhẹ nhàng, có cách dạy ngắn gọn và dễ nhớ.'),
+-- post_008 - Thảo (Hóa vào 10)
+('post_008', 'stu_008',
+'📚 *TÌM GIA SƯ HÓA ÔN VÀO 10 - HỌC NHIỀU MÀ VẪN LUÔN QUÊN 😓*\n\
+Em tên là Thảo, năm nay chuẩn bị thi vào lớp 10 chuyên nhưng lại khá yếu môn Hóa. Em đã học hết chương trình, ghi chép cẩn thận, làm đề nhưng lúc kiểm tra lại không làm được. Em bị loạn công thức, nhầm hóa trị, viết sai phương trình phản ứng. Em đang rất áp lực nhưng vẫn quyết tâm cải thiện.\n\n\
+Em cần:\n\
+• Một cô giáo thật dễ gần, dạy chắc phần lý thuyết – có sơ đồ hóa học giúp ghi nhớ\n\
+• Hướng dẫn cách giải bài tập phản ứng, dãy hoạt động kim loại, nhận biết chất\n\
+• Có đề luyện theo sát chương trình thi tuyển sinh lớp 10\n\
+• Có thể đưa ra kế hoạch học theo tuần để em theo sát mục tiêu\n\n\
+🕒 Em học chiều thứ 6 và sáng chủ nhật.\n\
+💰 Học phí em có thể trả từ 150k - 200k/buổi.\n\
+💻 Học online là tiện nhất vì em ở Thanh Trì.\n\n\
+Em hy vọng tìm được một cô giáo kiên nhẫn, nhẹ nhàng và có thể cùng em “cán đích” kỳ thi sắp tới!'),
 
--- Hoàng
-('post_009', 'stu_009', 
-'Tìm thầy/cô dạy Toán lớp 12 từ cơ bản tới luyện thi 💪\n\
-Em học Toán hơi yếu nền, muốn được dạy lại từ đầu: hàm số, đồ thị, giới hạn, tích phân. Sau đó sẽ luyện đề nâng cao để ôn thi đại học.\n\
-🕒 Học vào buổi tối (T2-T6), có thể học 1-1 qua Zoom.\n\
-💰 Học phí mong muốn: 220k - 270k/buổi.\n\
-📌 Cần người có lộ trình rõ ràng, biết theo dõi tiến độ học sinh.'),
+-- post_009 - Hoàng (Toán 12)
+('post_009', 'stu_009',
+'📘 *GIA SƯ TOÁN 12 - HỌC TỪ NỀN TẢNG, HƯỚNG TỚI THI ĐẠI HỌC*\n\
+Em là Hoàng, học sinh lớp 12. Em đã “lướt” qua chương trình Toán lớp 12 một cách rất hời hợt, nên giờ em thấy mình không có đủ nền để bước vào giai đoạn luyện thi. Em muốn được học từ đầu – từng chuyên đề – theo lộ trình rõ ràng để cuối năm không phải “chạy nước rút”.\n\n\
+Em mong có:\n\
+• Một thầy/cô có kinh nghiệm luyện thi tốt nghiệp, dạy theo hệ thống\n\
+• Giải thích rõ ràng, không nhảy bước, sửa bài chi tiết\n\
+• Có tài liệu luyện đề và bài tập rèn kỹ năng trình bày\n\
+• Có thể tư vấn cách phân bổ thời gian học hiệu quả\n\n\
+🕒 Em học tối thứ 2 - 6, hoặc sáng thứ 7.\n\
+💻 Online là lựa chọn chính, nhưng nếu thầy/cô gần Nam Từ Liêm, em có thể học trực tiếp.\n\
+💰 220k - 270k/buổi.\n\n\
+Em không cần người “ép học”, em cần người “giúp học”. Rất mong gặp được thầy/cô phù hợp!'),
 
--- Mai
-('post_010', 'stu_010', 
-'Gia sư Văn cho đứa lười viết nhưng thích nói chuyện đây ạ 😅\n\
-Em là Mai, học sinh lớp 12, rất ngại viết bài Văn nhưng lại thích tranh luận, chia sẻ. Cần cô giáo giúp em biến mấy thứ “nói được mà không viết nổi” thành đoạn văn hay.\n\
-📚 Muốn học viết theo bố cục, có tư duy rõ ràng.\n\
-🕒 Lịch học: chiều T4 & T6, hoặc cuối tuần sáng.\n\
-💰 Học phí: khoảng 200k - 230k/buổi.\n\
-📌 Ưu tiên người có kỹ năng truyền cảm hứng và chịu khó chỉnh sửa từng bài. 😊');
+-- post_010 - Mai (Văn)
+('post_010', 'stu_010',
+'✍️ *CẦN GIA SƯ VĂN - GIÚP EM BIẾN LỜI NÓI THÀNH CÂU VĂN CÓ Ý NGHĨA* 🎤\n\
+Em là Mai, học sinh lớp 12. Em rất thích nói, thích chia sẻ suy nghĩ về các vấn đề xã hội, nhân vật trong tác phẩm văn học, nhưng khi chuyển thành bài viết thì mọi thứ rối tung. Câu không tròn ý, ý không bám đề, văn thiếu chiều sâu. Em cần cô giáo không chỉ giúp em học để thi mà còn học để thể hiện được cá tính trong văn chương.\n\n\
+Em mong muốn:\n\
+• Được luyện kỹ từng kiểu bài (nghị luận xã hội – nghị luận văn học)\n\
+• Được sửa bài viết theo cách góp ý xây dựng, không “gạch xóa” quá nhiều 😅\n\
+• Có cơ hội trao đổi và thảo luận để làm giàu ý tưởng viết\n\
+• Tạo môi trường học nhẹ nhàng, không căng thẳng\n\n\
+🕒 Chiều T4 - T6 hoặc sáng CN.\n\
+💻 Em học online qua Google Meet.\n\
+💰 Khoảng 200k - 230k/buổi.\n\n\
+Em tin nếu được chỉ đúng cách, em sẽ có thể viết được những bài văn có hồn, có chiều sâu hơn.');
+
+
+
