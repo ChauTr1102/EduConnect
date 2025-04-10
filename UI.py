@@ -31,4 +31,3 @@ if st.button("Tạo lại dữ liệu"):
     st.write("Dữ liệu đã được làm mới!")
 
 
-print("Hello world")
