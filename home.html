@@ -701,7 +701,38 @@
             width: 90%;
             max-width: 600px;
             position: relative;
-            animation: modalFade 0.3s ease;
+            transform: scale(0.9);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal-content.active {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .post-form button {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-form button:hover {
+            background-color: #2a3bb0;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .post-form button.posting {
+            background-color: #6c757d;
+            pointer-events: none;
         }
         
         @keyframes modalFade {
@@ -809,6 +840,121 @@
                 right: -10px;
             }
         }
+
+        /* Thêm vào phần style */
+        @keyframes newPostAppear {
+            from { 
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-card.new-post {
+            animation: newPostAppear 0.8s ease forwards;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        .submit-btn-animation {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(255,255,255,0.3);
+            transition: width 0.3s ease;
+        }
+
+        .submit-btn-animation:active::after {
+            width: 100%;
+            transition: width 0.1s ease;
+        }
+
+        /* Animation for form post when open */
+        .post-form.animate {
+            animation: formExpand 0.5s ease forwards;
+        }
+
+        @keyframes formExpand {
+            from { transform: scale(0.95); opacity: 0.8; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Animation for textarea  */
+        .post-form textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Animation when successful */
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .post-success {
+            color: #28a745;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .post-success.show {
+            opacity: 1;
+            animation: successPulse 0.5s ease;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            gap: 0.5rem;
+        }
+
+        .page-item {
+            background-color: #f0f4ff;
+            border: 1px solid transparent; 
+            border-radius: 6px;
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            min-width: 40px; 
+            text-align: center;
+        }
+
+        .page-item:hover {
+            background-color: #e2e8f5;
+        }
+
+        .page-item.active {
+            background-color: var(--accent-color); 
+            color: var(--white);
+            border-color: var(--accent-color);
+            cursor: default;
+        }
+
+        .page-item:disabled { 
+            background-color: #f8f9fa;
+            color: #adb5bd;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -823,6 +969,7 @@
                 <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
                 <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
                 <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+                <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -896,8 +1043,8 @@
                     <p>Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì.</p>
                 </div>
                 <div class="message-actions">
-                    <button class="message-btn">Send message</button>
-                    <button class="message-btn">Send Request</button>
+                    <a href="chat.html?user=Nguyen%20Thu%20Trang&avatar=avatar1.png" class="message-btn" style="text-decoration: none;">Send message</a>
+                    <button class="message-btn">Send Request</button> 
                 </div>
             </div>
             
@@ -915,8 +1062,8 @@
                     <p>Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓.</p>
                 </div>
                 <div class="message-actions">
-                    <button class="message-btn">Send message</button>
-                    <button class="message-btn">Send Request</button>
+                    <a href="chat.html?user=Mai%20Anh&avatar=avatar2.png" class="message-btn" style="text-decoration: none;">Send message</a>
+                    <button class="message-btn">Send Request</button> 
                 </div>
             </div>
             
@@ -934,18 +1081,18 @@
                     <p>Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓.</p>
                 </div>
                 <div class="message-actions">
-                    <button class="message-btn">Send message</button>
-                    <button class="message-btn">Send Request</button>
+                    <a href="chat.html?user=Nguyen%20Trong%20Minh&avatar=avatar3.png" class="message-btn" style="text-decoration: none;">Send message</a>
+                    <button class="message-btn">Send Request</button> 
                 </div>
             </div>
             
             <div class="message-card">
                 <div class="message-header">
                     <div class="user-avatar">
-                        <img src="avatar4.png" alt="Đặng Quang">
+                        <img src="avatar4.png" alt="Đang Quang">
                     </div>
                     <div class="user-info">
-                        <h3>Đặng Quang</h3>
+                        <h3>Đang Quang</h3>
                         <p class="message-time">1 hour ago</p>
                     </div>
                 </div>
@@ -953,12 +1100,16 @@
                     <p>Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓.</p>
                 </div>
                 <div class="message-actions">
-                    <button class="message-btn">Send message</button>
-                    <button class="message-btn">Send Request</button>
+                    <a href="chat.html?user=Dang%20Quang&avatar=avatar4.png" class="message-btn" style="text-decoration: none;">Send message</a>
+                    <button class="message-btn">Send Request</button> 
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="pagination-container" id="paginationControls">
+        <!-- Page numbers will be generated here by JavaScript -->
+    </div>
     
     <!-- Floating Action Buttons -->
     <div class="floating-buttons">
@@ -995,9 +1146,10 @@
         <div class="modal-content">
             <span class="close-modal" id="closeModal">&times;</span>
             <h2 class="modal-title">Create a New Post</h2>
-            <form class="post-form">
-                <textarea placeholder="What do you need help with? Describe your learning needs..."></textarea>
-                <button type="button">Post</button>
+            <form class="post-form" id="newPostForm">
+                <textarea id="postContent" placeholder="What do you need help with? Describe your learning needs..."></textarea>
+                <button type="button" id="submitPost" class="submit-btn-animation">Post</button>
+                <p class="post-success" id="postSuccess">Post created successfully!</p>
             </form>
         </div>
     </div>
@@ -1048,126 +1200,228 @@
     </footer>
 
     <script>
-        // Search functionality
-        document.querySelector('.search-btn').addEventListener('click', function() {
-            const searchTerm = document.querySelector('.search-bar').value.trim();
-            if (searchTerm) {
-                alert('Searching for: ' + searchTerm);
-                // Here you would typically implement real search functionality
-                // For example: window.location.href = 'search-results.html?q=' + encodeURIComponent(searchTerm);
-            }
-        });
-        
-        // Allow search on Enter key press
-        document.querySelector('.search-bar').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.querySelector('.search-btn').click();
-            }
-        });
-        
-        // Post Button Modal
-        const postBtn = document.getElementById('postBtn');
-        const postModal = document.getElementById('postModal');
-        const closeModal = document.getElementById('closeModal');
-        
-        postBtn.addEventListener('click', function() {
-            postModal.style.display = 'flex';
-        });
-        
-        closeModal.addEventListener('click', function() {
-            postModal.style.display = 'none';
-        });
-        
-        // Close modal when clicking outside of it
-        window.addEventListener('click', function(event) {
-            if (event.target === postModal) {
-                postModal.style.display = 'none';
-            }
-        });
-        
-        // Chat Button
-        const chatBtn = document.getElementById('chatBtn');
-
         document.addEventListener('DOMContentLoaded', function() {
-        const chatBtn = document.getElementById('chatBtn');
-        const chatInterface = document.getElementById('chatInterface');
-        const closeChat = document.getElementById('closeChat');
-        const messageInput = document.getElementById('messageInput');
-        const sendMessage = document.getElementById('sendMessage');
-        const chatMessages = document.getElementById('chatMessages');
+            // --- DOM Elements ---
+            const searchBar = document.querySelector('.search-bar');
+            const searchBtn = document.querySelector('.search-btn');
+            const postBtn = document.getElementById('postBtn');
+            const postModal = document.getElementById('postModal');
+            const modalContent = document.querySelector('.modal-content');
+            const closeModalBtn = document.getElementById('closeModal');
+            const chatBtn = document.getElementById('chatBtn');
+            const chatInterface = document.getElementById('chatInterface');
+            const closeChatBtn = document.getElementById('closeChat'); 
+            const messageInputChat = document.getElementById('messageInput');
+            const sendMessageChat = document.getElementById('sendMessage');  
+            const chatMessages = document.getElementById('chatMessages');
+            const newPostForm = document.getElementById('newPostForm');
+            const postContent = document.getElementById('postContent');
+            const submitPost = document.getElementById('submitPost');
+            const messageList = document.querySelector('.message-list'); 
+            const paginationControls = document.getElementById('paginationControls'); 
+            const postSuccess = document.getElementById('postSuccess');
 
-        // Show chat when clicking chat button
-        chatBtn.addEventListener('click', function() {
-        chatInterface.style.display = 'flex';
-        });
+            // --- State Variables ---
+            let allPosts = []; // Holds ALL posts currently loaded/displayed
+            let currentPage = 1;
+            const postsPerPage = 4; // SET HOW MANY POSTS PER PAGE
 
-        // Close chat when clicking close button
-        closeChat.addEventListener('click', function() {
-        chatInterface.style.display = 'none';
-        });
+            // --- Default/Initial Data (Source of truth now) ---
+            const defaultPosts = [
+                 { user: "Nguyen Thu Trang", avatar: "avatar1.png", time: "2 hours ago", content: "Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì." },
+                 { user: "Mai Anh", avatar: "avatar2.png", time: "1 hour ago", content: "Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓." },
+                 { user: "Nguyen Trong Minh", avatar: "avatar3.png", time: "2 hours ago", content: "Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓." },
+                 { user: "Đặng Quang", avatar: "avatar4.png", time: "1 hour ago", content: "Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓." },
+                 { user: "Le Binh", avatar: "avatar-placeholder.png", time: "3 hours ago", content: "Cần tìm gia sư Toán lớp 10 gấp ạ 😭 Em là An, mới lên lớp 10 mà Hình học với Đại số em mất gốc từ cấp 2 rồi, giờ nghe giảng không hiểu gì cả, bài tập thì nhìn như bức vách. Cần anh chị nào kiên nhẫn dạy lại giúp em với, em cảm ơn nhiều ạ." },
+                 { user: "Ngoc Hieu", avatar: "avatar-placeholder.png", time: "4 hours ago", content: "Tìm gia sư Toán 12 ôn thi ĐH gấp!!! 😥 Mình là Bình, sắp thi rồi mà Toán còn yếu quá, nhất là mấy dạng vận dụng cao giải mãi không ra, thấy đề là hoang mang. Có anh chị nào kinh nghiệm ôn thi, hệ thống kiến thức tốt giúp mình với. Lo quá!" },
+                 { user: "Trinh Chau", avatar: "avatar-placeholder.png", time: "5 hours ago", content: "Ai cứu em môn Hình không gian với ạ 🙏 Em là Chi lớp 11. Cứ học đến hình không gian là đầu óc em quay cuồng, trừu tượng quá không tưởng tượng nổi hình luôn, vẽ sai hoài 😵. Cần một gia sư dạy dễ hiểu phần này gấp ạ, SOS!" },
+                 { user: "Duc Manh", avatar: "avatar-placeholder.png", time: "6 hours ago", content: "Có ai nhận dạy kèm Toán cho học sinh yếu không ạ? 🥺 Em là Dũng, lớp 10. Em sợ môn Toán lắm, làm bài toàn sai, điểm lúc nào cũng thấp lè tè. Muốn tìm gia sư tận tình, kiên nhẫn, nói dễ hiểu giúp em lấy lại căn bản với ạ, chứ tình hình này chắc em tiêu." },
+            ];
 
-        // Send message function
-        function sendUserMessage() {
-        const messageText = messageInput.value.trim();
-        
-        if (messageText) {
-            // Add user message
-            const userMessageHTML = `
-            <div class="message user-message">
-                <div class="message-avatar">👤</div>
-                <div class="message-content">
-                <p>${messageText}</p>
-                </div>
-            </div>
-            `;
-            chatMessages.innerHTML += userMessageHTML;
-            
-            // Clear input
-            messageInput.value = '';
-            
-            // Scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            
-            // Simulate bot response (after a small delay)
-            setTimeout(() => {
-            let botResponse = "Thanks for your message! Our tutors will get back to you shortly.";
-            
-            // Simple keyword responses (you can expand this)
-            if (messageText.toLowerCase().includes('math') || messageText.toLowerCase().includes('toán')) {
-                botResponse = "We have excellent math tutors available. Would you like me to help you find one?";
-            } else if (messageText.toLowerCase().includes('price') || messageText.toLowerCase().includes('cost')) {
-                botResponse = "Our tutoring prices start at $15/hour. Would you like to see our full pricing?";
-            } else if (messageText.toLowerCase().includes('hello') || messageText.toLowerCase().includes('hi')) {
-                botResponse = "Hello! How can I help with your education needs today?";
+            // --- Functions ---
+
+            // Function to render a single post card
+            function renderPostCard(postData) {
+                const newMessageCard = document.createElement('div');
+                newMessageCard.className = 'message-card';
+                const userName = postData.user || "User";
+                const userAvatar = postData.avatar || "avatar-placeholder.png";
+                const postTime = postData.time || "Recently";
+                const postText = postData.content || "No content";
+                newMessageCard.innerHTML = `
+                    <div class="message-header">
+                        <div class="user-avatar"><img src="${userAvatar}" alt="${userName}"></div>
+                        <div class="user-info"><h3>${userName}</h3><p class="message-time">${postTime}</p></div>
+                    </div>
+                    <div class="message-content"><p>${postText.replace(/\n/g, '<br>')}</p></div>
+                    <div class="message-actions">
+                        <a href="chat.html?user=${encodeURIComponent(userName)}&avatar=${userAvatar}" class="message-btn" style="text-decoration: none;">Send message</a>
+                        <button class="message-btn">Send Request</button>
+                    </div>
+                `;
+                messageList.appendChild(newMessageCard);
             }
-            
-            const botMessageHTML = `
-                <div class="message bot-message">
-                <div class="message-avatar">🤖</div>
-                <div class="message-content">
-                    <p>${botResponse}</p>
-                </div>
-                </div>
-            `;
-            chatMessages.innerHTML += botMessageHTML;
-            
-            // Scroll to bottom again
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-            }, 800);
-        }
-        }
 
-        // Send message when clicking send button
-        sendMessage.addEventListener('click', sendUserMessage);
-        
-        // Send message when pressing Enter key
-        messageInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            sendUserMessage();
-        }
+            // Function to display posts for a specific page
+            function displayPage(page) {
+                currentPage = page;
+                messageList.innerHTML = ''; 
+                const startIndex = (page - 1) * postsPerPage;
+                const endIndex = startIndex + postsPerPage;
+                const postsToShow = allPosts.slice(startIndex, endIndex);
+                postsToShow.forEach(post => renderPostCard(post));
+                renderPaginationControls(); 
+            }
+
+            // Function to render the pagination buttons
+            function renderPaginationControls() {
+                if (!paginationControls) return;
+                paginationControls.innerHTML = '';
+                const totalPages = Math.ceil(allPosts.length / postsPerPage);
+                if (totalPages <= 1) return; 
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = document.createElement('button');
+                    pageButton.classList.add('page-item');
+                    if (i === currentPage) pageButton.classList.add('active');
+                    pageButton.textContent = i;
+                    pageButton.addEventListener('click', () => {
+                        displayPage(i);
+                         messageList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    });
+                    paginationControls.appendChild(pageButton);
+                }
+            }
+
+            // Function to initialize the posts list (Uses default data)
+            function initializePosts() {
+                allPosts = [...defaultPosts].reverse();
+            }
+
+            // Function to handle post submission (MODIFIED - No Storage)
+            function handlePostSubmit() {
+                const content = postContent.value.trim();
+                if (content) {
+                    submitPost.classList.add('posting');
+                    submitPost.textContent = 'Posting...';
+                    submitPost.disabled = true;
+
+                    setTimeout(() => {
+                        // 1. Prepare Post Data (Temporary)
+                        const postData = {
+                            user: "Người dùng mới (Tạm)", 
+                            avatar: "avatar1.png",      
+                            time: "Just now",
+                            content: content,
+                            id: Date.now()           
+                        };
+
+                        // 2. Add TEMPORARILY to the START of the in-memory array
+                        allPosts.unshift(postData);
+
+                        // 3. Go to page 1 and re-display (Shows temporary post)
+                        displayPage(1);
+
+                        // 4. Show success message
+                        postSuccess.classList.add('show');
+
+                        // --- Animate the newly added card ---
+                        const firstCard = messageList.querySelector('.message-card:first-child');
+                        if (firstCard) {
+                            firstCard.classList.add('new-post');
+                            setTimeout(() => { firstCard.classList.remove('new-post'); }, 1500);
+                            window.scrollTo({ top: firstCard.offsetTop - 80, behavior: 'smooth' });
+                        }
+                        // --- End Animation ---
+
+                        // 5. Reset form and close modal
+                        setTimeout(() => {
+                            modalContent.classList.remove('active');
+                            setTimeout(() => {
+                                postModal.style.display = 'none';
+                                postContent.value = '';
+                                submitPost.classList.remove('posting');
+                                submitPost.textContent = 'Post';
+                                postSuccess.classList.remove('show');
+                                submitPost.disabled = false;
+                            }, 200);
+                        }, 1000);
+
+                    }, 800); // Simulate post delay
+                }
+            }
+
+            // --- Floating Chat Functions ---
+            function sendUserMessageChat() {
+                const messageText = messageInputChat.value.trim();
+                if (messageText) {
+                    const userMessageHTML = `<div class="message user-message"><div class="message-avatar">👤</div><div class="message-content"><p>${messageText}</p></div></div>`;
+                    chatMessages.innerHTML += userMessageHTML;
+                    messageInputChat.value = '';
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                    setTimeout(() => {
+                         let botResponse = "Thanks for your message! Our tutors will get back to you shortly.";
+                         if (messageText.toLowerCase().includes('math') || messageText.toLowerCase().includes('toán')) botResponse = "We have excellent math tutors available. Would you like me to help you find one?";
+                         else if (messageText.toLowerCase().includes('price') || messageText.toLowerCase().includes('cost')) botResponse = "Our tutoring prices start at $15/hour. Would you like to see our full pricing?";
+                         else if (messageText.toLowerCase().includes('hello') || messageText.toLowerCase().includes('hi')) botResponse = "Hello! How can I help with your education needs today?";
+                        const botMessageHTML = `<div class="message bot-message"><div class="message-avatar">🤖</div><div class="message-content"><p>${botResponse}</p></div></div>`;
+                        chatMessages.innerHTML += botMessageHTML;
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }, 800);
+                }
+            }
+
+            // --- Event Listeners ---
+
+            // Search (Keep existing logic)
+            searchBtn.addEventListener('click', function() {
+                const searchTerm = searchBar.value.trim();
+                if (searchTerm) {
+                    alert('Searching for: ' + searchTerm);
+                }
+            });
+            searchBar.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') { searchBtn.click(); }
+            });
+
+            // Post Modal (Keep existing logic)
+            postBtn.addEventListener('click', function() {
+                postModal.style.display = 'flex';
+                setTimeout(() => {
+                    modalContent.classList.add('active');
+                    newPostForm.classList.add('animate');
+                }, 50);
+            });
+            closeModalBtn.addEventListener('click', function() { 
+                modalContent.classList.remove('active');
+                setTimeout(() => {
+                    postModal.style.display = 'none';
+                    postSuccess.classList.remove('show');
+                }, 200);
+            });
+            window.addEventListener('click', function(event) {
+                if (event.target === postModal) { closeModalBtn.click(); } 
+            });
+
+
+            submitPost.addEventListener('click', handlePostSubmit);
+
+
+            chatBtn.addEventListener('click', function() {
+                chatInterface.style.display = 'flex';
+            });
+            closeChatBtn.addEventListener('click', function() {
+                chatInterface.style.display = 'none';
+            });
+            sendMessageChat.addEventListener('click', sendUserMessageChat);
+            messageInputChat.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') { sendUserMessageChat(); }
+            });
+
+            // --- Initial Page Load ---
+            initializePosts();
+            displayPage(1);    
+
         });
-    });
-    
     </script>
 </body>
 </html>
