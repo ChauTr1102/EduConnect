@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduConnectGPT - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         :root {
             --primary-color: #0d1472;
@@ -346,6 +347,11 @@
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;      
+            flex-direction: column;   
+            min-height: 200px;        
+            justify-content: space-between; 
+            position: relative;
         }
         
         .message-header {
@@ -381,12 +387,21 @@
         
         .message-content {
             line-height: 1.6;
-            margin-bottom: 1rem;
+            margin-bottom: 1rem;      
+            flex-grow: 1;            
+            min-height: 50px;         
         }
         
+        .message-actions .spacer {
+            flex-grow: 1; 
+        }
+
         .message-actions {
             display: flex;
             gap: 0.5rem;
+            flex-shrink: 0;
+            flex-wrap: nowrap; 
+            align-items: center; 
         }
         
         .message-btn {
@@ -955,6 +970,220 @@
             color: #adb5bd;
             cursor: not-allowed;
         }
+
+        .like-btn {
+            background-color: #e2e8f0; 
+            color: #4a5568;            
+            transition: background-color 0.2s ease, color 0.2s ease;
+            display: inline-flex;      
+            align-items: center;
+            gap: 0.3rem;               
+        }
+
+        .like-btn i {
+            transition: transform 0.2s ease;
+        }
+
+        .like-btn.liked {
+            background-color: var(--accent-color); 
+            color: var(--white);                
+        }
+        .like-btn.liked i {
+            transform: scale(1.1) rotate(-10deg); 
+        }
+
+        .comment-trigger-btn {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .comment-section {
+            display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0; 
+        }
+
+        .comment-section.active {
+            display: block; 
+        }
+
+        .comments-display-area {
+            margin-bottom: 0.8rem;
+            max-height: 150px; 
+            overflow-y: auto; 
+        }
+
+        .comment-item {
+            background-color: #f7fafc;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            border: 1px solid #e2e8f0;
+        }
+        .comment-item strong { 
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+
+        .comment-input-area {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start; 
+        }
+
+        .comment-input {
+            flex-grow: 1; 
+            min-height: 40px;
+            padding: 0.5rem 0.8rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            resize: vertical; 
+            line-height: 1.4;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
+        }
+
+        .post-comment-btn {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            height: 40px; 
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            padding: 0.3rem 0.5rem; /* Điều chỉnh padding */
+            cursor: pointer;
+            color: var(--light-text);
+            font-size: 1.1rem; /* Điều chỉnh kích thước icon */
+            line-height: 1; /* Đảm bảo icon không làm thay đổi chiều cao dòng */
+        }
+        .icon-btn:hover {
+            color: var(--accent-color);
+        }
+
+        /* Đẩy nút trigger sang phải trong header */
+        .message-header .tutor-menu-trigger {
+            margin-left: auto; /* Đẩy sang phải */
+        }
+
+        /* Style cho Dropdown Tutor List */
+        .tutor-list-dropdown {
+            /* ... position, top, right, background, shadow, z-index ... giữ nguyên */
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 1rem;
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            padding: 0; /* Bỏ padding trực tiếp */
+            min-width: 250px;
+            max-width: 320px; /* Có thể tăng max-width một chút */
+            z-index: 10;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        .tutor-list-dropdown.active {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .tutor-list-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0; /* Bỏ padding ở ul */
+            max-height: 300px; /* Tăng max-height nếu cần */
+            overflow-y: auto;
+        }
+
+        .tutor-list-dropdown li {
+            /* Bỏ padding trực tiếp ở li */
+            border-bottom: 1px solid #f0f4ff;
+        }
+        .tutor-list-dropdown li:last-child {
+            border-bottom: none;
+        }
+        .tutor-list-dropdown li:hover .tutor-item-container { /* Áp dụng hover cho container */
+            background-color: var(--secondary-color);
+        }
+
+        /* Container cho mỗi item gia sư */
+        .tutor-item-container {
+            padding: 0.8rem 1rem;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem; 
+        }
+
+        .tutor-avatar-dropdown {
+            width: 40px; 
+            height: 40px;
+            border-radius: 50%; 
+            overflow: hidden; 
+            flex-shrink: 0; 
+            background-color: #eee;
+        }
+
+        .tutor-avatar-dropdown img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            display: block; 
+        }
+
+        .tutor-details-actions-wrapper {
+            display: flex;
+            flex-direction: column; 
+            flex-grow: 1; 
+        }
+
+
+        .tutor-info-dropdown .tutor-name {
+            display: block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+        .tutor-info-dropdown .tutor-name:hover {
+            text-decoration: underline;
+        }
+
+        .tutor-description {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin: 0 0 0.8rem 0; /* Thêm margin dưới description */
+            line-height: 1.4;
+        }
+
+        /* Khu vực action cho từng gia sư */
+        .tutor-item-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap; /* Cho phép wrap nếu không đủ chỗ */
+        }
+
+        /* Style cho nút trong từng item gia sư */
+        .tutor-item-actions .message-btn {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
     </style>
 </head>
 <body>
@@ -1210,218 +1439,291 @@
             const closeModalBtn = document.getElementById('closeModal');
             const chatBtn = document.getElementById('chatBtn');
             const chatInterface = document.getElementById('chatInterface');
-            const closeChatBtn = document.getElementById('closeChat'); 
+            const closeChatBtn = document.getElementById('closeChat');
             const messageInputChat = document.getElementById('messageInput');
-            const sendMessageChat = document.getElementById('sendMessage');  
+            const sendMessageChat = document.getElementById('sendMessage');
             const chatMessages = document.getElementById('chatMessages');
             const newPostForm = document.getElementById('newPostForm');
-            const postContent = document.getElementById('postContent');
-            const submitPost = document.getElementById('submitPost');
-            const messageList = document.querySelector('.message-list'); 
-            const paginationControls = document.getElementById('paginationControls'); 
-            const postSuccess = document.getElementById('postSuccess');
+            const postContentInput = document.getElementById('postContent'); // Đổi tên biến rõ ràng hơn
+            const submitPostBtn = document.getElementById('submitPost'); // Đổi tên biến rõ ràng hơn
+            const messageList = document.querySelector('.message-list');
+            const paginationControls = document.getElementById('paginationControls');
+            const postSuccessMsg = document.getElementById('postSuccess'); // Đổi tên biến rõ ràng hơn
 
             // --- State Variables ---
-            let allPosts = []; // Holds ALL posts currently loaded/displayed
+            let allPostsData = []; // Dùng tên biến rõ ràng hơn
             let currentPage = 1;
-            const postsPerPage = 4; // SET HOW MANY POSTS PER PAGE
+            const postsPerPage = 4;
 
-            // --- Default/Initial Data (Source of truth now) ---
+            // --- Default Data ---
             const defaultPosts = [
-                 { user: "Nguyen Thu Trang", avatar: "avatar1.png", time: "2 hours ago", content: "Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì." },
-                 { user: "Mai Anh", avatar: "avatar2.png", time: "1 hour ago", content: "Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓." },
-                 { user: "Nguyen Trong Minh", avatar: "avatar3.png", time: "2 hours ago", content: "Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓." },
-                 { user: "Đặng Quang", avatar: "avatar4.png", time: "1 hour ago", content: "Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓." },
-                 { user: "Le Binh", avatar: "avatar-placeholder.png", time: "3 hours ago", content: "Cần tìm gia sư Toán lớp 10 gấp ạ 😭 Em là An, mới lên lớp 10 mà Hình học với Đại số em mất gốc từ cấp 2 rồi, giờ nghe giảng không hiểu gì cả, bài tập thì nhìn như bức vách. Cần anh chị nào kiên nhẫn dạy lại giúp em với, em cảm ơn nhiều ạ." },
-                 { user: "Ngoc Hieu", avatar: "avatar-placeholder.png", time: "4 hours ago", content: "Tìm gia sư Toán 12 ôn thi ĐH gấp!!! 😥 Mình là Bình, sắp thi rồi mà Toán còn yếu quá, nhất là mấy dạng vận dụng cao giải mãi không ra, thấy đề là hoang mang. Có anh chị nào kinh nghiệm ôn thi, hệ thống kiến thức tốt giúp mình với. Lo quá!" },
-                 { user: "Trinh Chau", avatar: "avatar-placeholder.png", time: "5 hours ago", content: "Ai cứu em môn Hình không gian với ạ 🙏 Em là Chi lớp 11. Cứ học đến hình không gian là đầu óc em quay cuồng, trừu tượng quá không tưởng tượng nổi hình luôn, vẽ sai hoài 😵. Cần một gia sư dạy dễ hiểu phần này gấp ạ, SOS!" },
-                 { user: "Duc Manh", avatar: "avatar-placeholder.png", time: "6 hours ago", content: "Có ai nhận dạy kèm Toán cho học sinh yếu không ạ? 🥺 Em là Dũng, lớp 10. Em sợ môn Toán lắm, làm bài toàn sai, điểm lúc nào cũng thấp lè tè. Muốn tìm gia sư tận tình, kiên nhẫn, nói dễ hiểu giúp em lấy lại căn bản với ạ, chứ tình hình này chắc em tiêu." },
+                 { id: 1, user: "Nguyen Thu Trang", avatar: "avatar1.png", time: "2 hours ago", content: "Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì." },
+                 { id: 2, user: "Mai Anh", avatar: "avatar2.png", time: "1 hour ago", content: "Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓." },
+                 { id: 3, user: "Nguyen Trong Minh", avatar: "avatar3.png", time: "2 hours ago", content: "Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓." },
+                 { id: 4, user: "Đặng Quang", avatar: "avatar4.png", time: "1 hour ago", content: "Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓." },
+                 { id: 5, user: "Le Binh", avatar: "avatar-placeholder.png", time: "3 hours ago", content: "Cần tìm gia sư Toán lớp 10 gấp ạ 😭 Em là An, mới lên lớp 10 mà Hình học với Đại số em mất gốc từ cấp 2 rồi, giờ nghe giảng không hiểu gì cả, bài tập thì nhìn như bức vách. Cần anh chị nào kiên nhẫn dạy lại giúp em với, em cảm ơn nhiều ạ." },
+                 { id: 6, user: "Ngoc Hieu", avatar: "avatar-placeholder.png", time: "4 hours ago", content: "Tìm gia sư Toán 12 ôn thi ĐH gấp!!! 😥 Mình là Bình, sắp thi rồi mà Toán còn yếu quá, nhất là mấy dạng vận dụng cao giải mãi không ra, thấy đề là hoang mang. Có anh chị nào kinh nghiệm ôn thi, hệ thống kiến thức tốt giúp mình với. Lo quá!" },
+                 { id: 7, user: "Trinh Chau", avatar: "avatar-placeholder.png", time: "5 hours ago", content: "Ai cứu em môn Hình không gian với ạ 🙏 Em là Chi lớp 11. Cứ học đến hình không gian là đầu óc em quay cuồng, trừu tượng quá không tưởng tượng nổi hình luôn, vẽ sai hoài 😵. Cần một gia sư dạy dễ hiểu phần này gấp ạ, SOS!" },
+                 { id: 8, user: "Duc Manh", avatar: "avatar-placeholder.png", time: "6 hours ago", content: "Có ai nhận dạy kèm Toán cho học sinh yếu không ạ? 🥺 Em là Dũng, lớp 10. Em sợ môn Toán lắm, làm bài toàn sai, điểm lúc nào cũng thấp lè tè. Muốn tìm gia sư tận tình, kiên nhẫn, nói dễ hiểu giúp em lấy lại căn bản với ạ, chứ tình hình này chắc em tiêu." },
             ];
 
             // --- Functions ---
 
-            // Function to render a single post card
             function renderPostCard(postData) {
-                const newMessageCard = document.createElement('div');
-                newMessageCard.className = 'message-card';
+                const card = document.createElement('div');
+                card.className = 'message-card';
+                card.dataset.postId = postData.id || Date.now(); // Use provided ID or generate one
+
                 const userName = postData.user || "User";
                 const userAvatar = postData.avatar || "avatar-placeholder.png";
                 const postTime = postData.time || "Recently";
                 const postText = postData.content || "No content";
-                newMessageCard.innerHTML = `
+
+                const suggestedTutors = [
+                    { name: "Gia sư Nguyễn Văn A", description: "Sinh viên năm 3 ĐH Bách Khoa, chuyên Toán Lý Hóa, kinh nghiệm 2 năm.", avatar: "images/Lê Nguyễn Thanh Bình.jpg" }, 
+                    { name: "Gia sư Trần Thị B", description: "Giáo viên về hưu, >10 năm kinh nghiệm dạy Toán cấp 2, 3.", avatar: "images/ảnh tutor 2.jpg" },
+                    { name: "Gia sư Lê Văn C", description: "Thủ khoa đầu vào Sư Phạm Toán, nhiệt tình, phương pháp dễ hiểu.", avatar: "images/ảnh tutor 3.jpg" },
+                    { name: "Gia sư Phạm Thị D", description: "Du học sinh Mỹ, điểm SAT Toán 800/800.", avatar: "images/ảnh tutor 4.jpg" },
+                ];
+
+                card.innerHTML = `
                     <div class="message-header">
                         <div class="user-avatar"><img src="${userAvatar}" alt="${userName}"></div>
                         <div class="user-info"><h3>${userName}</h3><p class="message-time">${postTime}</p></div>
+                        <button class="message-btn icon-btn tutor-menu-trigger">
+                            <i class="fas fa-bars"></i>
+                        </button>
                     </div>
-                    <div class="message-content"><p>${postText.replace(/\n/g, '<br>')}</p></div>
+
+                    <div class="message-content">
+                        <p>${postText.replace(/\n/g, '<br>')}</p>
+                    </div>
+
                     <div class="message-actions">
+                        <button class="message-btn like-btn"><i class="far fa-thumbs-up"></i> Like</button>
+                        <button class="message-btn comment-trigger-btn"><i class="far fa-comment"></i> Comment</button>
+                        <div class="spacer"></div>
                         <a href="chat.html?user=${encodeURIComponent(userName)}&avatar=${userAvatar}" class="message-btn" style="text-decoration: none;">Send message</a>
                         <button class="message-btn">Send Request</button>
                     </div>
+
+                    <div class="comment-section">
+                    </div>
+
+                    <div class="tutor-list-dropdown">
+                        <ul>
+                            ${suggestedTutors.map(tutor => `
+                                <li>
+                                    <div class="tutor-item-container">
+                                        <div class="tutor-avatar-dropdown">
+                                            <img src="${tutor.avatar || 'avatar-placeholder.png'}" alt="${tutor.name}">
+                                        </div>
+                                        <div class="tutor-details-actions-wrapper">
+                                            <div class="tutor-info-dropdown">
+                                                <a href="#" class="tutor-name">${tutor.name}</a>
+                                                <p class="tutor-description">${tutor.description}</p>
+                                            </div>
+                                            <div class="tutor-item-actions">
+                                                <a href="chat.html?user=${encodeURIComponent(tutor.name)}&avatar=${tutor.avatar || 'avatar-placeholder.png'}" class="message-btn tutor-msg-btn" style="text-decoration: none;">Send message</a>
+                                                <button class="message-btn tutor-req-btn">Send Request</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
                 `;
-                messageList.appendChild(newMessageCard);
+                messageList.appendChild(card);
             }
 
-            // Function to display posts for a specific page
             function displayPage(page) {
                 currentPage = page;
-                messageList.innerHTML = ''; 
+                messageList.innerHTML = '';
                 const startIndex = (page - 1) * postsPerPage;
                 const endIndex = startIndex + postsPerPage;
-                const postsToShow = allPosts.slice(startIndex, endIndex);
-                postsToShow.forEach(post => renderPostCard(post));
-                renderPaginationControls(); 
+                const postsToShow = allPostsData.slice(startIndex, endIndex);
+                postsToShow.forEach(renderPostCard);
+                renderPaginationControls();
             }
 
-            // Function to render the pagination buttons
             function renderPaginationControls() {
                 if (!paginationControls) return;
                 paginationControls.innerHTML = '';
-                const totalPages = Math.ceil(allPosts.length / postsPerPage);
-                if (totalPages <= 1) return; 
+                const totalPages = Math.ceil(allPostsData.length / postsPerPage);
+                if (totalPages <= 1) return;
                 for (let i = 1; i <= totalPages; i++) {
                     const pageButton = document.createElement('button');
-                    pageButton.classList.add('page-item');
-                    if (i === currentPage) pageButton.classList.add('active');
+                    pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
                     pageButton.textContent = i;
-                    pageButton.addEventListener('click', () => {
+                    pageButton.onclick = () => { // Gán trực tiếp để đơn giản
                         displayPage(i);
-                         messageList.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    });
+                        messageList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    };
                     paginationControls.appendChild(pageButton);
                 }
             }
 
-            // Function to initialize the posts list (Uses default data)
             function initializePosts() {
-                allPosts = [...defaultPosts].reverse();
+                // Chỉ sử dụng defaultPosts, không load/save localStorage
+                allPostsData = [...defaultPosts].reverse(); // Hiển thị mới nhất trước
             }
 
-            // Function to handle post submission (MODIFIED - No Storage)
             function handlePostSubmit() {
-                const content = postContent.value.trim();
-                if (content) {
-                    submitPost.classList.add('posting');
-                    submitPost.textContent = 'Posting...';
-                    submitPost.disabled = true;
+                const content = postContentInput.value.trim();
+                if (!content) return; // Thoát nếu không có nội dung
+
+                submitPostBtn.classList.add('posting');
+                submitPostBtn.textContent = 'Posting...';
+                submitPostBtn.disabled = true;
+
+                // Simulate delay
+                setTimeout(() => {
+                    const newPostData = {
+                        user: "Người dùng mới (Tạm)",
+                        avatar: "avatar1.png", // Hoặc avatar user hiện tại
+                        time: "Just now",
+                        content: content,
+                        id: Date.now()
+                    };
+
+                    // Thêm vào đầu mảng (bộ nhớ)
+                    allPostsData.unshift(newPostData);
+
+                    // Hiển thị lại trang 1
+                    displayPage(1);
+
+                    // Hiệu ứng thành công và đóng modal
+                    postSuccessMsg.classList.add('show');
+                    const firstCard = messageList.querySelector('.message-card:first-child');
+                    if (firstCard) {
+                        firstCard.classList.add('new-post');
+                        setTimeout(() => firstCard.classList.remove('new-post'), 1500);
+                        window.scrollTo({ top: firstCard.offsetTop - 80, behavior: 'smooth' });
+                    }
 
                     setTimeout(() => {
-                        // 1. Prepare Post Data (Temporary)
-                        const postData = {
-                            user: "Người dùng mới (Tạm)", 
-                            avatar: "avatar1.png",      
-                            time: "Just now",
-                            content: content,
-                            id: Date.now()           
-                        };
-
-                        // 2. Add TEMPORARILY to the START of the in-memory array
-                        allPosts.unshift(postData);
-
-                        // 3. Go to page 1 and re-display (Shows temporary post)
-                        displayPage(1);
-
-                        // 4. Show success message
-                        postSuccess.classList.add('show');
-
-                        // --- Animate the newly added card ---
-                        const firstCard = messageList.querySelector('.message-card:first-child');
-                        if (firstCard) {
-                            firstCard.classList.add('new-post');
-                            setTimeout(() => { firstCard.classList.remove('new-post'); }, 1500);
-                            window.scrollTo({ top: firstCard.offsetTop - 80, behavior: 'smooth' });
-                        }
-                        // --- End Animation ---
-
-                        // 5. Reset form and close modal
+                        modalContent.classList.remove('active');
                         setTimeout(() => {
-                            modalContent.classList.remove('active');
-                            setTimeout(() => {
-                                postModal.style.display = 'none';
-                                postContent.value = '';
-                                submitPost.classList.remove('posting');
-                                submitPost.textContent = 'Post';
-                                postSuccess.classList.remove('show');
-                                submitPost.disabled = false;
-                            }, 200);
-                        }, 1000);
+                            postModal.style.display = 'none';
+                            postContentInput.value = '';
+                            submitPostBtn.classList.remove('posting');
+                            submitPostBtn.textContent = 'Post';
+                            postSuccessMsg.classList.remove('show');
+                            submitPostBtn.disabled = false;
+                        }, 200);
+                    }, 1000);
 
-                    }, 800); // Simulate post delay
+                }, 800);
+            }
+
+            function handleLikeClick(likeButton) {
+                likeButton.classList.toggle('liked');
+                const icon = likeButton.querySelector('i');
+                const isLiked = likeButton.classList.contains('liked');
+                icon.className = isLiked ? 'fas fa-thumbs-up' : 'far fa-thumbs-up'; // Đổi icon
+                // Thêm logic gọi API nếu cần
+            }
+
+            function handleCommentToggle(commentTrigger) {
+                const card = commentTrigger.closest('.message-card');
+                const commentSection = card?.querySelector('.comment-section');
+                if (commentSection) {
+                    commentSection.classList.toggle('active');
+                    if (commentSection.classList.contains('active')) {
+                        commentSection.querySelector('.comment-input').focus();
+                    }
                 }
             }
 
-            // --- Floating Chat Functions ---
-            function sendUserMessageChat() {
-                const messageText = messageInputChat.value.trim();
-                if (messageText) {
-                    const userMessageHTML = `<div class="message user-message"><div class="message-avatar">👤</div><div class="message-content"><p>${messageText}</p></div></div>`;
-                    chatMessages.innerHTML += userMessageHTML;
-                    messageInputChat.value = '';
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
-                    setTimeout(() => {
-                         let botResponse = "Thanks for your message! Our tutors will get back to you shortly.";
-                         if (messageText.toLowerCase().includes('math') || messageText.toLowerCase().includes('toán')) botResponse = "We have excellent math tutors available. Would you like me to help you find one?";
-                         else if (messageText.toLowerCase().includes('price') || messageText.toLowerCase().includes('cost')) botResponse = "Our tutoring prices start at $15/hour. Would you like to see our full pricing?";
-                         else if (messageText.toLowerCase().includes('hello') || messageText.toLowerCase().includes('hi')) botResponse = "Hello! How can I help with your education needs today?";
-                        const botMessageHTML = `<div class="message bot-message"><div class="message-avatar">🤖</div><div class="message-content"><p>${botResponse}</p></div></div>`;
-                        chatMessages.innerHTML += botMessageHTML;
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }, 800);
+            function handlePostComment(postButton) {
+                 const commentSection = postButton.closest('.comment-section');
+                 const commentInput = commentSection?.querySelector('.comment-input');
+                 const commentsDisplay = commentSection?.querySelector('.comments-display-area');
+                 const commentText = commentInput?.value.trim();
+
+                 if (commentText && commentsDisplay) {
+                     const newComment = document.createElement('div');
+                     newComment.classList.add('comment-item');
+                     // Nên lấy tên user đang đăng nhập thay vì "You"
+                     newComment.innerHTML = `<strong>You:</strong> ${commentText.replace(/\n/g, '<br>')}`;
+                     commentsDisplay.appendChild(newComment);
+                     commentsDisplay.scrollTop = commentsDisplay.scrollHeight; // Cuộn xuống
+                     commentInput.value = '';
+                     // Thêm logic gọi API lưu comment
+                 }
+            }
+
+            function handleTutorMenuToggle(menuTrigger, event) {
+                const card = menuTrigger.closest('.message-card');
+                const dropdown = card?.querySelector('.tutor-list-dropdown');
+                if (dropdown) {
+                    const isActive = dropdown.classList.contains('active');
+                    // Đóng tất cả dropdown khác
+                    document.querySelectorAll('.tutor-list-dropdown.active').forEach(dd => {
+                        if (dd !== dropdown) dd.classList.remove('active');
+                    });
+                    // Toggle cái hiện tại
+                    dropdown.classList.toggle('active');
+                    if(event) event.stopPropagation(); // Ngăn đóng ngay lập tức
                 }
             }
 
             // --- Event Listeners ---
 
-            // Search (Keep existing logic)
-            searchBtn.addEventListener('click', function() {
-                const searchTerm = searchBar.value.trim();
-                if (searchTerm) {
-                    alert('Searching for: ' + searchTerm);
+            // Sử dụng Event Delegation cho message list
+            messageList.addEventListener('click', function(event) {
+                const target = event.target;
+                const likeBtn = target.closest('.like-btn');
+                const commentTriggerBtn = target.closest('.comment-trigger-btn');
+                const postCommentBtn = target.closest('.post-comment-btn');
+                const tutorMenuBtn = target.closest('.tutor-menu-trigger');
+
+                if (likeBtn) handleLikeClick(likeBtn);
+                else if (commentTriggerBtn) handleCommentToggle(commentTriggerBtn);
+                else if (postCommentBtn) handlePostComment(postCommentBtn);
+                else if (tutorMenuBtn) handleTutorMenuToggle(tutorMenuBtn, event);
+            });
+
+            // Đóng dropdown khi click ra ngoài
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.tutor-menu-trigger') && !event.target.closest('.tutor-list-dropdown')) {
+                    document.querySelectorAll('.tutor-list-dropdown.active').forEach(dd => dd.classList.remove('active'));
                 }
             });
-            searchBar.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') { searchBtn.click(); }
-            });
 
-            // Post Modal (Keep existing logic)
-            postBtn.addEventListener('click', function() {
+            // Search
+            searchBtn.addEventListener('click', () => {
+                const searchTerm = searchBar.value.trim();
+                if (searchTerm) alert('Searching for: ' + searchTerm);
+            });
+            searchBar.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
+
+            // Post Modal
+            postBtn.addEventListener('click', () => {
                 postModal.style.display = 'flex';
-                setTimeout(() => {
-                    modalContent.classList.add('active');
-                    newPostForm.classList.add('animate');
-                }, 50);
+                setTimeout(() => modalContent.classList.add('active'), 50);
             });
-            closeModalBtn.addEventListener('click', function() { 
+            closeModalBtn.addEventListener('click', () => {
                 modalContent.classList.remove('active');
-                setTimeout(() => {
-                    postModal.style.display = 'none';
-                    postSuccess.classList.remove('show');
-                }, 200);
+                setTimeout(() => { postModal.style.display = 'none'; postSuccessMsg.classList.remove('show'); }, 200);
             });
-            window.addEventListener('click', function(event) {
-                if (event.target === postModal) { closeModalBtn.click(); } 
-            });
+            window.addEventListener('click', (event) => { if (event.target === postModal) closeModalBtn.click(); });
+            submitPostBtn.addEventListener('click', handlePostSubmit);
 
+            // Floating Chat
+             chatBtn.addEventListener('click', () => chatInterface.style.display = 'flex');
+             closeChatBtn.addEventListener('click', () => chatInterface.style.display = 'none');
+            // Hàm sendUserMessageChat cần được định nghĩa hoặc giữ lại nếu bạn dùng
+            // sendMessageChat.addEventListener('click', sendUserMessageChat);
+            // messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
 
-            submitPost.addEventListener('click', handlePostSubmit);
-
-
-            chatBtn.addEventListener('click', function() {
-                chatInterface.style.display = 'flex';
-            });
-            closeChatBtn.addEventListener('click', function() {
-                chatInterface.style.display = 'none';
-            });
-            sendMessageChat.addEventListener('click', sendUserMessageChat);
-            messageInputChat.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') { sendUserMessageChat(); }
-            });
 
             // --- Initial Page Load ---
             initializePosts();
-            displayPage(1);    
+            displayPage(1);
 
-        });
-    </script>
+        }); // End DOMContentLoaded
+    </script>   
 </body>
 </html>
