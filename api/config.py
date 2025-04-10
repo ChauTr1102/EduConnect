@@ -5,12 +5,14 @@ RECOMMENDER_PROMPT = """## Task:
 
 ## Output:
 - Matching Teachers:
-1. [Teacher Name] – Reason for the match
-2. [Teacher Name] – Reason for the match
-3. [Teacher Name] – Reason for the match"""
+1. [Teacher_id - Teacher Name - teacher mail] – Reason for the match
+2. [Teacher_id - Teacher Name - teacher mail] – Reason for the match
+3. [Teacher_id - Teacher Name - teacher mail] – Reason for the match"""
 
-DATABASE = 'Educonnect'
-HOST = 'postgres'
-PORT = '5432'
-USER = 'bojjoo'
-PASSWORD = '12345678'
+DATABASE_CONFIG = {
+    "dbname": "Educonnect",
+    "user": "postgres",
+    "password": "12345678",
+    "host": "localhost",
+    "port": 5432
+}
