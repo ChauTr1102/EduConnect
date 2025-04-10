@@ -647,6 +647,22 @@
                 margin: 1rem auto 0;
             }
         }
+
+        .profile-avatar img {
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover;
+            border-radius: 50%; 
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: #eee;
+            border: 5px solid rgba(255,255,255,0.3);
+            overflow: hidden; 
+        }
     </style>
 </head>
 <body>
@@ -682,9 +698,11 @@
 
     <div class="main-content">
         <div class="profile-header">
-            <div class="profile-avatar">👨‍🎓</div>
+            <div class="profile-avatar">
+                <img src="images\Lê Nguyễn Thanh Bình.jpg" alt="Lê Nguyễn Thanh Bình"> 
+            </div>
             <div class="profile-info">
-                <h1 class="profile-name">John Anderson</h1>
+                <h1 class="profile-name">Lê Nguyễn Thanh Bình</h1>
                 <div class="profile-title">Computer Science Student</div>
                 <p>Passionate learner focused on web development, AI, and data science.</p>
                 
