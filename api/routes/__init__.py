@@ -9,7 +9,8 @@ import asyncio
 
 router = APIRouter()
 
+sql_db = SQLDatabase()
 
-class test(BaseModel):
+class user_and_pass(BaseModel):
     user_name: str
     password: str

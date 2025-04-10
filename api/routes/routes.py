@@ -6,6 +6,7 @@ def read_root():
         'Hello This is EduConnect! Nice to meet you!'
     }
 
-@router.post("/test")
-async def test(test: test):
-    return f"Received {test.user_name}, {test.password}"
+@router.post("/check_login")
+async def check_login(test: user_and_pass):
+    result = sql_db.check_login(test.user_name, test.password)
+    return result

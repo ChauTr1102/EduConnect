@@ -388,12 +388,38 @@
             const form = e.target;
             const username = form.querySelector('input[type="text"]').value;
             const password = form.querySelector('input[type="password"]').value;
-            if (username === "manh" && password === "123") {
-                // Redirect to home.html upon successful login
-                window.location.href = 'home.html';
-            } else {
-                alert('Invalid username or password.');
-            }
+
+             const data = {
+                user_name: username,
+                password: password
+            };
+
+            fetch("http://127.0.0.1:2000/check_login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log("Server response:", result);
+
+                if (result === true) {
+
+                    window.location.href = 'home.html';
+                } else {
+                    alert("Tên đăng nhập hoặc mật khẩu không đúng.");
+                }
+
+            })
+            .catch(error => {
+                console.error("Error sending data:", error);
+                alert("Lỗi kết nối: " + error.message);
+            });
+
+
+
         });
 
         // Back to account selection page
