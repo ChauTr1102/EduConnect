@@ -16,7 +16,8 @@ class RecommenderSystem:
                 ("system", "**List of Available Teachers:**\n{teacher_profiles}\n"),
             ]
         )
-        prompt_recommender = prompt_recommender_template.format(student_request=student_request, teacher_profiles=teacher_profiles)
+        prompt_recommender = prompt_recommender_template.format(student_request=student_request,
+                                                                teacher_profiles=teacher_profiles)
         return prompt_recommender
 
     async def send_message_gemini(self, prompt: str) -> str:
