@@ -6,7 +6,7 @@ def read_root():
         'Hello This is EduConnect! Nice to meet you!'
     }
 
-router.post("/check_login")
+@router.post("/check_login")
 async def check_login(test: user_and_pass):
     result = sql_db.check_login(test.user_name, test.password)
     return result
@@ -18,3 +18,4 @@ async def recommender(student_request: StudentRequest):
     prompt_recommender = recommender.prompt_recommender(student_request.student_request, teacher_profile)
     result = await recommender.send_message_gemini(prompt_recommender)
     return result
+
