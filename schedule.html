@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - Schedule</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* === CSS Gốc từ Trang Chủ === */
+        :root {
+            --primary-color: #0d1472;
+            --secondary-color: #f0f4ff;
+            --accent-color: #3c4fe0;
+            --text-color: #333;
+            --light-text: #888;
+            --white: #fff;
+            --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* --- Thay đổi nền nếu muốn trang lịch khác trang chủ --- */
+            /* background-color: #f0f2f5; */
+             background-color: var(--white); /* Giữ nền trắng như lịch */
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img { height: 40px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin: 0 10px; }
+        nav ul li a { text-decoration: none; padding: 8px 12px; color: #555; font-weight: 500; position: relative; transition: color 0.3s; }
+        nav ul li a.active { color: #4361ee; font-weight: 600; }
+        .animated-underline { position: relative; text-decoration: none; }
+        .animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #1e40af; transition: width 0.3s ease-in-out; }
+        .animated-underline:hover::after { width: 100%; }
+        .right-actions { display: flex; align-items: center; gap: 20px; }
+        .credit-icon, .notification-icon { font-size: 1rem; cursor: pointer; }
+        .account-container { position: relative; cursor: pointer; }
+        .account-icon { font-size: 1.2rem; }
+        .account-dropdown { position: absolute; top: 100%; right: 0; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 150px; display: none; padding: 8px 0; }
+        .account-container:hover .account-dropdown { display: block; }
+        .dropdown-item { display: block; padding: 8px 15px; text-decoration: none; color: #333; transition: background 0.2s; }
+        .dropdown-item:hover { background: #f5f5f5; color: #4361ee; }
+        .dropdown-divider { height: 1px; background: #eee; margin: 5px 0; }
+
+        /* === CSS Cho Lịch (Từ schedule.html) === */
+        :root { /* Gộp các biến màu lịch vào đây */
+            --grid-border-color: #e9e9e9;
+            --day-number-color: #a0a0a0;
+            --weekday-header-color: #333;
+            --month-header-color: #000;
+            --event-text-color: #ffffff;
+            --event-green: #27ae60;
+            --event-blue: #2980b9;
+            --event-gray: #7f8c8d;
+            --event-purple: #8e44ad;
+            --event-orange: #f39c12;
+        }
+
+        /* --- Bỏ padding mặc định của body để container lịch chiếm đủ chỗ --- */
+        body {
+            padding: 0; /* Remove default body padding */
+        }
+
+        .calendar-wrapper {
+             padding: 40px 20px; /* Add padding around the calendar */
+             background-color: #f8f9fa; /* Optional: different background for calendar area */
+        }
+
+        .calendar-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            border: 1px solid var(--grid-border-color);
+            background-color: #fff; /* White background for the calendar itself */
+            border-radius: 8px; /* Optional rounded corners */
+            overflow: hidden; /* Contain borders and corners */
+        }
+
+        .calendar-header {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: var(--month-header-color);
+            padding: 20px 25px;
+            text-align: left;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            padding: 10px 0;
+            font-weight: 600;
+            color: var(--weekday-header-color);
+            border-bottom: 1px solid var(--grid-border-color);
+            font-size: 0.9em;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            grid-auto-rows: minmax(120px, auto); /* Flexible row height */
+            border-top: none;
+            position: relative;
+        }
+
+        .calendar-day {
+            border-right: 1px dotted var(--grid-border-color);
+            border-bottom: 1px dotted var(--grid-border-color);
+            padding: 5px 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Enable flex for day number */
+            justify-content: flex-end; /* Push day number right */
+            align-items: flex-start; /* Align day number top */
+        }
+        .calendar-day:nth-child(7n) { border-right: none; }
+        /* Adjust nth-child based on actual rows displayed if needed */
+        /* Assuming 5 weeks for July 2025 */
+         .calendar-day:nth-child(n+29):nth-child(-n+35) {
+             border-bottom: none;
+         }
+
+        .day-number {
+            font-size: 0.8em;
+            color: var(--day-number-color);
+            font-weight: 500;
+             padding: 2px 4px; /* Add slight padding */
+        }
+        .other-month .day-number { opacity: 0.5; }
+
+        /* Event Styling */
+        .calendar-event {
+            position: absolute;
+            color: var(--event-text-color);
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 0.85em;
+            font-weight: 500;
+            overflow: hidden;
+            box-sizing: border-box;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.3;
+            background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"/%3E%3C/g%3E%3C/svg%3E');
+            /* Calculate position based on grid lines AND cell padding */
+             /* These are offsets within the grid cell */
+             top: 28px; /* Adjust based on day number height + padding */
+             left: 4px;
+             right: 4px;
+             bottom: 4px;
+             /* Default height/width - overridden by specific events */
+             height: calc(100% - 32px);
+             width: calc(100% - 8px);
+        }
+         .calendar-event i { margin-bottom: 4px; font-size: 1.1em; }
+        .event-green { background-color: var(--event-green); }
+        .event-blue { background-color: var(--event-blue); }
+        .event-gray { background-color: var(--event-gray); }
+        .event-purple { background-color: var(--event-purple); }
+        .event-orange { background-color: var(--event-orange); }
+
+        /* Event Positioning using Grid Lines - Relative to the GRID CONTAINER */
+        /* Format: grid-row-start / grid-column-start / grid-row-end / grid-column-end */
+        /* Monday=1, Sunday=7 */
+        #event-thu-hien { grid-area: 1 / 5 / 2 / 6; } /* R1, C5 */
+        #event-thu-trang { grid-area: 2 / 1 / 3 / 2; } /* R2, C1 */
+        #event-anh-tu {
+             grid-area: 2 / 3 / 3 / 4; /* R2, C3 */
+             border-top-right-radius: 0;
+             border-bottom-right-radius: 0;
+             border-right: 1px dotted rgba(255, 255, 255, 0.5);
+             right: 0; /* Make it touch the right edge */
+        }
+        #event-tu-minh {
+            grid-area: 2 / 4 / 3 / 5; /* R2, C4 */
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            left: 0; /* Make it touch the left edge */
+        }
+        #event-manh-quan { grid-area: 2 / 6 / 3 / 7; } /* R2, C6 */
+        #event-linh-anh { grid-area: 3 / 6 / 4 / 7; } /* R3, C6 */
+        #event-chau-trinh { grid-area: 4 / 3 / 5 / 4; } /* R4, C3 */
+
+        /* Footer Styles */
+        footer {
+            background: #0a1172;
+            color: white;
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0; /* Remove top margin if calendar is directly above */
+        }
+        /* ... (Giữ nguyên các style footer khác) ... */
+         .footer-logo { width: 20%; }
+         .footer-logo img { max-width: 80px; }
+         .footer-tagline { font-size: 0.9rem; margin-top: 1rem; line-height: 1.5; }
+         .footer-links { display: flex; gap: 3rem; }
+         .footer-links h3 { font-size: 1rem; margin-bottom: 1rem; }
+         .footer-links ul { list-style: none; }
+         .footer-links li { margin-bottom: 0.5rem; }
+         .footer-links a { text-decoration: none; color: #ccc; font-size: 0.9rem; transition: color 0.3s; }
+         .footer-links a:hover { color: white; }
+         .social-icon { background: rgba(255,255,255,0.2); width: 30px; height: 30px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; }
+
+        /* Responsive */
+         @media (max-width: 768px) {
+             header { flex-direction: column; gap: 1rem; padding: 1rem; }
+             nav ul { flex-wrap: wrap; justify-content: center; }
+             .right-actions { margin-top: 1rem; }
+             .calendar-wrapper { padding: 20px 10px; }
+             .calendar-header { font-size: 1.5em; padding: 15px; }
+             .calendar-weekdays { font-size: 0.8em; }
+             .calendar-grid { grid-auto-rows: minmax(100px, auto); } /* Adjust row height */
+             .calendar-event { font-size: 0.75em; padding: 5px; }
+             .day-number { font-size: 0.7em; }
+             footer { flex-direction: column; gap: 2rem; padding: 2rem 1rem; text-align: center; }
+             .footer-logo, .footer-links, .footer-socials { width: 100%; max-width: none; }
+             .footer-socials { justify-content: center; }
+         }
+
+         .footer-socials h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white); 
+        }
+
+        /* Container for the list of icons */
+        .social-icons-list {
+            display: flex;      
+            flex-wrap: wrap;     
+            gap: 12px;          
+        }
+
+        /* Styling for each icon's link container */
+        .social-icon-item {
+            display: inline-block; 
+            width: 30px;           
+            height: 30px;         
+            line-height: 0;        
+            transition: transform 0.2s ease; 
+        }
+
+        .social-icon-item:hover {
+            transform: scale(1.1); 
+        }
+
+        .social-icon-item img {
+            width: 100%;           
+            height: 100%;          
+            object-fit: contain;   
+            display: block;       
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                 <li><a href="Home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
+                 <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                 <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                 <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                 <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+                 <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
+                 <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline active">Schedule</a></li> 
+            </ul>
+        </nav>
+        <div class="right-actions">
+             <div class="credit-icon">0.0 $</div>
+             <a href="notification.html" class="notification-icon" style="text-decoration: none;">🔔</a>
+             <div class="account-container">
+                 <div class="account-icon">👤</div>
+                 <div class="account-dropdown">
+                     <a href="profile.html" class="dropdown-item">Profile</a>
+                     <a href="setting.html" class="dropdown-item">Setting</a>
+                     <a href="pricing.html" class="dropdown-item">Pricing</a>
+                     <div class="dropdown-divider"></div>
+                     <a href="login.html" class="dropdown-item">Sign out</a>
+                 </div>
+             </div>
+        </div>
+    </header>
+
+    <div class="calendar-wrapper">
+        <div class="calendar-container">
+            <div class="calendar-header">JULY 2025</div>
+            <div class="calendar-weekdays">
+                <span>M</span>
+                <span>T</span>
+                <span>W</span>
+                <span>T</span>
+                <span>F</span>
+                <span>S</span>
+                <span>S</span>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-day other-month"><span class="day-number">30</span></div>
+                <div class="calendar-day"><span class="day-number">01</span></div>
+                <div class="calendar-day"><span class="day-number">02</span></div>
+                <div class="calendar-day"><span class="day-number">03</span></div>
+                <div class="calendar-day"><span class="day-number">04</span></div>
+                <div class="calendar-day"><span class="day-number">05</span></div>
+                <div class="calendar-day"><span class="day-number">06</span></div>
+                <div class="calendar-day"><span class="day-number">07</span></div>
+                <div class="calendar-day"><span class="day-number">08</span></div>
+                <div class="calendar-day"><span class="day-number">09</span></div>
+                <div class="calendar-day"><span class="day-number">10</span></div>
+                <div class="calendar-day"><span class="day-number">11</span></div>
+                <div class="calendar-day"><span class="day-number">12</span></div>
+                <div class="calendar-day"><span class="day-number">13</span></div>
+                <div class="calendar-day"><span class="day-number">14</span></div>
+                <div class="calendar-day"><span class="day-number">15</span></div>
+                <div class="calendar-day"><span class="day-number">16</span></div>
+                <div class="calendar-day"><span class="day-number">17</span></div>
+                <div class="calendar-day"><span class="day-number">18</span></div>
+                <div class="calendar-day"><span class="day-number">19</span></div>
+                <div class="calendar-day"><span class="day-number">20</span></div>
+                <div class="calendar-day"><span class="day-number">21</span></div>
+                <div class="calendar-day"><span class="day-number">22</span></div>
+                <div class="calendar-day"><span class="day-number">23</span></div>
+                <div class="calendar-day"><span class="day-number">24</span></div>
+                <div class="calendar-day"><span class="day-number">25</span></div>
+                <div class="calendar-day"><span class="day-number">26</span></div>
+                <div class="calendar-day"><span class="day-number">27</span></div>
+                <div class="calendar-day"><span class="day-number">28</span></div>
+                <div class="calendar-day"><span class="day-number">29</span></div>
+                <div class="calendar-day"><span class="day-number">30</span></div>
+                <div class="calendar-day"><span class="day-number">31</span></div>
+                <div class="calendar-day other-month"><span class="day-number">01</span></div>
+                <div class="calendar-day other-month"><span class="day-number">02</span></div>
+                <div class="calendar-day other-month"><span class="day-number">03</span></div>
+
+                <div id="event-thu-hien" class="calendar-event event-green">
+                    <i class="fas fa-chalkboard"></i>
+                    English with Thu Hien
+                </div>
+                <div id="event-thu-trang" class="calendar-event event-green">
+                    Math with Thu Trang
+                </div>
+                <div id="event-anh-tu" class="calendar-event event-blue">
+                    Math with Anh Tu
+                </div>
+                <div id="event-tu-minh" class="calendar-event event-blue">
+                    Math with Tu Minh
+                </div>
+                <div id="event-manh-quan" class="calendar-event event-gray">
+                    English with Manh Quan
+                </div>
+                <div id="event-linh-anh" class="calendar-event event-purple">
+                    Math with Linh Anh
+                </div>
+                <div id="event-chau-trinh" class="calendar-event event-orange">
+                    Math with Chau Trinh
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+             <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+             <div class="footer-tagline">
+                 educonnect - Connecting knowledge, bringing learning into the future.<br>
+                 - EduConnect Team
+             </div>
+        </div>
+        <div class="footer-links">
+             <div>
+                 <h3>All pages</h3>
+                 <ul>
+                     <li><a href="#">All Courses</a></li>
+                     <li><a href="#">Account Billing</a></li>
+                     <li><a href="#">Privacy Policy</a></li>
+                     <li><a href="#">Refund and Cancellation Policy</a></li>
+                     <li><a href="#">FAQ</a></li>
+                     <li><a href="#">Terms and Conditions</a></li>
+                 </ul>
+             </div>
+        </div>
+        <div class="footer-socials"> 
+            <h3>Follow Us</h3> 
+            <div class="social-icons-list"> 
+                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
+                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                </a>
+                <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
+                    <img src="images/facebook.jpg" alt="Facebook"> 
+                </a>
+                <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
+                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
+                    <img src="images/tiktok.jpg" alt="TikTok">
+                </a>
+                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
+                    <img src="images/insta.jpg" alt="Instagram"> 
+                </a>
+                <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
+                    <img src="images/discord.jpg" alt="Discord"> 
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
