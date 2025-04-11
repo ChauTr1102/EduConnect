@@ -335,11 +335,37 @@
             color: white;
         }
 
-        .footer-socials {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 5px;
-            max-width: 200px;
+        .footer-socials h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white); 
+        }
+
+        /* Container for the list of icons */
+        .social-icons-list {
+            display: flex;      
+            flex-wrap: wrap;     
+            gap: 12px;          
+        }
+
+        /* Styling for each icon's link container */
+        .social-icon-item {
+            display: inline-block; 
+            width: 30px;           
+            height: 30px;         
+            line-height: 0;        
+            transition: transform 0.2s ease; 
+        }
+
+        .social-icon-item:hover {
+            transform: scale(1.1); 
+        }
+
+        .social-icon-item img {
+            width: 100%;           
+            height: 100%;          
+            object-fit: contain;   
+            display: block;       
         }
 
         .social-icon {
@@ -387,6 +413,7 @@
                 <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
                 <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
                 <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
+                <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline ">Schedule</a></li> 
             </ul>
         </nav>
         <div class="right-actions">
@@ -570,20 +597,26 @@
             <a href="#">FAQ</a>
             <a href="#">Terms and Condition</a>
         </div>
-        <div>
-            <div class="footer-socials">
-                <div class="social-icon">f</div>
-                <div class="social-icon">t</div>
-                <div class="social-icon">in</div>
-                <div class="social-icon">YT</div>
-                <div class="social-icon">ig</div>
-                <div class="social-icon">P</div>
-                <div class="social-icon">T</div>
-                <div class="social-icon">L</div>
-                <div class="social-icon">D</div>
-                <div class="social-icon">G</div>
-                <div class="social-icon">R</div>
-                <div class="social-icon">S</div>
+        <div class="footer-socials"> 
+            <h3>Follow Us</h3> 
+            <div class="social-icons-list"> 
+                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
+                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                </a>
+                <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
+                    <img src="images/facebook.jpg" alt="Facebook"> 
+                </a>
+                <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
+                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
+                    <img src="images/tiktok.jpg" alt="TikTok">
+                </a>
+                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
+                    <img src="images/insta.jpg" alt="Instagram"> 
+                </a>
+                <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
+                    <img src="images/discord.jpg" alt="Discord"> 
+                </a>
             </div>
         </div>
     </footer>
