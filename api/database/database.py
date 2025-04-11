@@ -37,16 +37,5 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
             print(f"Lỗi khi truy vấn: {e}")
             return False
 
-    def get_all_user_ids(self):
-        try:
-            self.cur.execute("SELECT user_id FROM users")
-            results = self.cur.fetchall()
 
-            user_ids = [row[0] for row in results]
-            return user_ids
-        
-        except Error as e:
-            print(f"Error retrieving user IDs: {e}")
-            return []
-        
 
