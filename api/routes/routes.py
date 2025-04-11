@@ -18,4 +18,4 @@ async def recommender(student_request: StudentRequest):
     prompt_recommender = recommender.prompt_recommender(student_request.student_request, teacher_profile)
     response = await recommender.send_message_gemini(prompt_recommender)
     result = extract_clean_json(response)
-    return response, result
+    return result
