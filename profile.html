@@ -599,11 +599,37 @@
             color: white;
         }
 
-        .footer-socials {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 5px;
-            max-width: 200px;
+        .footer-socials h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white); 
+        }
+
+        /* Container for the list of icons */
+        .social-icons-list {
+            display: flex;      
+            flex-wrap: wrap;     
+            gap: 12px;          
+        }
+
+        /* Styling for each icon's link container */
+        .social-icon-item {
+            display: inline-block; 
+            width: 30px;           
+            height: 30px;         
+            line-height: 0;        
+            transition: transform 0.2s ease; 
+        }
+
+        .social-icon-item:hover {
+            transform: scale(1.1); 
+        }
+
+        .social-icon-item img {
+            width: 100%;           
+            height: 100%;          
+            object-fit: contain;   
+            display: block;       
         }
 
         .social-icon {
@@ -678,6 +704,7 @@
                 <li><a href="Support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
                 <li><a href="EduconnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
                 <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
+                <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline ">Schedule</a></li> 
             </ul>
         </nav>
         <div class="right-actions">

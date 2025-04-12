@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title remains from schedule page -->
+    <title>EduConnect - Schedule</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* === CSS Gốc từ Trang Chủ (Header/Footer/Base) === */
+        :root {
+            --primary-color: #0d1472;
+            --secondary-color: #f0f4ff;
+            --accent-color: #3c4fe0;
+            --text-color: #333;
+            --light-text: #888;
+            --white: #fff;
+            --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+
+            /* --- Variables added from match.html --- */
+            --tutor-border-color: #6c7dff;
+            --card-bg: #ffffff; /* Already defined as --white, using specific name */
+            --success-color: #28a745;
+            --spinner-color: #6c7dff;
+            --button-color: #6c7dff;
+            --button-text-color: #ffffff;
+
+            /* Define card dimensions */
+            --card-width: 220px;
+            --card-width-small: 180px;
+            --card-image-height: 200px;
+            --card-image-height-small: 160px;
+            --card-gap: 40px;
+            --card-gap-small: 20px;
+            /* Adjusted padding for the container holding the animation */
+            --container-padding-vertical: 60px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            /* Use a neutral background for the whole page */
+             background-color: #f8f9fa; /* Light background */
+             display: flex; /* Use flexbox for layout */
+             flex-direction: column; /* Stack header, content, footer */
+             min-height: 100vh; /* Ensure body takes full viewport height */
+        }
+
+        main {
+             flex-grow: 1; /* Allow main content area to grow and push footer down */
+             display: flex; /* Use flex to center match-container */
+             justify-content: center;
+             align-items: center;
+             padding: 20px; /* Add some padding around the main area */
+        }
+
+
+        /* Header Styles (Keep from schedule.html) */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img { height: 40px; }
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin: 0 10px; }
+        nav ul li a { text-decoration: none; padding: 8px 12px; color: #555; font-weight: 500; position: relative; transition: color 0.3s; }
+        nav ul li a.active { color: #4361ee; font-weight: 600; }
+        .animated-underline { position: relative; text-decoration: none; }
+        .animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #1e40af; transition: width 0.3s ease-in-out; }
+        .animated-underline:hover::after { width: 100%; }
+        .right-actions { display: flex; align-items: center; gap: 20px; }
+        .credit-icon, .notification-icon { font-size: 1rem; cursor: pointer; }
+        .account-container { position: relative; cursor: pointer; }
+        .account-icon { font-size: 1.2rem; }
+        .account-dropdown { position: absolute; top: 100%; right: 0; background: white; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 150px; display: none; padding: 8px 0; }
+        .account-container:hover .account-dropdown { display: block; }
+        .dropdown-item { display: block; padding: 8px 15px; text-decoration: none; color: #333; transition: background 0.2s; }
+        .dropdown-item:hover { background: #f5f5f5; color: #4361ee; }
+        .dropdown-divider { height: 1px; background: #eee; margin: 5px 0; }
+
+        /* === CSS for Matching Animation (from match.html - replaces calendar CSS) === */
+
+        .match-container {
+            text-align: center;
+            position: relative; /* Changed from absolute for flex centering */
+            width: 100%; /* Take width from main container */
+            max-width: calc(var(--card-width) * 2 + var(--card-gap) + 40px); /* Max width based on cards */
+            padding-top: var(--container-padding-vertical);
+            padding-bottom: var(--container-padding-vertical);
+            min-height: 500px; /* Adjust min-height */
+            display: flex; /* Keep inner flex for centering */
+            justify-content: center;
+            align-items: center;
+             /* outline: 1px dashed blue; */ /* Debug */
+        }
+
+        /* --- Loading Spinner --- */
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3.5em;
+            color: var(--spinner-color);
+            z-index: 5;
+            opacity: 1;
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+        }
+
+        .loading-spinner i {
+            display: block;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-spinner.hidden {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+            pointer-events: none;
+        }
+
+        /* --- Tutor Area & Card Styling --- */
+        .tutor-area {
+            display: flex;
+            justify-content: center;
+            gap: var(--card-gap);
+            width: auto;
+            max-width: calc(var(--card-width) * 2 + var(--card-gap));
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in;
+            transition-delay: 0.3s;
+            /* outline: 1px dashed green; */
+        }
+
+        .tutor-area.visible {
+             opacity: 1;
+             pointer-events: auto;
+        }
+
+        .tutor-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            width: var(--card-width);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(30px) scale(0.9);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: 0.4s;
+            pointer-events: none;
+        }
+
+        .tutor-card.visible {
+             opacity: 1;
+             transform: translateY(0) scale(1);
+             pointer-events: auto;
+        }
+
+        .tutor-image {
+            width: 100%;
+            height: var(--card-image-height);
+            overflow: hidden;
+        }
+
+        .tutor-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .tutor-info {
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .tutor-name {
+            font-size: 1.15em;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0 0 15px 0;
+        }
+
+        .tutor-seemore-btn {
+            display: inline-block;
+            padding: 8px 25px;
+            border: 2px solid var(--button-color);
+            border-radius: 50px;
+            color: var(--button-color);
+            background-color: transparent;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .tutor-seemore-btn:hover {
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+        }
+
+        /* --- Final Status Box --- */
+        .final-status-box {
+            /* Position relative to match-container */
+            position: absolute;
+            top: 40px; /* Adjust vertical position */
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background-color: var(--card-bg);
+            padding: 10px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+            color: var(--success-color);
+            font-weight: 600;
+            font-size: 1.1em;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
+            z-index: 10;
+        }
+
+        .final-status-box.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .final-status-box.hidden {
+             opacity: 0;
+             visibility: hidden;
+             transform: translateX(-50%) translateY(-10px);
+             transition: opacity 0.4s ease-in, visibility 0.4s ease-in, transform 0.4s ease-in;
+         }
+
+        /* === End CSS for Matching Animation === */
+
+
+        /* Footer Styles (Keep from schedule.html) */
+        footer {
+            background: #0a1172;
+            color: white;
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: auto; /* Pushes footer to bottom when content is short */
+            width: 100%; /* Ensure footer spans width */
+        }
+         .footer-logo { width: 20%; }
+         .footer-logo img { max-width: 80px; }
+         .footer-tagline { font-size: 0.9rem; margin-top: 1rem; line-height: 1.5; }
+         .footer-links { display: flex; gap: 3rem; }
+         .footer-links h3 { font-size: 1rem; margin-bottom: 1rem; }
+         .footer-links ul { list-style: none; }
+         .footer-links li { margin-bottom: 0.5rem; }
+         .footer-links a { text-decoration: none; color: #ccc; font-size: 0.9rem; transition: color 0.3s; }
+         .footer-links a:hover { color: white; }
+         .social-icon { background: rgba(255,255,255,0.2); width: 30px; height: 30px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; }
+
+
+        /* Responsive Styles (Merge and Adjust) */
+         @media (max-width: 768px) {
+             header { flex-direction: column; gap: 1rem; padding: 1rem; }
+             nav ul { flex-wrap: wrap; justify-content: center; }
+             .right-actions { margin-top: 1rem; }
+
+             /* Adjust match container padding */
+             .match-container {
+                 padding-top: 40px;
+                 padding-bottom: 40px;
+                 min-height: 450px;
+             }
+            /* Responsive card styles */
+            :root {
+                --card-width: var(--card-width-small);
+                --card-image-height: var(--card-image-height-small);
+                --card-gap: var(--card-gap-small);
+            }
+             .loading-spinner { font-size: 3em; }
+             .tutor-area {
+                gap: var(--card-gap);
+                max-width: calc(var(--card-width) * 2 + var(--card-gap));
+             }
+             .tutor-card { width: var(--card-width); }
+             .tutor-image { height: var(--card-image-height); }
+             .tutor-info { padding: 15px 10px; }
+             .tutor-name { font-size: 1.05em; margin-bottom: 12px; }
+             .tutor-seemore-btn { padding: 6px 20px; font-size: 0.85em; }
+             .final-status-box { font-size: 1em; top: 25px; padding: 8px 20px; }
+
+             /* Footer responsive */
+             footer { flex-direction: column; gap: 2rem; padding: 2rem 1rem; text-align: center; }
+             .footer-logo, .footer-links, .footer-socials { width: 100%; max-width: none; }
+             .footer-socials { justify-content: center; }
+         }
+         /* Stacking cards on very small screens */
+         @media (max-width: 480px) { /* Adjusted breakpoint */
+              :root {
+                 --card-width: 85%; /* Slightly smaller width */
+                 --card-gap: 15px;
+             }
+              .tutor-area {
+                  flex-direction: column;
+                  position: relative; /* Change from absolute for stacking */
+                  top: auto;
+                  left: auto;
+                  transform: none;
+                  margin-top: 30px; /* Add space after spinner */
+                  width: 100%; /* Allow area to take width */
+                  align-items: center; /* Center items vertically */
+              }
+               .tutor-card {
+                 width: var(--card-width);
+                 margin: 0 auto; /* Center stacked cards */
+                 transform: translateY(20px) scale(0.9);
+             }
+             .match-container { min-height: auto; } /* Allow height to adjust */
+         }
+
+         .footer-socials h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white); 
+        }
+
+        /* Container for the list of icons */
+        .social-icons-list {
+            display: flex;      
+            flex-wrap: wrap;     
+            gap: 12px;          
+        }
+
+        /* Styling for each icon's link container */
+        .social-icon-item {
+            display: inline-block; 
+            width: 30px;           
+            height: 30px;         
+            line-height: 0;        
+            transition: transform 0.2s ease; 
+        }
+
+        .social-icon-item:hover {
+            transform: scale(1.1); 
+        }
+
+        .social-icon-item img {
+            width: 100%;           
+            height: 100%;          
+            object-fit: contain;   
+            display: block;       
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header from schedule.html -->
+    <header>
+        <div class="logo">
+            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                 <li><a href="Home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline active">Home</a></li>
+                 <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                 <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                 <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                 <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+                 <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
+                 <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Schedule</a></li>
+            </ul>
+        </nav>
+        <div class="right-actions">
+             <div class="credit-icon">0.0 $</div>
+             <a href="notification.html" class="notification-icon" style="text-decoration: none;">🔔</a>
+             <div class="account-container">
+                 <div class="account-icon">👤</div>
+                 <div class="account-dropdown">
+                     <a href="profile.html" class="dropdown-item">Profile</a>
+                     <a href="setting.html" class="dropdown-item">Setting</a>
+                     <a href="pricing.html" class="dropdown-item">Pricing</a>
+                     <div class="dropdown-divider"></div>
+                     <a href="login.html" class="dropdown-item">Sign out</a>
+                 </div>
+             </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area - Replaced Calendar with Matching Animation -->
+    <main>
+        <div class="match-container" id="matchContainer">
+            <div class="final-status-box" id="finalStatusBox">
+                Đã tìm thấy gia sư phù hợp! <!-- Or change text -->
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading-spinner" id="loadingSpinner">
+                <i class="fas fa-spinner"></i>
+            </div>
+
+            <!-- Tutor Area (Holds the cards) -->
+            <div class="tutor-area" id="tutorArea">
+                <!-- Tutor Card 1 -->
+                <div class="tutor-card" id="tutor1">
+                    <div class="tutor-image">
+                        <img src="images/Lê Nguyễn Thanh Bình.jpg" alt="Lê Nguyễn Thanh Bình">
+                    </div>
+                    <div class="tutor-info">
+                        <h3 class="tutor-name">Lê Nguyễn Thanh Bình</h3>
+                        <a href="#" class="tutor-seemore-btn">See more</a>
+                    </div>
+                </div>
+
+                <!-- Tutor Card 2 -->
+                <div class="tutor-card" id="tutor2">
+                     <div class="tutor-image">
+                        <img src="images/ảnh tutor 2.jpg" alt="Gia sư B">
+                     </div>
+                    <div class="tutor-info">
+                        <h3 class="tutor-name">Nguyễn Thị Thảo</h3> <!-- Example Name -->
+                        <a href="#" class="tutor-seemore-btn">See more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer from schedule.html -->
+    <footer>
+        <div class="footer-logo">
+             <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+             <div class="footer-tagline">
+                 educonnect - Connecting knowledge, bringing learning into the future.<br>
+                 - EduConnect Team
+             </div>
+        </div>
+        <div class="footer-links">
+             <div>
+                 <h3>All pages</h3>
+                 <ul>
+                     <li><a href="#">All Courses</a></li>
+                     <li><a href="#">Account Billing</a></li>
+                     <li><a href="#">Privacy Policy</a></li>
+                     <li><a href="#">Refund and Cancellation Policy</a></li>
+                     <li><a href="#">FAQ</a></li>
+                     <li><a href="#">Terms and Conditions</a></li>
+                 </ul>
+             </div>
+        </div>
+        <div class="footer-socials"> 
+            <h3>Follow Us</h3> 
+            <div class="social-icons-list"> 
+                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
+                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                </a>
+                <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
+                    <img src="images/facebook.jpg" alt="Facebook"> 
+                </a>
+                <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
+                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
+                    <img src="images/tiktok.jpg" alt="TikTok">
+                </a>
+                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
+                    <img src="images/insta.jpg" alt="Instagram"> 
+                </a>
+                <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
+                    <img src="images/discord.jpg" alt="Discord"> 
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript from match.html -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Timing Constants (in milliseconds)
+            const tutorAppearDelay = 2000;
+            const tutorTransitionDuration = 600; // Matches CSS transition for tutor-card
+            const areaFadeInDelay = 300;
+            const statusAppearDelay = tutorAppearDelay + areaFadeInDelay + tutorTransitionDuration + 100;
+            const statusHideDelay = 1500;
+
+            // Get elements
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const tutorArea = document.getElementById('tutorArea');
+            const tutor1Card = document.getElementById('tutor1'); // Target the card div
+            const tutor2Card = document.getElementById('tutor2'); // Target the card div
+            const finalStatusBox = document.getElementById('finalStatusBox');
+            // const matchContainer = document.getElementById('matchContainer'); // Keep if needed
+
+            // --- Start Sequence ---
+
+            // 1. Hide spinner and show tutors after delay
+            setTimeout(() => {
+                if(loadingSpinner) {
+                    loadingSpinner.classList.add('hidden');
+                }
+                if(tutorArea){
+                    tutorArea.classList.add('visible'); // Make area visible
+                }
+                // Trigger individual card animations
+                if(tutor1Card) tutor1Card.classList.add('visible');
+                if(tutor2Card) tutor2Card.classList.add('visible');
+
+            }, tutorAppearDelay);
+
+            // 2. Show final status box (after tutors appear)
+            setTimeout(() => {
+                 finalStatusBox.classList.add('visible');
+
+                // 3. Schedule hiding of the final status box
+                 setTimeout(() => {
+                     finalStatusBox.classList.remove('visible');
+                     finalStatusBox.classList.add('hidden');
+                 }, statusHideDelay);
+
+            }, statusAppearDelay);
+
+             // Optional: Clean up 'hidden' class for status box
+             finalStatusBox.addEventListener('transitionend', (event) => {
+                if (event.propertyName === 'opacity' && finalStatusBox.classList.contains('hidden')) {
+                    finalStatusBox.classList.remove('hidden');
+                }
+            });
+
+            // Optional: Remove spinner from DOM after it fades out
+            if(loadingSpinner) {
+                loadingSpinner.addEventListener('transitionend', (event) => {
+                    if (event.propertyName === 'opacity' && loadingSpinner.classList.contains('hidden')) {
+                        // loadingSpinner.remove(); // Uncomment to remove
+                    }
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

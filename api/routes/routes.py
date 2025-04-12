@@ -16,6 +16,7 @@ async def recommender(student_request: StudentRequest):
     recommender = RecommenderSystem(gemini_apikey=os.getenv("GEMINI_API_KEY"))
     teacher_profile = sql_db.get_teachers_profile()
     prompt_recommender = recommender.prompt_recommender(student_request.student_request, teacher_profile)
-    result = await recommender.send_message_gemini(prompt_recommender)
+    response = await recommender.send_message_gemini(prompt_recommender)
+    result = extract_clean_json(response)
     return result
 
