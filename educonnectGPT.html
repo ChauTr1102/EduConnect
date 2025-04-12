@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduConnect - EduconnectGPT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin: 0 10px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            padding: 8px 12px;
+            color: #555;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a.active {
+            color: #4361ee;
+            font-weight: 600;
+        }
+
+        .animated-underline {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .animated-underline::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #1e40af; /* Blue color for the underline */
+            transition: width 0.3s ease-in-out;
+        }
+
+        .animated-underline:hover::after {
+            width: 100%;
+        }
+
+        .right-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .credit-icon, .notification-icon {
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .account-container {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            font-size: 1.2rem;
+        }
+
+        .account-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 150px;
+            display: none;
+            padding: 8px 0;
+            z-index: 10;
+        }
+
+        .account-container:hover .account-dropdown {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+            background: #f5f5f5;
+            color: #4361ee;
+        }
+
+        .dropdown-divider {
+            height: 1px;
+            background: #eee;
+            margin: 5px 0;
+        }
+
+        /* EduconnectGPT Interface Styles */
+        .ai-interface {
+            max-width: 1200px;
+            margin: 2rem auto;
+            display: flex;
+            gap: 20px;
+        }
+
+        .sidebar {
+            width: 260px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+
+        .ai-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .model-selector {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .model-selector:hover {
+            border-color: #4361ee;
+        }
+
+        .model-selector span {
+            flex: 1;
+        }
+
+        .agent-list {
+            list-style: none;
+        }
+
+        .agent-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .agent-item:hover {
+            background-color: #f0f2f5;
+        }
+
+        .agent-item.selected {
+            background-color: #e0e7ff;
+        }
+
+        .agent-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 1.2rem;
+            background-color: #f0f2f5;
+        }
+
+        .agent-name {
+            font-weight: 500;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 1.5rem 0 1rem;
+            color: #666;
+        }
+
+        .chat-container {
+            flex: 1;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 120px);
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-icon {
+            padding: 5px;
+            border-radius: 50%;
+            background-color: #f0f2f5;
+            cursor: pointer;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #f9fafc;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+
+        .message-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .message-content {
+            flex: 1;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .message.user .message-content {
+            background-color: #e0e7ff;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .chat-input-container {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px 15px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 5px 0;
+            resize: none;
+            font-size: 0.95rem;
+        }
+
+        .chat-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-action {
+            font-size: 1.1rem;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .send-button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #4361ee;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .send-button:hover {
+            background-color: #3651d8;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0a0057 0%, #2a3990 100%);
+            color: white;
+            padding: 2rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .footer-logo {
+            width: 20%;
+        }
+
+        .footer-logo img {
+            max-width: 80px;
+        }
+
+        .footer-tagline {
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            line-height: 1.5;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .footer-socials h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: white; 
+        }
+
+        /* Container for the list of icons */
+        .social-icons-list {
+            display: flex;      
+            flex-wrap: wrap;     
+            gap: 12px;          
+        }
+
+        /* Styling for each icon's link container */
+        .social-icon-item {
+            display: inline-block; 
+            width: 30px;           
+            height: 30px;         
+            line-height: 0;        
+            transition: transform 0.2s ease; 
+        }
+
+        .social-icon-item:hover {
+            transform: scale(1.1); 
+        }
+
+        .social-icon-item img {
+            width: 100%;           
+            height: 100%;          
+            object-fit: contain;   
+            display: block;       
+        }
+
+        /* Loading spinner styles */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .spinner-container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-left: 51px; /* 36px avatar width + 15px margin */
+        }
+
+        .spinner {
+            width: 24px;
+            height: 24px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4361ee;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        .typing-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
+                <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
+                <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
+                <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="educonnectGPT.html" class="active">EduconnectGPT</a></li>
+                <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
+                <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Schedule</a></li> 
+            </ul>
+        </nav>
+        <div class="right-actions">
+            <div class="credit-icon">0.0 $</div>
+            <a href="notification.html" class="notification-icon" style="text-decoration: none;">🔔</a>
+            <div class="account-container">
+                <div class="account-icon">👤</div>
+                <div class="account-dropdown">
+                    <a href="profile.html" class="dropdown-item">Profile</a>
+                    <a href="setting.html" class="dropdown-item">Setting</a>
+                    <a href="pricing.html" class="dropdown-item">Pricing</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="login.html" class="dropdown-item">Sign out</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="ai-interface">
+        <div class="sidebar">
+            <div class="ai-title">
+                <span>EduconnectGPT</span>
+            </div>
+            
+            <div class="model-selector">
+                <span>Gemini 2.0 Flash</span>
+                <span>▼</span>
+            </div>
+
+            <div class="agent-list">
+                <!-- Modified agent items with navigation functionality -->
+                <div class="agent-item selected" id="main-agent">
+                    <div class="agent-icon">🔢</div>
+                    <div class="agent-name">EduconnectGPT</div>
+                </div>
+                <a href="quiz.html" style="text-decoration: none; color: inherit;">
+                    <div class="agent-item" id="quiz-agent">
+                        <div class="agent-icon">🇬🇧</div>
+                        <div class="agent-name">Quiz Generation</div>
+                    </div>
+                </a>
+                <a href="summarization.html" style="text-decoration: none; color: inherit;">
+                    <div class="agent-item" id="summarization-agent">
+                        <div class="agent-icon">💻</div>
+                        <div class="agent-name">Lecture Summarization</div>
+                    </div>
+                </a>
+                <div class="agent-item">
+                    <div class="agent-icon">🔍</div>
+                    <div class="agent-name">Explore Agents</div>
+                </div>
+            </div>
+
+            <div class="section-title">Today</div>
+            <div class="history-list">
+                <div class="agent-item">
+                    <div class="agent-name">K-Means Clustering Visualization</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">Ôn tập Python PyTorch</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">Tổng Thống Mỹ Được Yêu Thích</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">Lỗi kết nối SQL Server</div>
+                </div>
+            </div>
+
+            <div class="section-title">Previous 7 Days</div>
+            <div class="history-list">
+                <div class="agent-item">
+                    <div class="agent-name">Mobile app prototypes library</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">ROM Types and uses</div>
+                </div>
+                <div class="agent-item">
+                    <div class="agent-name">Fix SSL/TLS Error</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="chat-header">
+                <div>Gemini 2.0 Flash</div>
+                <div class="theme-toggle">
+                    <div class="theme-icon">☀️</div>
+                    <div class="theme-icon">🌙</div>
+                    <div class="settings-icon">⚙️</div>
+                </div>
+            </div>
+
+            <div class="chat-messages">
+                <!-- Messages will be dynamically added here by JavaScript -->
+            </div>
+
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <textarea class="chat-input" placeholder="Message EduconnectGPT..."></textarea>
+                    <div class="chat-actions">
+                        <div class="chat-action">📎</div>
+                        <div class="chat-action">🎤</div>
+                        <div class="send-button">→</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+            <div class="footer-tagline">
+                EduConnect - Connecting knowledge,<br>
+                stepping firmly into the future.<br>
+                —EduConnect team
+            </div>
+        </div>
+        <div class="footer-links">
+            <a href="#">All pages</a>
+            <a href="#">All Courses</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Refund and Returns Policy</a>
+            <a href="#">About Us</a>
+            <a href="#">FAQ</a>
+            <a href="#">Terms and Condition</a>
+        </div>
+        <div class="footer-socials"> 
+            <h3>Follow Us</h3> 
+            <div class="social-icons-list"> 
+                <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
+                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                </a>
+                <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
+                    <img src="images/facebook.jpg" alt="Facebook"> 
+                </a>
+                <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
+                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                </a>
+                <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
+                    <img src="images/tiktok.jpg" alt="TikTok">
+                </a>
+                <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
+                    <img src="images/insta.jpg" alt="Instagram"> 
+                </a>
+                <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
+                    <img src="images/discord.jpg" alt="Discord"> 
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to clear all existing messages
+        function clearMessages() {
+            const chatMessages = document.querySelector('.chat-messages');
+            chatMessages.innerHTML = '';
+        }
+
+        // Function to show the loading/typing indicator
+        function showTypingIndicator() {
+            const chatMessages = document.querySelector('.chat-messages');
+            const typingHTML = `
+                <div class="typing-indicator" id="typing-indicator">
+                    <div class="spinner-container">
+                        <div class="spinner"></div>
+                        <div class="typing-text">Gemini is typing...</div>
+                    </div>
+                </div>
+            `;
+            chatMessages.innerHTML += typingHTML;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to remove the typing indicator
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Function to add an AI message to the chat
+        function addAIMessage(text) {
+            hideTypingIndicator();
+            
+            const chatMessages = document.querySelector('.chat-messages');
+            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            const messageHTML = `
+                <div class="message ai">
+                    <div class="message-avatar">
+                        <img src="images/Educonnect_logo.png" alt="AI Avatar">
+                    </div>
+                    <div class="message-content">
+                        <p>${text}</p>
+                        <div class="message-time">${currentTime}</div>
+                    </div>
+                </div>
+            `;
+            
+            chatMessages.innerHTML += messageHTML;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to add a user message to the chat
+        function addUserMessage(text) {
+            const chatMessages = document.querySelector('.chat-messages');
+            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            const messageHTML = `
+                <div class="message user">
+                    <div class="message-avatar">
+                        <img src="/api/placeholder/36/36" alt="User Avatar">
+                    </div>
+                    <div class="message-content">
+                        <p>${text}</p>
+                        <div class="message-time">${currentTime}</div>
+                    </div>
+                </div>
+            `;
+            
+            chatMessages.innerHTML += messageHTML;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        // Function to get Gemini's response based on user input
+        function getGeminiResponse(userInput) {
+            // Convert to lowercase for case-insensitive matching
+            const input = userInput.toLowerCase().trim();
+            
+            if (input === "xin chào") {
+                return "Xin chào tôi là trợ lý của educonnect, tôi có thể giúp gì cho bạn";
+            } 
+            else if (input === "hãy viết 1 bài văn ngắn tả con bò") {
+                return "Con bò là một sinh vật mộc mạc nhưng không kém phần duyên dáng. Lông của nó dày, mềm mại và ánh lên chút bóng mượt dưới ánh nắng. Đôi mắt to tròn, ánh lên vẻ hiền hậu và thông minh. Bộ thân mạnh mẽ, cánh chân vững chắc giúp nó dễ dàng di chuyển trên những cánh đồng rộng lớn. Âm thanh \"moo\" nhẹ nhàng của bò mang theo hơi thở của thiên nhiên, làm cho không gian trở nên yên bình và mộc mạc hơn.";
+            }
+            else if (input === "cảm ơn") {
+                return "Không có gì đâu, tôi rất vui vì đã giúp ích được cho bạn";
+            }
+            else {
+                // Default response for other inputs
+                return "Xin lỗi, tôi không hiểu yêu cầu của bạn. Bạn có thể giải thích rõ hơn được không?";
+            }
+        }
+
+        // Function to determine if a message is "long" (for delay timing)
+        function isLongMessage(text) {
+            return text.length > 100; // Define "long" as more than 100 characters
+        }
+
+        // Setup the send button and textarea for sending messages
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear existing messages and add welcome message
+            clearMessages();
+            addAIMessage("Hello! I'm Gemini 2.0 Flash, your educational AI assistant. How can I help you today with your studies or research?");
+            
+            // Initialize agent switching functionality
+            const mainAgent = document.getElementById('main-agent');
+            if (mainAgent) {
+                mainAgent.addEventListener('click', function() {
+                    // Reset agent selection on current page
+                    const agentItems = document.querySelectorAll('.agent-item');
+                    agentItems.forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
+            }
+            
+            const textarea = document.querySelector('.chat-input');
+            const sendButton = document.querySelector('.send-button');
+            
+            // Function to handle sending message
+            function sendMessage() {
+                const userInput = textarea.value.trim();
+                if (userInput !== '') {
+                    // Add user message
+                    addUserMessage(userInput);
+                    
+                    // Show typing indicator
+                    showTypingIndicator();
+                    
+                    // Get response text
+                    const responseText = getGeminiResponse(userInput);
+                    
+                    // Determine delay based on message length
+                    const delay = isLongMessage(responseText) ? 4000 : 2000; // 4 seconds for long messages, 2 for short
+                    
+                    // Show AI response after the appropriate delay
+                    setTimeout(() => {
+                        addAIMessage(responseText);
+                    }, delay);
+                    
+                    // Clear input field and reset height
+                    textarea.value = '';
+                    textarea.style.height = 'auto';
+                }
+            }
+            
+            // Send message when Send button is clicked
+            sendButton.addEventListener('click', sendMessage);
+            
+            // Send message when Enter key is pressed (without Shift)
+            textarea.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault(); // Prevent default Enter behavior
+                    sendMessage();
+                }
+            });
+            
+            // Auto-resize textarea as user types
+            textarea.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        });
+    </script>
+</body>
+</html>

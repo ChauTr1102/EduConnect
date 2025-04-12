@@ -15,20 +15,20 @@
             --white: #fff;
             --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
         body {
             background-color: var(--white);
             color: var(--text-color);
             position: relative; /* For floating buttons positioning */
         }
-        
+
         header {
             background-color: white;
             display: flex;
@@ -40,53 +40,53 @@
             top: 0;
             z-index: 100;
         }
-        
+
         .logo {
             display: flex;
             align-items: center;
         }
-        
+
         .logo img {
             height: 40px;
         }
-        
+
         nav ul {
             display: flex;
             list-style: none;
         }
-        
+
         nav ul li {
             margin: 0 1rem;
         }
-        
+
         nav ul li a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
             padding: 0.5rem 0;
         }
-        
+
         nav ul li a.active {
             color: var(--accent-color);
             font-weight: 600;
         }
-        
+
         .nav-dropdown::after {
             content: "▼";
             font-size: 0.7em;
             margin-left: 5px;
             color: var(--light-text);
         }
-        
+
         .right-actions {
             display: flex;
             align-items: center;
         }
-        
+
         .right-actions > * {
             margin-left: 1rem;
         }
-        
+
         .search-icon, .credit-icon, .notification-icon, .account-icon {
             font-size: 1.2rem;
             color: var(--text-color);
@@ -99,7 +99,7 @@
             border-radius: 4px;
             font-size: 0.9rem;
         }
-        
+
         /* Account Dropdown Styles */
         .account-container {
             position: relative;
@@ -165,7 +165,7 @@
             background-color: #eee;
             margin: 0.3rem 0;
         }
-        
+
         /* Search Bar Styles */
         .animated-underline {
         position: relative;
@@ -193,7 +193,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
+
         .search-bar {
             width: 100%;
             padding: 0.8rem 1rem 0.8rem 3rem;
@@ -203,13 +203,13 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             transition: all 0.3s ease;
         }
-        
+
         .search-bar:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 2px 10px rgba(60, 79, 224, 0.15);
         }
-        
+
         .search-icon-input {
             position: absolute;
             left: 1rem;
@@ -218,7 +218,7 @@
             color: var(--light-text);
             font-size: 1.2rem;
         }
-        
+
         .search-btn {
             position: absolute;
             right: 5px;
@@ -232,7 +232,7 @@
             font-weight: 500;
             cursor: pointer;
         }
-        
+
         .hero-section {
             background: var(--purple-gradient);
             color: var(--white);
@@ -241,7 +241,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .hero-content {
             max-width: 800px;
             margin: 0 auto;
@@ -249,13 +249,13 @@
             position: relative;
             z-index: 2;
         }
-        
+
         .hero-content h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
         }
-        
+
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 2rem;
@@ -264,9 +264,7 @@
             margin-left: auto;
             margin-right: auto;
         }
-        
 
-        
         .learn-more-btn {
             background-color: #ffdd00;
             color: var(--text-color);
@@ -278,30 +276,30 @@
             display: inline-flex;
             align-items: center;
         }
-        
+
         .learn-more-btn::after {
             content: "→";
             margin-left: 0.5rem;
         }
-        
+
         .features-section {
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .section-title {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 3rem;
         }
-        
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
-        
+
         .feature-card {
             background-color: #f9f9f9;
             border-radius: 8px;
@@ -310,100 +308,101 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
         }
-        
+
         .feature-card:hover {
             transform: translateY(-5px);
         }
-        
+
         .feature-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
-        
+
         .feature-title {
             font-size: 1.2rem;
             margin-bottom: 1rem;
         }
-        
+
         .feature-description {
             color: var(--light-text);
             line-height: 1.6;
         }
-        
+
         .message-list-section {
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .message-list {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
-        
+
         .message-card {
             background-color: #f9f9f9;
             border-radius: 8px;
             padding: 1.5rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            display: flex;      
-            flex-direction: column;   
-            min-height: 200px;        
-            justify-content: space-between; 
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+            justify-content: space-between;
             position: relative;
         }
-        
+
         .message-header {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
         }
-        
+
         .user-avatar {
             width: 50px;
             height: 50px;
             border-radius: 50%;
             overflow: hidden;
             margin-right: 1rem;
-            background-color: #ddd;
+            background-color: #ddd; /* Fallback color */
         }
-        
+
         .user-avatar img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block; /* Helps remove potential bottom space */
         }
-        
+
         .user-info h3 {
             margin: 0;
             font-size: 1.1rem;
         }
-        
+
         .message-time {
             color: var(--light-text);
             font-size: 0.9rem;
         }
-        
+
         .message-content {
             line-height: 1.6;
-            margin-bottom: 1rem;      
-            flex-grow: 1;            
-            min-height: 50px;         
+            margin-bottom: 1rem;
+            flex-grow: 1;
+            min-height: 50px;
         }
-        
+
         .message-actions .spacer {
-            flex-grow: 1; 
+            flex-grow: 1;
         }
 
         .message-actions {
             display: flex;
             gap: 0.5rem;
             flex-shrink: 0;
-            flex-wrap: nowrap; 
-            align-items: center; 
+            flex-wrap: nowrap;
+            align-items: center;
         }
-        
+
         .message-btn {
             background-color: var(--accent-color);
             color: var(--white);
@@ -412,87 +411,116 @@
             border-radius: 4px;
             font-weight: 500;
             cursor: pointer;
+            transition: background-color 0.2s ease;
         }
-        
+        .message-btn:hover {
+             background-color: #2a3bb0; /* Slightly darker on hover */
+        }
+
         footer {
             background-color: var(--primary-color);
             color: var(--white);
             padding: 3rem 2rem;
             margin-top: 4rem;
         }
-        
+
         .footer-content {
             display: flex;
             justify-content: space-between;
             max-width: 1200px;
             margin: 0 auto;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 2rem; /* Add gap between footer sections */
         }
-        
+
         .footer-left {
             max-width: 300px;
+            flex-basis: 300px; /* Give it a base width */
+            flex-grow: 1; /* Allow it to grow if needed */
         }
-        
+
         .footer-logo {
             margin-bottom: 1rem;
             display: block;
         }
-        
+
         .footer-logo img {
             height: 60px;
         }
-        
+
         .mission-statement {
             margin-bottom: 1rem;
             font-weight: 500;
+            line-height: 1.5;
         }
-        
+
         .team-credit {
             color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
         }
-        
+
         .footer-links {
-            text-align: center;
+            text-align: left; /* Align left for consistency */
+            flex-basis: 200px; /* Give it a base width */
+            flex-grow: 1;
         }
-        
+
         .footer-links ul {
             list-style: none;
+            padding: 0; /* Remove default padding */
         }
-        
+
         .footer-links li {
             margin: 0.5rem 0;
         }
-        
+
         .footer-links a {
             color: var(--white);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-        
+
         .footer-links a:hover {
             color: rgba(255,255,255,0.7);
         }
-        
-        /* .payment-methods {
-            text-align: right;
+
+        .footer-socials {
+            text-align: left; /* Align left */
+            flex-basis: 200px; /* Give it a base width */
+            flex-grow: 1;
         }
-        
-        .payment-icons {
+
+        .footer-socials h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .social-icons-list {
             display: flex;
             flex-wrap: wrap;
-            justify-content: flex-end;
-            gap: 0.5rem;
-            max-width: 300px;
+            gap: 12px;
         }
-        
-        .payment-icon {
-            width: 40px;
-            height: 25px;
-            background-color: var(--white);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        } */
+
+        .social-icon-item {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 0;
+            transition: transform 0.2s ease;
+        }
+
+        .social-icon-item:hover {
+            transform: scale(1.1);
+        }
+
+        .social-icon-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
 
         /* Floating Action Buttons */
         .floating-buttons {
@@ -504,7 +532,7 @@
             gap: 15px;
             z-index: 999;
         }
-        
+
         .floating-btn {
             width: 60px;
             height: 60px;
@@ -516,64 +544,33 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .floating-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
-        
+
         .post-btn {
             background-color: var(--accent-color);
             color: var(--white);
             font-size: 24px;
         }
-        
+
         .chat-btn {
-            background-color: #25D366;
+            background-color: #25D366; /* WhatsApp Green */
             color: var(--white);
         }
-        
+
         .chat-btn img {
             width: 30px;
             height: 30px;
             object-fit: contain;
         }
-        
-
-        .floating-buttons {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .floating-btn {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background-color: var(--accent-color, #4a6bff);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
-        }
-
-        .floating-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .floating-btn img {
-            width: 30px;
-            height: 30px;
-        }
 
         /* Chat interface styles */
         .chat-container {
             position: fixed;
-            bottom: 100px;
+            bottom: 100px; /* Adjusted to be above floating buttons */
             right: 30px;
             width: 350px;
             height: 450px;
@@ -584,7 +581,7 @@
             flex-direction: column;
             overflow: hidden;
             z-index: 1001;
-            display: none;
+            display: none; /* Initially hidden */
             animation: slideUp 0.3s ease;
         }
 
@@ -595,7 +592,7 @@
 
         .chat-header {
             padding: 15px;
-            background-color: var(--accent-color, #4a6bff);
+            background-color: var(--accent-color);
             color: white;
             display: flex;
             justify-content: space-between;
@@ -635,10 +632,11 @@
             justify-content: center;
             margin-right: 10px;
             font-size: 18px;
+            flex-shrink: 0; /* Prevent avatar shrinking */
         }
 
         .bot-message .message-avatar {
-            background-color: var(--accent-color, #4a6bff);
+            background-color: var(--accent-color);
             color: white;
         }
 
@@ -657,17 +655,19 @@
             background-color: white;
             padding: 10px 15px;
             border-radius: 15px;
-            max-width: 92%;
+            max-width: 80%; /* Adjust max-width slightly */
             box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            word-wrap: break-word; /* Break long words */
         }
 
         .user-message .message-content {
-            background-color: var(--accent-color, #4a6bff);
+            background-color: var(--accent-color);
             color: white;
         }
 
         .message-content p {
             margin: 0;
+            line-height: 1.4; /* Improve readability */
         }
 
         .chat-input {
@@ -682,22 +682,26 @@
             border: 1px solid #ddd;
             border-radius: 20px;
             outline: none;
+            margin-right: 10px; /* Space before button */
         }
 
         .chat-input button {
-            background-color: var(--accent-color, #4a6bff);
+            background-color: var(--accent-color);
             color: white;
             border: none;
             padding: 8px 15px;
             border-radius: 20px;
-            margin-left: 10px;
             cursor: pointer;
+            transition: background-color 0.2s ease;
         }
+         .chat-input button:hover {
+             background-color: #2a3bb0;
+         }
 
 
         /* Modal styles for post function */
         .modal {
-            display: none;
+            display: none; /* Hidden by default */
             position: fixed;
             top: 0;
             left: 0;
@@ -708,7 +712,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .modal-content {
             background-color: var(--white);
             padding: 2rem;
@@ -726,35 +730,6 @@
             opacity: 1;
         }
 
-        .post-form button {
-            background-color: var(--accent-color);
-            color: var(--white);
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .post-form button:hover {
-            background-color: #2a3bb0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .post-form button.posting {
-            background-color: #6c757d;
-            pointer-events: none;
-        }
-        
-        @keyframes modalFade {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-        
         .close-modal {
             position: absolute;
             top: 15px;
@@ -763,13 +738,14 @@
             cursor: pointer;
             color: var(--light-text);
         }
-        
+
         .modal-title {
             margin-bottom: 1.5rem;
             font-size: 1.5rem;
             color: var(--accent-color);
+            text-align: center; /* Center title */
         }
-        
+
         .post-form textarea {
             width: 100%;
             min-height: 150px;
@@ -779,409 +755,12 @@
             margin-bottom: 1rem;
             font-size: 1rem;
             resize: vertical;
+            line-height: 1.5;
         }
-        
-        .post-form button {
-            background-color: var(--accent-color);
-            color: var(--white);
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        @media (max-width: 1024px) {
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .message-list {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                padding-bottom: 300px;
-            }
-            
-            .hero-content {
-                text-align: center;
-                margin-bottom: 2rem;
-            }
-            
-            
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 2rem;
-            }
-            
-            .payment-methods, .footer-links, .footer-left {
-                text-align: center;
-                max-width: none;
-            }
-            
-            .payment-icons {
-                justify-content: center;
-                margin: 0 auto;
-            }
-            
-            .search-container {
-                margin-top: 0.5rem;
-            }
-            
-            .search-btn {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.9rem;
-            }
-            
-            .floating-buttons {
-                bottom: 20px;
-                right: 20px;
-            }
-            
-            .floating-btn {
-                width: 50px;
-                height: 50px;
-            }
-            
-            /* Ensure dropdown is properly positioned on mobile */
-            .account-dropdown {
-                right: -10px;
-            }
-        }
-
-        /* Thêm vào phần style */
-        @keyframes newPostAppear {
-            from { 
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .message-card.new-post {
-            animation: newPostAppear 0.8s ease forwards;
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .submit-btn-animation {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn-animation::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background-color: rgba(255,255,255,0.3);
-            transition: width 0.3s ease;
-        }
-
-        .submit-btn-animation:active::after {
-            width: 100%;
-            transition: width 0.1s ease;
-        }
-
-        /* Animation for form post when open */
-        .post-form.animate {
-            animation: formExpand 0.5s ease forwards;
-        }
-
-        @keyframes formExpand {
-            from { transform: scale(0.95); opacity: 0.8; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        /* Animation for textarea  */
-        .post-form textarea:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        /* Animation when successful */
-        @keyframes successPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .post-success {
-            color: #28a745;
-            text-align: center;
-            margin-top: 10px;
-            font-weight: 500;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .post-success.show {
-            opacity: 1;
-            animation: successPulse 0.5s ease;
-        }
-
-        .pagination-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem 0;
-            gap: 0.5rem;
-        }
-
-        .page-item {
-            background-color: #f0f4ff;
-            border: 1px solid transparent; 
-            border-radius: 6px;
-            color: var(--text-color);
-            padding: 0.5rem 1rem;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-            min-width: 40px; 
-            text-align: center;
-        }
-
-        .page-item:hover {
-            background-color: #e2e8f5;
-        }
-
-        .page-item.active {
-            background-color: var(--accent-color); 
-            color: var(--white);
-            border-color: var(--accent-color);
-            cursor: default;
-        }
-
-        .page-item:disabled { 
-            background-color: #f8f9fa;
-            color: #adb5bd;
-            cursor: not-allowed;
-        }
-
-        .like-btn {
-            background-color: #e2e8f0; 
-            color: #4a5568;            
-            transition: background-color 0.2s ease, color 0.2s ease;
-            display: inline-flex;      
-            align-items: center;
-            gap: 0.3rem;               
-        }
-
-        .like-btn i {
-            transition: transform 0.2s ease;
-        }
-
-        .like-btn.liked {
-            background-color: var(--accent-color); 
-            color: var(--white);                
-        }
-        .like-btn.liked i {
-            transform: scale(1.1) rotate(-10deg); 
-        }
-
-        .comment-trigger-btn {
-            background-color: #e2e8f0;
-            color: #4a5568;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-
-        .comment-section {
-            display: none;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0; 
-        }
-
-        .comment-section.active {
-            display: block; 
-        }
-
-        .comments-display-area {
-            margin-bottom: 0.8rem;
-            max-height: 150px; 
-            overflow-y: auto; 
-        }
-
-        .comment-item {
-            background-color: #f7fafc;
-            padding: 0.5rem 0.8rem;
-            border-radius: 6px;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            border: 1px solid #e2e8f0;
-        }
-        .comment-item strong { 
-            color: var(--primary-color);
-            margin-right: 0.5rem;
-        }
-
-
-        .comment-input-area {
-            display: flex;
-            gap: 0.5rem;
-            align-items: flex-start; 
-        }
-
-        .comment-input {
-            flex-grow: 1; 
-            min-height: 40px;
-            padding: 0.5rem 0.8rem;
-            border: 1px solid #cbd5e0;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            resize: vertical; 
-            line-height: 1.4;
-        }
-
-        .comment-input:focus {
+         .post-form textarea:focus {
             outline: none;
             border-color: var(--accent-color);
             box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
-        }
-
-        .post-comment-btn {
-            flex-shrink: 0;
-            padding: 0.5rem 1rem;
-            height: 40px; 
-        }
-
-        .icon-btn {
-            background: none;
-            border: none;
-            padding: 0.3rem 0.5rem; /* Điều chỉnh padding */
-            cursor: pointer;
-            color: var(--light-text);
-            font-size: 1.1rem; /* Điều chỉnh kích thước icon */
-            line-height: 1; /* Đảm bảo icon không làm thay đổi chiều cao dòng */
-        }
-        .icon-btn:hover {
-            color: var(--accent-color);
-        }
-
-        /* Đẩy nút trigger sang phải trong header */
-        .message-header .tutor-menu-trigger {
-            margin-left: auto; /* Đẩy sang phải */
-        }
-
-        /* Style cho Dropdown Tutor List */
-        .tutor-list-dropdown {
-            /* ... position, top, right, background, shadow, z-index ... giữ nguyên */
-            display: none;
-            position: absolute;
-            top: 40px;
-            right: 1rem;
-            background-color: var(--white);
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-            padding: 0; /* Bỏ padding trực tiếp */
-            min-width: 250px;
-            max-width: 320px; /* Có thể tăng max-width một chút */
-            z-index: 10;
-            border: 1px solid #eee;
-            overflow: hidden;
-        }
-
-        .tutor-list-dropdown.active {
-            display: block;
-            animation: fadeIn 0.2s ease-out;
-        }
-
-        .tutor-list-dropdown ul {
-            list-style: none;
-            margin: 0;
-            padding: 0; /* Bỏ padding ở ul */
-            max-height: 300px; /* Tăng max-height nếu cần */
-            overflow-y: auto;
-        }
-
-        .tutor-list-dropdown li {
-            /* Bỏ padding trực tiếp ở li */
-            border-bottom: 1px solid #f0f4ff;
-        }
-        .tutor-list-dropdown li:last-child {
-            border-bottom: none;
-        }
-        .tutor-list-dropdown li:hover .tutor-item-container { /* Áp dụng hover cho container */
-            background-color: var(--secondary-color);
-        }
-
-        /* Container cho mỗi item gia sư */
-        .tutor-item-container {
-            padding: 0.8rem 1rem;
-            transition: background-color 0.2s ease;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.8rem; 
-        }
-
-        .tutor-avatar-dropdown {
-            width: 40px; 
-            height: 40px;
-            border-radius: 50%; 
-            overflow: hidden; 
-            flex-shrink: 0; 
-            background-color: #eee;
-        }
-
-        .tutor-avatar-dropdown img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            display: block; 
-        }
-
-        .tutor-details-actions-wrapper {
-            display: flex;
-            flex-direction: column; 
-            flex-grow: 1; 
-        }
-
-
-        .tutor-info-dropdown .tutor-name {
-            display: block;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 0.2rem;
-        }
-        .tutor-info-dropdown .tutor-name:hover {
-            text-decoration: underline;
-        }
-
-        .tutor-description {
-            font-size: 0.85rem;
-            color: var(--light-text);
-            margin: 0 0 0.8rem 0; /* Thêm margin dưới description */
-            line-height: 1.4;
-        }
-
-        /* Khu vực action cho từng gia sư */
-        .tutor-item-actions {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap; /* Cho phép wrap nếu không đủ chỗ */
-        }
-
-        /* Style cho nút trong từng item gia sư */
-        .tutor-item-actions .message-btn {
-            padding: 0.4rem 0.8rem;
-            font-size: 0.9rem;
         }
 
         .modal-action-btn {
@@ -1205,7 +784,6 @@
              margin-right: 0; /* Remove margin from the last button */
         }
 
-
         /* Apply hover to the common class */
         .modal-action-btn:hover {
             background-color: #2a3bb0;
@@ -1214,43 +792,433 @@
             color: var(--white); /* Ensure hover color stays white for <a> */
         }
 
-        .modal-action-btn.posting { 
+        .modal-action-btn.posting {
             background-color: #6c757d;
             pointer-events: none;
+            cursor: not-allowed;
+        }
+
+        /* Animation for button click */
+        .submit-btn-animation::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(255,255,255,0.3);
+            transition: width 0.3s ease;
+        }
+        .submit-btn-animation:active::after {
+            width: 100%;
+            transition: width 0.1s ease;
+        }
+
+        @keyframes modalFade { /* Keep if needed elsewhere, not currently used by modal */
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
         }
 
 
-        .footer-socials h3 {
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .message-list {
+                grid-template-columns: 1fr; /* Stack messages on smaller screens */
+            }
+            header {
+                padding: 1rem; /* Reduce header padding */
+            }
+            nav ul {
+                display: none; /* Consider a mobile menu toggle */
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column; /* Stack logo/nav/actions */
+                align-items: flex-start;
+                padding: 1rem;
+            }
+            .right-actions {
+                 margin-top: 0.5rem; /* Add space if header stacks */
+                 margin-left: 0; /* Reset margin */
+                 width: 100%;
+                 justify-content: flex-end; /* Align icons right */
+            }
+            .hero-section {
+                padding: 3rem 1rem; /* Adjust padding */
+                 /* padding-bottom: 300px; -- Removed this, seems excessive */
+            }
+            .hero-content h1 {
+                 font-size: 2rem; /* Adjust font size */
+            }
+             .hero-content p {
+                 font-size: 1rem; /* Adjust font size */
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr; /* Single column */
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center; /* Center align footer content */
+            }
+
+            .footer-left, .footer-links, .footer-socials {
+                max-width: none; /* Remove max width */
+                flex-basis: auto; /* Reset basis */
+                text-align: center; /* Ensure centered */
+            }
+             .social-icons-list {
+                 justify-content: center; /* Center social icons */
+             }
+
+            .search-container {
+                margin: 1rem; /* Adjust margin */
+                max-width: none; /* Full width */
+            }
+
+            .search-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+            }
+
+            /* Ensure dropdown is properly positioned on mobile */
+            .account-dropdown {
+                right: 0; /* Align to the right edge of container */
+                left: auto;
+            }
+             .chat-container {
+                width: 90%; /* Make chat wider on mobile */
+                height: 70%; /* Adjust height */
+                bottom: 80px; /* Adjust position */
+                right: 5%;
+            }
+        }
+
+        /* New Post Animation */
+        @keyframes newPostAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-card.new-post {
+            animation: newPostAppear 0.8s ease forwards;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        /* Animation for form open */
+        .post-form.animate { /* Add this class when opening modal if desired */
+            animation: formExpand 0.5s ease forwards;
+        }
+
+        @keyframes formExpand {
+            from { transform: scale(0.95); opacity: 0.8; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Success Message Animation */
+        @keyframes successPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .post-success {
+            color: #28a745;
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            height: 0; /* Hide initially */
+            overflow: hidden; /* Hide initially */
+        }
+
+        .post-success.show {
+            opacity: 1;
+            height: auto; /* Show */
+            animation: successPulse 0.5s ease;
+        }
+
+        /* Pagination Styles */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0;
+            gap: 0.5rem;
+        }
+
+        .page-item {
+            background-color: #f0f4ff;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
             font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--white); 
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+            min-width: 40px;
+            text-align: center;
         }
 
-        /* Container for the list of icons */
-        .social-icons-list {
-            display: flex;      
-            flex-wrap: wrap;     
-            gap: 12px;          
+        .page-item:hover {
+            background-color: #e2e8f5;
         }
 
-        /* Styling for each icon's link container */
-        .social-icon-item {
-            display: inline-block; 
-            width: 30px;           
-            height: 30px;         
-            line-height: 0;        
-            transition: transform 0.2s ease; 
+        .page-item.active {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-color: var(--accent-color);
+            cursor: default;
         }
 
-        .social-icon-item:hover {
-            transform: scale(1.1); 
+        .page-item:disabled {
+            background-color: #f8f9fa;
+            color: #adb5bd;
+            cursor: not-allowed;
         }
 
-        .social-icon-item img {
-            width: 100%;           
-            height: 100%;          
-            object-fit: contain;   
-            display: block;       
+        /* Like Button Styles */
+        .like-btn {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            transition: background-color 0.2s ease, color 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .like-btn i {
+            transition: transform 0.2s ease;
+        }
+
+        .like-btn.liked {
+            background-color: var(--accent-color);
+            color: var(--white);
+        }
+        .like-btn.liked i {
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        /* Comment Section Styles */
+        .comment-trigger-btn {
+            background-color: #e2e8f0;
+            color: #4a5568;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .comment-section {
+            display: none; /* Hidden by default */
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .comment-section.active {
+            display: block;
+        }
+
+        .comments-display-area {
+            margin-bottom: 0.8rem;
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 5px; /* Add some space for scrollbar */
+        }
+
+        .comment-item {
+            background-color: #f7fafc;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            border: 1px solid #e2e8f0;
+            word-wrap: break-word; /* Wrap long comments */
+        }
+        .comment-item strong {
+            color: var(--primary-color);
+            margin-right: 0.5rem;
+        }
+
+        .comment-input-area {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start; /* Align button top */
+        }
+
+        .comment-input {
+            flex-grow: 1;
+            min-height: 40px;
+            padding: 0.5rem 0.8rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            resize: vertical;
+            line-height: 1.4;
+        }
+
+        .comment-input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
+        }
+
+        .post-comment-btn {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            height: 40px; /* Match input height */
+        }
+
+        /* Tutor Dropdown Styles */
+        .icon-btn {
+            background: none;
+            border: none;
+            padding: 0.3rem 0.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        .icon-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .message-header .tutor-menu-trigger {
+            margin-left: auto; /* Push trigger to the right */
+        }
+
+        .tutor-list-dropdown {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 40px; /* Position below header */
+            right: 1rem; /* Align to right within card */
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            padding: 0;
+            min-width: 250px;
+            max-width: 320px;
+            z-index: 10;
+            border: 1px solid #eee;
+            overflow: hidden; /* Clip content */
+        }
+
+        .tutor-list-dropdown.active {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .tutor-list-dropdown ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .tutor-list-dropdown li {
+            border-bottom: 1px solid #f0f4ff;
+        }
+        .tutor-list-dropdown li:last-child {
+            border-bottom: none;
+        }
+        .tutor-list-dropdown li:hover .tutor-item-container {
+            background-color: var(--secondary-color);
+        }
+
+        .tutor-item-container {
+            padding: 0.8rem 1rem;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: flex-start; /* Align items top */
+            gap: 0.8rem;
+        }
+
+        .tutor-avatar-dropdown {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            background-color: #eee; /* Fallback */
+        }
+
+        .tutor-avatar-dropdown img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .tutor-details-actions-wrapper {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            overflow: hidden; /* Prevent content overflow */
+        }
+
+        .tutor-info-dropdown .tutor-name {
+            display: block;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Add ... if name is too long */
+        }
+        .tutor-info-dropdown .tutor-name:hover {
+            text-decoration: underline;
+        }
+
+        .tutor-description {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            margin: 0 0 0.8rem 0;
+            line-height: 1.4;
+            /* Limit description lines if needed */
+            /* display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden; */
+        }
+
+        .tutor-item-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tutor-item-actions .message-btn {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
         }
 
     </style>
@@ -1258,7 +1226,8 @@
 <body>
     <header>
         <div class="logo">
-            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+            <!-- Make sure the path to your logo is correct -->
+            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
         </div>
         <nav>
             <ul>
@@ -1287,7 +1256,7 @@
             </div>
         </div>
     </header>
-    
+
     <section class="hero-section">
         <div class="hero-content">
             <h1>We are EduConnect</h1>
@@ -1295,16 +1264,15 @@
             <p>Join our growing community of learners and educators to expand your horizons.</p>
             <button class="learn-more-btn">Learn More</button>
         </div>
-
     </section>
-    
+
     <!-- Search Bar -->
     <div class="search-container">
         <span class="search-icon-input">🔍</span>
         <input type="text" class="search-bar" placeholder="Search for tutors, courses, or topics...">
         <button class="search-btn">Search</button>
     </div>
-    
+
     <section class="features-section">
         <h2 class="section-title">How EduConnect Works</h2>
         <div class="features-grid">
@@ -1325,105 +1293,33 @@
             </div>
         </div>
     </section>
-    
+
     <section class="message-list-section">
-        <div class="message-list">
-            <div class="message-card">
-                <div class="message-header">
-                    <div class="user-avatar">
-                        <img src="avatar1.png" alt="Nguyen Thu Trang">
-                    </div>
-                    <div class="user-info">
-                        <h3>Nguyen Thu Trang</h3>
-                        <p class="message-time">2 hours ago</p>
-                    </div>
-                </div>
-                <div class="message-content">
-                    <p>Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì.</p>
-                </div>
-                <div class="message-actions">
-                    <a href="chat.html?user=Nguyen%20Thu%20Trang&avatar=avatar1.png" class="message-btn" style="text-decoration: none;">Send message</a>
-                    <button class="message-btn">Send Request</button> 
-                </div>
-            </div>
-            
-            <div class="message-card">
-                <div class="message-header">
-                    <div class="user-avatar">
-                        <img src="avatar2.png" alt="Mai Anh">
-                    </div>
-                    <div class="user-info">
-                        <h3>Mai Anh</h3>
-                        <p class="message-time">1 hour ago</p>
-                    </div>
-                </div>
-                <div class="message-content">
-                    <p>Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓.</p>
-                </div>
-                <div class="message-actions">
-                    <a href="chat.html?user=Mai%20Anh&avatar=avatar2.png" class="message-btn" style="text-decoration: none;">Send message</a>
-                    <button class="message-btn">Send Request</button> 
-                </div>
-            </div>
-            
-            <div class="message-card">
-                <div class="message-header">
-                    <div class="user-avatar">
-                        <img src="avatar3.png" alt="Nguyen Trong Minh">
-                    </div>
-                    <div class="user-info">
-                        <h3>Nguyen Trong Minh</h3>
-                        <p class="message-time">2 hours ago</p>
-                    </div>
-                </div>
-                <div class="message-content">
-                    <p>Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓.</p>
-                </div>
-                <div class="message-actions">
-                    <a href="chat.html?user=Nguyen%20Trong%20Minh&avatar=avatar3.png" class="message-btn" style="text-decoration: none;">Send message</a>
-                    <button class="message-btn">Send Request</button> 
-                </div>
-            </div>
-            
-            <div class="message-card">
-                <div class="message-header">
-                    <div class="user-avatar">
-                        <img src="avatar4.png" alt="Đang Quang">
-                    </div>
-                    <div class="user-info">
-                        <h3>Đang Quang</h3>
-                        <p class="message-time">1 hour ago</p>
-                    </div>
-                </div>
-                <div class="message-content">
-                    <p>Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓.</p>
-                </div>
-                <div class="message-actions">
-                    <a href="chat.html?user=Dang%20Quang&avatar=avatar4.png" class="message-btn" style="text-decoration: none;">Send message</a>
-                    <button class="message-btn">Send Request</button> 
-                </div>
-            </div>
+        <div class="message-list" id="messageListContainer">
+            <!-- Message cards will be loaded here by JavaScript -->
         </div>
     </section>
 
     <div class="pagination-container" id="paginationControls">
         <!-- Page numbers will be generated here by JavaScript -->
     </div>
-    
+
     <!-- Floating Action Buttons -->
     <div class="floating-buttons">
         <div class="floating-btn chat-btn" id="chatBtn">
+             <!-- Make sure the path to your chat icon is correct -->
             <img src="chaticon.png" alt="Chat">
         </div>
         <div class="floating-btn post-btn" id="postBtn">
             <span>+</span>
         </div>
     </div>
-    
+
+    <!-- Chat Interface -->
     <div id="chatInterface" class="chat-container">
         <div class="chat-header">
           <h3>EduConnect Chat</h3>
-          <span class="close-chat" id="closeChat">&times;</span>
+          <span class="close-chat" id="closeChat">×</span>
         </div>
         <div class="chat-messages" id="chatMessages">
           <div class="message bot-message">
@@ -1432,6 +1328,7 @@
               <p>Hello! How can I help you with your learning needs today?</p>
             </div>
           </div>
+          <!-- More messages can be added here -->
         </div>
         <div class="chat-input">
           <input type="text" id="messageInput" placeholder="Type your message...">
@@ -1443,28 +1340,32 @@
     <!-- Post Modal -->
     <div class="modal" id="postModal">
         <div class="modal-content">
-            <span class="close-modal" id="closeModal">&times;</span>
+            <span class="close-modal" id="closeModal">×</span>
             <h2 class="modal-title">Create a New Post</h2>
             <form class="post-form" id="newPostForm">
-                <textarea id="postContent" placeholder="What do you need help with? Describe your learning needs..."></textarea>
-                <a type="button" id="submitPost" class="modal-action-btn submit-btn-animation">Post</a>
-                <a href="match.html" id="matchButton" class="modal-action-btn submit-btn-animation">Match</a>
+                <textarea id="postContent" placeholder="What do you need help with? Describe your learning needs..." required></textarea>
+                <div style="text-align: right;"> <!-- Align buttons right -->
+                    <button type="button" id="submitPost" class="modal-action-btn submit-btn-animation">Post</button>
+                    <a href="match.html" id="matchButton" class="modal-action-btn submit-btn-animation">Match</a>
+                </div>
                 <p class="post-success" id="postSuccess">Post created successfully!</p>
             </form>
         </div>
     </div>
-    
+
     <footer>
         <div class="footer-content">
             <div class="footer-left">
                 <div class="footer-logo">
-                    <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+                     <!-- Make sure the path to your logo is correct -->
+                    <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
                 </div>
-                <p class="mission-statement">EduConnect - Connecting knowledge, stepping firmly into the future."</p>
-                <p class="team-credit">—EduConnect team</p>
+                <p class="mission-statement">EduConnect - Connecting knowledge, stepping firmly into the future.</p>
+                <p class="team-credit">— EduConnect team</p>
             </div>
-            
+
             <div class="footer-links">
+                 <h3>Quick Links</h3> <!-- Added heading -->
                 <ul>
                     <li><a href="#">All pages</a></li>
                     <li><a href="#">All Courses</a></li>
@@ -1472,30 +1373,33 @@
                     <li><a href="#">Privacy Policy</a></li>
                     <li><a href="#">Refund and Returns Policy</a></li>
                     <li><a href="#">About us</a></li>
-                    <li><a href="#">faq</a></li>
-                    <li><a href="#">Terms and condition</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms and Conditions</a></li>
                 </ul>
             </div>
-            
-            <div class="footer-socials"> 
-                <h3>Follow Us</h3> 
-                <div class="social-icons-list"> 
+
+            <div class="footer-socials">
+                <h3>Follow Us</h3>
+                <div class="social-icons-list">
+                    <!-- Replace YOUR_LINK placeholders with actual links -->
+                    <!-- Make sure paths to social icons are correct -->
                     <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
-                        <img src="images/Youtube.jpg" alt="YouTube"> 
+                        <img src="images/Youtube.jpg" alt="YouTube">
                     </a>
                     <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
-                        <img src="images/facebook.jpg" alt="Facebook"> 
+                        <img src="images/facebook.jpg" alt="Facebook">
                     </a>
                     <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
-                        <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                        <img src="images/linkedln.jpg" alt="LinkedIn">
+                    </a>
                     <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
                         <img src="images/tiktok.jpg" alt="TikTok">
                     </a>
                     <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
-                        <img src="images/insta.jpg" alt="Instagram"> 
+                        <img src="images/insta.jpg" alt="Instagram">
                     </a>
                     <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
-                        <img src="images/discord.jpg" alt="Discord"> 
+                        <img src="images/discord.jpg" alt="Discord">
                     </a>
                 </div>
             </div>
@@ -1509,7 +1413,7 @@
             const searchBtn = document.querySelector('.search-btn');
             const postBtn = document.getElementById('postBtn');
             const postModal = document.getElementById('postModal');
-            const modalContent = document.querySelector('.modal-content');
+            const modalContent = postModal.querySelector('.modal-content'); // More specific selector
             const closeModalBtn = document.getElementById('closeModal');
             const chatBtn = document.getElementById('chatBtn');
             const chatInterface = document.getElementById('chatInterface');
@@ -1518,27 +1422,39 @@
             const sendMessageChat = document.getElementById('sendMessage');
             const chatMessages = document.getElementById('chatMessages');
             const newPostForm = document.getElementById('newPostForm');
-            const postContentInput = document.getElementById('postContent'); // Đổi tên biến rõ ràng hơn
-            const submitPostBtn = document.getElementById('submitPost'); // Đổi tên biến rõ ràng hơn
-            const messageList = document.querySelector('.message-list');
+            const postContentInput = document.getElementById('postContent');
+            const submitPostBtn = document.getElementById('submitPost');
+            const messageListContainer = document.getElementById('messageListContainer'); // Use the ID added to HTML
             const paginationControls = document.getElementById('paginationControls');
-            const postSuccessMsg = document.getElementById('postSuccess'); // Đổi tên biến rõ ràng hơn
+            const postSuccessMsg = document.getElementById('postSuccess');
 
             // --- State Variables ---
-            let allPostsData = []; // Dùng tên biến rõ ràng hơn
+            let allPostsData = [];
             let currentPage = 1;
-            const postsPerPage = 4;
+            const postsPerPage = 4; // Number of posts per page
 
             // --- Default Data ---
+            // Placeholder image if actual avatar isn't found
+            const placeholderAvatar = 'avatar-placeholder.png';
             const defaultPosts = [
                  { id: 1, user: "Nguyen Thu Trang", avatar: "avatar1.png", time: "2 hours ago", content: "Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì." },
                  { id: 2, user: "Mai Anh", avatar: "avatar2.png", time: "1 hour ago", content: "Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓." },
                  { id: 3, user: "Nguyen Trong Minh", avatar: "avatar3.png", time: "2 hours ago", content: "Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓." },
                  { id: 4, user: "Đặng Quang", avatar: "avatar4.png", time: "1 hour ago", content: "Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓." },
-                 { id: 5, user: "Le Binh", avatar: "avatar-placeholder.png", time: "3 hours ago", content: "Cần tìm gia sư Toán lớp 10 gấp ạ 😭 Em là An, mới lên lớp 10 mà Hình học với Đại số em mất gốc từ cấp 2 rồi, giờ nghe giảng không hiểu gì cả, bài tập thì nhìn như bức vách. Cần anh chị nào kiên nhẫn dạy lại giúp em với, em cảm ơn nhiều ạ." },
-                 { id: 6, user: "Ngoc Hieu", avatar: "avatar-placeholder.png", time: "4 hours ago", content: "Tìm gia sư Toán 12 ôn thi ĐH gấp!!! 😥 Mình là Bình, sắp thi rồi mà Toán còn yếu quá, nhất là mấy dạng vận dụng cao giải mãi không ra, thấy đề là hoang mang. Có anh chị nào kinh nghiệm ôn thi, hệ thống kiến thức tốt giúp mình với. Lo quá!" },
-                 { id: 7, user: "Trinh Chau", avatar: "avatar-placeholder.png", time: "5 hours ago", content: "Ai cứu em môn Hình không gian với ạ 🙏 Em là Chi lớp 11. Cứ học đến hình không gian là đầu óc em quay cuồng, trừu tượng quá không tưởng tượng nổi hình luôn, vẽ sai hoài 😵. Cần một gia sư dạy dễ hiểu phần này gấp ạ, SOS!" },
-                 { id: 8, user: "Duc Manh", avatar: "avatar-placeholder.png", time: "6 hours ago", content: "Có ai nhận dạy kèm Toán cho học sinh yếu không ạ? 🥺 Em là Dũng, lớp 10. Em sợ môn Toán lắm, làm bài toàn sai, điểm lúc nào cũng thấp lè tè. Muốn tìm gia sư tận tình, kiên nhẫn, nói dễ hiểu giúp em lấy lại căn bản với ạ, chứ tình hình này chắc em tiêu." },
+                 // --- CORRECTED PATH HERE ---
+                 { id: 5, user: "Le Binh", avatar: "images/Lê Nguyễn Thanh Bình.jpg", time: "3 hours ago", content: "Cần tìm gia sư Toán lớp 10 gấp ạ 😭 Em là An, mới lên lớp 10 mà Hình học với Đại số em mất gốc từ cấp 2 rồi, giờ nghe giảng không hiểu gì cả, bài tập thì nhìn như bức vách. Cần anh chị nào kiên nhẫn dạy lại giúp em với, em cảm ơn nhiều ạ." },
+                 // --------------------------
+                 { id: 6, user: "Ngoc Hieu", avatar: "images/hieu.png", time: "4 hours ago", content: "Tìm gia sư Toán 12 ôn thi ĐH gấp!!! 😥 Mình là Bình, sắp thi rồi mà Toán còn yếu quá, nhất là mấy dạng vận dụng cao giải mãi không ra, thấy đề là hoang mang. Có anh chị nào kinh nghiệm ôn thi, hệ thống kiến thức tốt giúp mình với. Lo quá!" },
+                 { id: 7, user: "Trinh Chau", avatar: "images/chau.png", time: "5 hours ago", content: "Ai cứu em môn Hình không gian với ạ 🙏 Em là Chi lớp 11. Cứ học đến hình không gian là đầu óc em quay cuồng, trừu tượng quá không tưởng tượng nổi hình luôn, vẽ sai hoài 😵. Cần một gia sư dạy dễ hiểu phần này gấp ạ, SOS!" },
+                 { id: 8, user: "Duc Manh", avatar: "images/manh.png", time: "6 hours ago", content: "Có ai nhận dạy kèm Toán cho học sinh yếu không ạ? 🥺 Em là Dũng, lớp 10. Em sợ môn Toán lắm, làm bài toàn sai, điểm lúc nào cũng thấp lè tè. Muốn tìm gia sư tận tình, kiên nhẫn, nói dễ hiểu giúp em lấy lại căn bản với ạ, chứ tình hình này chắc em tiêu." },
+            ];
+
+             // --- Suggested Tutor Data (Example) ---
+            const suggestedTutors = [
+                { name: "Gia sư Nguyễn Văn A", description: "Sinh viên năm 3 ĐH Bách Khoa, chuyên Toán Lý Hóa, kinh nghiệm 2 năm.", avatar: "images/Lê Nguyễn Thanh Bình.jpg" }, // Example reusing image
+                { name: "Gia sư Trần Thị B", description: "Giáo viên về hưu, >10 năm kinh nghiệm dạy Toán cấp 2, 3.", avatar: "images/ảnh tutor 2.jpg" },
+                { name: "Gia sư Lê Văn C", description: "Thủ khoa đầu vào Sư Phạm Toán, nhiệt tình, phương pháp dễ hiểu.", avatar: "images/ảnh tutor 3.jpg" },
+                { name: "Gia sư Phạm Thị D", description: "Du học sinh Mỹ, điểm SAT Toán 800/800.", avatar: "images/ảnh tutor 4.jpg" },
             ];
 
             // --- Functions ---
@@ -1549,63 +1465,66 @@
                 card.dataset.postId = postData.id || Date.now(); // Use provided ID or generate one
 
                 const userName = postData.user || "User";
-                const userAvatar = postData.avatar || "avatar-placeholder.png";
+                // Use placeholder if avatar is missing or fails to load
+                const userAvatar = postData.avatar || placeholderAvatar;
                 const postTime = postData.time || "Recently";
-                const postText = postData.content || "No content";
+                // Basic sanitization: replace potential HTML tags with entities
+                const postText = (postData.content || "No content")
+                                    .replace(/</g, "<")
+                                    .replace(/>/g, ">")
+                                    .replace(/\n/g, '<br>'); // Keep newline conversion
 
-                const suggestedTutors = [
-                    { name: "Gia sư Nguyễn Văn A", description: "Sinh viên năm 3 ĐH Bách Khoa, chuyên Toán Lý Hóa, kinh nghiệm 2 năm.", avatar: "images/Lê Nguyễn Thanh Bình.jpg" }, 
-                    { name: "Gia sư Trần Thị B", description: "Giáo viên về hưu, >10 năm kinh nghiệm dạy Toán cấp 2, 3.", avatar: "images/ảnh tutor 2.jpg" },
-                    { name: "Gia sư Lê Văn C", description: "Thủ khoa đầu vào Sư Phạm Toán, nhiệt tình, phương pháp dễ hiểu.", avatar: "images/ảnh tutor 3.jpg" },
-                    { name: "Gia sư Phạm Thị D", description: "Du học sinh Mỹ, điểm SAT Toán 800/800.", avatar: "images/ảnh tutor 4.jpg" },
-                ];
 
                 card.innerHTML = `
                     <div class="message-header">
-                        <div class="user-avatar"><img src="${userAvatar}" alt="${userName}"></div>
+                        <div class="user-avatar">
+                           <img src="${userAvatar}" alt="${userName}" onerror="this.onerror=null;this.src='${placeholderAvatar}';">
+                        </div>
                         <div class="user-info"><h3>${userName}</h3><p class="message-time">${postTime}</p></div>
-                        <button class="message-btn icon-btn tutor-menu-trigger">
-                            <i class="fas fa-bars"></i>
+                        <button class="message-btn icon-btn tutor-menu-trigger" title="Show Suggested Tutors">
+                            <i class="fas fa-ellipsis-v"></i> <!-- Changed icon -->
                         </button>
                     </div>
 
                     <div class="message-content">
-                        <p>${postText.replace(/\n/g, '<br>')}</p>
+                        <p>${postText}</p>
                     </div>
 
                     <div class="message-actions">
                         <button class="message-btn like-btn"><i class="far fa-thumbs-up"></i> Like</button>
                         <button class="message-btn comment-trigger-btn"><i class="far fa-comment"></i> Comment</button>
                         <div class="spacer"></div>
-                        <a href="chat.html?user=${encodeURIComponent(userName)}&avatar=${userAvatar}" class="message-btn" style="text-decoration: none;">Send message</a>
+                        <a href="chat.html?user=${encodeURIComponent(userName)}&avatar=${encodeURIComponent(userAvatar)}" class="message-btn" style="text-decoration: none;">Send message</a>
                         <button class="message-btn">Send Request</button>
                     </div>
 
                     <div class="comment-section">
                         <div class="comments-display-area">
+                           <!-- Comments loaded here -->
                         </div>
                         <div class="comment-input-area">
-                            <textarea class="comment-input" placeholder="Write a comment..."></textarea>
+                            <textarea class="comment-input" placeholder="Write a comment..." rows="1"></textarea> <!-- Start with 1 row -->
                             <button class="message-btn post-comment-btn">Post</button>
                         </div>
                     </div>
 
                     <div class="tutor-list-dropdown">
+                         <!-- Populate tutor list -->
                         <ul>
                             ${suggestedTutors.map(tutor => `
                                 <li>
                                     <div class="tutor-item-container">
                                         <div class="tutor-avatar-dropdown">
-                                            <img src="${tutor.avatar || 'avatar-placeholder.png'}" alt="${tutor.name}">
+                                            <img src="${tutor.avatar || placeholderAvatar}" alt="${tutor.name}" onerror="this.onerror=null;this.src='${placeholderAvatar}';">
                                         </div>
                                         <div class="tutor-details-actions-wrapper">
                                             <div class="tutor-info-dropdown">
-                                                <a href="#" class="tutor-name">${tutor.name}</a>
+                                                <a href="#" class="tutor-name" title="${tutor.name}">${tutor.name}</a>
                                                 <p class="tutor-description">${tutor.description}</p>
                                             </div>
                                             <div class="tutor-item-actions">
-                                                <a href="chat.html?user=${encodeURIComponent(tutor.name)}&avatar=${tutor.avatar || 'avatar-placeholder.png'}" class="message-btn tutor-msg-btn" style="text-decoration: none;">Send message</a>
-                                                <button class="message-btn tutor-req-btn">Send Request</button>
+                                                <a href="chat.html?user=${encodeURIComponent(tutor.name)}&avatar=${encodeURIComponent(tutor.avatar || placeholderAvatar)}" class="message-btn tutor-msg-btn" style="text-decoration: none;">Message</a>
+                                                <button class="message-btn tutor-req-btn">Request</button>
                                             </div>
                                         </div>
                                     </div>
@@ -1614,95 +1533,165 @@
                         </ul>
                     </div>
                 `;
-                messageList.appendChild(card);
+                // Add auto-resize for comment textarea
+                const commentInput = card.querySelector('.comment-input');
+                if (commentInput) {
+                    commentInput.addEventListener('input', autoResizeTextarea);
+                }
+                return card; // Return the created card element
             }
+
+            function autoResizeTextarea(event) {
+                const textarea = event.target;
+                textarea.style.height = 'auto'; // Reset height
+                textarea.style.height = textarea.scrollHeight + 'px'; // Set to scroll height
+            }
+
 
             function displayPage(page) {
                 currentPage = page;
-                messageList.innerHTML = '';
+                messageListContainer.innerHTML = ''; // Clear previous posts
                 const startIndex = (page - 1) * postsPerPage;
                 const endIndex = startIndex + postsPerPage;
+                // Slice the data for the current page
                 const postsToShow = allPostsData.slice(startIndex, endIndex);
-                postsToShow.forEach(renderPostCard);
-                renderPaginationControls();
+                // Render each post card and append it
+                postsToShow.forEach(postData => {
+                    const cardElement = renderPostCard(postData);
+                    messageListContainer.appendChild(cardElement);
+                });
+                renderPaginationControls(); // Update pagination buttons
             }
 
             function renderPaginationControls() {
                 if (!paginationControls) return;
-                paginationControls.innerHTML = '';
+                paginationControls.innerHTML = ''; // Clear previous controls
                 const totalPages = Math.ceil(allPostsData.length / postsPerPage);
-                if (totalPages <= 1) return;
+
+                if (totalPages <= 1) return; // Don't show pagination if only one page
+
+                // Add Previous Button
+                 const prevButton = document.createElement('button');
+                 prevButton.className = 'page-item';
+                 prevButton.textContent = '«'; // Prev symbol
+                 prevButton.disabled = currentPage === 1;
+                 prevButton.onclick = () => {
+                     if (currentPage > 1) {
+                         displayPage(currentPage - 1);
+                         scrollToTop();
+                     }
+                 };
+                 paginationControls.appendChild(prevButton);
+
+
+                // Add Page Number Buttons (simplified for brevity, can add ellipsis logic for many pages)
                 for (let i = 1; i <= totalPages; i++) {
                     const pageButton = document.createElement('button');
                     pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
                     pageButton.textContent = i;
-                    pageButton.onclick = () => { // Gán trực tiếp để đơn giản
+                    pageButton.onclick = () => {
                         displayPage(i);
-                        messageList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        scrollToTop();
                     };
                     paginationControls.appendChild(pageButton);
                 }
+
+                 // Add Next Button
+                const nextButton = document.createElement('button');
+                nextButton.className = 'page-item';
+                nextButton.textContent = '»'; // Next symbol
+                nextButton.disabled = currentPage === totalPages;
+                nextButton.onclick = () => {
+                    if (currentPage < totalPages) {
+                        displayPage(currentPage + 1);
+                        scrollToTop();
+                    }
+                };
+                paginationControls.appendChild(nextButton);
+            }
+
+             function scrollToTop() {
+                // Scrolls smoothly to the top of the message list section
+                messageListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
 
             function initializePosts() {
-                // Chỉ sử dụng defaultPosts, không load/save localStorage
-                allPostsData = [...defaultPosts].reverse(); // Hiển thị mới nhất trước
+                // Load posts - in this case, from the default array
+                // In a real app, you might fetch this from an API
+                allPostsData = [...defaultPosts].reverse(); // Show newest first
             }
 
             function handlePostSubmit() {
                 const content = postContentInput.value.trim();
-                if (!content) return; // Thoát nếu không có nội dung
+                if (!content) {
+                    alert("Please write something in your post."); // Basic validation
+                    return;
+                 }
 
                 submitPostBtn.classList.add('posting');
                 submitPostBtn.textContent = 'Posting...';
                 submitPostBtn.disabled = true;
+                // Also disable the match button during posting
+                const matchButton = document.getElementById('matchButton');
+                if(matchButton) matchButton.classList.add('posting');
 
-                // Simulate delay
+
+                // Simulate network delay
                 setTimeout(() => {
                     const newPostData = {
-                        user: "Người dùng mới (Tạm)",
-                        avatar: "avatar1.png", // Hoặc avatar user hiện tại
+                        // Ideally, get user info from logged-in state
+                        user: "Current User",
+                        avatar: "avatar1.png", // Replace with actual user avatar
                         time: "Just now",
                         content: content,
-                        id: Date.now()
+                        id: Date.now() // Simple unique ID
                     };
 
-                    // Thêm vào đầu mảng (bộ nhớ)
+                    // Add the new post to the beginning of the data array
                     allPostsData.unshift(newPostData);
 
-                    // Hiển thị lại trang 1
+                    // Go back to page 1 to show the new post
                     displayPage(1);
 
-                    // Hiệu ứng thành công và đóng modal
-                    postSuccessMsg.classList.add('show');
-                    const firstCard = messageList.querySelector('.message-card:first-child');
+                    // Visual feedback: highlight the new post and show success message
+                    const firstCard = messageListContainer.querySelector('.message-card:first-child');
                     if (firstCard) {
                         firstCard.classList.add('new-post');
-                        setTimeout(() => firstCard.classList.remove('new-post'), 1500);
-                        window.scrollTo({ top: firstCard.offsetTop - 80, behavior: 'smooth' });
+                        // Scroll to the new post (optional)
+                        // window.scrollTo({ top: firstCard.offsetTop - 80, behavior: 'smooth' }); // Adjust offset as needed
+                        setTimeout(() => firstCard.classList.remove('new-post'), 1500); // Remove highlight after a bit
                     }
 
+                    // Show success message
+                    postSuccessMsg.classList.add('show');
+
+
+                    // Close modal after a short delay
                     setTimeout(() => {
                         modalContent.classList.remove('active');
                         setTimeout(() => {
                             postModal.style.display = 'none';
-                            postContentInput.value = '';
+                            postContentInput.value = ''; // Clear the textarea
+                            postSuccessMsg.classList.remove('show'); // Hide success message
+                            // Reset button state
                             submitPostBtn.classList.remove('posting');
                             submitPostBtn.textContent = 'Post';
-                            postSuccessMsg.classList.remove('show');
                             submitPostBtn.disabled = false;
-                        }, 200);
-                    }, 1000);
+                            if(matchButton) matchButton.classList.remove('posting');
 
-                }, 800);
+                        }, 300); // Wait for fade out transition
+                    }, 1200); // Keep success message visible for a bit
+
+                }, 800); // Simulate 0.8 second delay
             }
 
             function handleLikeClick(likeButton) {
                 likeButton.classList.toggle('liked');
                 const icon = likeButton.querySelector('i');
                 const isLiked = likeButton.classList.contains('liked');
-                icon.className = isLiked ? 'fas fa-thumbs-up' : 'far fa-thumbs-up'; // Đổi icon
-                // Thêm logic gọi API nếu cần
+                icon.className = isLiked ? 'fas fa-thumbs-up' : 'far fa-thumbs-up';
+                likeButton.innerHTML = `<i class="${icon.className}"></i> ${isLiked ? 'Liked' : 'Like'}`; // Update text
+                // Add API call logic here to update like status on server
             }
 
             function handleCommentToggle(commentTrigger) {
@@ -1711,7 +1700,9 @@
                 if (commentSection) {
                     commentSection.classList.toggle('active');
                     if (commentSection.classList.contains('active')) {
-                        commentSection.querySelector('.comment-input').focus();
+                        const commentInput = commentSection.querySelector('.comment-input');
+                        commentInput.focus();
+                        // Optional: Load existing comments via API here
                     }
                 }
             }
@@ -1722,88 +1713,176 @@
                  const commentsDisplay = commentSection?.querySelector('.comments-display-area');
                  const commentText = commentInput?.value.trim();
 
-                 if (commentText && commentsDisplay) {
+                 if (commentText && commentsDisplay && commentInput) {
                      const newComment = document.createElement('div');
                      newComment.classList.add('comment-item');
-                     // Nên lấy tên user đang đăng nhập thay vì "You"
-                     newComment.innerHTML = `<strong>You:</strong> ${commentText.replace(/\n/g, '<br>')}`;
+                     // Replace "You" with actual logged-in username
+                     const commenterName = "You";
+                     // Basic sanitization for comment text
+                     const sanitizedComment = commentText
+                                              .replace(/</g, "<")
+                                              .replace(/>/g, ">")
+                                              .replace(/\n/g, '<br>');
+                     newComment.innerHTML = `<strong>${commenterName}:</strong> ${sanitizedComment}`;
                      commentsDisplay.appendChild(newComment);
-                     commentsDisplay.scrollTop = commentsDisplay.scrollHeight; // Cuộn xuống
-                     commentInput.value = '';
-                     // Thêm logic gọi API lưu comment
+                     commentsDisplay.scrollTop = commentsDisplay.scrollHeight; // Scroll to the new comment
+                     commentInput.value = ''; // Clear input
+                     commentInput.style.height = 'auto'; // Reset textarea height
+                     // Add API call logic here to save the comment
+                 } else if (!commentText && commentInput) {
+                     commentInput.focus(); // Focus if empty
                  }
             }
 
             function handleTutorMenuToggle(menuTrigger, event) {
+                event.stopPropagation(); // Prevent click from closing immediately
                 const card = menuTrigger.closest('.message-card');
                 const dropdown = card?.querySelector('.tutor-list-dropdown');
                 if (dropdown) {
                     const isActive = dropdown.classList.contains('active');
-                    // Đóng tất cả dropdown khác
+                    // Close all *other* dropdowns first
                     document.querySelectorAll('.tutor-list-dropdown.active').forEach(dd => {
                         if (dd !== dropdown) dd.classList.remove('active');
                     });
-                    // Toggle cái hiện tại
+                    // Toggle the current one
                     dropdown.classList.toggle('active');
-                    if(event) event.stopPropagation(); // Ngăn đóng ngay lập tức
                 }
             }
 
             // --- Event Listeners ---
 
-            // Sử dụng Event Delegation cho message list
-            messageList.addEventListener('click', function(event) {
+            // Delegated listener for message list interactions (likes, comments, tutor menu)
+            messageListContainer.addEventListener('click', function(event) {
                 const target = event.target;
                 const likeBtn = target.closest('.like-btn');
                 const commentTriggerBtn = target.closest('.comment-trigger-btn');
                 const postCommentBtn = target.closest('.post-comment-btn');
                 const tutorMenuBtn = target.closest('.tutor-menu-trigger');
+                const commentInput = target.closest('.comment-input');
 
-                if (likeBtn) handleLikeClick(likeBtn);
-                else if (commentTriggerBtn) handleCommentToggle(commentTriggerBtn);
-                else if (postCommentBtn) handlePostComment(postCommentBtn);
-                else if (tutorMenuBtn) handleTutorMenuToggle(tutorMenuBtn, event);
+                 if (likeBtn) handleLikeClick(likeBtn);
+                 else if (commentTriggerBtn) handleCommentToggle(commentTriggerBtn);
+                 else if (postCommentBtn) handlePostComment(postCommentBtn);
+                 else if (tutorMenuBtn) handleTutorMenuToggle(tutorMenuBtn, event);
+                 // else if (commentInput) { /* Handle click on textarea if needed */ }
             });
 
-            // Đóng dropdown khi click ra ngoài
+            // Add keypress listener for posting comments with Enter (optional)
+            messageListContainer.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter' && !event.shiftKey && event.target.classList.contains('comment-input')) {
+                    event.preventDefault(); // Prevent default newline behavior
+                    const postButton = event.target.closest('.comment-input-area')?.querySelector('.post-comment-btn');
+                    if (postButton) {
+                        handlePostComment(postButton);
+                    }
+                }
+            });
+
+
+            // Close tutor dropdown when clicking outside
             document.addEventListener('click', function(event) {
                 if (!event.target.closest('.tutor-menu-trigger') && !event.target.closest('.tutor-list-dropdown')) {
                     document.querySelectorAll('.tutor-list-dropdown.active').forEach(dd => dd.classList.remove('active'));
                 }
             });
 
-            // Search
+            // Search functionality
             searchBtn.addEventListener('click', () => {
-                const searchTerm = searchBar.value.trim();
-                if (searchTerm) alert('Searching for: ' + searchTerm);
+                const searchTerm = searchBar.value.trim().toLowerCase();
+                if (!searchTerm) {
+                    // If search is empty, reset to all posts
+                    initializePosts();
+                    displayPage(1);
+                    return;
+                }
+                // Filter posts based on search term (simple example)
+                const filteredPosts = defaultPosts.filter(post =>
+                    post.user.toLowerCase().includes(searchTerm) ||
+                    post.content.toLowerCase().includes(searchTerm)
+                );
+                allPostsData = [...filteredPosts].reverse(); // Use filtered data, newest first
+                displayPage(1); // Display page 1 of filtered results
+                 if (allPostsData.length === 0) {
+                     messageListContainer.innerHTML = '<p style="text-align: center; color: var(--light-text); padding: 2rem;">No posts found matching your search.</p>';
+                     paginationControls.innerHTML = ''; // Clear pagination if no results
+                 }
             });
             searchBar.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
+             // Optional: Clear search and show all posts if search bar is cleared
+             searchBar.addEventListener('input', () => {
+                 if (searchBar.value.trim() === '') {
+                     initializePosts();
+                     displayPage(1);
+                 }
+             });
 
-            // Post Modal
+            // Post Modal interactions
             postBtn.addEventListener('click', () => {
                 postModal.style.display = 'flex';
-                setTimeout(() => modalContent.classList.add('active'), 50);
+                // Add animation class if desired: modalContent.classList.add('animate');
+                setTimeout(() => modalContent.classList.add('active'), 10); // Short delay for transition
             });
             closeModalBtn.addEventListener('click', () => {
                 modalContent.classList.remove('active');
-                setTimeout(() => { postModal.style.display = 'none'; postSuccessMsg.classList.remove('show'); }, 200);
+                setTimeout(() => {
+                    postModal.style.display = 'none';
+                    postSuccessMsg.classList.remove('show'); // Ensure success message is hidden
+                    // modalContent.classList.remove('animate'); // Remove animation class if used
+                }, 300); // Match transition duration
             });
-            window.addEventListener('click', (event) => { if (event.target === postModal) closeModalBtn.click(); });
+            // Close modal if clicking outside the content
+            window.addEventListener('click', (event) => {
+                 if (event.target === postModal) {
+                    closeModalBtn.click();
+                }
+            });
+            // Use form submission event (better practice) or button click
             submitPostBtn.addEventListener('click', handlePostSubmit);
+            // Or: newPostForm.addEventListener('submit', (e) => { e.preventDefault(); handlePostSubmit(); });
 
-            // Floating Chat
+            // Floating Chat interactions
              chatBtn.addEventListener('click', () => chatInterface.style.display = 'flex');
              closeChatBtn.addEventListener('click', () => chatInterface.style.display = 'none');
-            // Hàm sendUserMessageChat cần được định nghĩa hoặc giữ lại nếu bạn dùng
-            // sendMessageChat.addEventListener('click', sendUserMessageChat);
-            // messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
+
+            // Example chat message sending (replace with actual chat logic)
+             function sendUserMessageChat() {
+                const text = messageInputChat.value.trim();
+                if (!text) return;
+
+                // Add user message to chat window
+                const userMsgDiv = document.createElement('div');
+                userMsgDiv.className = 'message user-message';
+                userMsgDiv.innerHTML = `
+                    <div class="message-content"><p>${text.replace(/</g, "<").replace(/>/g, ">")}</p></div>
+                    <div class="message-avatar">👤</div>
+                `;
+                chatMessages.appendChild(userMsgDiv);
+                messageInputChat.value = ''; // Clear input
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botMsgDiv = document.createElement('div');
+                    botMsgDiv.className = 'message bot-message';
+                    botMsgDiv.innerHTML = `
+                        <div class="message-avatar">🤖</div>
+                        <div class="message-content"><p>Thanks for your message! A real agent will respond shortly.</p></div>
+                    `;
+                    chatMessages.appendChild(botMsgDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll down
+                }, 1000);
+
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll down
+            }
+
+             sendMessageChat.addEventListener('click', sendUserMessageChat);
+             messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
 
 
             // --- Initial Page Load ---
-            initializePosts();
-            displayPage(1);
+            initializePosts(); // Load initial data
+            displayPage(1); // Display the first page
 
         }); // End DOMContentLoaded
-    </script>   
+    </script>
 </body>
 </html>

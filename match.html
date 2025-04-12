@@ -183,6 +183,21 @@
              pointer-events: auto;
         }
 
+        /* Style for the role labels - ADDED */
+        .tutor-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: rgba(60, 79, 224, 0.85);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
         .tutor-image {
             width: 100%;
             height: var(--card-image-height);
@@ -208,6 +223,13 @@
             margin: 0 0 15px 0;
         }
 
+        /* Style for the buttons container - ADDED */
+        .tutor-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
         .tutor-seemore-btn {
             display: inline-block;
             padding: 8px 25px;
@@ -225,6 +247,26 @@
         .tutor-seemore-btn:hover {
             background-color: var(--button-color);
             color: var(--button-text-color);
+        }
+
+        /* Message button style - ADDED */
+        .tutor-message-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            border: 2px solid #28a745; /* Green for message button */
+            border-radius: 50px;
+            color: #28a745;
+            background-color: transparent;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .tutor-message-btn:hover {
+            background-color: #28a745;
+            color: white;
         }
 
         /* --- Final Status Box --- */
@@ -315,6 +357,22 @@
              .tutor-name { font-size: 1.05em; margin-bottom: 12px; }
              .tutor-seemore-btn { padding: 6px 20px; font-size: 0.85em; }
              .final-status-box { font-size: 1em; top: 25px; padding: 8px 20px; }
+             
+             /* ADDED - responsive styles for new buttons */
+             .tutor-buttons {
+                flex-direction: column;
+                gap: 8px;
+             }
+                
+             .tutor-label {
+                font-size: 0.8em;
+                padding: 3px 10px;
+             }
+                
+             .tutor-message-btn {
+                padding: 6px 20px;
+                font-size: 0.85em;
+             }
 
              /* Footer responsive */
              footer { flex-direction: column; gap: 2rem; padding: 2rem 1rem; text-align: center; }
@@ -427,8 +485,9 @@
 
             <!-- Tutor Area (Holds the cards) -->
             <div class="tutor-area" id="tutorArea">
-                <!-- Tutor Card 1 -->
+                <!-- Tutor Card 1 - UPDATED with label -->
                 <div class="tutor-card" id="tutor1">
+                    <div class="tutor-label">Student</div>
                     <div class="tutor-image">
                         <img src="images/Lê Nguyễn Thanh Bình.jpg" alt="Lê Nguyễn Thanh Bình">
                     </div>
@@ -438,14 +497,18 @@
                     </div>
                 </div>
 
-                <!-- Tutor Card 2 -->
+                <!-- Tutor Card 2 - UPDATED with label and message button -->
                 <div class="tutor-card" id="tutor2">
-                     <div class="tutor-image">
+                    <div class="tutor-label">Teacher</div>
+                    <div class="tutor-image">
                         <img src="images/ảnh tutor 2.jpg" alt="Gia sư B">
-                     </div>
+                    </div>
                     <div class="tutor-info">
-                        <h3 class="tutor-name">Nguyễn Thị Thảo</h3> <!-- Example Name -->
-                        <a href="#" class="tutor-seemore-btn">See more</a>
+                        <h3 class="tutor-name">Nguyễn Thị Thảo</h3>
+                        <div class="tutor-buttons">
+                            <a href="#" class="tutor-seemore-btn">See more</a>
+                            <a href="chat.html" class="tutor-message-btn">Send message</a>
+                        </div>
                     </div>
                 </div>
             </div>

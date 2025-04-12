@@ -15,6 +15,27 @@
             --light-text: #888;
             --white: #fff;
             --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+            /* === CSS Cho Lịch === */
+            --grid-border-color: #e9e9e9;
+            --day-number-color: #a0a0a0;
+            --weekday-header-color: #333;
+            --month-header-color: #000;
+            --event-text-color: #ffffff;
+            --event-green: #27ae60;
+            --event-blue: #2980b9;
+            --event-gray: #7f8c8d;
+            --event-purple: #8e44ad;
+            --event-orange: #f39c12;
+            --time-axis-width: 60px;
+            --time-label-color: #777;
+            /* --- Define Row Height Consistently --- */
+            --calendar-row-min-height: 140px;
+            /* --- Calculate Top Offset --- */
+            /* Approximation: Header(padding-top + font-size + padding-bottom) + Weekdays(padding-top + font-size + padding-bottom + border-bottom) */
+            /* Adjust font-size multipliers if base font-size differs significantly */
+            --header-approx-height: calc(20px + 1.8em + 20px);
+            --weekdays-approx-height: calc(10px + 0.9em + 10px + 1px);
+            --total-top-offset: calc(var(--header-approx-height) + var(--weekdays-approx-height));
         }
 
         * {
@@ -25,9 +46,8 @@
         }
 
         body {
-            /* --- Thay đổi nền nếu muốn trang lịch khác trang chủ --- */
-            /* background-color: #f0f2f5; */
-             background-color: var(--white); /* Giữ nền trắng như lịch */
+             background-color: var(--white);
+             padding: 0;
         }
 
         /* Header Styles */
@@ -41,8 +61,9 @@
             position: sticky;
             top: 0;
             z-index: 100;
+            /* Assuming header height around 60-70px for sticky calculations */
+            height: 70px; /* Example explicit height */
         }
-
         .logo img { height: 40px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin: 0 10px; }
@@ -61,37 +82,60 @@
         .dropdown-item:hover { background: #f5f5f5; color: #4361ee; }
         .dropdown-divider { height: 1px; background: #eee; margin: 5px 0; }
 
-        /* === CSS Cho Lịch (Từ schedule.html) === */
-        :root { /* Gộp các biến màu lịch vào đây */
-            --grid-border-color: #e9e9e9;
-            --day-number-color: #a0a0a0;
-            --weekday-header-color: #333;
-            --month-header-color: #000;
-            --event-text-color: #ffffff;
-            --event-green: #27ae60;
-            --event-blue: #2980b9;
-            --event-gray: #7f8c8d;
-            --event-purple: #8e44ad;
-            --event-orange: #f39c12;
+
+        /* === Calendar Layout === */
+        .calendar-outer-wrapper {
+             padding: 40px 20px;
+             background-color: #f8f9fa;
         }
 
-        /* --- Bỏ padding mặc định của body để container lịch chiếm đủ chỗ --- */
-        body {
-            padding: 0; /* Remove default body padding */
+        .schedule-layout {
+            display: flex;
+            max-width: calc(1100px + var(--time-axis-width) + 10px);
+            margin: 0 auto;
+            gap: 10px;
+            align-items: flex-start;
         }
 
-        .calendar-wrapper {
-             padding: 40px 20px; /* Add padding around the calendar */
-             background-color: #f8f9fa; /* Optional: different background for calendar area */
+        .time-axis {
+            width: var(--time-axis-width);
+            /* --- Use calculated top offset --- */
+            padding-top: var(--total-top-offset);
+            padding-right: 10px;
+            text-align: right;
+            flex-shrink: 0;
+            position: sticky;
+            /* Adjust top based on actual sticky header height + outer wrapper padding */
+            top: calc(70px + 40px); /* Header height + outer wrapper padding */
+            align-self: stretch;
+            /* border-right: 1px solid var(--grid-border-color); */
+        }
+
+        .time-label {
+            font-size: 0.8em;
+            color: var(--time-label-color);
+            /* --- Explicitly set height to match grid row min-height --- */
+            height: var(--calendar-row-min-height);
+            line-height: 1.2; /* Keep line height reasonable */
+            display: flex; /* Use flex to align text within the box */
+            align-items: flex-start; /* Align text to the top */
+            justify-content: flex-end; /* Keep text right-aligned */
+            padding-top: 5px; /* Small padding from the top border */
+            border-top: 1px solid #f0f0f0; /* Add faint top border */
+            box-sizing: border-box; /* Include border/padding in height */
+        }
+        /* Remove border from the very first label */
+        .time-label:first-child {
+            border-top: none;
         }
 
         .calendar-container {
-            max-width: 1100px;
-            margin: 0 auto;
+            flex-grow: 1;
             border: 1px solid var(--grid-border-color);
-            background-color: #fff; /* White background for the calendar itself */
-            border-radius: 8px; /* Optional rounded corners */
-            overflow: hidden; /* Contain borders and corners */
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            max-width: 1100px;
         }
 
         .calendar-header {
@@ -100,6 +144,7 @@
             color: var(--month-header-color);
             padding: 20px 25px;
             text-align: left;
+            /* border-bottom: 1px solid var(--grid-border-color); */ /* Optional: keep or remove */
         }
 
         .calendar-weekdays {
@@ -116,7 +161,8 @@
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            grid-auto-rows: minmax(120px, auto); /* Flexible row height */
+            /* --- Use variable for row height --- */
+            grid-auto-rows: minmax(var(--calendar-row-min-height), auto);
             border-top: none;
             position: relative;
         }
@@ -127,12 +173,11 @@
             padding: 5px 8px;
             position: relative;
             overflow: hidden;
-            display: flex; /* Enable flex for day number */
-            justify-content: flex-end; /* Push day number right */
-            align-items: flex-start; /* Align day number top */
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
         }
         .calendar-day:nth-child(7n) { border-right: none; }
-        /* Adjust nth-child based on actual rows displayed if needed */
         /* Assuming 5 weeks for July 2025 */
          .calendar-day:nth-child(n+29):nth-child(-n+35) {
              border-bottom: none;
@@ -142,7 +187,7 @@
             font-size: 0.8em;
             color: var(--day-number-color);
             font-weight: 500;
-             padding: 2px 4px; /* Add slight padding */
+             padding: 2px 4px;
         }
         .other-month .day-number { opacity: 0.5; }
 
@@ -164,15 +209,14 @@
             text-align: center;
             line-height: 1.3;
             background-image: url('data:image/svg+xml,%3Csvg width="6" height="6" viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.1" fill-rule="evenodd"%3E%3Cpath d="M5 0h1L0 6V5zM6 5v1H5z"/%3E%3C/g%3E%3C/svg%3E');
-            /* Calculate position based on grid lines AND cell padding */
-             /* These are offsets within the grid cell */
-             top: 28px; /* Adjust based on day number height + padding */
-             left: 4px;
-             right: 4px;
-             bottom: 4px;
-             /* Default height/width - overridden by specific events */
-             height: calc(100% - 32px);
-             width: calc(100% - 8px);
+            /* Positioning within the day cell */
+            top: 28px; /* Below day number */
+            left: 4px;
+            right: 4px;
+            bottom: 4px;
+            height: auto; /* Let content determine height within bounds */
+            min-height: 60px; /* Ensure minimum space */
+            /* width: calc(100% - 8px); Don't restrict width */
         }
          .calendar-event i { margin-bottom: 4px; font-size: 1.1em; }
         .event-green { background-color: var(--event-green); }
@@ -181,27 +225,18 @@
         .event-purple { background-color: var(--event-purple); }
         .event-orange { background-color: var(--event-orange); }
 
-        /* Event Positioning using Grid Lines - Relative to the GRID CONTAINER */
-        /* Format: grid-row-start / grid-column-start / grid-row-end / grid-column-end */
-        /* Monday=1, Sunday=7 */
-        #event-thu-hien { grid-area: 1 / 5 / 2 / 6; } /* R1, C5 */
-        #event-thu-trang { grid-area: 2 / 1 / 3 / 2; } /* R2, C1 */
-        #event-anh-tu {
-             grid-area: 2 / 3 / 3 / 4; /* R2, C3 */
-             border-top-right-radius: 0;
-             border-bottom-right-radius: 0;
-             border-right: 1px dotted rgba(255, 255, 255, 0.5);
-             right: 0; /* Make it touch the right edge */
+        .event-time {
+            display: block;
+            font-size: 0.9em;
+            margin-top: 3px;
+            opacity: 0.9;
         }
-        #event-tu-minh {
-            grid-area: 2 / 4 / 3 / 5; /* R2, C4 */
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            left: 0; /* Make it touch the left edge */
-        }
-        #event-manh-quan { grid-area: 2 / 6 / 3 / 7; } /* R2, C6 */
-        #event-linh-anh { grid-area: 3 / 6 / 4 / 7; } /* R3, C6 */
-        #event-chau-trinh { grid-area: 4 / 3 / 5 / 4; } /* R4, C3 */
+
+        /* Event Positioning (Grid Area - Relative to calendar-grid) */
+        #event-thao-math { grid-area: 2 / 3 / 3 / 4; }
+        #event-thao-english { grid-area: 3 / 5 / 4 / 6; }
+        #event-thao-physics { grid-area: 5 / 2 / 6 / 3; }
+
 
         /* Footer Styles */
         footer {
@@ -210,9 +245,8 @@
             padding: 2rem 5rem;
             display: flex;
             justify-content: space-between;
-            margin-top: 0; /* Remove top margin if calendar is directly above */
+            margin-top: 0;
         }
-        /* ... (Giữ nguyên các style footer khác) ... */
          .footer-logo { width: 20%; }
          .footer-logo img { max-width: 80px; }
          .footer-tagline { font-size: 0.9rem; margin-top: 1rem; line-height: 1.5; }
@@ -222,74 +256,84 @@
          .footer-links li { margin-bottom: 0.5rem; }
          .footer-links a { text-decoration: none; color: #ccc; font-size: 0.9rem; transition: color 0.3s; }
          .footer-links a:hover { color: white; }
-         .social-icon { background: rgba(255,255,255,0.2); width: 30px; height: 30px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; }
+         .footer-socials h3 { font-size: 1rem; margin-bottom: 1rem; color: var(--white); }
+        .social-icons-list { display: flex; flex-wrap: wrap; gap: 12px; }
+        .social-icon-item { display: inline-block; width: 30px; height: 30px; line-height: 0; transition: transform 0.2s ease; }
+        .social-icon-item:hover { transform: scale(1.1); }
+        .social-icon-item img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
 
         /* Responsive */
          @media (max-width: 768px) {
-             header { flex-direction: column; gap: 1rem; padding: 1rem; }
+             header { flex-direction: column; gap: 1rem; padding: 1rem; height: auto; /* Adjust height for column layout */ }
              nav ul { flex-wrap: wrap; justify-content: center; }
              .right-actions { margin-top: 1rem; }
-             .calendar-wrapper { padding: 20px 10px; }
+
+             .calendar-outer-wrapper { padding: 20px 10px; }
+             .schedule-layout { flex-direction: column; gap: 15px; max-width: 100%; }
+
+             .time-axis {
+                 width: 100%;
+                 padding-top: 0; /* Reset padding */
+                 text-align: center;
+                 display: flex;
+                 flex-wrap: wrap;
+                 justify-content: center;
+                 gap: 10px;
+                 position: static; /* Remove sticky */
+                 border-right: none;
+                 padding-right: 0;
+                 padding-bottom: 10px;
+                 border-bottom: 1px solid var(--grid-border-color);
+                 align-self: auto; /* Reset */
+             }
+             .time-label {
+                 height: auto; /* Auto height for horizontal layout */
+                 width: auto;
+                 padding: 2px 5px;
+                 border: 1px solid #eee;
+                 border-radius: 4px;
+                 font-size: 0.75em;
+                 /* Reset flex alignment */
+                 display: inline-block; /* Simpler display */
+                 line-height: normal;
+                 border-top: 1px solid #eee !important; /* Override non-first border */
+             }
+             .time-label:first-child {
+                 border-top: 1px solid #eee !important; /* Ensure first has border too */
+             }
+
+
+             .calendar-container { max-width: 100%; }
              .calendar-header { font-size: 1.5em; padding: 15px; }
              .calendar-weekdays { font-size: 0.8em; }
-             .calendar-grid { grid-auto-rows: minmax(100px, auto); } /* Adjust row height */
-             .calendar-event { font-size: 0.75em; padding: 5px; }
+             .calendar-grid { grid-auto-rows: minmax(120px, auto); } /* Adjust mobile row height if needed */
+             .calendar-event { font-size: 0.75em; padding: 5px; min-height: 50px; }
              .day-number { font-size: 0.7em; }
+             .event-time { font-size: 0.85em; }
+
              footer { flex-direction: column; gap: 2rem; padding: 2rem 1rem; text-align: center; }
              .footer-logo, .footer-links, .footer-socials { width: 100%; max-width: none; }
              .footer-socials { justify-content: center; }
          }
-
-         .footer-socials h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--white); 
-        }
-
-        /* Container for the list of icons */
-        .social-icons-list {
-            display: flex;      
-            flex-wrap: wrap;     
-            gap: 12px;          
-        }
-
-        /* Styling for each icon's link container */
-        .social-icon-item {
-            display: inline-block; 
-            width: 30px;           
-            height: 30px;         
-            line-height: 0;        
-            transition: transform 0.2s ease; 
-        }
-
-        .social-icon-item:hover {
-            transform: scale(1.1); 
-        }
-
-        .social-icon-item img {
-            width: 100%;           
-            height: 100%;          
-            object-fit: contain;   
-            display: block;       
-        }
-
 
     </style>
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+            <!-- Ensure you have this image or replace the path -->
+            <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
         </div>
         <nav>
             <ul>
-                 <li><a href="Home.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
-                 <li><a href="review.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Review</a></li>
-                 <li><a href="ranking.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
-                 <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
-                 <li><a href="educonnectGPT.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
-                 <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
-                 <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline active">Schedule</a></li> 
+                 <li><a href="Home.html" class="nav-item animated-underline">Home</a></li>
+                 <li><a href="review.html" class="nav-item animated-underline">Review</a></li>
+                 <li><a href="ranking.html" class="nav-item animated-underline">Ranking</a></li>
+                 <li><a href="support.html" class="nav-item animated-underline">Support</a></li>
+                 <li><a href="educonnectGPT.html" class="nav-item animated-underline">EduconnectGPT</a></li>
+                 <li><a href="chat.html" class="nav-item animated-underline">Chat</a></li>
+                 <li><a href="schedule.html" class="nav-item animated-underline active">Schedule</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -308,83 +352,98 @@
         </div>
     </header>
 
-    <div class="calendar-wrapper">
-        <div class="calendar-container">
-            <div class="calendar-header">JULY 2025</div>
-            <div class="calendar-weekdays">
-                <span>M</span>
-                <span>T</span>
-                <span>W</span>
-                <span>T</span>
-                <span>F</span>
-                <span>S</span>
-                <span>S</span>
-            </div>
-            <div class="calendar-grid">
-                <div class="calendar-day other-month"><span class="day-number">30</span></div>
-                <div class="calendar-day"><span class="day-number">01</span></div>
-                <div class="calendar-day"><span class="day-number">02</span></div>
-                <div class="calendar-day"><span class="day-number">03</span></div>
-                <div class="calendar-day"><span class="day-number">04</span></div>
-                <div class="calendar-day"><span class="day-number">05</span></div>
-                <div class="calendar-day"><span class="day-number">06</span></div>
-                <div class="calendar-day"><span class="day-number">07</span></div>
-                <div class="calendar-day"><span class="day-number">08</span></div>
-                <div class="calendar-day"><span class="day-number">09</span></div>
-                <div class="calendar-day"><span class="day-number">10</span></div>
-                <div class="calendar-day"><span class="day-number">11</span></div>
-                <div class="calendar-day"><span class="day-number">12</span></div>
-                <div class="calendar-day"><span class="day-number">13</span></div>
-                <div class="calendar-day"><span class="day-number">14</span></div>
-                <div class="calendar-day"><span class="day-number">15</span></div>
-                <div class="calendar-day"><span class="day-number">16</span></div>
-                <div class="calendar-day"><span class="day-number">17</span></div>
-                <div class="calendar-day"><span class="day-number">18</span></div>
-                <div class="calendar-day"><span class="day-number">19</span></div>
-                <div class="calendar-day"><span class="day-number">20</span></div>
-                <div class="calendar-day"><span class="day-number">21</span></div>
-                <div class="calendar-day"><span class="day-number">22</span></div>
-                <div class="calendar-day"><span class="day-number">23</span></div>
-                <div class="calendar-day"><span class="day-number">24</span></div>
-                <div class="calendar-day"><span class="day-number">25</span></div>
-                <div class="calendar-day"><span class="day-number">26</span></div>
-                <div class="calendar-day"><span class="day-number">27</span></div>
-                <div class="calendar-day"><span class="day-number">28</span></div>
-                <div class="calendar-day"><span class="day-number">29</span></div>
-                <div class="calendar-day"><span class="day-number">30</span></div>
-                <div class="calendar-day"><span class="day-number">31</span></div>
-                <div class="calendar-day other-month"><span class="day-number">01</span></div>
-                <div class="calendar-day other-month"><span class="day-number">02</span></div>
-                <div class="calendar-day other-month"><span class="day-number">03</span></div>
+    <div class="calendar-outer-wrapper">
+        <div class="schedule-layout">
 
-                <div id="event-thu-hien" class="calendar-event event-green">
-                    <i class="fas fa-chalkboard"></i>
-                    English with Thu Hien
-                </div>
-                <div id="event-thu-trang" class="calendar-event event-green">
-                    Math with Thu Trang
-                </div>
-                <div id="event-anh-tu" class="calendar-event event-blue">
-                    Math with Anh Tu
-                </div>
-                <div id="event-tu-minh" class="calendar-event event-blue">
-                    Math with Tu Minh
-                </div>
-                <div id="event-manh-quan" class="calendar-event event-gray">
-                    English with Manh Quan
-                </div>
-                <div id="event-linh-anh" class="calendar-event event-purple">
-                    Math with Linh Anh
-                </div>
-                <div id="event-chau-trinh" class="calendar-event event-orange">
-                    Math with Chau Trinh
-                </div>
+            <div class="time-axis">
+                <!-- Time Labels -->
+                <div class="time-label">8:00</div>
+                <div class="time-label">10:30</div>
+                <div class="time-label">13:00</div>
+                <div class="time-label">15:30</div>
+                <div class="time-label">18:00</div>
+                <div class="time-label">20:30</div>
+                <!-- Add more times if your schedule extends further -->
             </div>
-        </div>
-    </div>
+
+            <div class="calendar-container">
+                <div class="calendar-header">JULY 2025</div>
+                <div class="calendar-weekdays">
+                    <span>M</span>
+                    <span>T</span>
+                    <span>W</span>
+                    <span>T</span>
+                    <span>F</span>
+                    <span>S</span>
+                    <span>S</span>
+                </div>
+                <div class="calendar-grid">
+                    <!-- Week 1 -->
+                    <div class="calendar-day other-month"><span class="day-number">30</span></div>
+                    <div class="calendar-day"><span class="day-number">01</span></div>
+                    <div class="calendar-day"><span class="day-number">02</span></div>
+                    <div class="calendar-day"><span class="day-number">03</span></div>
+                    <div class="calendar-day"><span class="day-number">04</span></div>
+                    <div class="calendar-day"><span class="day-number">05</span></div>
+                    <div class="calendar-day"><span class="day-number">06</span></div>
+                    <!-- Week 2 -->
+                    <div class="calendar-day"><span class="day-number">07</span></div>
+                    <div class="calendar-day"><span class="day-number">08</span></div>
+                    <div class="calendar-day"><span class="day-number">09</span></div> <!-- Math event here -->
+                    <div class="calendar-day"><span class="day-number">10</span></div>
+                    <div class="calendar-day"><span class="day-number">11</span></div>
+                    <div class="calendar-day"><span class="day-number">12</span></div>
+                    <div class="calendar-day"><span class="day-number">13</span></div>
+                    <!-- Week 3 -->
+                    <div class="calendar-day"><span class="day-number">14</span></div>
+                    <div class="calendar-day"><span class="day-number">15</span></div>
+                    <div class="calendar-day"><span class="day-number">16</span></div>
+                    <div class="calendar-day"><span class="day-number">17</span></div>
+                    <div class="calendar-day"><span class="day-number">18</span></div> <!-- English event here -->
+                    <div class="calendar-day"><span class="day-number">19</span></div>
+                    <div class="calendar-day"><span class="day-number">20</span></div>
+                    <!-- Week 4 -->
+                    <div class="calendar-day"><span class="day-number">21</span></div>
+                    <div class="calendar-day"><span class="day-number">22</span></div>
+                    <div class="calendar-day"><span class="day-number">23</span></div>
+                    <div class="calendar-day"><span class="day-number">24</span></div>
+                    <div class="calendar-day"><span class="day-number">25</span></div>
+                    <div class="calendar-day"><span class="day-number">26</span></div>
+                    <div class="calendar-day"><span class="day-number">27</span></div>
+                    <!-- Week 5 -->
+                    <div class="calendar-day"><span class="day-number">28</span></div>
+                    <div class="calendar-day"><span class="day-number">29</span></div> <!-- Physics event here -->
+                    <div class="calendar-day"><span class="day-number">30</span></div>
+                    <div class="calendar-day"><span class="day-number">31</span></div>
+                    <div class="calendar-day other-month"><span class="day-number">01</span></div>
+                    <div class="calendar-day other-month"><span class="day-number">02</span></div>
+                    <div class="calendar-day other-month"><span class="day-number">03</span></div>
+
+                    <!-- Schedule Events -->
+                    <div id="event-thao-math" class="calendar-event event-blue">
+                        <i class="fas fa-calculator"></i>
+                        Math with Nguyễn Thị Thảo
+                        <span class="event-time">9:00 - 10:30</span>
+                    </div>
+                    <div id="event-thao-english" class="calendar-event event-green">
+                        <i class="fas fa-book"></i>
+                        English with Nguyễn Thị Thảo
+                        <span class="event-time">14:00 - 15:00</span>
+                    </div>
+                     <div id="event-thao-physics" class="calendar-event event-purple">
+                        <i class="fas fa-atom"></i>
+                        Physics with Nguyễn Thị Thảo
+                        <span class="event-time">11:00 - 12:30</span>
+                    </div>
+                </div> <!-- End calendar-grid -->
+            </div> <!-- End calendar-container -->
+
+        </div> <!-- End schedule-layout -->
+    </div> <!-- End calendar-outer-wrapper -->
 
     <footer>
         <div class="footer-logo">
+             <!-- Ensure you have this image or replace the path -->
              <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
              <div class="footer-tagline">
                  educonnect - Connecting knowledge, bringing learning into the future.<br>
@@ -404,25 +463,28 @@
                  </ul>
              </div>
         </div>
-        <div class="footer-socials"> 
-            <h3>Follow Us</h3> 
-            <div class="social-icons-list"> 
+        <div class="footer-socials">
+            <h3>Follow Us</h3>
+            <div class="social-icons-list">
+                <!-- Replace YOUR_..._LINK with actual URLs -->
+                <!-- Ensure you have these images or replace paths -->
                 <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
-                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                    <img src="images/Youtube.jpg" alt="YouTube">
                 </a>
                 <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
-                    <img src="images/facebook.jpg" alt="Facebook"> 
+                    <img src="images/facebook.jpg" alt="Facebook">
                 </a>
                 <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
-                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                    <img src="images/linkedln.jpg" alt="LinkedIn">
+                </a>
                 <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
                     <img src="images/tiktok.jpg" alt="TikTok">
                 </a>
                 <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
-                    <img src="images/insta.jpg" alt="Instagram"> 
+                    <img src="images/insta.jpg" alt="Instagram">
                 </a>
                 <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
-                    <img src="images/discord.jpg" alt="Discord"> 
+                    <img src="images/discord.jpg" alt="Discord">
                 </a>
             </div>
         </div>
