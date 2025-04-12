@@ -6,7 +6,6 @@
     <title>Chat - EduConnectGPT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ----- Biến và Reset ----- */
         :root {
             --primary-color: #0d1472;
             --secondary-color: #f0f4ff;
@@ -19,7 +18,7 @@
             --chat-bg: #ffffff;
             --message-sent-bg: #d1e7ff;
             --message-received-bg: #f8f9fa;
-            --header-height: 65px; /* Chiều cao header cố định */
+            --header-height: 65px;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
@@ -27,36 +26,35 @@
         body {
             background-color: var(--secondary-color);
             color: var(--text-color);
-            /* Bỏ display:flex, height:100vh */
         }
 
-        /* ----- Header Styles (Copy từ index.html hoặc CSS chung) ----- */
+        /* ----- Header Styles ----- */
         header {
             background-color: white;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 2rem; /* Điều chỉnh padding */
+            padding: 0 2rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: sticky; /* Giữ header cố định */
+            position: sticky;
             top: 0;
-            left: 0; /* Thêm left:0 để chắc chắn */
-            width: 100%; /* Chiếm toàn bộ chiều rộng */
+            left: 0;
+            width: 100%;
             z-index: 100;
-            height: var(--header-height); /* Sử dụng biến chiều cao */
+            height: var(--header-height);
         }
         header .logo img { height: 40px; display: block; }
         header nav ul { display: flex; list-style: none; }
         header nav ul li { margin: 0 1rem; }
-        header nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 500; padding: 0.5rem 0; display: block; position: relative; /* Cho animated-underline */ }
+        header nav ul li a { text-decoration: none; color: var(--text-color); font-weight: 500; padding: 0.5rem 0; display: block; position: relative; }
         header nav ul li a.active { color: var(--accent-color); font-weight: 600; }
-        /* Style cho animated-underline nếu bạn dùng */
+
         .animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -2px; left: 0; background-color: var(--accent-color); transition: width 0.3s ease-in-out; }
         .animated-underline:hover::after { width: 100%; }
-        header nav ul li a.active.animated-underline::after { width: 100%; } /* Ensure active link has underline */
+        header nav ul li a.active.animated-underline::after { width: 100%; }
 
-        header .right-actions { display: flex; align-items: center; gap: 1rem; /* Dùng gap thay margin */ }
-        /* header .right-actions > * { margin-left: 1rem; } */ /* Bỏ margin nếu dùng gap */
+        header .right-actions { display: flex; align-items: center; gap: 1rem; }
+
         header .credit-icon { background-color: #f5f5f5; padding: 0.3rem 0.7rem; border-radius: 4px; font-size: 0.9rem; }
         header .notification-icon, header .account-icon { font-size: 1.2rem; color: var(--text-color); cursor: pointer; }
         header .account-container { position: relative; cursor: pointer; }
@@ -65,15 +63,12 @@
         header .dropdown-item { padding: 0.8rem 1.5rem; display: block; color: var(--text-color); text-decoration: none; transition: background-color 0.2s ease; font-size: 0.95rem; }
         header .dropdown-item:hover { background-color: var(--secondary-color); color: var(--accent-color); }
         header .dropdown-divider { height: 1px; background-color: #eee; margin: 0.3rem 0; }
-        /* Keyframes nếu bạn dùng */
-        @keyframes fadeIn { from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);} }
-        /* ----------------------------------------------------------------- */
 
+        @keyframes fadeIn { from {opacity: 0; transform: translateY(-10px);} to {opacity: 1; transform: translateY(0);} }
 
         /* ----- Wrapper Layout ----- */
         .chat-page-wrapper {
             display: flex;
-            /* Chiều cao bằng 100vh trừ đi chiều cao header */
             height: calc(100vh - var(--header-height));
         }
 
@@ -85,12 +80,12 @@
             display: flex;
             flex-direction: column;
             padding: 1.5rem 0;
-            height: 100%; /* Chiếm chiều cao wrapper */
-            flex-shrink: 0; /* Ngăn sidebar co lại */
+            height: 100%;
+            flex-shrink: 0;
         }
         .sidebar-header { padding: 0 1.5rem 1.5rem 1.5rem; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); margin-bottom: 1rem; }
         .sidebar-logo img { height: 35px; margin-right: 10px; }
-        .sidebar-user { font-weight: 600; font-size: 1.1rem; color: var(--primary-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; /* Tránh tên dài làm vỡ layout */ }
+        .sidebar-user { font-weight: 600; font-size: 1.1rem; color: var(--primary-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .sidebar-search { padding: 0 1.5rem; margin-bottom: 1rem; position: relative; }
         .sidebar-search input { width: 100%; padding: 0.5rem 0.8rem 0.5rem 2.2rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.9rem; }
         .sidebar-search .fa-search { position: absolute; left: 2.2rem; top: 50%; transform: translateY(-50%); color: var(--light-text); font-size: 0.9rem; }
@@ -104,12 +99,12 @@
 
         /* ----- Main Content Area ----- */
         .main-content {
-            flex-grow: 1; /* Chiếm không gian còn lại */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            height: 100%; /* Chiếm chiều cao wrapper */
+            height: 100%;
             background-color: var(--chat-bg);
-            overflow: hidden; /* Ngăn scroll toàn trang, chỉ scroll message area */
+            overflow: hidden;
         }
 
         /* ----- Chat Header (trong Main) ----- */
@@ -120,28 +115,27 @@
             padding: 1rem 1.5rem;
             border-bottom: 1px solid var(--border-color);
             background-color: var(--white);
-            flex-shrink: 0; /* Quan trọng: Ngăn header chat co lại */
+            flex-shrink: 0;
         }
         .recipient-info { display: flex; align-items: center; }
         .recipient-avatar img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; margin-right: 1rem; }
         .recipient-name { font-size: 1.2rem; font-weight: 600; }
         .recipient-id { font-size: 0.8rem; color: var(--light-text); }
-        .chat-actions { display: flex; align-items: center; gap: 1rem; /* Dùng gap */ }
-        /* .chat-actions > * { margin-left: 1rem; } */
+        .chat-actions { display: flex; align-items: center; gap: 1rem; }
         .chat-actions button, .chat-actions i { background: none; border: none; color: var(--light-text); font-size: 1.2rem; cursor: pointer; transition: color 0.2s ease; }
         .chat-actions button:hover, .chat-actions i:hover { color: var(--accent-color); }
         .chat-actions .send-request-btn { background-color: var(--accent-color); color: var(--white); padding: 0.5rem 1rem; border-radius: 5px; font-size: 0.9rem; font-weight: 500; }
 
         /* ----- Messages Area ----- */
         .messages-area {
-            flex-grow: 1; /* Quan trọng: Chiếm không gian còn lại */
-            overflow-y: auto; /* Chỉ scroll vùng này */
+            flex-grow: 1;
+            overflow-y: auto;
             padding: 1.5rem;
             background-color: #f0f4ff;
             display: flex;
             flex-direction: column;
         }
-        .message-bubble { max-width: 70%; padding: 0.8rem 1rem; border-radius: 15px; margin-bottom: 1rem; line-height: 1.4; position: relative; font-size: 0.95rem; word-wrap: break-word; /* Ngăn chữ dài làm vỡ layout */ }
+        .message-bubble { max-width: 70%; padding: 0.8rem 1rem; border-radius: 15px; margin-bottom: 1rem; line-height: 1.4; position: relative; font-size: 0.95rem; word-wrap: break-word; }
         .message-sent { background-color: var(--accent-color); color: var(--white); align-self: flex-end; border-bottom-right-radius: 5px; }
         .message-received { background-color: var(--white); color: var(--text-color); align-self: flex-start; border: 1px solid var(--border-color); border-bottom-left-radius: 5px; }
         .message-timestamp { font-size: 0.75rem; color: var(--light-text); display: block; margin-top: 5px; text-align: right; }
@@ -154,7 +148,7 @@
             padding: 1rem 1.5rem;
             border-top: 1px solid var(--border-color);
             background-color: var(--white);
-            flex-shrink: 0; /* Quan trọng: Ngăn input co lại */
+            flex-shrink: 0;
         }
         .message-input { flex-grow: 1; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 20px; margin-right: 1rem; font-size: 0.95rem; outline: none; }
         .message-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2); }
@@ -162,43 +156,123 @@
         .send-button:hover { background-color: #2a3bb0; }
         .attach-button, .emoji-button { background: none; border: none; color: var(--light-text); font-size: 1.3rem; margin-right: 0.8rem; cursor: pointer; flex-shrink: 0; }
 
-        .footer-socials h3 {
-            font-size: 1rem;
+        /* ----- Modal for Study Time Selection ----- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light-text);
+        }
+        .modal-body {
+            margin-bottom: 1.5rem;
+        }
+        .day-selection {
+            margin-bottom: 1.5rem;
+        }
+        .day-title {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary-color);
+        }
+        .time-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-bottom: 1rem;
-            color: var(--white); 
         }
-
-        /* Container for the list of icons */
-        .social-icons-list {
-            display: flex;      
-            flex-wrap: wrap;     
-            gap: 12px;          
+        .time-option {
+            background-color: var(--secondary-color);
+            border: 2px solid transparent;
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
         }
-
-        /* Styling for each icon's link container */
-        .social-icon-item {
-            display: inline-block; 
-            width: 30px;           
-            height: 30px;         
-            line-height: 0;        
-            transition: transform 0.2s ease; 
+        .time-option:hover {
+            background-color: #e0e7ff;
         }
-
-        .social-icon-item:hover {
-            transform: scale(1.1); 
+        .time-option.selected {
+            border-color: var(--accent-color);
+            background-color: rgba(60, 79, 224, 0.1);
+            font-weight: 500;
         }
-
-        .social-icon-item img {
-            width: 100%;           
-            height: 100%;          
-            object-fit: contain;   
-            display: block;       
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
         }
-
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+        .btn-cancel {
+            background-color: #f1f1f1;
+            color: var(--text-color);
+        }
+        .btn-cancel:hover {
+            background-color: #e1e1e1;
+        }
+        .btn-join {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 500;
+        }
+        .btn-join:hover {
+            background-color: #2a3bb0;
+        }
     </style>
 </head>
 <body>
-    <!-- ===== HEADER Đã được cập nhật ===== -->
+    <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">
             <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
@@ -226,11 +300,8 @@
             </div>
         </div>
     </header>
-    <!-- ================================== -->
 
-    <!-- ===== Wrapper mới cho nội dung chính (Sidebar + Main) ===== -->
     <div class="chat-page-wrapper">
-        <!-- Sidebar (Nội dung giữ nguyên) -->
         <aside class="sidebar">
              <div class="sidebar-header">
                  <span class="sidebar-user">Le Nguyen Thanh Binh</span>
@@ -256,7 +327,6 @@
              </nav>
         </aside>
 
-        <!-- Main Chat Area (Nội dung giữ nguyên) -->
         <main class="main-content">
             <header class="chat-header">
                 <div class="recipient-info">
@@ -269,44 +339,56 @@
                     </div>
                 </div>
                 <div class="chat-actions">
-                    <button class="send-request-btn">Send Request</button>
+                    <button class="send-request-btn" id="sendRequestBtn">Send Request</button>
                     <i class="fas fa-phone-alt"></i>
                     <i class="fas fa-info-circle"></i>
                 </div>
             </header>
 
             <div class="messages-area" id="messagesArea">
-                 <div class="message-bubble message-received">
-                    <span>Dạ qua em đổi thì thầy o khá hợp với cách học của em ạ</span>
-                    <span class="message-timestamp">8:00 PM</span>
-                </div>
-                 <div class="message-bubble message-sent">
-                    <span>Thế hay quá</span>
-                     <span class="message-timestamp">8:00 PM</span>
-                </div>
-                <div class="message-bubble message-received">
-                    <span>Dạ anh gửi tôi mới học cho e để mình trao đổi tiếp ạ</span>
-                     <span class="message-timestamp">8:00 PM</span>
-                </div>
-                <div class="message-bubble message-sent">
-                    <span>okea thế để e gửi nha</span>
-                    <span class="message-timestamp">8:00 PM</span>
-                </div>
+                <!-- Messages will be added dynamically by JavaScript -->
             </div>
 
             <footer class="message-input-area">
                 <button class="attach-button"><i class="fas fa-paperclip"></i></button>
                 <input type="text" class="message-input" id="messageInput" placeholder="Digite a message">
-                 <button class="emoji-button"><i class="far fa-smile"></i></button>
+                <button class="emoji-button"><i class="far fa-smile"></i></button>
                 <button class="send-button" id="sendButton"><i class="fas fa-paper-plane"></i></button>
             </footer>
         </main>
-     </div>
-     <!-- ======================================================= -->
+    </div>
 
+    <!-- Study Time Selection Modal -->
+    <div class="modal-overlay" id="studyTimeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Select Study Time</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="day-selection">
+                    <h4 class="day-title">Tuesday</h4>
+                    <div class="time-options">
+                        <div class="time-option" data-day="tuesday" data-time="1:30PM-3:30PM">1:30PM - 3:30PM</div>
+                        <div class="time-option" data-day="tuesday" data-time="3:30PM-5:30PM">3:30PM - 5:30PM</div>
+                    </div>
+                </div>
+                <div class="day-selection">
+                    <h4 class="day-title">Thursday</h4>
+                    <div class="time-options">
+                        <div class="time-option" data-day="thursday" data-time="1:30PM-3:30PM">1:30PM - 3:30PM</div>
+                        <div class="time-option" data-day="thursday" data-time="3:30PM-5:30PM">3:30PM - 5:30PM</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-cancel" id="cancelSelection">Cancel</button>
+                <button class="btn btn-join" id="joinClassBtn">Join Class</button>
+            </div>
+        </div>
+    </div>
 
     <script>
-        // ----- JavaScript xử lý chat (Giữ nguyên) -----
         document.addEventListener('DOMContentLoaded', () => {
             const recipientAvatarElement = document.getElementById('recipientAvatar');
             const recipientNameElement = document.getElementById('recipientName');
@@ -314,12 +396,18 @@
             const messagesArea = document.getElementById('messagesArea');
             const messageInput = document.getElementById('messageInput');
             const sendButton = document.getElementById('sendButton');
+            const sendRequestBtn = document.getElementById('sendRequestBtn');
+            const studyTimeModal = document.getElementById('studyTimeModal');
+            const closeModal = document.getElementById('closeModal');
+            const cancelSelection = document.getElementById('cancelSelection');
+            const joinClassBtn = document.getElementById('joinClassBtn');
+            const timeOptions = document.querySelectorAll('.time-option');
 
             // 1. Get parameters from URL
             const urlParams = new URLSearchParams(window.location.search);
             const userName = urlParams.get('user') || 'Unknown User';
             const userAvatar = urlParams.get('avatar') || 'avatar-placeholder.png';
-            const userIdParam = urlParams.get('userId'); // Thử lấy userId nếu có
+            const userIdParam = urlParams.get('userId');
             const userId = userIdParam ? `#${userIdParam}` : `#${userName.replace(/\s+/g, '').substring(0,6).toUpperCase()}`;
 
             // 2. Update chat header (recipient info)
@@ -342,30 +430,100 @@
                 messagesArea.scrollTop = messagesArea.scrollHeight;
             }
 
-            // 4. Handle sending messages
+            // 4. Handle sending messages with specific responses
             function sendMessageHandler() {
-                 const messageText = messageInput.value.trim();
-                 if (messageText) {
-                     addMessage(messageText, 'sent');
-                     messageInput.value = '';
-                     // Simulate reply
-                     setTimeout(() => addMessage("Okay, I received: " + messageText, 'received'), 1000);
-                 }
+                const messageText = messageInput.value.trim();
+                if (messageText) {
+                    addMessage(messageText, 'sent');
+                    messageInput.value = '';
+                    
+                    // Specific response patterns
+                    setTimeout(() => {
+                        if (messageText === "em chào cô ạ, em thấy cô phù hợp nên muốn trao đổi thêm chút ạ!") {
+                            addMessage("ừm , ok , cô chào em , em muốn trao đổi gì nhỉ", 'received');
+                        } 
+                        else if (messageText === "dạ em muốn hỏi là em muốn học môn toán chiều thứ 3 với chiều thứ 5 có được không cô") {
+                            addMessage("ok em nha , em send join class rồi chọn lịch avaiable giúp cô nhé , chiều thứ 3 và thứ 5 cô đều rảnh đó", 'received');
+                        }
+                        else if (messageText === "dạ em cảm ơn cô") {
+                            addMessage("uk , không có gì đâu em", 'received');
+                        }
+                        else {
+                            // Default response for other messages
+                            addMessage("Xin lỗi, cô chưa hiểu ý em. Em có thể nói rõ hơn được không?", 'received');
+                        }
+                    }, 1000);
+                }
             }
 
-            // Event listeners
+            // 5. Modal functionality for study time selection
+            // Open modal
+            sendRequestBtn.addEventListener('click', () => {
+                studyTimeModal.classList.add('active');
+            });
+
+            // Close modal
+            function closeModalHandler() {
+                studyTimeModal.classList.remove('active');
+            }
+            closeModal.addEventListener('click', closeModalHandler);
+            cancelSelection.addEventListener('click', closeModalHandler);
+
+            // Selection functionality
+            let selectedTimes = {
+                tuesday: null,
+                thursday: null
+            };
+
+            timeOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    const day = option.getAttribute('data-day');
+                    const time = option.getAttribute('data-time');
+                    
+                    // Remove selection from other options in same day
+                    document.querySelectorAll(`.time-option[data-day="${day}"]`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selection to clicked option
+                    option.classList.add('selected');
+                    selectedTimes[day] = time;
+                });
+            });
+
+            // Join Class button functionality
+            joinClassBtn.addEventListener('click', () => {
+                // Check if at least one time is selected
+                if (selectedTimes.tuesday || selectedTimes.thursday) {
+                    // Redirect to schedule.html with selected times as parameters
+                    const params = new URLSearchParams();
+                    if (selectedTimes.tuesday) {
+                        params.append('tuesdayTime', selectedTimes.tuesday);
+                    }
+                    if (selectedTimes.thursday) {
+                        params.append('thursdayTime', selectedTimes.thursday);
+                    }
+                    window.location.href = `schedule.html?${params.toString()}`;
+                } else {
+                    alert('Please select at least one study time before joining the class.');
+                }
+            });
+
+            // Event listeners for messaging
             sendButton.addEventListener('click', sendMessageHandler);
             messageInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
-                     e.preventDefault();
+                    e.preventDefault();
                     sendMessageHandler();
                 }
             });
 
-            // Initial state
-             messagesArea.scrollTop = messagesArea.scrollHeight;
-             // messagesArea.innerHTML = ''; // Uncomment to start fresh
-
+            // Close modal when clicking outside
+            window.addEventListener('click', (e) => {
+                if (e.target === studyTimeModal) {
+                    closeModalHandler();
+                }
+            });
         });
     </script>
 </body>
