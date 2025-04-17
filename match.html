@@ -397,10 +397,14 @@
             const teacherName = teacher.name || 'Unnamed Teacher';
             const teacherId = teacher.teacher_id || 'unknown_id';
             const teacherEmail = teacher.email || ''; // Get email or default to empty string
+            const teacherReason = teacher.reason || '';
 
             // **MODIFIED**: Added data-teacher-id and data-teacher-email
             return `
-                <div class="tutor-card" data-teacher-id="${teacherId}" data-teacher-email="${teacherEmail}">
+                <div class="tutor-card"
+                    data-teacher-id="${teacherId}"
+                    data-teacher-email="${teacherEmail}"
+                    data-teacher-reason="${teacherReason}">
                     <div class="tutor-label">Teacher</div>
                     <div class="tutor-image">
                         <img src="${teacher.image || placeholderImage}" alt="${teacherName}">

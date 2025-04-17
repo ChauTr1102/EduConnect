@@ -47,7 +47,6 @@ class Message(BaseModel):
 
 
 class MessageWithTeacher(BaseModel):
-    teacher_profile: str
     student_question: str
 
 
