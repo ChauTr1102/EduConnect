@@ -41,7 +41,7 @@ async def send_message(message: Message):
     return response
 
 
-@router.post("/save_chosen_teacher")
+@router.post("/save_chosen_teacher/")
 async def save_chosen_teacher(teacher: Teacher):
     with open("chosen_teacher.json", "w", encoding="utf-8") as f:
         json.dump(teacher.dict(), f, indent=4, ensure_ascii=False)
