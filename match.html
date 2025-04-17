@@ -576,9 +576,9 @@
                     if (card) {
                         const teacherId = card.dataset.teacherId;
                         const teacherEmail = card.dataset.teacherEmail;
+                        const teacherReason = card.dataset.teacherReason; 
                         const teacherNameElement = card.querySelector('.tutor-name');
                         const teacherName = teacherNameElement ? teacherNameElement.textContent : 'Unknown Name';
-                        const teacherReason = card.dataset.reason;
 
                         // Prepare data for API
                         const dataToSend = {
