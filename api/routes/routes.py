@@ -36,8 +36,20 @@ async def recommender(student_request: StudentRequest):
 
 @router.post("/chat_get-answer/")
 async def send_message(message: Message):
-    recommender = RecommenderSystem(gemini_apikey=os.getenv("GEMINI_API_KEY"))
-    response = await recommender.send_message_gemini(message.message)
+    chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
+    try:
+        with open("./HistoryChat/history_chat_bot.json", "r", encoding="utf-8") as f:
+            history = json.load(f)
+    except FileNotFoundError:
+        history = []
+    prompt = chatbot.prompt_chat_with_bot(history=history[-6::], user_question=message.message)
+    response = await chatbot.send_message_gemini(prompt)
+
+    history.append({"role": "user", "content": message.message})
+    history.append({"role": "bot", "content": response})
+
+    with open("./HistoryChat/history_chat_bot.json", "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=4)
     return response
 
 
@@ -52,9 +64,21 @@ async def send_message_with_teacher(message: MessageWithTeacher):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
     with open("chosen_teacher.json", "r", encoding="utf-8") as f:
         teacher_profile_dict = json.load(f)
+    teacher_id = teacher_profile_dict["teacher_id"]
     teacher_profile_str = json.dumps(teacher_profile_dict, indent=4, ensure_ascii=False)
-    chat_prompt = chatbot.prompt_chat_with_teacher(teacher_profile_str, message.student_question)
+    try:
+        with open(f"./HistoryChat/cv_{teacher_id}.json", "r", encoding="utf-8") as f:
+            history = json.load(f)
+    except FileNotFoundError:
+        history = []
+    chat_prompt = chatbot.prompt_chat_with_teacher(teacher_profile_str, message.student_question, history)
     response = await chatbot.send_message_gemini(chat_prompt)
+
+    history.append({"role": "user", "content": message.student_question})
+    history.append({"role": "teacher", "content": response})
+
+    with open(f"./HistoryChat/cv_{teacher_id}.json", "w", encoding="utf-8") as f:
+        json.dump(history, f, ensure_ascii=False, indent=4)
     return response
 
 
