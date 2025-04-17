@@ -21,6 +21,15 @@ async def recommender(student_request: StudentRequest):
     prompt_recommender = recommender.prompt_recommender(student_request.student_request, teacher_profile)
     response = await recommender.send_message_gemini(prompt_recommender)
     result = extract_clean_json(response)
+
+    # Chuyển string thành list of dict
+    parsed_result = json.loads(result)
+
+    # Lưu lại thành file JSON đẹp
+    with open("suitable_teacher.json", "w", encoding="utf-8") as f:
+        json.dump(parsed_result, f, indent=4, ensure_ascii=False)
+
+
     return result
 
 

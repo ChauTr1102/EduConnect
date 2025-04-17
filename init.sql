@@ -84,6 +84,9 @@ create table post_comments(
 CREATE TABLE suitable_teachers(
 	post_id varchar(20) references posts(post_id) on delete cascade,
 	teacher_id varchar(20) references teachers(teacher_id) on delete cascade,
+	teacher_name VARCHAR(50),
+	email VARCHAR(100),
+	reason text,
 	primary key(post_id, teacher_id)
 );
 
