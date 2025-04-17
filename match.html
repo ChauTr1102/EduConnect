@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Title remains from schedule page -->
-    <title>EduConnect - Schedule</title>
+    <title>EduConnect - Matching Tutor</title> <!-- Changed title slightly for context -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        /* === CSS Gốc từ Trang Chủ (Header/Footer/Base) === */
         :root {
+            /* ... (keep existing variables) ... */
             --primary-color: #0d1472;
             --secondary-color: #f0f4ff;
             --accent-color: #3c4fe0;
@@ -16,23 +16,21 @@
             --light-text: #888;
             --white: #fff;
             --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
-
-            /* --- Variables added from match.html --- */
             --tutor-border-color: #6c7dff;
-            --card-bg: #ffffff; /* Already defined as --white, using specific name */
+            --card-bg: #ffffff;
             --success-color: #28a745;
+            --error-color: #dc3545;
             --spinner-color: #6c7dff;
             --button-color: #6c7dff;
             --button-text-color: #ffffff;
 
-            /* Define card dimensions */
+            /* Card dimensions */
             --card-width: 220px;
-            --card-width-small: 180px;
+            --card-width-small: 180px; /* Adjusted for smaller screens */
             --card-image-height: 200px;
             --card-image-height-small: 160px;
-            --card-gap: 40px;
-            --card-gap-small: 20px;
-            /* Adjusted padding for the container holding the animation */
+            --card-gap: 30px; /* Slightly reduced gap */
+            --card-gap-small: 15px;
             --container-padding-vertical: 60px;
         }
 
@@ -44,23 +42,21 @@
         }
 
         body {
-            /* Use a neutral background for the whole page */
-             background-color: #f8f9fa; /* Light background */
-             display: flex; /* Use flexbox for layout */
-             flex-direction: column; /* Stack header, content, footer */
-             min-height: 100vh; /* Ensure body takes full viewport height */
+             background-color: #f8f9fa;
+             display: flex;
+             flex-direction: column;
+             min-height: 100vh;
         }
 
         main {
-             flex-grow: 1; /* Allow main content area to grow and push footer down */
-             display: flex; /* Use flex to center match-container */
+             flex-grow: 1;
+             display: flex;
              justify-content: center;
              align-items: center;
-             padding: 20px; /* Add some padding around the main area */
+             padding: 20px;
         }
 
-
-        /* Header Styles (Keep from schedule.html) */
+        /* Header Styles */
         header {
             background-color: white;
             display: flex;
@@ -72,13 +68,11 @@
             top: 0;
             z-index: 100;
         }
-
         .logo img { height: 40px; }
         nav ul { display: flex; list-style: none; }
         nav ul li { margin: 0 10px; }
         nav ul li a { text-decoration: none; padding: 8px 12px; color: #555; font-weight: 500; position: relative; transition: color 0.3s; }
         nav ul li a.active { color: #4361ee; font-weight: 600; }
-        .animated-underline { position: relative; text-decoration: none; }
         .animated-underline::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: #1e40af; transition: width 0.3s ease-in-out; }
         .animated-underline:hover::after { width: 100%; }
         .right-actions { display: flex; align-items: center; gap: 20px; }
@@ -91,355 +85,186 @@
         .dropdown-item:hover { background: #f5f5f5; color: #4361ee; }
         .dropdown-divider { height: 1px; background: #eee; margin: 5px 0; }
 
-        /* === CSS for Matching Animation (from match.html - replaces calendar CSS) === */
-
+        /* Matching Animation CSS */
         .match-container {
             text-align: center;
-            position: relative; /* Changed from absolute for flex centering */
-            width: 100%; /* Take width from main container */
-            max-width: calc(var(--card-width) * 2 + var(--card-gap) + 40px); /* Max width based on cards */
+            position: relative;
+            width: 100%;
+            /* CHANGE: Adjust max-width for 3 cards */
+            max-width: calc(var(--card-width) * 3 + var(--card-gap) * 2 + 60px); /* Added extra padding */
             padding-top: var(--container-padding-vertical);
             padding-bottom: var(--container-padding-vertical);
-            min-height: 500px; /* Adjust min-height */
-            display: flex; /* Keep inner flex for centering */
+            min-height: 500px;
+            display: flex;
             justify-content: center;
             align-items: center;
-             /* outline: 1px dashed blue; */ /* Debug */
         }
 
-        /* --- Loading Spinner --- */
         .loading-spinner {
-            position: absolute;
-            top: 50%;
-            left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 3.5em;
-            color: var(--spinner-color);
-            z-index: 5;
-            opacity: 1;
-            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+            font-size: 3.5em; color: var(--spinner-color); z-index: 5;
+            opacity: 1; transition: opacity 0.4s ease-out, transform 0.4s ease-out;
         }
+        .loading-spinner i { display: block; animation: spin 1.5s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loading-spinner.hidden { opacity: 0; transform: translate(-50%, -50%) scale(0.3); pointer-events: none; }
 
-        .loading-spinner i {
-            display: block;
-            animation: spin 1.5s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .loading-spinner.hidden {
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.3);
-            pointer-events: none;
-        }
-
-        /* --- Tutor Area & Card Styling --- */
         .tutor-area {
             display: flex;
             justify-content: center;
             gap: var(--card-gap);
             width: auto;
-            max-width: calc(var(--card-width) * 2 + var(--card-gap));
-            position: absolute;
-            top: 50%;
-            left: 50%;
+             /* CHANGE: Adjust max-width for 3 cards and 2 gaps */
+            max-width: calc(var(--card-width) * 3 + var(--card-gap) * 2);
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.2s ease-in;
-            transition-delay: 0.3s;
-            /* outline: 1px dashed green; */
+            z-index: 1; opacity: 0; pointer-events: none;
+            transition: opacity 0.2s ease-in; transition-delay: 0.3s;
         }
-
-        .tutor-area.visible {
-             opacity: 1;
-             pointer-events: auto;
-        }
+        .tutor-area.visible { opacity: 1; pointer-events: auto; }
 
         .tutor-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
+            background-color: var(--card-bg); border-radius: 12px;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-            width: var(--card-width);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            z-index: 1;
-            opacity: 0;
-            transform: translateY(30px) scale(0.9);
+            width: var(--card-width); overflow: hidden; display: flex;
+            flex-direction: column; position: relative; z-index: 1;
+            opacity: 0; transform: translateY(30px) scale(0.9);
             transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            transition-delay: 0.4s;
             pointer-events: none;
         }
+        .tutor-card.visible { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
 
-        .tutor-card.visible {
-             opacity: 1;
-             transform: translateY(0) scale(1);
-             pointer-events: auto;
-        }
-
-        /* Style for the role labels - ADDED */
         .tutor-label {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background-color: rgba(60, 79, 224, 0.85);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-            z-index: 2;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: absolute; top: 10px; left: 10px;
+            background-color: rgba(60, 79, 224, 0.85); color: white;
+            padding: 4px 12px; border-radius: 20px; font-size: 0.85em;
+            font-weight: 600; z-index: 2; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-
-        .tutor-image {
-            width: 100%;
-            height: var(--card-image-height);
-            overflow: hidden;
-        }
-
-        .tutor-image img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .tutor-info {
-            padding: 20px 15px;
-            text-align: center;
-        }
-
-        .tutor-name {
-            font-size: 1.15em;
-            font-weight: 600;
-            color: var(--text-color);
-            margin: 0 0 15px 0;
-        }
-
-        /* Style for the buttons container - ADDED */
-        .tutor-buttons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .tutor-seemore-btn {
-            display: inline-block;
-            padding: 8px 25px;
-            border: 2px solid var(--button-color);
-            border-radius: 50px;
-            color: var(--button-color);
-            background-color: transparent;
-            font-weight: 600;
-            font-size: 0.9em;
-            text-decoration: none;
-            cursor: pointer;
+        .tutor-image { width: 100%; height: var(--card-image-height); overflow: hidden; background-color: #eee; }
+        .tutor-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .tutor-info { padding: 20px 15px; text-align: center; }
+        .tutor-name { font-size: 1.15em; font-weight: 600; color: var(--text-color); margin: 0 0 15px 0; }
+        .tutor-buttons { display: flex; gap: 10px; justify-content: center; }
+        .tutor-seemore-btn, .tutor-message-btn {
+            display: inline-block; padding: 8px 20px; border-radius: 50px;
+            font-weight: 600; font-size: 0.9em; text-decoration: none; cursor: pointer;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
+        .tutor-seemore-btn { border: 2px solid var(--button-color); color: var(--button-color); background-color: transparent; padding: 8px 25px; }
+        .tutor-seemore-btn:hover { background-color: var(--button-color); color: var(--button-text-color); }
+        .tutor-message-btn { border: 2px solid #28a745; color: #28a745; background-color: transparent; }
+        .tutor-message-btn:hover { background-color: #28a745; color: white; }
 
-        .tutor-seemore-btn:hover {
-            background-color: var(--button-color);
-            color: var(--button-text-color);
-        }
-
-        /* Message button style - ADDED */
-        .tutor-message-btn {
-            display: inline-block;
-            padding: 8px 20px;
-            border: 2px solid #28a745; /* Green for message button */
-            border-radius: 50px;
-            color: #28a745;
-            background-color: transparent;
-            font-weight: 600;
-            font-size: 0.9em;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.2s ease, color 0.2s ease;
-        }
-
-        .tutor-message-btn:hover {
-            background-color: #28a745;
-            color: white;
-        }
-
-        /* --- Final Status Box --- */
         .final-status-box {
-            /* Position relative to match-container */
-            position: absolute;
-            top: 40px; /* Adjust vertical position */
-            left: 50%;
+            position: absolute; top: 40px; left: 50%;
             transform: translateX(-50%) translateY(10px);
-            background-color: var(--card-bg);
-            padding: 10px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-            color: var(--success-color);
-            font-weight: 600;
-            font-size: 1.1em;
-            white-space: nowrap;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
+            background-color: var(--card-bg); padding: 10px 25px; border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); color: var(--success-color);
+            font-weight: 600; font-size: 1.1em; white-space: nowrap; opacity: 0;
+            visibility: hidden; transition: opacity 0.4s ease-out, visibility 0.4s ease-out, transform 0.4s ease-out;
             z-index: 10;
         }
+        .final-status-box.error { color: var(--error-color); }
+        .final-status-box.visible { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .final-status-box.hidden { opacity: 0; visibility: hidden; transform: translateX(-50%) translateY(-10px); transition: opacity 0.4s ease-in, visibility 0.4s ease-in, transform 0.4s ease-in; }
 
-        .final-status-box.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
+        /* Footer Styles */
+        footer {
+            background: #0a1172; color: white; padding: 2rem 5rem;
+            display: flex; justify-content: space-between; margin-top: auto; width: 100%;
         }
+        .footer-logo { width: 20%; }
+        .footer-logo img { max-width: 80px; }
+        .footer-tagline { font-size: 0.9rem; margin-top: 1rem; line-height: 1.5; }
+        .footer-links { display: flex; gap: 3rem; }
+        .footer-links h3 { font-size: 1rem; margin-bottom: 1rem; }
+        .footer-links ul { list-style: none; padding: 0; } /* Reset padding */
+        .footer-links li { margin-bottom: 0.5rem; }
+        .footer-links a { text-decoration: none; color: #ccc; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-links a:hover { color: white; }
+        .footer-socials h3 { font-size: 1rem; margin-bottom: 1rem; color: var(--white); }
+        .social-icons-list { display: flex; flex-wrap: wrap; gap: 12px; padding: 0; } /* Reset padding */
+        .social-icon-item { display: inline-block; width: 30px; height: 30px; line-height: 0; transition: transform 0.2s ease; }
+        .social-icon-item:hover { transform: scale(1.1); }
+        .social-icon-item img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-        .final-status-box.hidden {
-             opacity: 0;
-             visibility: hidden;
-             transform: translateX(-50%) translateY(-10px);
-             transition: opacity 0.4s ease-in, visibility 0.4s ease-in, transform 0.4s ease-in;
+
+        /* Responsive Styles */
+         @media (max-width: 992px) { /* Added breakpoint for 3 cards */
+            :root {
+                --card-width: 190px; /* Slightly smaller cards */
+                --card-gap: 20px;
+            }
+             .match-container {
+                max-width: calc(var(--card-width) * 3 + var(--card-gap) * 2 + 40px);
+             }
+             .tutor-area {
+                max-width: calc(var(--card-width) * 3 + var(--card-gap) * 2);
+                 gap: var(--card-gap);
+             }
          }
 
-        /* === End CSS for Matching Animation === */
-
-
-        /* Footer Styles (Keep from schedule.html) */
-        footer {
-            background: #0a1172;
-            color: white;
-            padding: 2rem 5rem;
-            display: flex;
-            justify-content: space-between;
-            margin-top: auto; /* Pushes footer to bottom when content is short */
-            width: 100%; /* Ensure footer spans width */
-        }
-         .footer-logo { width: 20%; }
-         .footer-logo img { max-width: 80px; }
-         .footer-tagline { font-size: 0.9rem; margin-top: 1rem; line-height: 1.5; }
-         .footer-links { display: flex; gap: 3rem; }
-         .footer-links h3 { font-size: 1rem; margin-bottom: 1rem; }
-         .footer-links ul { list-style: none; }
-         .footer-links li { margin-bottom: 0.5rem; }
-         .footer-links a { text-decoration: none; color: #ccc; font-size: 0.9rem; transition: color 0.3s; }
-         .footer-links a:hover { color: white; }
-         .social-icon { background: rgba(255,255,255,0.2); width: 30px; height: 30px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: white; }
-
-
-        /* Responsive Styles (Merge and Adjust) */
          @media (max-width: 768px) {
              header { flex-direction: column; gap: 1rem; padding: 1rem; }
              nav ul { flex-wrap: wrap; justify-content: center; }
              .right-actions { margin-top: 1rem; }
 
-             /* Adjust match container padding */
              .match-container {
-                 padding-top: 40px;
-                 padding-bottom: 40px;
-                 min-height: 450px;
+                 padding-top: 40px; padding-bottom: 40px; min-height: 450px;
+                  /* Keep 2 cards layout for medium screens */
+                 max-width: calc(var(--card-width-small) * 2 + var(--card-gap-small) + 40px);
              }
-            /* Responsive card styles */
-            :root {
-                --card-width: var(--card-width-small);
+            :root { /* Redefine within this breakpoint */
+                --card-width: var(--card-width-small); /* Use small card size */
                 --card-image-height: var(--card-image-height-small);
                 --card-gap: var(--card-gap-small);
             }
-             .loading-spinner { font-size: 3em; }
              .tutor-area {
+                /* Keep 2 cards layout for medium screens */
+                max-width: calc(var(--card-width) * 2 + var(--card-gap)); /* Uses redefined small vars */
                 gap: var(--card-gap);
-                max-width: calc(var(--card-width) * 2 + var(--card-gap));
+                /* Allow wrapping if needed, although stacking happens at 480px */
+                flex-wrap: wrap;
              }
+             /* Ensure cards use the correct small width */
              .tutor-card { width: var(--card-width); }
              .tutor-image { height: var(--card-image-height); }
              .tutor-info { padding: 15px 10px; }
              .tutor-name { font-size: 1.05em; margin-bottom: 12px; }
-             .tutor-seemore-btn { padding: 6px 20px; font-size: 0.85em; }
+             .tutor-seemore-btn, .tutor-message-btn { padding: 6px 15px; font-size: 0.85em; } /* Adjusted padding */
              .final-status-box { font-size: 1em; top: 25px; padding: 8px 20px; }
-             
-             /* ADDED - responsive styles for new buttons */
-             .tutor-buttons {
-                flex-direction: column;
-                gap: 8px;
-             }
-                
-             .tutor-label {
-                font-size: 0.8em;
-                padding: 3px 10px;
-             }
-                
-             .tutor-message-btn {
-                padding: 6px 20px;
-                font-size: 0.85em;
-             }
+             .tutor-buttons { flex-direction: column; gap: 8px; }
+             .tutor-label { font-size: 0.8em; padding: 3px 10px; }
 
-             /* Footer responsive */
              footer { flex-direction: column; gap: 2rem; padding: 2rem 1rem; text-align: center; }
              .footer-logo, .footer-links, .footer-socials { width: 100%; max-width: none; }
              .footer-socials { justify-content: center; }
          }
-         /* Stacking cards on very small screens */
-         @media (max-width: 480px) { /* Adjusted breakpoint */
+
+         @media (max-width: 480px) {
               :root {
-                 --card-width: 85%; /* Slightly smaller width */
+                 --card-width: 85%; /* Stacked card width */
                  --card-gap: 15px;
              }
               .tutor-area {
-                  flex-direction: column;
-                  position: relative; /* Change from absolute for stacking */
-                  top: auto;
-                  left: auto;
-                  transform: none;
-                  margin-top: 30px; /* Add space after spinner */
-                  width: 100%; /* Allow area to take width */
-                  align-items: center; /* Center items vertically */
+                  flex-direction: column; /* Stack cards */
+                  position: relative; top: auto; left: auto; transform: none;
+                  margin-top: 30px; width: 100%; align-items: center;
+                  max-width: 100%; /* Override previous max-width */
+                  gap: var(--card-gap); /* Vertical gap when stacked */
               }
                .tutor-card {
-                 width: var(--card-width);
-                 margin: 0 auto; /* Center stacked cards */
+                 width: var(--card-width); margin: 0 auto; /* Center stacked cards */
                  transform: translateY(20px) scale(0.9);
              }
-             .match-container { min-height: auto; } /* Allow height to adjust */
+             .match-container { min-height: auto; max-width: 95%; } /* Allow shrink */
          }
-
-         .footer-socials h3 {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            color: var(--white); 
-        }
-
-        /* Container for the list of icons */
-        .social-icons-list {
-            display: flex;      
-            flex-wrap: wrap;     
-            gap: 12px;          
-        }
-
-        /* Styling for each icon's link container */
-        .social-icon-item {
-            display: inline-block; 
-            width: 30px;           
-            height: 30px;         
-            line-height: 0;        
-            transition: transform 0.2s ease; 
-        }
-
-        .social-icon-item:hover {
-            transform: scale(1.1); 
-        }
-
-        .social-icon-item img {
-            width: 100%;           
-            height: 100%;          
-            object-fit: contain;   
-            display: block;       
-        }
 
     </style>
 </head>
 <body>
-    <!-- Header from schedule.html -->
+    <!-- Header from schedule.html (No changes) -->
     <header>
         <div class="logo">
             <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
@@ -475,7 +300,7 @@
     <main>
         <div class="match-container" id="matchContainer">
             <div class="final-status-box" id="finalStatusBox">
-                Đã tìm thấy gia sư phù hợp! <!-- Or change text -->
+                <!-- Text will be set by JavaScript -->
             </div>
 
             <!-- Loading Spinner -->
@@ -483,8 +308,10 @@
                 <i class="fas fa-spinner"></i>
             </div>
 
-            <!-- Tutor Area (Holds the cards) -->
+            <!-- Tutor Area (Holds the cards) - Will be populated by JavaScript -->
             <div class="tutor-area" id="tutorArea">
+                <!-- Static cards removed - JS will add cards here -->
+
                 <!-- Tutor Card 1 - UPDATED with label -->
                 <div class="tutor-card" id="tutor1">
                     <div class="tutor-label">Student</div>
@@ -496,26 +323,13 @@
                         <a href="#" class="tutor-seemore-btn">See more</a>
                     </div>
                 </div>
+                <!-- End of Added Tutor Card -->
 
-                <!-- Tutor Card 2 - UPDATED with label and message button -->
-                <div class="tutor-card" id="tutor2">
-                    <div class="tutor-label">Teacher</div>
-                    <div class="tutor-image">
-                        <img src="images/ảnh tutor 2.jpg" alt="Gia sư B">
-                    </div>
-                    <div class="tutor-info">
-                        <h3 class="tutor-name">Nguyễn Thị Thảo</h3>
-                        <div class="tutor-buttons">
-                            <a href="#" class="tutor-seemore-btn">See more</a>
-                            <a href="chat.html" class="tutor-message-btn">Send message</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer from schedule.html -->
+    <!-- Footer from schedule.html (No changes) -->
     <footer>
         <div class="footer-logo">
              <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
@@ -537,93 +351,187 @@
                  </ul>
              </div>
         </div>
-        <div class="footer-socials"> 
-            <h3>Follow Us</h3> 
-            <div class="social-icons-list"> 
+        <div class="footer-socials">
+            <h3>Follow Us</h3>
+            <div class="social-icons-list">
                 <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
-                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                    <img src="images/Youtube.jpg" alt="YouTube">
                 </a>
                 <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
-                    <img src="images/facebook.jpg" alt="Facebook"> 
+                    <img src="images/facebook.jpg" alt="Facebook">
                 </a>
                 <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
-                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                    <img src="images/linkedln.jpg" alt="LinkedIn">
                 <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
                     <img src="images/tiktok.jpg" alt="TikTok">
                 </a>
                 <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
-                    <img src="images/insta.jpg" alt="Instagram"> 
+                    <img src="images/insta.jpg" alt="Instagram">
                 </a>
                 <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
-                    <img src="images/discord.jpg" alt="Discord"> 
+                    <img src="images/discord.jpg" alt="Discord">
                 </a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript from match.html -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Timing Constants (in milliseconds)
-            const tutorAppearDelay = 2000;
-            const tutorTransitionDuration = 600; // Matches CSS transition for tutor-card
-            const areaFadeInDelay = 300;
-            const statusAppearDelay = tutorAppearDelay + areaFadeInDelay + tutorTransitionDuration + 100;
-            const statusHideDelay = 1500;
+<!-- MODIFIED JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Timing Constants (in milliseconds)
+        const tutorAppearDelay = 2000;       // Time before spinner hides and cards start appearing
+        const cardStaggerDelay = 150;        // Delay between each card appearing
+        const cardTransitionDuration = 600;  // Matches CSS transition for tutor-card visibility
+        const areaFadeInDelay = 300;         // Matches tutor-area transition delay
+        const statusAppearDelayOffset = 100; // Extra delay after cards *should* be fully visible
+        const statusHideDelay = 2000;        // How long the status message stays visible
 
-            // Get elements
-            const loadingSpinner = document.getElementById('loadingSpinner');
-            const tutorArea = document.getElementById('tutorArea');
-            const tutor1Card = document.getElementById('tutor1'); // Target the card div
-            const tutor2Card = document.getElementById('tutor2'); // Target the card div
-            const finalStatusBox = document.getElementById('finalStatusBox');
-            // const matchContainer = document.getElementById('matchContainer'); // Keep if needed
+        // Get elements
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const tutorArea = document.getElementById('tutorArea');
+        const finalStatusBox = document.getElementById('finalStatusBox');
+        // const matchContainer = document.getElementById('matchContainer'); // Keep if needed for future adjustments
 
-            // --- Start Sequence ---
+        // --- Function to create a Tutor Card HTML ---
+        function createTutorCardHTML(teacher) {
+            // Use a placeholder image - replace 'images/ảnh tutor 2.jpg' with your desired default
+            const placeholderImage = 'images/ảnh tutor 2.jpg';
+            const teacherName = teacher.name || 'Unnamed Teacher'; // Handle missing names
+            const teacherId = teacher.teacher_id || 'unknown';
 
-            // 1. Hide spinner and show tutors after delay
+            return `
+                <div class="tutor-card" data-teacher-id="${teacherId}">
+                    <div class="tutor-label">Teacher</div>
+                    <div class="tutor-image">
+                        <img src="${placeholderImage}" alt="${teacherName}">
+                    </div>
+                    <div class="tutor-info">
+                        <h3 class="tutor-name">${teacherName}</h3>
+                        <div class="tutor-buttons">
+                            <a href="#" class="tutor-seemore-btn">See more</a>
+                            <a href="chat.html" class="tutor-message-btn">Send message</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- Function to start the animation sequence ---
+        function startAnimationSequence(matchesFound, numberOfCards = 0) {
+            let calculatedStatusAppearDelay = tutorAppearDelay + areaFadeInDelay;
+            if (matchesFound) {
+                // Add delay based on number of cards and stagger
+                calculatedStatusAppearDelay += (numberOfCards * cardStaggerDelay) + cardTransitionDuration + statusAppearDelayOffset;
+            } else {
+                // If no matches, status can appear sooner after spinner hides
+                calculatedStatusAppearDelay += statusAppearDelayOffset;
+            }
+
+            // 1. Hide spinner
             setTimeout(() => {
-                if(loadingSpinner) {
+                if (loadingSpinner) {
                     loadingSpinner.classList.add('hidden');
                 }
-                if(tutorArea){
-                    tutorArea.classList.add('visible'); // Make area visible
-                }
-                // Trigger individual card animations
-                if(tutor1Card) tutor1Card.classList.add('visible');
-                if(tutor2Card) tutor2Card.classList.add('visible');
 
+                // If matches found, show the tutor area and cards
+                if (matchesFound && tutorArea) {
+                    tutorArea.classList.add('visible'); // Make area wrapper visible
+
+                    // Trigger individual card animations with stagger
+                    const cards = tutorArea.querySelectorAll('.tutor-card');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * cardStaggerDelay); // Stagger the appearance
+                    });
+                }
             }, tutorAppearDelay);
 
-            // 2. Show final status box (after tutors appear)
+            // 2. Show final status box
             setTimeout(() => {
-                 finalStatusBox.classList.add('visible');
+                if (finalStatusBox) {
+                    finalStatusBox.classList.add('visible');
 
-                // 3. Schedule hiding of the final status box
-                 setTimeout(() => {
-                     finalStatusBox.classList.remove('visible');
-                     finalStatusBox.classList.add('hidden');
-                 }, statusHideDelay);
-
-            }, statusAppearDelay);
-
-             // Optional: Clean up 'hidden' class for status box
-             finalStatusBox.addEventListener('transitionend', (event) => {
-                if (event.propertyName === 'opacity' && finalStatusBox.classList.contains('hidden')) {
-                    finalStatusBox.classList.remove('hidden');
+                    // 3. Schedule hiding of the final status box
+                    setTimeout(() => {
+                        finalStatusBox.classList.remove('visible');
+                        finalStatusBox.classList.add('hidden');
+                    }, statusHideDelay);
                 }
-            });
+            }, calculatedStatusAppearDelay);
 
+            // Optional: Clean up 'hidden' class for status box after transition
+            if (finalStatusBox) {
+                finalStatusBox.addEventListener('transitionend', (event) => {
+                    if (event.propertyName === 'opacity' && finalStatusBox.classList.contains('hidden')) {
+                        // finalStatusBox.classList.remove('hidden'); // Keep hidden state logical
+                    }
+                });
+            }
             // Optional: Remove spinner from DOM after it fades out
             if(loadingSpinner) {
                 loadingSpinner.addEventListener('transitionend', (event) => {
                     if (event.propertyName === 'opacity' && loadingSpinner.classList.contains('hidden')) {
-                        // loadingSpinner.remove(); // Uncomment to remove
+                        // loadingSpinner.remove(); // Uncomment to remove from DOM
                     }
                 });
             }
-        });
-    </script>
+        }
+
+        // --- Function to handle the fetched teacher data ---
+        function handleTeacherData(teachers) {
+            if (teachers && teachers.length > 0) {
+                // We found teachers
+                const teachersToShow = teachers.slice(0, 2); // Get the first two
+
+                // Set status message for success
+                finalStatusBox.textContent = `Đã tìm thấy ${teachersToShow.length} gia sư phù hợp!`;
+                finalStatusBox.classList.remove('error'); // Ensure error class is removed
+
+                // Create and append cards
+                teachersToShow.forEach(teacher => {
+                    const cardHTML = createTutorCardHTML(teacher);
+                    tutorArea.insertAdjacentHTML('beforeend', cardHTML);
+                });
+
+                // Start animation sequence indicating matches were found
+                startAnimationSequence(true, teachersToShow.length);
+
+            } else {
+                // No teachers found
+                handleNoMatch("Không tìm thấy gia sư phù hợp.");
+            }
+        }
+
+        // --- Function to handle the "no match" case ---
+        function handleNoMatch(message) {
+            if (finalStatusBox) {
+                finalStatusBox.textContent = message;
+                finalStatusBox.classList.add('error'); // Add error class for styling
+            }
+            // Start animation sequence indicating no matches
+            startAnimationSequence(false);
+        }
+
+        // --- Main Execution Logic ---
+        fetch('suitable_teacher.json') // Ensure this path is correct
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Assuming the JSON structure is an array of teachers directly
+                handleTeacherData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching or parsing suitable_teacher.json:', error);
+                // Handle fetch/parse errors by showing a generic error message
+                handleNoMatch('Lỗi khi tải dữ liệu gia sư.');
+            });
+    });
+</script>
 
 </body>
 </html>
