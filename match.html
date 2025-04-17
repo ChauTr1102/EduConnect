@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title remains from schedule page -->
-    <title>EduConnect - Matching Tutor</title> <!-- Changed title slightly for context -->
+    <title>EduConnect - Matching Tutor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        :root {
+        /* ... (KEEP ALL YOUR EXISTING CSS STYLES) ... */
+         :root {
             /* ... (keep existing variables) ... */
             --primary-color: #0d1472;
             --secondary-color: #f0f4ff;
@@ -260,11 +260,10 @@
              }
              .match-container { min-height: auto; max-width: 95%; } /* Allow shrink */
          }
-
     </style>
 </head>
 <body>
-    <!-- Header from schedule.html (No changes) -->
+    <!-- Header (No changes) -->
     <header>
         <div class="logo">
             <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
@@ -296,7 +295,7 @@
         </div>
     </header>
 
-    <!-- Main Content Area - Replaced Calendar with Matching Animation -->
+    <!-- Main Content Area -->
     <main>
         <div class="match-container" id="matchContainer">
             <div class="final-status-box" id="finalStatusBox">
@@ -308,11 +307,9 @@
                 <i class="fas fa-spinner"></i>
             </div>
 
-            <!-- Tutor Area (Holds the cards) - Will be populated by JavaScript -->
+            <!-- Tutor Area -->
             <div class="tutor-area" id="tutorArea">
-                <!-- Static cards removed - JS will add cards here -->
-
-                <!-- Tutor Card 1 - UPDATED with label -->
+                <!-- Student Card -->
                 <div class="tutor-card" id="tutor1">
                     <div class="tutor-label">Student</div>
                     <div class="tutor-image">
@@ -323,13 +320,13 @@
                         <a href="#" class="tutor-seemore-btn">See more</a>
                     </div>
                 </div>
-                <!-- End of Added Tutor Card -->
+                <!-- Teacher cards will be added here by JavaScript -->
 
             </div>
         </div>
     </main>
 
-    <!-- Footer from schedule.html (No changes) -->
+    <!-- Footer (No changes) -->
     <footer>
         <div class="footer-logo">
              <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
@@ -362,6 +359,7 @@
                 </a>
                 <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
                     <img src="images/linkedln.jpg" alt="LinkedIn">
+                </a>
                 <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
                     <img src="images/tiktok.jpg" alt="TikTok">
                 </a>
@@ -375,35 +373,37 @@
         </div>
     </footer>
 
-<!-- MODIFIED JavaScript -->
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         // Timing Constants (in milliseconds)
-        const tutorAppearDelay = 2000;       // Time before spinner hides and cards start appearing
-        const cardStaggerDelay = 150;        // Delay between each card appearing
-        const cardTransitionDuration = 600;  // Matches CSS transition for tutor-card visibility
-        const areaFadeInDelay = 300;         // Matches tutor-area transition delay
-        const statusAppearDelayOffset = 100; // Extra delay after cards *should* be fully visible
-        const statusHideDelay = 2000;        // How long the status message stays visible
+        const tutorAppearDelay = 2000;
+        const cardStaggerDelay = 150;
+        const cardTransitionDuration = 600;
+        const areaFadeInDelay = 300;
+        const statusAppearDelayOffset = 100;
+        const statusHideDelay = 2000;
+
+        // API Endpoint
+        const SAVE_TEACHER_ENDPOINT = 'http://127.0.0.1:8000/save_chosen_teacher/'; // Your FastAPI endpoint
 
         // Get elements
         const loadingSpinner = document.getElementById('loadingSpinner');
         const tutorArea = document.getElementById('tutorArea');
         const finalStatusBox = document.getElementById('finalStatusBox');
-        // const matchContainer = document.getElementById('matchContainer'); // Keep if needed for future adjustments
 
         // --- Function to create a Tutor Card HTML ---
         function createTutorCardHTML(teacher) {
-            // Use a placeholder image - replace 'images/ảnh tutor 2.jpg' with your desired default
-            const placeholderImage = 'images/ảnh tutor 2.jpg';
-            const teacherName = teacher.name || 'Unnamed Teacher'; // Handle missing names
-            const teacherId = teacher.teacher_id || 'unknown';
+            const placeholderImage = 'images/ảnh tutor 2.jpg'; // Default image if teacher.image is missing
+            const teacherName = teacher.name || 'Unnamed Teacher';
+            const teacherId = teacher.teacher_id || 'unknown_id';
+            const teacherEmail = teacher.email || ''; // Get email or default to empty string
 
+            // **MODIFIED**: Added data-teacher-id and data-teacher-email
             return `
-                <div class="tutor-card" data-teacher-id="${teacherId}">
+                <div class="tutor-card" data-teacher-id="${teacherId}" data-teacher-email="${teacherEmail}">
                     <div class="tutor-label">Teacher</div>
                     <div class="tutor-image">
-                        <img src="${placeholderImage}" alt="${teacherName}">
+                        <img src="${teacher.image || placeholderImage}" alt="${teacherName}">
                     </div>
                     <div class="tutor-info">
                         <h3 class="tutor-name">${teacherName}</h3>
@@ -416,43 +416,98 @@
             `;
         }
 
+        // --- Function to send teacher data to the API ---
+        async function sendTeacherDataToAPI(teacherData) {
+            try {
+                const response = await fetch(SAVE_TEACHER_ENDPOINT, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json' // Often helpful
+                    },
+                    body: JSON.stringify(teacherData)
+                });
+
+                if (!response.ok) {
+                    // Try to get error details from response body if possible
+                    let errorBody = 'No details available';
+                    try {
+                        errorBody = await response.text(); // or response.json() if API returns JSON error
+                    } catch (parseError) { /* Ignore parse error */ }
+                    throw new Error(`API Error: ${response.status} ${response.statusText}. Body: ${errorBody}`);
+                }
+
+                const result = await response.json(); // Assuming your API returns JSON on success
+                console.log('API Success:', result);
+                // Optional: Show a success message to the user
+                // showTemporaryStatus('Teacher data sent successfully!', false);
+                return true; // Indicate success
+
+            } catch (error) {
+                console.error('Error sending teacher data to API:', error);
+                // Optional: Show an error message to the user
+                showTemporaryStatus('Error contacting server. Please try again.', true);
+                return false; // Indicate failure
+            }
+        }
+
+        // --- Function to show a temporary status message ---
+        // (Helper for API feedback, reuses finalStatusBox)
+        function showTemporaryStatus(message, isError = false) {
+            if (!finalStatusBox) return;
+            finalStatusBox.textContent = message;
+            finalStatusBox.classList.remove('error', 'success', 'visible', 'hidden'); // Reset classes
+            if (isError) {
+                finalStatusBox.classList.add('error');
+            } else {
+                // Optional: Add a 'success' class if you want different styling
+                // finalStatusBox.classList.add('success'); // Assuming you have CSS for .success
+            }
+            finalStatusBox.classList.add('visible');
+
+            // Hide after a delay
+            setTimeout(() => {
+                finalStatusBox.classList.remove('visible');
+                finalStatusBox.classList.add('hidden');
+                // Optional: Reset text after hiding
+                // setTimeout(() => { finalStatusBox.textContent = ''; }, 400); // Delay matching transition
+            }, statusHideDelay); // Reuse existing delay or use a new one
+        }
+
+
         // --- Function to start the animation sequence ---
         function startAnimationSequence(matchesFound, numberOfCards = 0) {
             let calculatedStatusAppearDelay = tutorAppearDelay + areaFadeInDelay;
             if (matchesFound) {
-                // Add delay based on number of cards and stagger
                 calculatedStatusAppearDelay += (numberOfCards * cardStaggerDelay) + cardTransitionDuration + statusAppearDelayOffset;
             } else {
-                // If no matches, status can appear sooner after spinner hides
                 calculatedStatusAppearDelay += statusAppearDelayOffset;
             }
 
             // 1. Hide spinner
             setTimeout(() => {
-                if (loadingSpinner) {
-                    loadingSpinner.classList.add('hidden');
-                }
+                if (loadingSpinner) loadingSpinner.classList.add('hidden');
 
-                // If matches found, show the tutor area and cards
                 if (matchesFound && tutorArea) {
-                    tutorArea.classList.add('visible'); // Make area wrapper visible
-
-                    // Trigger individual card animations with stagger
+                    tutorArea.classList.add('visible');
                     const cards = tutorArea.querySelectorAll('.tutor-card');
                     cards.forEach((card, index) => {
+                        // Skip animating the static student card (if desired, or adjust logic)
+                        if (card.id === 'tutor1') return;
                         setTimeout(() => {
                             card.classList.add('visible');
-                        }, index * cardStaggerDelay); // Stagger the appearance
+                        }, (index -1) * cardStaggerDelay); // Adjust index if skipping student card
                     });
+                    // Make sure the student card is visible immediately or with the area
+                    const studentCard = document.getElementById('tutor1');
+                    if (studentCard) studentCard.classList.add('visible');
                 }
             }, tutorAppearDelay);
 
-            // 2. Show final status box
+            // 2. Show final status box (related to finding matches)
             setTimeout(() => {
                 if (finalStatusBox) {
                     finalStatusBox.classList.add('visible');
-
-                    // 3. Schedule hiding of the final status box
                     setTimeout(() => {
                         finalStatusBox.classList.remove('visible');
                         finalStatusBox.classList.add('hidden');
@@ -460,20 +515,15 @@
                 }
             }, calculatedStatusAppearDelay);
 
-            // Optional: Clean up 'hidden' class for status box after transition
+            // Optional cleanup listeners (kept from original code)
             if (finalStatusBox) {
                 finalStatusBox.addEventListener('transitionend', (event) => {
-                    if (event.propertyName === 'opacity' && finalStatusBox.classList.contains('hidden')) {
-                        // finalStatusBox.classList.remove('hidden'); // Keep hidden state logical
-                    }
+                    // ... (keep existing logic if needed)
                 });
             }
-            // Optional: Remove spinner from DOM after it fades out
             if(loadingSpinner) {
                 loadingSpinner.addEventListener('transitionend', (event) => {
-                    if (event.propertyName === 'opacity' && loadingSpinner.classList.contains('hidden')) {
-                        // loadingSpinner.remove(); // Uncomment to remove from DOM
-                    }
+                   // ... (keep existing logic if needed)
                 });
             }
         }
@@ -481,24 +531,25 @@
         // --- Function to handle the fetched teacher data ---
         function handleTeacherData(teachers) {
             if (teachers && teachers.length > 0) {
-                // We found teachers
                 const teachersToShow = teachers.slice(0, 2); // Get the first two
 
-                // Set status message for success
                 finalStatusBox.textContent = `Đã tìm thấy ${teachersToShow.length} gia sư phù hợp!`;
-                finalStatusBox.classList.remove('error'); // Ensure error class is removed
+                finalStatusBox.classList.remove('error');
 
-                // Create and append cards
+                // Clear previous teacher cards (if any, keeping the student card)
+                 const existingTeacherCards = tutorArea.querySelectorAll('.tutor-card:not(#tutor1)');
+                 existingTeacherCards.forEach(card => card.remove());
+
+
+                // Create and append new cards
                 teachersToShow.forEach(teacher => {
                     const cardHTML = createTutorCardHTML(teacher);
                     tutorArea.insertAdjacentHTML('beforeend', cardHTML);
                 });
 
-                // Start animation sequence indicating matches were found
                 startAnimationSequence(true, teachersToShow.length);
 
             } else {
-                // No teachers found
                 handleNoMatch("Không tìm thấy gia sư phù hợp.");
             }
         }
@@ -507,10 +558,64 @@
         function handleNoMatch(message) {
             if (finalStatusBox) {
                 finalStatusBox.textContent = message;
-                finalStatusBox.classList.add('error'); // Add error class for styling
+                finalStatusBox.classList.add('error');
             }
-            // Start animation sequence indicating no matches
             startAnimationSequence(false);
+        }
+
+        // --- **NEW**: Event Listener for "Send message" button clicks ---
+        if (tutorArea) {
+            tutorArea.addEventListener('click', async (event) => {
+                // Check if the clicked element is a message button or inside one
+                const messageButton = event.target.closest('.tutor-message-btn');
+
+                if (messageButton) {
+                    event.preventDefault(); // Prevent navigating to chat.html immediately
+
+                    const card = messageButton.closest('.tutor-card');
+                    if (card) {
+                        const teacherId = card.dataset.teacherId;
+                        const teacherEmail = card.dataset.teacherEmail;
+                        const teacherNameElement = card.querySelector('.tutor-name');
+                        const teacherName = teacherNameElement ? teacherNameElement.textContent : 'Unknown Name';
+
+                        // Prepare data for API
+                        const dataToSend = {
+                            teacher_id: teacherId,
+                            teacher_name: teacherName, // Changed key to match Python convention
+                            teacher_email: teacherEmail, // Changed key to match Python convention
+                            reason: "User clicked 'Send message' on matching page" // Default reason
+                        };
+
+                        console.log('Sending data to API:', dataToSend);
+
+                        // Disable button temporarily to prevent multiple clicks
+                        messageButton.style.pointerEvents = 'none';
+                        messageButton.style.opacity = '0.7';
+
+                        // Call the API function
+                        const success = await sendTeacherDataToAPI(dataToSend);
+
+                        // Re-enable button after API call finishes
+                        messageButton.style.pointerEvents = 'auto';
+                        messageButton.style.opacity = '1';
+
+                        // If API call was successful, navigate to chat page
+                        if (success) {
+                             console.log("API call successful, navigating to chat...");
+                             // Optionally add a small delay before navigation if needed
+                             // setTimeout(() => {
+                                  window.location.href = messageButton.href; // Navigate to chat.html
+                             // }, 300);
+                        } else {
+                            console.log("API call failed, staying on page.");
+                            // Error message is shown by showTemporaryStatus inside sendTeacherDataToAPI
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error("Could not find tutorArea element to attach listener.");
         }
 
         // --- Main Execution Logic ---
@@ -522,16 +627,13 @@
                 return response.json();
             })
             .then(data => {
-                // Assuming the JSON structure is an array of teachers directly
                 handleTeacherData(data);
             })
             .catch(error => {
                 console.error('Error fetching or parsing suitable_teacher.json:', error);
-                // Handle fetch/parse errors by showing a generic error message
                 handleNoMatch('Lỗi khi tải dữ liệu gia sư.');
             });
     });
 </script>
-
 </body>
 </html>
