@@ -146,6 +146,8 @@
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             padding: 20px;
+            height: calc(100vh - 120px); /* Match chat container height */
+            overflow-y: auto; /* Add scroll if content overflows */
         }
 
         .ai-title {
@@ -231,7 +233,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            height: calc(100vh - 120px);
+            height: calc(100vh - 120px); /* Adjusted height */
         }
 
         .chat-header {
@@ -274,6 +276,7 @@
             border-radius: 50%;
             margin-right: 15px;
             overflow: hidden;
+            flex-shrink: 0; /* Prevent avatar from shrinking */
         }
 
         .message-avatar img {
@@ -288,6 +291,7 @@
             padding: 15px;
             border-radius: 10px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            word-wrap: break-word; /* Ensure long words wrap */
         }
 
         .message.user .message-content {
@@ -298,6 +302,7 @@
             font-size: 0.8rem;
             color: #888;
             margin-top: 5px;
+            text-align: right;
         }
 
         .chat-input-container {
@@ -310,22 +315,25 @@
             align-items: center;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 10px 15px;
+            padding: 5px 15px; /* Adjusted padding */
         }
 
         .chat-input {
             flex: 1;
             border: none;
             outline: none;
-            padding: 5px 0;
+            padding: 10px 0; /* Adjusted padding */
             resize: none;
             font-size: 0.95rem;
+            max-height: 100px; /* Limit growth */
+            overflow-y: auto; /* Add scroll if needed */
         }
 
         .chat-actions {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-left: 10px; /* Add space between textarea and actions */
         }
 
         .chat-action {
@@ -345,6 +353,7 @@
             justify-content: center;
             cursor: pointer;
             transition: background 0.3s;
+            flex-shrink: 0; /* Prevent button from shrinking */
         }
 
         .send-button:hover {
@@ -358,11 +367,14 @@
             padding: 2rem 5rem;
             display: flex;
             justify-content: space-between;
-            margin-top: 2rem;
+            margin-top: 2rem; /* Keep margin */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            gap: 20px; /* Add gap between footer items */
         }
 
         .footer-logo {
             width: 20%;
+            min-width: 150px; /* Ensure logo area doesn't get too small */
         }
 
         .footer-logo img {
@@ -379,6 +391,7 @@
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            min-width: 150px;
         }
 
         .footer-links a {
@@ -392,37 +405,41 @@
             color: white;
         }
 
+        .footer-socials {
+            min-width: 150px;
+        }
+
         .footer-socials h3 {
             font-size: 1rem;
             margin-bottom: 1rem;
-            color: white; 
+            color: white;
         }
 
         /* Container for the list of icons */
         .social-icons-list {
-            display: flex;      
-            flex-wrap: wrap;     
-            gap: 12px;          
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         /* Styling for each icon's link container */
         .social-icon-item {
-            display: inline-block; 
-            width: 30px;           
-            height: 30px;         
-            line-height: 0;        
-            transition: transform 0.2s ease; 
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            line-height: 0;
+            transition: transform 0.2s ease;
         }
 
         .social-icon-item:hover {
-            transform: scale(1.1); 
+            transform: scale(1.1);
         }
 
         .social-icon-item img {
-            width: 100%;           
-            height: 100%;          
-            object-fit: contain;   
-            display: block;       
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
         }
 
         /* Loading spinner styles */
@@ -430,21 +447,22 @@
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            /* Keep avatar alignment */
+            padding-left: 51px; /* 36px avatar width + 15px margin */
         }
 
         .spinner-container {
             display: flex;
             align-items: center;
             background-color: white;
-            padding: 15px;
+            padding: 10px 15px; /* Adjusted padding */
             border-radius: 10px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-left: 51px; /* 36px avatar width + 15px margin */
         }
 
         .spinner {
-            width: 24px;
-            height: 24px;
+            width: 20px; /* Slightly smaller spinner */
+            height: 20px;
             border: 3px solid #f3f3f3;
             border-top: 3px solid #4361ee;
             border-radius: 50%;
@@ -464,6 +482,7 @@
     </style>
 </head>
 <body>
+    <!-- Header remains the same -->
     <header>
         <div class="logo">
             <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
@@ -476,7 +495,7 @@
                 <li><a href="support.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
                 <li><a href="educonnectGPT.html" class="active">EduconnectGPT</a></li>
                 <li><a href="chat.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
-                <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Schedule</a></li> 
+                <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Schedule</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -495,32 +514,32 @@
         </div>
     </header>
 
+    <!-- AI Interface remains the same -->
     <div class="ai-interface">
         <div class="sidebar">
             <div class="ai-title">
                 <span>EduconnectGPT</span>
             </div>
-            
+
             <div class="model-selector">
-                <span>Gemini 2.0 Flash</span>
+                <span>EduConnect Chatbot</span> <!-- Updated model name -->
                 <span>▼</span>
             </div>
 
             <div class="agent-list">
-                <!-- Modified agent items with navigation functionality -->
                 <div class="agent-item selected" id="main-agent">
-                    <div class="agent-icon">🔢</div>
+                    <div class="agent-icon">🔢</div> <!-- Changed icon -->
                     <div class="agent-name">EduconnectGPT</div>
                 </div>
-                <a href="quiz.html" style="text-decoration: none; color: inherit;">
+                 <a href="quiz.html" style="text-decoration: none; color: inherit;">
                     <div class="agent-item" id="quiz-agent">
-                        <div class="agent-icon">🇬🇧</div>
+                        <div class="agent-icon">📝</div>
                         <div class="agent-name">Quiz Generation</div>
                     </div>
                 </a>
                 <a href="summarization.html" style="text-decoration: none; color: inherit;">
                     <div class="agent-item" id="summarization-agent">
-                        <div class="agent-icon">💻</div>
+                        <div class="agent-icon">📄</div>
                         <div class="agent-name">Lecture Summarization</div>
                     </div>
                 </a>
@@ -530,39 +549,26 @@
                 </div>
             </div>
 
-            <div class="section-title">Today</div>
+             <div class="section-title">Today</div>
             <div class="history-list">
-                <div class="agent-item">
-                    <div class="agent-name">K-Means Clustering Visualization</div>
-                </div>
-                <div class="agent-item">
-                    <div class="agent-name">Ôn tập Python PyTorch</div>
-                </div>
-                <div class="agent-item">
-                    <div class="agent-name">Tổng Thống Mỹ Được Yêu Thích</div>
-                </div>
-                <div class="agent-item">
-                    <div class="agent-name">Lỗi kết nối SQL Server</div>
-                </div>
+                 <!-- History items can be dynamically added or loaded -->
+                <div class="agent-item"><div class="agent-name">K-Means Clustering Visualization</div></div>
+                <div class="agent-item"><div class="agent-name">Ôn tập Python PyTorch</div></div>
+                <div class="agent-item"><div class="agent-name">Tổng Thống Mỹ Được Yêu Thích</div></div>
+                <div class="agent-item"><div class="agent-name">Lỗi kết nối SQL Server</div></div>
             </div>
 
-            <div class="section-title">Previous 7 Days</div>
-            <div class="history-list">
-                <div class="agent-item">
-                    <div class="agent-name">Mobile app prototypes library</div>
-                </div>
-                <div class="agent-item">
-                    <div class="agent-name">ROM Types and uses</div>
-                </div>
-                <div class="agent-item">
-                    <div class="agent-name">Fix SSL/TLS Error</div>
-                </div>
+             <div class="section-title">Previous 7 Days</div>
+             <div class="history-list">
+                <div class="agent-item"><div class="agent-name">Mobile app prototypes library</div></div>
+                <div class="agent-item"><div class="agent-name">ROM Types and uses</div></div>
+                <div class="agent-item"><div class="agent-name">Fix SSL/TLS Error</div></div>
             </div>
         </div>
 
         <div class="chat-container">
             <div class="chat-header">
-                <div>Gemini 2.0 Flash</div>
+                <div>EduConnect Chatbot</div> <!-- Updated header title -->
                 <div class="theme-toggle">
                     <div class="theme-icon">☀️</div>
                     <div class="theme-icon">🌙</div>
@@ -587,6 +593,7 @@
         </div>
     </div>
 
+    <!-- Footer remains the same -->
     <footer>
         <div class="footer-logo">
             <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
@@ -606,54 +613,62 @@
             <a href="#">FAQ</a>
             <a href="#">Terms and Condition</a>
         </div>
-        <div class="footer-socials"> 
-            <h3>Follow Us</h3> 
-            <div class="social-icons-list"> 
+        <div class="footer-socials">
+            <h3>Follow Us</h3>
+            <div class="social-icons-list">
                 <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
-                    <img src="images/Youtube.jpg" alt="YouTube"> 
+                    <img src="images/Youtube.jpg" alt="YouTube">
                 </a>
                 <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
-                    <img src="images/facebook.jpg" alt="Facebook"> 
+                    <img src="images/facebook.jpg" alt="Facebook">
                 </a>
                 <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
-                    <img src="images/linkedln.jpg" alt="LinkedIn"> 
+                    <img src="images/linkedln.jpg" alt="LinkedIn">
                 </a>
                 <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
                     <img src="images/tiktok.jpg" alt="TikTok">
                 </a>
                 <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
-                    <img src="images/insta.jpg" alt="Instagram"> 
+                    <img src="images/insta.jpg" alt="Instagram">
                 </a>
                 <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
-                    <img src="images/discord.jpg" alt="Discord"> 
+                    <img src="images/discord.jpg" alt="Discord">
                 </a>
             </div>
         </div>
     </footer>
 
     <script>
-        // Function to clear all existing messages
+        const chatMessages = document.querySelector('.chat-messages');
+        const textarea = document.querySelector('.chat-input');
+        const sendButton = document.querySelector('.send-button');
+        const apiEndpoint = 'http://127.0.0.1:2000/edu_chatbot'; // Your FastAPI endpoint
+
+        // --- Helper Functions ---
+
         function clearMessages() {
-            const chatMessages = document.querySelector('.chat-messages');
             chatMessages.innerHTML = '';
         }
 
-        // Function to show the loading/typing indicator
         function showTypingIndicator() {
-            const chatMessages = document.querySelector('.chat-messages');
-            const typingHTML = `
-                <div class="typing-indicator" id="typing-indicator">
-                    <div class="spinner-container">
-                        <div class="spinner"></div>
-                        <div class="typing-text">Gemini is typing...</div>
+            // Only add indicator if it doesn't exist
+            if (!document.getElementById('typing-indicator')) {
+                const typingHTML = `
+                    <div class="typing-indicator" id="typing-indicator">
+                         <div class="message-avatar"> <!-- Add avatar placeholder for alignment -->
+                            <img src="images/Educonnect_logo.png" alt="AI Avatar">
+                         </div>
+                        <div class="spinner-container">
+                            <div class="spinner"></div>
+                            <div class="typing-text">EduconnectGPT is typing...</div>
+                        </div>
                     </div>
-                </div>
-            `;
-            chatMessages.innerHTML += typingHTML;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+                `;
+                chatMessages.insertAdjacentHTML('beforeend', typingHTML);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
         }
 
-        // Function to remove the typing indicator
         function hideTypingIndicator() {
             const typingIndicator = document.getElementById('typing-indicator');
             if (typingIndicator) {
@@ -661,139 +676,134 @@
             }
         }
 
-        // Function to add an AI message to the chat
-        function addAIMessage(text) {
-            hideTypingIndicator();
-            
-            const chatMessages = document.querySelector('.chat-messages');
-            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
+        function addMessage(text, sender) {
+            const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            const avatarSrc = sender === 'ai' ? 'images/Educonnect_logo.png' : 'images/user_avatar.png'; // Use a placeholder or actual user avatar
+            const avatarAlt = sender === 'ai' ? 'AI Avatar' : 'User Avatar';
+            const messageClass = sender === 'ai' ? 'ai' : 'user';
+
+            // Sanitize text to prevent basic XSS - more robust sanitization might be needed
+            const sanitizedText = text.replace(/</g, "<").replace(/>/g, ">");
+
             const messageHTML = `
-                <div class="message ai">
+                <div class="message ${messageClass}">
                     <div class="message-avatar">
-                        <img src="images/Educonnect_logo.png" alt="AI Avatar">
+                        <img src="${avatarSrc}" alt="${avatarAlt}">
                     </div>
                     <div class="message-content">
-                        <p>${text}</p>
+                        <p>${sanitizedText}</p> <!-- Use sanitized text -->
                         <div class="message-time">${currentTime}</div>
                     </div>
                 </div>
             `;
-            
-            chatMessages.innerHTML += messageHTML;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            chatMessages.insertAdjacentHTML('beforeend', messageHTML);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
         }
 
-        // Function to add a user message to the chat
-        function addUserMessage(text) {
-            const chatMessages = document.querySelector('.chat-messages');
-            const currentTime = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            
-            const messageHTML = `
-                <div class="message user">
-                    <div class="message-avatar">
-                        <img src="/api/placeholder/36/36" alt="User Avatar">
-                    </div>
-                    <div class="message-content">
-                        <p>${text}</p>
-                        <div class="message-time">${currentTime}</div>
-                    </div>
-                </div>
-            `;
-            
-            chatMessages.innerHTML += messageHTML;
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
+        // --- Main Chat Logic ---
 
-        // Function to get Gemini's response based on user input
-        function getGeminiResponse(userInput) {
-            // Convert to lowercase for case-insensitive matching
-            const input = userInput.toLowerCase().trim();
-            
-            if (input === "xin chào") {
-                return "Xin chào tôi là trợ lý của educonnect, tôi có thể giúp gì cho bạn";
-            } 
-            else if (input === "hãy viết 1 bài văn ngắn tả con bò") {
-                return "Con bò là một sinh vật mộc mạc nhưng không kém phần duyên dáng. Lông của nó dày, mềm mại và ánh lên chút bóng mượt dưới ánh nắng. Đôi mắt to tròn, ánh lên vẻ hiền hậu và thông minh. Bộ thân mạnh mẽ, cánh chân vững chắc giúp nó dễ dàng di chuyển trên những cánh đồng rộng lớn. Âm thanh \"moo\" nhẹ nhàng của bò mang theo hơi thở của thiên nhiên, làm cho không gian trở nên yên bình và mộc mạc hơn.";
+        async function sendMessage() {
+            const userInput = textarea.value.trim();
+            if (userInput === '') {
+                return; // Don't send empty messages
             }
-            else if (input === "cảm ơn") {
-                return "Không có gì đâu, tôi rất vui vì đã giúp ích được cho bạn";
-            }
-            else {
-                // Default response for other inputs
-                return "Xin lỗi, tôi không hiểu yêu cầu của bạn. Bạn có thể giải thích rõ hơn được không?";
-            }
-        }
 
-        // Function to determine if a message is "long" (for delay timing)
-        function isLongMessage(text) {
-            return text.length > 100; // Define "long" as more than 100 characters
-        }
+            // Add user message to UI immediately
+            addMessage(userInput, 'user');
+            textarea.value = ''; // Clear input
+            textarea.style.height = 'auto'; // Reset height
 
-        // Setup the send button and textarea for sending messages
-        document.addEventListener('DOMContentLoaded', function() {
-            // Clear existing messages and add welcome message
-            clearMessages();
-            addAIMessage("Hello! I'm Gemini 2.0 Flash, your educational AI assistant. How can I help you today with your studies or research?");
-            
-            // Initialize agent switching functionality
-            const mainAgent = document.getElementById('main-agent');
-            if (mainAgent) {
-                mainAgent.addEventListener('click', function() {
-                    // Reset agent selection on current page
-                    const agentItems = document.querySelectorAll('.agent-item');
-                    agentItems.forEach(i => i.classList.remove('selected'));
-                    this.classList.add('selected');
+            // Show typing indicator while waiting for API response
+            showTypingIndicator();
+
+            try {
+                // --- Call the FastAPI endpoint ---
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json' // Optional but good practice
+                    },
+                    // IMPORTANT: Adjust the body structure if your FastAPI expects something different
+                    body: JSON.stringify({ message: userInput })
                 });
-            }
-            
-            const textarea = document.querySelector('.chat-input');
-            const sendButton = document.querySelector('.send-button');
-            
-            // Function to handle sending message
-            function sendMessage() {
-                const userInput = textarea.value.trim();
-                if (userInput !== '') {
-                    // Add user message
-                    addUserMessage(userInput);
-                    
-                    // Show typing indicator
-                    showTypingIndicator();
-                    
-                    // Get response text
-                    const responseText = getGeminiResponse(userInput);
-                    
-                    // Determine delay based on message length
-                    const delay = isLongMessage(responseText) ? 4000 : 2000; // 4 seconds for long messages, 2 for short
-                    
-                    // Show AI response after the appropriate delay
-                    setTimeout(() => {
-                        addAIMessage(responseText);
-                    }, delay);
-                    
-                    // Clear input field and reset height
-                    textarea.value = '';
-                    textarea.style.height = 'auto';
+
+                hideTypingIndicator(); // Hide indicator once response starts processing
+
+                if (!response.ok) {
+                    // Handle HTTP errors (like 404, 500)
+                    const errorText = await response.text(); // Try to get error details
+                    console.error('API Error:', response.status, errorText);
+                    addMessage(`Sorry, something went wrong (Error ${response.status}). Please try again.`, 'ai');
+                    return;
                 }
+
+                const data = await response.json();
+
+                // IMPORTANT: Adjust 'data.response' if your FastAPI returns the answer under a different key
+                const aiResponse = data.response || "Sorry, I couldn't get a proper response.";
+
+                addMessage(aiResponse, 'ai');
+
+            } catch (error) {
+                hideTypingIndicator(); // Hide indicator on network or other errors
+                console.error('Fetch Error:', error);
+                addMessage("Sorry, I couldn't connect to the chatbot. Please check your connection or the server.", 'ai');
             }
-            
-            // Send message when Send button is clicked
+        }
+
+
+        // --- Event Listeners ---
+
+        document.addEventListener('DOMContentLoaded', function() {
+            clearMessages();
+            // Add initial welcome message
+            addMessage("Hello! I'm Gemini 2.0 Flash, your educational AI assistant. How can I help you today with your studies or research?", 'ai');
+
+            // Send message on button click
             sendButton.addEventListener('click', sendMessage);
-            
-            // Send message when Enter key is pressed (without Shift)
+
+            // Send message on Enter key press (without Shift)
             textarea.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault(); // Prevent default Enter behavior
+                    e.preventDefault(); // Prevent adding a new line
                     sendMessage();
                 }
             });
-            
-            // Auto-resize textarea as user types
+
+            // Auto-resize textarea
             textarea.addEventListener('input', function() {
-                this.style.height = 'auto';
-                this.style.height = (this.scrollHeight) + 'px';
+                this.style.height = 'auto'; // Reset height
+                // Set height based on scroll height, but limit max height
+                const maxHeight = 100; // Example max height in pixels
+                this.style.height = Math.min(this.scrollHeight, maxHeight) + 'px';
             });
+
+            // Optional: Add agent switching logic if needed (currently just styles the main agent)
+            const mainAgent = document.getElementById('main-agent');
+            if (mainAgent) {
+                mainAgent.addEventListener('click', function() {
+                    const agentItems = document.querySelectorAll('.agent-item');
+                    agentItems.forEach(i => i.classList.remove('selected'));
+                    this.classList.add('selected');
+                    // You might want to clear chat or add a message indicating the agent context
+                    // clearMessages();
+                    // addMessage("Switched to EduconnectGPT main agent.", "ai");
+                });
+            }
+             // Add similar listeners for quiz-agent and summarization-agent if they should clear chat
+             // or perform other actions when clicked *before* navigating away.
+             // Example for quiz agent link (though navigation might happen immediately):
+            // const quizAgentLink = document.querySelector('a[href="quiz.html"]');
+            // if (quizAgentLink) {
+            //     quizAgentLink.addEventListener('click', function(e) {
+            //         // Optional: Perform actions before navigating
+            //         console.log("Navigating to Quiz Generation...");
+            //     });
+            // }
         });
+
     </script>
 </body>
 </html>
