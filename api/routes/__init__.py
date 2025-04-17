@@ -30,9 +30,16 @@ def extract_clean_json(response_text: str):
         print("Failed to parse JSON:", e)
         return None
 
+
 class StudentRequest(BaseModel):
     student_request: str
+
 
 class user_and_pass(BaseModel):
     user_name: str
     password: str
+
+
+class Message(BaseModel):
+    message: str
+

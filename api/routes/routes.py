@@ -20,3 +20,12 @@ async def recommender(student_request: StudentRequest):
     result = extract_clean_json(response)
     return result
 
+
+@router.post("/chat_get-answer/")
+async def send_message(message: Message):
+    recommender = RecommenderSystem(gemini_apikey=os.getenv("GEMINI_API_KEY"))
+    response = await recommender.send_message_gemini(message.message)
+    return response
+
+
+
