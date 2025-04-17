@@ -41,10 +41,16 @@ async def send_message(message: Message):
     return response
 
 
+@router.post("/save_chosen_teacher")
+async def save_chosen_teacher(teacher: Teacher):
+    with open("chosen_teacher.json", "w", encoding="utf-8") as f:
+        json.dump(teacher.dict(), f, indent=4, ensure_ascii=False)
+
+
 @router.post("/chat_with_teacher/")
 async def send_message_with_teacher(message: MessageWithTeacher):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
-    teacher_profile = [sửa lấy teacher profile ở đây]
+    teacher_profile = None #[sửa lấy teacher profile ở đây]
     chat_prompt = chatbot.prompt_chat_with_teacher(teacher_profile, message.student_question)
     response = await chatbot.send_message_gemini(chat_prompt)
 

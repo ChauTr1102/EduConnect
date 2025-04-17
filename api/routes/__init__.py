@@ -50,3 +50,12 @@ class MessageWithTeacher(BaseModel):
     teacher_profile: str
     student_question: str
 
+
+class Teacher(BaseModel):
+    teacher_id: str
+    name: str
+    email: str
+    reason: str
+
+
+
