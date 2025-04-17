@@ -645,10 +645,10 @@
         const sendButton = document.querySelector('.send-button');
 
         // --- API Configuration ---
-        // IMPORTANT: Use the correct endpoint for your FastAPI chat function
+        // Use the correct endpoint for your FastAPI chat function
         const apiEndpoint = 'http://127.0.0.1:2000/chat_get-answer/';
 
-        // --- Helper Functions ---
+        // --- Helper Functions (Keep these as they were) ---
 
         /**
          * Removes all messages from the chat window.
@@ -661,11 +661,10 @@
          * Displays a typing indicator with a spinner in the chat window.
          */
         function showTypingIndicator() {
-            // Avoid adding multiple indicators
             if (!document.getElementById('typing-indicator')) {
                 const typingHTML = `
                     <div class="typing-indicator" id="typing-indicator">
-                         <div class="message-avatar"> <!-- Placeholder for alignment -->
+                         <div class="message-avatar">
                             <img src="images/Educonnect_logo.png" alt="AI Avatar">
                          </div>
                         <div class="spinner-container">
@@ -675,7 +674,6 @@
                     </div>
                 `;
                 chatMessages.insertAdjacentHTML('beforeend', typingHTML);
-                // Scroll to show the indicator
                 chatMessages.scrollTop = chatMessages.scrollHeight;
             }
         }
@@ -697,15 +695,11 @@
          */
         function addMessage(text, sender) {
             const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            const avatarSrc = sender === 'ai' ? 'images/Educonnect_logo.png' : 'images/user_avatar.png'; // Assuming a default user avatar
+            const avatarSrc = sender === 'ai' ? 'images/Educonnect_logo.png' : 'images/user_avatar.png';
             const avatarAlt = sender === 'ai' ? 'AI Avatar' : 'User Avatar';
-            const messageClass = sender === 'ai' ? 'ai' : (sender === 'user' ? 'user' : 'system'); // Add 'system' class if needed
+            const messageClass = sender === 'ai' ? 'ai' : (sender === 'user' ? 'user' : 'system');
 
-            // 1. Basic Sanitization (Prevent basic XSS)
-            // Consider using a dedicated library like DOMPurify for robust sanitization if needed.
             const sanitizedText = text.replace(/</g, "<").replace(/>/g, ">");
-
-            // 2. Format Newlines for HTML display
             const formattedText = sanitizedText.replace(/\n/g, '<br>');
 
             const messageHTML = `
@@ -714,34 +708,31 @@
                         <img src="${avatarSrc}" alt="${avatarAlt}">
                     </div>
                     <div class="message-content">
-                        <div>${formattedText}</div> <!-- Use innerHTML for <br> tags -->
+                        <div>${formattedText}</div>
                         <div class="message-time">${currentTime}</div>
                     </div>
                 </div>
             `;
 
             chatMessages.insertAdjacentHTML('beforeend', messageHTML);
-            // Scroll to the bottom to show the new message
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // --- Main Chat Logic ---
+        // --- Main Chat Logic (MODIFIED FOR STRING RESPONSE) ---
 
         /**
-         * Sends the user's message to the backend API and displays the response.
+         * Sends the user's message to the backend API and displays the plain text response.
          */
         async function sendMessage() {
             const userInput = textarea.value.trim();
             if (userInput === '') {
-                return; // Don't send empty messages
+                return;
             }
 
-            // Add user message to UI immediately
             addMessage(userInput, 'user');
-            textarea.value = ''; // Clear input field
-            textarea.style.height = 'auto'; // Reset textarea height
+            textarea.value = '';
+            textarea.style.height = 'auto';
 
-            // Show typing indicator while waiting
             showTypingIndicator();
 
             try {
@@ -749,64 +740,53 @@
                 const response = await fetch(apiEndpoint, {
                     method: 'POST',
                     headers: {
+                        // Still send JSON, as FastAPI's Pydantic model expects it
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json' // Indicate we expect JSON back
+                        // Accept header might be less critical if backend only sends text
+                        'Accept': 'text/plain, */*' // Indicate preference for text, but accept anything
                     },
-                    // Send the message in the format expected by the Pydantic model: { "message": "..." }
                     body: JSON.stringify({ message: userInput })
                 });
 
-                // Hide typing indicator once we start processing the response or encounter an error
-                hideTypingIndicator();
+                hideTypingIndicator(); // Hide indicator after getting response status
 
                 if (!response.ok) {
-                    // Handle HTTP errors (e.g., 404, 500, 422 Validation Error)
+                    // Handle HTTP errors - Read the error body as text
                     let errorDetail = `HTTP error! Status: ${response.status}`;
                     try {
-                        // Try to get more specific error detail from response body if available (FastAPI often provides JSON errors)
-                        const errorData = await response.json();
-                        if (errorData && errorData.detail) {
-                            // Handle FastAPI's validation error structure or other detail formats
-                           if (Array.isArray(errorData.detail)) {
-                                errorDetail = `Error: ${errorData.detail.map(e => `${e.loc.join('.')} - ${e.msg}`).join(', ')}`;
-                            } else {
-                                errorDetail = `Error: ${errorData.detail}`;
-                            }
+                        // Attempt to read error message as text
+                        const errorText = await response.text();
+                        if (errorText) {
+                            errorDetail = `Error: ${errorText}`;
                         } else {
-                           errorDetail = await response.text(); // Fallback to plain text error
+                             errorDetail = response.statusText || errorDetail; // Fallback
                         }
                     } catch (e) {
-                        // If parsing error response fails, use the status text
+                        console.error("Could not read error response body:", e);
                         errorDetail = response.statusText || errorDetail;
-                        console.error("Could not parse error response body:", e);
                     }
                     console.error('API Error:', response.status, errorDetail);
-                    addMessage(`Sorry, there was an issue communicating with the chatbot. ${errorDetail}`, 'ai'); // Display error to user
+                    addMessage(`Sorry, there was an issue communicating with the chatbot. ${errorDetail}`, 'ai');
                     return;
                 }
 
-                // --- Process the successful JSON response ---
-                const data = await response.json();
+                // --- Process the successful response AS TEXT ---
+                // IMPORTANT: Use response.text() because the API returns a plain string
+                const aiResponseText = await response.text();
 
-                // IMPORTANT: Expecting the API to return { "response": "AI text..." }
-                if (data && typeof data.response === 'string') {
-                    const aiResponse = data.response;
-                    addMessage(aiResponse, 'ai'); // Add the actual AI response
-                } else if (data && data.error) {
-                    // Handle structured errors returned from the backend (e.g., API key missing)
-                    console.error('API returned an error:', data.error);
-                    addMessage(`Sorry, the chatbot encountered an issue: ${data.error}`, 'ai');
-                }
-                 else {
-                    // Handle cases where the 'response' key is missing or not a string
-                    console.error('API Response missing or invalid "response" key:', data);
-                    addMessage("Sorry, I received an unexpected response format from the chatbot.", 'ai');
+                if (aiResponseText) {
+                     // Directly use the text response
+                    addMessage(aiResponseText, 'ai');
+                } else {
+                    // Handle cases where the API returned an empty string successfully (might be valid or an issue)
+                    console.warn('API returned an empty string.');
+                    // Optionally add a message, or do nothing if empty is acceptable
+                    // addMessage("Received an empty response from the chatbot.", 'ai');
                 }
 
             } catch (error) {
-                hideTypingIndicator(); // Ensure indicator is hidden on any error
+                hideTypingIndicator(); // Ensure indicator is hidden on network/fetch error
                 console.error('Fetch Error:', error);
-                // Distinguish network errors from other potential issues
                 let errorMessage = "An unexpected error occurred while trying to send your message. Please try again.";
                 if (error instanceof TypeError && error.message.includes('fetch')) {
                    errorMessage = "Sorry, I couldn't connect to the chatbot service. Please ensure it's running and reachable.";
@@ -816,63 +796,41 @@
         }
 
 
-        // --- Event Listeners Setup ---
+        // --- Event Listeners Setup (Keep these as they were) ---
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Clear any previous messages on load (optional)
             clearMessages();
-
-            // Add an initial welcome message from the AI
             addMessage("Hello! I'm EduconnectGPT, powered by Gemini. How can I assist you with your educational queries today?", 'ai');
 
-            // Send message when the send button is clicked
             sendButton.addEventListener('click', sendMessage);
 
-            // Send message when Enter is pressed in the textarea (but not Shift+Enter)
             textarea.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault(); // Prevent adding a newline character
+                    e.preventDefault();
                     sendMessage();
                 }
             });
 
-            // Auto-resize textarea based on content, up to a max height
             textarea.addEventListener('input', function() {
-                this.style.height = 'auto'; // Reset height to calculate scrollHeight correctly
-                const maxHeight = 100; // Define a maximum height in pixels
-                // Set height based on content, but cap it at maxHeight
+                this.style.height = 'auto';
+                const maxHeight = 100;
                 this.style.height = Math.min(this.scrollHeight, maxHeight) + 'px';
             });
 
-            // --- Agent Switching Logic (Visual Only) ---
-            // Add click listeners to agent items to visually update the selection
+            // Agent Switching Logic (Visual Only)
             const agentItems = document.querySelectorAll('.sidebar .agent-item');
             agentItems.forEach(item => {
                 item.addEventListener('click', function(event) {
-                     // Only handle clicks on items that are *not* links meant to navigate away
-                     // or handle links differently if needed (e.g., prevent default and do something first)
                      if (item.closest('a')) {
-                         // If it's a link, let the browser handle navigation
-                         // You could add logic here *before* navigation if needed
                          console.log(`Navigating via link for: ${item.querySelector('.agent-name').textContent}`);
-                         return;
+                         return; // Let the browser handle navigation for links
                      }
-
-                    // Remove 'selected' class from all items
                     agentItems.forEach(i => i.classList.remove('selected'));
-                    // Add 'selected' class to the clicked item
                     this.classList.add('selected');
-
-                    // Optional: Clear chat or add a message when switching context
-                    // if (this.id === 'main-agent') {
-                    //     clearMessages();
-                    //     addMessage("Switched to EduconnectGPT. How can I help?", 'ai');
-                    // }
-                     // Add similar logic for other non-link agents if necessary
                 });
             });
 
-            // Ensure the default agent is marked as selected on load
+            // Ensure default selection
             const defaultSelectedAgent = document.querySelector('.agent-item.selected');
             if (!defaultSelectedAgent) {
                  const mainAgent = document.getElementById('main-agent');
