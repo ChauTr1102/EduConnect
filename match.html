@@ -576,7 +576,7 @@
                     if (card) {
                         const teacherId = card.dataset.teacherId;
                         const teacherEmail = card.dataset.teacherEmail;
-                        const teacherReason = card.dataset.teacherReason; 
+                        const teacherReason = card.dataset.teacherReason; // <-- ADDED: Retrieve reason
                         const teacherNameElement = card.querySelector('.tutor-name');
                         const teacherName = teacherNameElement ? teacherNameElement.textContent : 'Unknown Name';
 
@@ -585,10 +585,10 @@
                             teacher_id: teacherId,
                             name: teacherName, // Changed key to match Python convention
                             email: teacherEmail, // Changed key to match Python convention
-                            reason: teacherReason
+                            reason: teacherReason // <-- ADDED: Include reason in the payload
                         };
 
-                        console.log('Sending data to API:', dataToSend);
+                        console.log('Sending data to API:', dataToSend); // Now includes reason
 
                         // Disable button temporarily to prevent multiple clicks
                         messageButton.style.pointerEvents = 'none';
