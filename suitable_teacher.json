@@ -1,0 +1,14 @@
+[
+    {
+        "teacher_id": "tea_003",
+        "name": "Lê Duy",
+        "email": "duy@gmail.com",
+        "reason": "Lê Duy is a good fit because they specialize in Chemistry, have a Master's degree in the subject, and use mind maps and videos for explanation, which aligns with the student's request for visual aids. They also focus on explaining the essence of chemical reactions."
+    },
+    {
+        "teacher_id": "tea_008",
+        "name": "Đặng Thương",
+        "email": "thuong@gmail.com",
+        "reason": "Đặng Thương is a suitable teacher because they focus on making chemistry fun and easy to understand, which aligns with the student's need for an engaging and enjoyable learning experience. They also emphasize quick memorization tricks and use mini-quizzes for review."
+    }
+]
