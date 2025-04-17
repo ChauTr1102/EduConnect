@@ -3,6 +3,8 @@ from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 from api.database.database import SQLDatabase
 from api.services.recommender_system import RecommenderSystem
+from api.services.chatbot import ChatBot
+
 import pandas as pd
 import os
 import shutil
@@ -42,4 +44,9 @@ class user_and_pass(BaseModel):
 
 class Message(BaseModel):
     message: str
+
+
+class MessageWithTeacher(BaseModel):
+    teacher_profile: str
+    student_question: str
 

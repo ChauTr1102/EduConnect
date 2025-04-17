@@ -1,3 +1,5 @@
+import os
+
 from api.routes import *
 
 
@@ -29,7 +31,6 @@ async def recommender(student_request: StudentRequest):
     with open("suitable_teacher.json", "w", encoding="utf-8") as f:
         json.dump(parsed_result, f, indent=4, ensure_ascii=False)
 
-
     return result
 
 
@@ -38,6 +39,14 @@ async def send_message(message: Message):
     recommender = RecommenderSystem(gemini_apikey=os.getenv("GEMINI_API_KEY"))
     response = await recommender.send_message_gemini(message.message)
     return response
+
+
+@router.post("/chat_with_teacher/")
+async def send_message_with_teacher(message: MessageWithTeacher):
+    chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
+    teacher_profile = [sửa lấy teacher profile ở đây]
+    chat_prompt = chatbot.prompt_chat_with_teacher(teacher_profile, message.student_question)
+    response = await chatbot.send_message_gemini(chat_prompt)
 
 
 
