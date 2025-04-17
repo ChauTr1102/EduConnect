@@ -164,7 +164,7 @@
             width: 100%;
             display: flex;
             align-items: center;
-            padding: 10px 15px;
+            padding: 12px 20px; /* Increased padding */
             border: 1px solid #ddd;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -173,12 +173,16 @@
             transition: all 0.3s;
         }
 
-        .model-selector:hover {
-            border-color: #4361ee;
+        .model-selector span:first-child {
+            flex: 1;
+            white-space: nowrap; /* Prevents text from wrapping */
+            overflow: hidden;    /* Hides overflow */
+            text-overflow: ellipsis; /* Shows ... if text overflows */
+            margin-right: 15px;  /* Adds space between text and dropdown arrow */
         }
 
-        .model-selector span {
-            flex: 1;
+        .model-selector span:last-child {
+            flex: 0 0 auto; /* Prevents the arrow from taking extra space */
         }
 
         .agent-list {
@@ -523,7 +527,7 @@
 
             <div class="model-selector">
                 <span>EduConnect Chatbot</span> <!-- Updated model name -->
-                <span>▼</span>
+        
             </div>
 
             <div class="agent-list">

@@ -284,12 +284,12 @@
                 <li><a href="ranking.html" class="nav-item animated-underline">Ranking</a></li>
                 <li><a href="support.html" class="nav-item animated-underline">Support</a></li>
                 <li><a href="educonnectGPT.html" class="nav-item animated-underline">EduconnectGPT</a></li>
-                <li><a href="chat.html" class="nav-item active animated-underline">Chat</a></li> <!-- Made active and added underline -->
+                <li><a href="#" class="active">Chat</a></li>
                 <li><a href="schedule.html" class="nav-item animated-underline">Schedule</a></li>
             </ul>
         </nav>
         <div class="right-actions">
-             <span class="credit-icon">120 Credits</span>
+             <span class="credit-icon">0.0 $</span>
             <i class="fas fa-bell notification-icon"></i>
             <div class="account-container">
                  <i class="fas fa-user-circle account-icon"></i>
@@ -407,10 +407,10 @@
             const timeOptions = document.querySelectorAll('.time-option');
 
             // --- Function to set recipient details ---
-            function setRecipientDetails(name, id, avatarSrc = 'images/ảnh tutor 2.jpg') { // Added avatar parameter
+            function setRecipientDetails(name, id, avatarSrc ) { // Added avatar parameter
                 recipientNameElement.textContent = name;
                 recipientUserIdElement.textContent = `#${id}`;
-                recipientAvatarElement.src = avatarSrc; // Set avatar source
+                recipientAvatarElement.src = `images/${name}.png`; // Set avatar source
                  recipientAvatarElement.alt = `${name} Avatar`; // Update alt text
             }
 
