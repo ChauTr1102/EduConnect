@@ -16,7 +16,7 @@
             --border-color: #e5e7eb;
             --sidebar-bg: #f8f9fa;
             --chat-bg: #ffffff;
-            --message-sent-bg: #d1e7ff;
+            --message-sent-bg: #d1e7ff; /* Updated sent message color */
             --message-received-bg: #f8f9fa;
             --header-height: 65px;
         }
@@ -131,11 +131,11 @@
             flex-grow: 1;
             overflow-y: auto;
             padding: 1.5rem;
-            background-color: #f0f4ff;
+            background-color: var(--secondary-color); /* Slightly different background */
             display: flex;
             flex-direction: column;
         }
-        .message-bubble { max-width: 70%; padding: 0.8rem 1rem; border-radius: 15px; margin-bottom: 1rem; line-height: 1.4; position: relative; font-size: 0.95rem; word-wrap: break-word; }
+        .message-bubble { max-width: 70%; padding: 0.8rem 1rem; border-radius: 15px; margin-bottom: 1rem; line-height: 1.4; position: relative; font-size: 0.95rem; word-wrap: break-word; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
         .message-sent { background-color: var(--accent-color); color: var(--white); align-self: flex-end; border-bottom-right-radius: 5px; }
         .message-received { background-color: var(--white); color: var(--text-color); align-self: flex-start; border: 1px solid var(--border-color); border-bottom-left-radius: 5px; }
         .message-timestamp { font-size: 0.75rem; color: var(--light-text); display: block; margin-top: 5px; text-align: right; }
@@ -150,7 +150,7 @@
             background-color: var(--white);
             flex-shrink: 0;
         }
-        .message-input { flex-grow: 1; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 20px; margin-right: 1rem; font-size: 0.95rem; outline: none; }
+        .message-input { flex-grow: 1; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 20px; margin-right: 1rem; font-size: 0.95rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
         .message-input:focus { border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2); }
         .send-button { background-color: var(--accent-color); border: none; color: var(--white); width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease; flex-shrink: 0; }
         .send-button:hover { background-color: #2a3bb0; }
@@ -284,12 +284,15 @@
                 <li><a href="ranking.html" class="nav-item animated-underline">Ranking</a></li>
                 <li><a href="support.html" class="nav-item animated-underline">Support</a></li>
                 <li><a href="educonnectGPT.html" class="nav-item animated-underline">EduconnectGPT</a></li>
-                <li><a href="chat.html" class="active">Chat</a></li>
-                <li><a href="schedule.html" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Schedule</a></li> 
+                <li><a href="chat.html" class="nav-item active animated-underline">Chat</a></li> <!-- Made active and added underline -->
+                <li><a href="schedule.html" class="nav-item animated-underline">Schedule</a></li>
             </ul>
         </nav>
         <div class="right-actions">
+             <span class="credit-icon">120 Credits</span>
+            <i class="fas fa-bell notification-icon"></i>
             <div class="account-container">
+                 <i class="fas fa-user-circle account-icon"></i>
                 <div class="account-dropdown">
                     <a href="profile.html" class="dropdown-item">Profile</a>
                     <a href="setting.html" class="dropdown-item">Setting</a>
@@ -304,7 +307,7 @@
     <div class="chat-page-wrapper">
         <aside class="sidebar">
              <div class="sidebar-header">
-                 <span class="sidebar-user">Le Nguyen Thanh Binh</span>
+                 <span class="sidebar-user">Le Nguyen Thanh Binh</span> <!-- Assuming this is the logged-in user -->
              </div>
              <div class="sidebar-search">
                   <i class="fas fa-search"></i>
@@ -331,11 +334,11 @@
             <header class="chat-header">
                 <div class="recipient-info">
                     <div class="recipient-avatar">
-                        <img id="recipientAvatar" src="images/ảnh tutor 2.jpg" alt="Recipient Avatar">
+                        <img id="recipientAvatar" src="images/ảnh tutor 2.jpg" alt="Recipient Avatar"> <!-- Placeholder avatar -->
                     </div>
                     <div>
-                        <div id="recipientName" class="recipient-name">Recipient Name</div>
-                        <div id="recipientUserId" class="recipient-id">#UserID</div>
+                        <div id="recipientName" class="recipient-name">Loading...</div> <!-- Default placeholder -->
+                        <div id="recipientUserId" class="recipient-id">#ID_Loading...</div> <!-- Default placeholder -->
                     </div>
                 </div>
                 <div class="chat-actions">
@@ -351,7 +354,7 @@
 
             <footer class="message-input-area">
                 <button class="attach-button"><i class="fas fa-paperclip"></i></button>
-                <input type="text" class="message-input" id="messageInput" placeholder="Digite a message">
+                <input type="text" class="message-input" id="messageInput" placeholder="Type a message..."> <!-- Corrected placeholder -->
                 <button class="emoji-button"><i class="far fa-smile"></i></button>
                 <button class="send-button" id="sendButton"><i class="fas fa-paper-plane"></i></button>
             </footer>
@@ -363,7 +366,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">Select Study Time</h3>
-                <button class="modal-close" id="closeModal">&times;</button>
+                <button class="modal-close" id="closeModal">×</button>
             </div>
             <div class="modal-body">
                 <div class="day-selection">
@@ -403,15 +406,50 @@
             const joinClassBtn = document.getElementById('joinClassBtn');
             const timeOptions = document.querySelectorAll('.time-option');
 
-            // 1. Lấy thông tin user từ URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const userName = urlParams.get('user') || 'Nguyễn Thị Thảo';
-            const userIdParam = urlParams.get('userId');
-            const userId = userIdParam ? `#${userIdParam}` : `#${userName.replace(/\s+/g, '').substring(0,6).toUpperCase()}`;
+            // --- Function to set recipient details ---
+            function setRecipientDetails(name, id, avatarSrc = 'images/ảnh tutor 2.jpg') { // Added avatar parameter
+                recipientNameElement.textContent = name;
+                recipientUserIdElement.textContent = `#${id}`;
+                recipientAvatarElement.src = avatarSrc; // Set avatar source
+                 recipientAvatarElement.alt = `${name} Avatar`; // Update alt text
+            }
 
-            // 2. Cập nhật thông tin người nhận trên giao diện
-            recipientNameElement.textContent = userName;
-            recipientUserIdElement.textContent = userId;
+            // --- Get recipient info: Priority to URL param, fallback to JSON ---
+            const urlParams = new URLSearchParams(window.location.search);
+            const userNameFromUrl = urlParams.get('user');
+            const userIdFromUrl = urlParams.get('userId'); // Check for userId in URL too
+
+            if (userNameFromUrl) {
+                // If 'user' is in URL, use it (potentially get ID from URL too or generate)
+                const finalUserId = userIdFromUrl || userNameFromUrl.replace(/\s+/g, '').substring(0, 6).toUpperCase();
+                setRecipientDetails(userNameFromUrl, finalUserId);
+                // You might want to fetch the correct avatar based on userNameFromUrl/userIdFromUrl if possible
+            } else {
+                // If 'user' is NOT in URL, fetch from chosen_teacher.json
+                fetch('chosen_teacher.json') // <<< Make sure this path is correct
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}. Could not load chosen_teacher.json`);
+                        }
+                        return response.json(); // Parse the JSON response
+                    })
+                    .then(data => {
+                        if (data && data.name && data.teacher_id) {
+                            // Use data from JSON
+                            setRecipientDetails(data.name, data.teacher_id);
+                            // Optional: Update avatar based on teacher_id if you have a mapping or image naming convention
+                             // e.g., recipientAvatarElement.src = `images/tutors/${data.teacher_id}.jpg`;
+                        } else {
+                            console.warn("chosen_teacher.json loaded but is missing 'name' or 'teacher_id'. Using default.");
+                            setRecipientDetails("Default Tutor", "DEFAULTID"); // Fallback if JSON is invalid
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching or parsing chosen_teacher.json:', error);
+                        setRecipientDetails("Tutor Error", "ERRORID"); // Fallback on fetch error
+                        addMessage("Could not load tutor information. Please try again later.", 'received');
+                    });
+            }
 
             // 3. Hàm tạo tin nhắn
             function addMessage(text, type = 'sent') {
@@ -425,7 +463,7 @@
                 bubble.appendChild(content);
                 bubble.appendChild(timestamp);
                 messagesArea.appendChild(bubble);
-                messagesArea.scrollTop = messagesArea.scrollHeight;
+                messagesArea.scrollTop = messagesArea.scrollHeight; // Auto-scroll to bottom
             }
 
             // 4. Gửi tin nhắn và gọi API
@@ -435,15 +473,20 @@
 
                 addMessage(messageText, 'sent');
                 messageInput.value = '';
+                messageInput.focus(); // Keep focus on input
 
                 try {
+                    // **IMPORTANT**: Replace with your actual API endpoint for sending messages
                     const response = await fetch("http://localhost:8000/chat_with_teacher/", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
+                            // Add any necessary authentication headers (tokens) here
                         },
                         body: JSON.stringify({
-                            student_question: messageText
+                            student_question: messageText,
+                            // Optional: Send recipient ID if your backend needs it
+                            // teacher_id: recipientUserIdElement.textContent.substring(1) // Remove '#'
                         })
                     });
 
@@ -465,7 +508,7 @@
                                 if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
                             }
                         } catch (e) {
-                            try {
+                             try {
                                 errorDetail = await response.text();
                                 if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
                             } catch (finalError) {
@@ -474,26 +517,34 @@
                             }
                         }
                         console.error('API Error:', response.status, errorDetail);
-                        addMessage(`Xin lỗi, đã có lỗi khi gửi tin nhắn đến giáo viên. ${errorDetail}`, 'received');
+                        addMessage(`Sorry, there was an error sending the message to the tutor. ${errorDetail}`, 'received'); // Corrected Vietnamese
                         return;
                     }
 
                     // --- HANDLE SUCCESS ---
                     const data = await response.json();
 
+                    let botResponse = "Sorry, I couldn't understand the response."; // Default response
                     if (typeof data === 'string' && data.trim() !== '') {
-                        addMessage(data, 'received'); // Trường hợp backend trả string trực tiếp
-                    } else if (data && typeof data === 'object' && typeof data.response === 'string') {
-                        addMessage(data.response, 'received'); // Trả về dạng {"response": "..."}
-                    } else if (data && typeof data === 'object' && data.error) {
-                        addMessage(`Xin lỗi, hệ thống gặp lỗi: ${data.error}`, 'received');
-                    } else {
-                        console.error('Invalid response structure:', data);
-                        addMessage("Xin lỗi, hệ thống trả về định dạng không hợp lệ.", 'received');
+                         botResponse = data; // Backend returns string directly
+                    } else if (data && typeof data === 'object') {
+                        if (typeof data.response === 'string') {
+                           botResponse = data.response; // Standard {"response": "..."}
+                        } else if (typeof data.teacher_response === 'string') {
+                            botResponse = data.teacher_response; // Alternative key
+                        } else if (data.error) {
+                             botResponse = `Sorry, the system encountered an error: ${data.error}`;
+                        } else {
+                            console.warn('Unexpected response structure:', data);
+                            botResponse = "Received an unexpected response format from the server.";
+                        }
                     }
+
+                     addMessage(botResponse, 'received');
+
                 } catch (error) {
                     console.error("Fetch failed:", error);
-                    addMessage("Lỗi mạng hoặc server không phản hồi. Vui lòng thử lại sau.", 'received');
+                    addMessage("Network error or the server is not responding. Please try again later.", 'received'); // Corrected Vietnamese
                 }
             }
 
@@ -505,6 +556,9 @@
 
             function closeModalHandler() {
                 studyTimeModal.classList.remove('active');
+                // Clear selections when closing modal
+                timeOptions.forEach(opt => opt.classList.remove('selected'));
+                selectedTimes = { tuesday: null, thursday: null };
             }
             closeModal.addEventListener('click', closeModalHandler);
             cancelSelection.addEventListener('click', closeModalHandler);
@@ -519,17 +573,30 @@
                     const day = option.getAttribute('data-day');
                     const time = option.getAttribute('data-time');
 
+                    // Deselect other options for the same day
                     document.querySelectorAll(`.time-option[data-day="${day}"]`).forEach(opt => {
-                        opt.classList.remove('selected');
+                        if (opt !== option) {
+                            opt.classList.remove('selected');
+                        }
                     });
 
-                    option.classList.add('selected');
-                    selectedTimes[day] = time;
+                    // Toggle selection for the clicked option
+                    if (option.classList.contains('selected')) {
+                         option.classList.remove('selected');
+                         selectedTimes[day] = null; // Remove selection
+                    } else {
+                         option.classList.add('selected');
+                         selectedTimes[day] = time; // Set selection
+                    }
+
+                    console.log("Selected times:", selectedTimes); // For debugging
                 });
             });
 
             joinClassBtn.addEventListener('click', () => {
-                if (selectedTimes.tuesday || selectedTimes.thursday) {
+                const selectedCount = Object.values(selectedTimes).filter(Boolean).length;
+
+                if (selectedCount > 0) {
                     const params = new URLSearchParams();
                     if (selectedTimes.tuesday) {
                         params.append('tuesdayTime', selectedTimes.tuesday);
@@ -537,27 +604,36 @@
                     if (selectedTimes.thursday) {
                         params.append('thursdayTime', selectedTimes.thursday);
                     }
+                    // Optionally add tutor info to the schedule page URL
+                    params.append('tutorName', recipientNameElement.textContent);
+                    params.append('tutorId', recipientUserIdElement.textContent.substring(1)); // Remove '#'
+
                     window.location.href = `schedule.html?${params.toString()}`;
+                    closeModalHandler(); // Close modal after redirecting
                 } else {
-                    alert('Please select at least one study time before joining the class.');
+                    alert('Please select at least one study time slot.');
                 }
             });
 
             // 6. Gửi khi nhấn nút hoặc nhấn Enter
             sendButton.addEventListener('click', sendMessageHandler);
             messageInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
+                if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for newline
+                    e.preventDefault(); // Prevent default form submission/newline
                     sendMessageHandler();
                 }
             });
 
-            // 7. Đóng modal khi click ra ngoài
+            // 7. Đóng modal khi click ra ngoài backdrop
             window.addEventListener('click', (e) => {
                 if (e.target === studyTimeModal) {
                     closeModalHandler();
                 }
             });
+
+            // Add a welcome message or initial state message if desired
+            // addMessage("Hello! How can I help you today?", 'received');
+
         });
     </script>
 
