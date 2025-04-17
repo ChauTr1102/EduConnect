@@ -1663,7 +1663,7 @@
                         'Content-Type': 'application/json', // Assuming your API expects JSON
                         // Add any other headers like Authorization if required
                     },
-                    body: JSON.stringify({ content: postText }) // Send the post content
+                    body: JSON.stringify({ student_request: postText }) // Send the post content
                 })
                 .then(response => {
                     // We don't wait for the response body, but check if the request initiation was okay
