@@ -18,7 +18,7 @@ RECOMMENDER_PROMPT = """## Task:
 DATABASE_CONFIG = {
     "dbname": "Educonnect",
     "user": "postgres",
-    "password": "manhngu123",
+    "password": "123",
     "host": "localhost",
     "port": 5432
 }
