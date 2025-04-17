@@ -403,18 +403,17 @@
             const joinClassBtn = document.getElementById('joinClassBtn');
             const timeOptions = document.querySelectorAll('.time-option');
 
-            // 1. Get parameters from URL
+            // 1. Lấy thông tin user từ URL
             const urlParams = new URLSearchParams(window.location.search);
             const userName = urlParams.get('user') || 'Nguyễn Thị Thảo';
             const userIdParam = urlParams.get('userId');
             const userId = userIdParam ? `#${userIdParam}` : `#${userName.replace(/\s+/g, '').substring(0,6).toUpperCase()}`;
 
-            // 2. Update chat header (recipient info)
-            // The avatar is now set directly in the HTML as "images/ảnh tutor 2.jpg"
+            // 2. Cập nhật thông tin người nhận trên giao diện
             recipientNameElement.textContent = userName;
             recipientUserIdElement.textContent = userId;
 
-            // 3. Function to add a message bubble
+            // 3. Hàm tạo tin nhắn
             function addMessage(text, type = 'sent') {
                 const bubble = document.createElement('div');
                 bubble.className = `message-bubble message-${type}`;
@@ -429,46 +428,87 @@
                 messagesArea.scrollTop = messagesArea.scrollHeight;
             }
 
-            // 4. Handle sending messages with specific responses
-            function sendMessageHandler() {
+            // 4. Gửi tin nhắn và gọi API
+            async function sendMessageHandler() {
                 const messageText = messageInput.value.trim();
-                if (messageText) {
-                    addMessage(messageText, 'sent');
-                    messageInput.value = '';
-                    
-                    // Specific response patterns
-                    setTimeout(() => {
-                        if (messageText === "em chào cô ạ, em thấy cô phù hợp nên muốn trao đổi thêm chút ạ!") {
-                            addMessage("ừm , ok , cô chào em , em muốn trao đổi gì nhỉ", 'received');
-                        } 
-                        else if (messageText === "dạ em muốn hỏi là em muốn học môn toán chiều thứ 3 với chiều thứ 5 có được không cô") {
-                            addMessage("ok em nha , em send join class rồi chọn lịch avaiable giúp cô nhé , chiều thứ 3 và thứ 5 cô đều rảnh đó", 'received');
+                if (!messageText) return;
+
+                addMessage(messageText, 'sent');
+                messageInput.value = '';
+
+                try {
+                    const response = await fetch("http://localhost:8000/chat_with_teacher/", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            student_question: messageText
+                        })
+                    });
+
+                    // --- HANDLE ERROR ---
+                    if (!response.ok) {
+                        let errorDetail = `HTTP error! Status: ${response.status}`;
+                        try {
+                            const errorData = await response.json();
+                            if (errorData && errorData.detail) {
+                                if (Array.isArray(errorData.detail)) {
+                                    errorDetail = `Error: ${errorData.detail.map(e => `${e.loc.join('.')} - ${e.msg}`).join(', ')}`;
+                                } else if (typeof errorData.detail === 'string') {
+                                    errorDetail = `Error: ${errorData.detail}`;
+                                } else {
+                                    errorDetail = `Error: ${JSON.stringify(errorData.detail)}`;
+                                }
+                            } else {
+                                errorDetail = await response.text();
+                                if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
+                            }
+                        } catch (e) {
+                            try {
+                                errorDetail = await response.text();
+                                if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
+                            } catch (finalError) {
+                                errorDetail = response.statusText || errorDetail;
+                                console.error("Could not parse or read error response body:", e, finalError);
+                            }
                         }
-                        else if (messageText === "dạ em cảm ơn cô") {
-                            addMessage("uk , không có gì đâu em", 'received');
-                        }
-                        else {
-                            // Default response for other messages
-                            addMessage("Xin lỗi, cô chưa hiểu ý em. Em có thể nói rõ hơn được không?", 'received');
-                        }
-                    }, 1000);
+                        console.error('API Error:', response.status, errorDetail);
+                        addMessage(`Xin lỗi, đã có lỗi khi gửi tin nhắn đến giáo viên. ${errorDetail}`, 'received');
+                        return;
+                    }
+
+                    // --- HANDLE SUCCESS ---
+                    const data = await response.json();
+
+                    if (typeof data === 'string' && data.trim() !== '') {
+                        addMessage(data, 'received'); // Trường hợp backend trả string trực tiếp
+                    } else if (data && typeof data === 'object' && typeof data.response === 'string') {
+                        addMessage(data.response, 'received'); // Trả về dạng {"response": "..."}
+                    } else if (data && typeof data === 'object' && data.error) {
+                        addMessage(`Xin lỗi, hệ thống gặp lỗi: ${data.error}`, 'received');
+                    } else {
+                        console.error('Invalid response structure:', data);
+                        addMessage("Xin lỗi, hệ thống trả về định dạng không hợp lệ.", 'received');
+                    }
+                } catch (error) {
+                    console.error("Fetch failed:", error);
+                    addMessage("Lỗi mạng hoặc server không phản hồi. Vui lòng thử lại sau.", 'received');
                 }
             }
 
-            // 5. Modal functionality for study time selection
-            // Open modal
+
+            // 5. Giao diện chọn giờ học
             sendRequestBtn.addEventListener('click', () => {
                 studyTimeModal.classList.add('active');
             });
 
-            // Close modal
             function closeModalHandler() {
                 studyTimeModal.classList.remove('active');
             }
             closeModal.addEventListener('click', closeModalHandler);
             cancelSelection.addEventListener('click', closeModalHandler);
 
-            // Selection functionality
             let selectedTimes = {
                 tuesday: null,
                 thursday: null
@@ -478,23 +518,18 @@
                 option.addEventListener('click', () => {
                     const day = option.getAttribute('data-day');
                     const time = option.getAttribute('data-time');
-                    
-                    // Remove selection from other options in same day
+
                     document.querySelectorAll(`.time-option[data-day="${day}"]`).forEach(opt => {
                         opt.classList.remove('selected');
                     });
-                    
-                    // Add selection to clicked option
+
                     option.classList.add('selected');
                     selectedTimes[day] = time;
                 });
             });
 
-            // Join Class button functionality
             joinClassBtn.addEventListener('click', () => {
-                // Check if at least one time is selected
                 if (selectedTimes.tuesday || selectedTimes.thursday) {
-                    // Redirect to schedule.html with selected times as parameters
                     const params = new URLSearchParams();
                     if (selectedTimes.tuesday) {
                         params.append('tuesdayTime', selectedTimes.tuesday);
@@ -508,7 +543,7 @@
                 }
             });
 
-            // Event listeners for messaging
+            // 6. Gửi khi nhấn nút hoặc nhấn Enter
             sendButton.addEventListener('click', sendMessageHandler);
             messageInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' && !e.shiftKey) {
@@ -517,7 +552,7 @@
                 }
             });
 
-            // Close modal when clicking outside
+            // 7. Đóng modal khi click ra ngoài
             window.addEventListener('click', (e) => {
                 if (e.target === studyTimeModal) {
                     closeModalHandler();
@@ -525,5 +560,6 @@
             });
         });
     </script>
+
 </body>
 </html>

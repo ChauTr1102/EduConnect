@@ -52,7 +52,6 @@ async def send_message_with_teacher(message: MessageWithTeacher):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
     with open("chosen_teacher.json", "r", encoding="utf-8") as f:
         teacher_profile_dict = json.load(f)
-    # ✅ Chuyển dict thành string đẹp để dùng trong prompt
     teacher_profile_str = json.dumps(teacher_profile_dict, indent=4, ensure_ascii=False)
     chat_prompt = chatbot.prompt_chat_with_teacher(teacher_profile_str, message.student_question)
     response = await chatbot.send_message_gemini(chat_prompt)
