@@ -578,13 +578,14 @@
                         const teacherEmail = card.dataset.teacherEmail;
                         const teacherNameElement = card.querySelector('.tutor-name');
                         const teacherName = teacherNameElement ? teacherNameElement.textContent : 'Unknown Name';
+                        const teacherReason = card.dataset.reason;
 
                         // Prepare data for API
                         const dataToSend = {
                             teacher_id: teacherId,
                             name: teacherName, // Changed key to match Python convention
                             email: teacherEmail, // Changed key to match Python convention
-                            reason: "User clicked 'Send message' on matching page" // Default reason
+                            reason: teacherReason
                         };
 
                         console.log('Sending data to API:', dataToSend);
