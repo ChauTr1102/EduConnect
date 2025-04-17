@@ -393,7 +393,7 @@
 
         // --- Function to create a Tutor Card HTML ---
         function createTutorCardHTML(teacher) {
-            const placeholderImage = 'images/ảnh tutor 2.jpg'; // Default image if teacher.image is missing
+            const placeholderImage = `images/${teacher.name}.png`; // Default image if teacher.image is missing
             const teacherName = teacher.name || 'Unnamed Teacher';
             const teacherId = teacher.teacher_id || 'unknown_id';
             const teacherEmail = teacher.email || ''; // Get email or default to empty string
