@@ -645,8 +645,7 @@
         const sendButton = document.querySelector('.send-button');
 
         // --- API Configuration ---
-        // IMPORTANT: Use the correct endpoint for your FastAPI chat function
-        const apiEndpoint = 'http://127.0.0.1:2000/chat_get-answer/';
+        const apiEndpoint = 'http://127.0.0.1:8000/chat_get-answer/';
 
         // --- Helper Functions ---
 
@@ -701,11 +700,7 @@
             const avatarAlt = sender === 'ai' ? 'AI Avatar' : 'User Avatar';
             const messageClass = sender === 'ai' ? 'ai' : (sender === 'user' ? 'user' : 'system'); // Add 'system' class if needed
 
-            // 1. Basic Sanitization (Prevent basic XSS)
-            // Consider using a dedicated library like DOMPurify for robust sanitization if needed.
-            const sanitizedText = text.replace(/</g, "<").replace(/>/g, ">");
-
-            // 2. Format Newlines for HTML display
+            const sanitizedText = text.replace(/</g, "<").replace(/>/g, ">"); // Basic XSS prevention
             const formattedText = sanitizedText.replace(/\n/g, '<br>');
 
             const messageHTML = `
@@ -721,8 +716,7 @@
             `;
 
             chatMessages.insertAdjacentHTML('beforeend', messageHTML);
-            // Scroll to the bottom to show the new message
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
         }
 
         // --- Main Chat Logic ---
@@ -750,51 +744,60 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Accept': 'application/json' // Indicate we expect JSON back
+                        'Accept': 'application/json' // Still good practice to accept JSON, even if we expect a string sometimes
                     },
                     // Send the message in the format expected by the Pydantic model: { "message": "..." }
                     body: JSON.stringify({ message: userInput })
                 });
 
-                // Hide typing indicator once we start processing the response or encounter an error
                 hideTypingIndicator();
 
                 if (!response.ok) {
-                    // Handle HTTP errors (e.g., 404, 500, 422 Validation Error)
                     let errorDetail = `HTTP error! Status: ${response.status}`;
                     try {
-                        // Try to get more specific error detail from response body if available (FastAPI often provides JSON errors)
                         const errorData = await response.json();
                         if (errorData && errorData.detail) {
-                            // Handle FastAPI's validation error structure or other detail formats
                            if (Array.isArray(errorData.detail)) {
                                 errorDetail = `Error: ${errorData.detail.map(e => `${e.loc.join('.')} - ${e.msg}`).join(', ')}`;
+                            } else if (typeof errorData.detail === 'string'){
+                                errorDetail = `Error: ${errorData.detail}`; // Handle FastAPI detail string
                             } else {
-                                errorDetail = `Error: ${errorData.detail}`;
+                               errorDetail = `Error: ${JSON.stringify(errorData.detail)}`; // Handle other detail types
                             }
                         } else {
                            errorDetail = await response.text(); // Fallback to plain text error
+                           // If the error response IS the detail string itself (common with HTTPException)
+                           if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
                         }
                     } catch (e) {
-                        // If parsing error response fails, use the status text
-                        errorDetail = response.statusText || errorDetail;
-                        console.error("Could not parse error response body:", e);
+                         try {
+                             // If parsing as JSON fails, try getting the raw text
+                             errorDetail = await response.text();
+                             if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
+                         } catch (finalError) {
+                             // If getting text also fails, use statusText
+                             errorDetail = response.statusText || errorDetail;
+                             console.error("Could not parse or read error response body:", e, finalError);
+                         }
                     }
                     console.error('API Error:', response.status, errorDetail);
                     addMessage(`Sorry, there was an issue communicating with the chatbot. ${errorDetail}`, 'ai'); // Display error to user
                     return;
                 }
 
-                // --- Process the successful JSON response ---
+                // --- Process the successful response ---
+                // Since the backend returns a plain string, response.json() will parse it into a JS string.
                 const data = await response.json();
 
-                // IMPORTANT: Expecting the API to return { "response": "AI text..." }
-                if (data && typeof data.response === 'string') {
-                    const aiResponse = data.response;
+                // --- MODIFIED HANDLING ---
+                // Check if the data received IS a string (the AI response)
+                if (typeof data === 'string' && data.trim() !== '') {
+                    const aiResponse = data; // The data itself is the response string
                     addMessage(aiResponse, 'ai'); // Add the actual AI response
-                } else if (data && data.error) {
-                    // Handle structured errors returned from the backend (e.g., API key missing)
-                    console.error('API returned an error:', data.error);
+                }
+                // Optional: Keep a check for structured errors IF your backend might sometimes return them
+                else if (data && typeof data === 'object' && data.error) {
+                    console.error('API returned a structured error:', data.error);
                     addMessage(`Sorry, the chatbot encountered an issue: ${data.error}`, 'ai');
                 }
                  else {
@@ -804,7 +807,7 @@
                 }
 
             } catch (error) {
-                hideTypingIndicator(); // Ensure indicator is hidden on any error
+                hideTypingIndicator();
                 console.error('Fetch Error:', error);
                 // Distinguish network errors from other potential issues
                 let errorMessage = "An unexpected error occurred while trying to send your message. Please try again.";
@@ -817,7 +820,7 @@
 
 
         // --- Event Listeners Setup ---
-
+        // (Keep the rest of your JavaScript code as it was, including event listeners setup)
         document.addEventListener('DOMContentLoaded', function() {
             // Clear any previous messages on load (optional)
             clearMessages();
@@ -845,7 +848,6 @@
             });
 
             // --- Agent Switching Logic (Visual Only) ---
-            // Add click listeners to agent items to visually update the selection
             const agentItems = document.querySelectorAll('.sidebar .agent-item');
             agentItems.forEach(item => {
                 item.addEventListener('click', function(event) {
@@ -862,17 +864,10 @@
                     agentItems.forEach(i => i.classList.remove('selected'));
                     // Add 'selected' class to the clicked item
                     this.classList.add('selected');
-
-                    // Optional: Clear chat or add a message when switching context
-                    // if (this.id === 'main-agent') {
-                    //     clearMessages();
-                    //     addMessage("Switched to EduconnectGPT. How can I help?", 'ai');
-                    // }
-                     // Add similar logic for other non-link agents if necessary
+                    // Optional logic here
                 });
             });
 
-            // Ensure the default agent is marked as selected on load
             const defaultSelectedAgent = document.querySelector('.agent-item.selected');
             if (!defaultSelectedAgent) {
                  const mainAgent = document.getElementById('main-agent');
