@@ -1,0 +1,31 @@
+# Sử dụng Python chính thức làm base image
+FROM python:3.11-slim
+
+# Thiết lập thư mục làm việc
+WORKDIR /app
+
+# Thiết lập biến môi trường
+ENV PYTHONUNBUFFERED=1
+ENV POETRY_VERSION=1.8.2
+
+# Cài đặt Poetry và các phụ thuộc cần thiết
+RUN apt-get update \
+    && apt-get install -y curl git build-essential \
+    && curl -sSL https://install.python-poetry.org | python3 - \
+    && ln -s /root/.local/bin/poetry /usr/local/bin/poetry
+
+# Copy file pyproject.toml và poetry.lock để cài thư viện
+COPY pyproject.toml poetry.lock* /app/
+
+# Cấu hình poetry không tạo virtualenv riêng, rồi cài dependencies
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi
+
+# Copy toàn bộ mã nguồn vào container
+COPY . .
+
+# Mở các cổng mà ứng dụng sẽ sử dụng
+EXPOSE 8000 63342
+
+# Lệnh để chạy ứng dụng FastAPI với Uvicorn
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,4 +1,4 @@
-from api.config import *
+from EduconnectGPT.api.config import *
 
 # For chatbot
 import ast
@@ -40,7 +40,7 @@ from langchain_experimental.text_splitter import SemanticChunker
 import tiktoken
 
 
-from api.database.database import SQLDatabase
+from EduconnectGPT.api.database.database import SQLDatabase
 
 
 # For csv_agent

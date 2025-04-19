@@ -1,4 +1,4 @@
-from api.services import *
+from EduconnectGPT.api.services import *
 
 
 class ChatBot:

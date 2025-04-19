@@ -1,4 +1,4 @@
-from api.routes import *
+from EduconnectGPT.api.routes import *
 
 
 @router.get("/")

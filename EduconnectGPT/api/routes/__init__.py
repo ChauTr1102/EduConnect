@@ -1,10 +1,10 @@
-from api.services.chatbot import ChatBot, CheckAPIKey
-from api.services.vectorstore_faiss import VectorStore, VectorStoreAdmin
+from EduconnectGPT.api.services.chatbot import ChatBot, CheckAPIKey
+from EduconnectGPT.api.services.vectorstore_faiss import VectorStore, VectorStoreAdmin
 from fastapi import UploadFile, File, Form, APIRouter
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
-from api.database.database import SQLDatabase
-from api.services.csv_agent import CSVAgent
+from EduconnectGPT.api.database.database import SQLDatabase
+from EduconnectGPT.api.services.csv_agent import CSVAgent
 import pandas as pd
 import os
 import shutil

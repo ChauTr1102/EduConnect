@@ -36,6 +36,7 @@ class ChatBot:
             model="gemini-2.0-flash-exp-image-generation",
             api_key=self.gemini_apikey,
             streaming=False,
+            temperature=0.4
         )
 
         # Dùng HumanMessage để wrap prompt
