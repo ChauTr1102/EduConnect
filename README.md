@@ -2,6 +2,9 @@
 
 # EduConnect
 
+[![Demo Video](https://img.youtube.com/vi/0a3IS-OV5Z8/maxresdefault.jpg)](https://youtu.be/0a3IS-OV5Z8)
+_EduConnect - Watch the full demo on YouTube_
+
 EduConnect is a web application designed to connect teachers and students, facilitating learning and teaching. The frontend is built using **HTML**, **CSS**, and **JavaScript**, while the backend is developed in **Python** with **PostgreSQL** for data storage. The project uses **Poetry** for dependency management.
 
 ## System Requirements
