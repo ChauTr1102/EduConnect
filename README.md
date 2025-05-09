@@ -96,7 +96,7 @@ The project uses PostgreSQL for data storage. You need to set up the database be
      ```sql
      \i insert_fake_data.sql
      ```
-![ERD for EduConnect ERD](images/database_erd.png)
+![ERD for EduConnect ERD](frontend/images/database_erd.png)
 ### Step 5: Run the Backend
 The backend is implemented in Python and handles database interactions. The main backend file is `api/main.py` (if it serves as an API) or `api/database.py` (for database testing).
 

@@ -34,6 +34,6 @@ DATABASE_CONFIG = {
     "dbname": "Educonnect",
     "user": "postgres",
     "password": "12345678",
-    "host": "localhost",
+    "host": "172.20.0.4",
     "port": 5432
 }

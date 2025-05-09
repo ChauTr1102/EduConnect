@@ -8,6 +8,8 @@ WORKDIR /app
 ENV PYTHONUNBUFFERED=1
 ENV POETRY_VERSION=1.8.2
 
+RUN apt-get update && apt-get install -y libpq-dev gcc
+
 # Cài đặt Poetry và các phụ thuộc cần thiết
 RUN apt-get update \
     && apt-get install -y curl git build-essential \
