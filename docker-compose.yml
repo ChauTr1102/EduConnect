@@ -17,7 +17,9 @@ services:
       - ./insert_test_data.sql:/docker-entrypoint-initdb.d/insert_test_data.sql
 
   fastapi:
-    build: .
+    build:
+      context: .
+      dockerfile: dockerfile.backend
     container_name: educonnect_fastapi
     networks:
       my_custom_network:
