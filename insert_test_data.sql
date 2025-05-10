@@ -12,7 +12,6 @@ VALUES
   ('user_008','chau','chauhehe','Trịnh Minh Châu','2007-12-30','Female','thao@gmail.com','Thanh Trì, Hà Nội'),
   ('user_009','manh','manhngoo','Ngô Đức Mạnh','2008-08-09','Male','hoang@gmail.com','Nam Từ Liêm, Hà Nội'),
   ('user_010','hieu','hieu123','Nguyễn Ngọc Hiếu','2007-11-17','Female','mai@gmail.com','Bắc Từ Liêm, Hà Nội'),
-  -- teachers
   ('user_011','thanhgv','hashed_pw_11','Ngô Thanh','1995-03-01','Male','thanh@gmail.com','Cầu Giấy, Hà Nội'),
   ('user_012','ha_teacher','hashed_pw_12','Nguyễn Hà','1992-06-11','Female','ha@gmail.com','Đống Đa, Hà Nội'),
   ('user_013','duy_teacher','hashed_pw_13','Lê Duy','1990-09-21','Male','duy@gmail.com','Thanh Xuân, Hà Nội'),
