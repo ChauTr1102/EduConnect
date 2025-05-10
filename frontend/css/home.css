@@ -1,0 +1,958 @@
+@import url("component/header.css");
+@import url("component/footer.css");
+:root {
+    --primary-color: #0d1472;
+    --secondary-color: #f0f4ff;
+    --accent-color: #3c4fe0;
+    --text-color: #333;
+    --light-text: #888;
+    --white: #fff;
+    --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--text-color);
+    position: relative; /* For floating buttons positioning */
+}
+
+
+.search-container {
+    position: relative;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 3rem;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-size: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 10px rgba(60, 79, 224, 0.15);
+}
+
+.search-icon-input {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-text);
+    font-size: 1.2rem;
+}
+
+.search-btn {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.hero-section {
+    background: var(--purple-gradient);
+    color: var(--white);
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.learn-more-btn {
+    background-color: #ffdd00;
+    color: var(--text-color);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+}
+
+.learn-more-btn::after {
+    content: "→";
+    margin-left: 0.5rem;
+}
+
+.features-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.feature-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.feature-description {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+.message-list-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.message-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.message-card {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 1rem;
+    background-color: #ddd; /* Fallback color */
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block; /* Helps remove potential bottom space */
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.message-time {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+.message-content {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    min-height: 50px;
+}
+
+.message-actions .spacer {
+    flex-grow: 1;
+}
+
+.message-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.message-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.message-btn:hover {
+        background-color: #2a3bb0; /* Slightly darker on hover */
+}
+
+
+
+
+/* Floating Action Buttons */
+.floating-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+}
+
+.floating-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.floating-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+.post-btn {
+    background-color: var(--accent-color);
+    color: var(--white);
+    font-size: 24px;
+}
+
+.chat-btn {
+    background-color: #25D366; /* WhatsApp Green */
+    color: var(--white);
+}
+
+.chat-btn img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+/* Chat interface styles */
+.chat-container {
+    position: fixed;
+    bottom: 100px; /* Adjusted to be above floating buttons */
+    right: 30px;
+    width: 350px;
+    height: 450px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1001;
+    display: none; /* Initially hidden */
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {transform: translateY(20px); opacity: 0;}
+    to {transform: translateY(0); opacity: 1;}
+}
+
+.chat-header {
+    padding: 15px;
+    background-color: var(--accent-color);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.close-chat {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+}
+
+.message {
+    display: flex;
+    margin-bottom: 15px;
+    align-items: flex-start;
+}
+
+.message-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    font-size: 18px;
+    flex-shrink: 0; /* Prevent avatar shrinking */
+}
+
+.bot-message .message-avatar {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.user-message {
+    flex-direction: row-reverse;
+}
+
+.user-message .message-avatar {
+    margin-right: 0;
+    margin-left: 10px;
+    background-color: #25D366;
+    color: white;
+}
+
+.message-content {
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%; /* Adjust max-width slightly */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    word-wrap: break-word; /* Break long words */
+}
+
+.user-message .message-content {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.message-content p {
+    margin: 0;
+    line-height: 1.4; /* Improve readability */
+}
+
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px; /* Space before button */
+}
+
+.chat-input button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+    .chat-input button:hover {
+        background-color: #2a3bb0;
+    }
+
+
+/* Modal styles for post function */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.modal-content.active {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--light-text);
+}
+
+.modal-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    text-align: center; /* Center title */
+}
+
+.post-form textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    resize: vertical;
+    line-height: 1.5;
+}
+    .post-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
+}
+
+.modal-action-btn {
+    display: inline-block; /* Important for <a> tag */
+    text-decoration: none; /* Remove underline from <a> */
+    background-color: var(--accent-color);
+    color: var(--white) !important; /* Use !important if specificity issues arise */
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Ensure text is centered */
+    margin-right: 10px; /* Add space between buttons */
+    vertical-align: middle; /* Align items vertically if needed */
+}
+.modal-action-btn:last-child {
+        margin-right: 0; /* Remove margin from the last button */
+}
+
+/* Apply hover to the common class */
+.modal-action-btn:hover {
+    background-color: #2a3bb0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    color: var(--white); /* Ensure hover color stays white for <a> */
+}
+
+.modal-action-btn.posting {
+    background-color: #6c757d;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Animation for button click */
+.submit-btn-animation::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+    transition: width 0.3s ease;
+}
+.submit-btn-animation:active::after {
+    width: 100%;
+    transition: width 0.1s ease;
+}
+
+@keyframes modalFade { /* Keep if needed elsewhere, not currently used by modal */
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+
+@media (max-width: 1024px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .message-list {
+        grid-template-columns: 1fr; /* Stack messages on smaller screens */
+    }
+    header {
+        padding: 1rem; /* Reduce header padding */
+    }
+    nav ul {
+        display: none; /* Consider a mobile menu toggle */
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack logo/nav/actions */
+        align-items: flex-start;
+        padding: 1rem;
+    }
+    .right-actions {
+            margin-top: 0.5rem; /* Add space if header stacks */
+            margin-left: 0; /* Reset margin */
+            width: 100%;
+            justify-content: flex-end; /* Align icons right */
+    }
+    .hero-section {
+        padding: 3rem 1rem; /* Adjust padding */
+            /* padding-bottom: 300px; -- Removed this, seems excessive */
+    }
+    .hero-content h1 {
+            font-size: 2rem; /* Adjust font size */
+    }
+        .hero-content p {
+            font-size: 1rem; /* Adjust font size */
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center; /* Center align footer content */
+    }
+
+    .footer-left, .footer-links, .footer-socials {
+        max-width: none; /* Remove max width */
+        flex-basis: auto; /* Reset basis */
+        text-align: center; /* Ensure centered */
+    }
+        .social-icons-list {
+            justify-content: center; /* Center social icons */
+        }
+
+    .search-container {
+        margin: 1rem; /* Adjust margin */
+        max-width: none; /* Full width */
+    }
+
+    .search-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .floating-buttons {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .floating-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    /* Ensure dropdown is properly positioned on mobile */
+    .account-dropdown {
+        right: 0; /* Align to the right edge of container */
+        left: auto;
+    }
+        .chat-container {
+        width: 90%; /* Make chat wider on mobile */
+        height: 70%; /* Adjust height */
+        bottom: 80px; /* Adjust position */
+        right: 5%;
+    }
+}
+
+/* New Post Animation */
+@keyframes newPostAppear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message-card.new-post {
+    animation: newPostAppear 0.8s ease forwards;
+    border-left: 3px solid var(--accent-color);
+}
+
+/* Animation for form open */
+.post-form.animate { /* Add this class when opening modal if desired */
+    animation: formExpand 0.5s ease forwards;
+}
+
+@keyframes formExpand {
+    from { transform: scale(0.95); opacity: 0.8; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Success Message Animation */
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.post-success {
+    color: #28a745;
+    text-align: center;
+    margin-top: 10px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    height: 0; /* Hide initially */
+    overflow: hidden; /* Hide initially */
+}
+
+.post-success.show {
+    opacity: 1;
+    height: auto; /* Show */
+    animation: successPulse 0.5s ease;
+}
+
+/* Pagination Styles */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 0.5rem;
+}
+
+.page-item {
+    background-color: #f0f4ff;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    min-width: 40px;
+    text-align: center;
+}
+
+.page-item:hover {
+    background-color: #e2e8f5;
+}
+
+.page-item.active {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+    cursor: default;
+}
+
+.page-item:disabled {
+    background-color: #f8f9fa;
+    color: #adb5bd;
+    cursor: not-allowed;
+}
+
+/* Like Button Styles */
+.like-btn {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.like-btn i {
+    transition: transform 0.2s ease;
+}
+
+.like-btn.liked {
+    background-color: var(--accent-color);
+    color: var(--white);
+}
+.like-btn.liked i {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+/* Comment Section Styles */
+.comment-trigger-btn {
+    background-color: #e2e8f0;
+    color: #4a5568;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.comment-section {
+    display: none; /* Hidden by default */
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.comment-section.active {
+    display: block;
+}
+
+.comments-display-area {
+    margin-bottom: 0.8rem;
+    max-height: 150px;
+    overflow-y: auto;
+    padding-right: 5px; /* Add some space for scrollbar */
+}
+
+.comment-item {
+    background-color: #f7fafc;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    border: 1px solid #e2e8f0;
+    word-wrap: break-word; /* Wrap long comments */
+}
+.comment-item strong {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.comment-input-area {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start; /* Align button top */
+}
+
+.comment-input {
+    flex-grow: 1;
+    min-height: 40px;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    resize: vertical;
+    line-height: 1.4;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(60, 79, 224, 0.2);
+}
+
+.post-comment-btn {
+    flex-shrink: 0;
+    padding: 0.5rem 1rem;
+    height: 40px; /* Match input height */
+}
+
+/* Tutor Dropdown Styles */
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    color: var(--light-text);
+    font-size: 1.1rem;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+.icon-btn:hover {
+    color: var(--accent-color);
+}
+
+.message-header .tutor-menu-trigger {
+    margin-left: auto; /* Push trigger to the right */
+}
+
+.tutor-list-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 40px; /* Position below header */
+    right: 1rem; /* Align to right within card */
+    background-color: var(--white);
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    padding: 0;
+    min-width: 250px;
+    max-width: 320px;
+    z-index: 10;
+    border: 1px solid #eee;
+    overflow: hidden; /* Clip content */
+}
+
+.tutor-list-dropdown.active {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.tutor-list-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.tutor-list-dropdown li {
+    border-bottom: 1px solid #f0f4ff;
+}
+.tutor-list-dropdown li:last-child {
+    border-bottom: none;
+}
+.tutor-list-dropdown li:hover .tutor-item-container {
+    background-color: var(--secondary-color);
+}
+
+.tutor-item-container {
+    padding: 0.8rem 1rem;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: flex-start; /* Align items top */
+    gap: 0.8rem;
+}
+
+.tutor-avatar-dropdown {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: #eee; /* Fallback */
+}
+
+.tutor-avatar-dropdown img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tutor-details-actions-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden; /* Prevent content overflow */
+}
+
+.tutor-info-dropdown .tutor-name {
+    display: block;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.2rem;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ... if name is too long */
+}
+.tutor-info-dropdown .tutor-name:hover {
+    text-decoration: underline;
+}
+
+.tutor-description {
+    font-size: 0.85rem;
+    color: var(--light-text);
+    margin: 0 0 0.8rem 0;
+    line-height: 1.4;
+    /* Limit description lines if needed */
+    /* display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden; */
+}
+
+.tutor-item-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.tutor-item-actions .message-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}

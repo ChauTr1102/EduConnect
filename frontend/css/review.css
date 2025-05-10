@@ -1,0 +1,241 @@
+@import url("component/header.css");
+:root {
+    --primary-color: #0d1472;
+    --secondary-color: #f0f4ff;
+    --accent-color: #3c4fe0;
+    --text-color: #333;
+    --light-text: #888;
+    --white: #fff;
+    --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--text-color);
+    position: relative; /* For floating buttons positioning */
+}
+
+/* Header Styles */
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+    color: white;
+    padding: 3rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5rem;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Main Content Sections */
+section {
+    padding: 2rem 5rem;
+    margin-bottom: 1rem;
+}
+
+section h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.tutor-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+}
+
+.tutor-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.tutor-card:hover {
+    transform: translateY(-5px);
+}
+
+.tutor-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.tutor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tutor-info {
+    padding: 1rem;
+    text-align: center;
+}
+
+.tutor-name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.see-more-btn {
+    background: white;
+    border: 1px solid #4361ee;
+    color: #4361ee;
+    padding: 6px 15px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 8px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.see-more-btn:hover {
+    background: #4361ee;
+    color: white;
+}
+
+.rating {
+    display: inline-block;
+    background: #4361ee;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.tutor-description {
+    margin: 1.5rem 5rem;
+    text-align: center;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Footer */
+footer {
+    background: #0a1172;
+    color: white;
+    padding: 2rem 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-logo {
+    width: 20%;
+}
+
+.footer-logo img {
+    max-width: 80px;
+}
+
+.footer-tagline {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+.footer-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.footer-links h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-socials h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--white); 
+}
+
+/* Container for the list of icons */
+.social-icons-list {
+    display: flex;      
+    flex-wrap: wrap;     
+    gap: 12px;          
+}
+
+/* Styling for each icon's link container */
+.social-icon-item {
+    display: inline-block; 
+    width: 30px;           
+    height: 30px;         
+    line-height: 0;        
+    transition: transform 0.2s ease; 
+}
+
+.social-icon-item:hover {
+    transform: scale(1.1); 
+}
+
+.social-icon-item img {
+    width: 100%;           
+    height: 100%;          
+    object-fit: contain;   
+    display: block;       
+}
+
+.social-icon {
+    background: rgba(255,255,255,0.2);
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: white;
+}
