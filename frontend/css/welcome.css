@@ -1,0 +1,283 @@
+
+:root {
+    --primary-color: #0d1472;
+    --secondary-color: #f0f4ff;
+    --accent-color: #3c4fe0;
+    --text-color: #333;
+    --light-text: #888;
+    --white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--white);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 0;
+}
+
+.nav-dropdown::after {
+    content: "▼";
+    font-size: 0.7em;
+    margin-left: 5px;
+    color: var(--light-text);
+}
+
+.right-actions {
+    display: flex;
+    align-items: center;
+}
+
+.right-actions > * {
+    margin-left: 1rem;
+}
+
+.main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.welcome-text h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-text p {
+    color: var(--light-text);
+    margin-bottom: 2rem;
+}
+
+.account-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.account-option {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: var(--white);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.account-option:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.account-option.selected {
+    border-color: var(--accent-color);
+    background-color: var(--secondary-color);
+}
+
+.option-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 5px
+}
+
+.tutor-icon, .student-icon {
+    background-color: var(--primary-color);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    width: 50px; /* Adjust this value */
+    height: 50px; /* Adjust this value */
+    display: inline-block; /* Add this if using with inline elements */
+}
+
+
+.option-icon i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.option-text h3 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.option-text p {
+    color: var(--light-text);
+    font-size: 0.9rem;
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 3rem 2rem;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left {
+    max-width: 300px;
+}
+
+.footer-logo {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.footer-logo img {
+    height: 60px;
+}
+
+.mission-statement {
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.team-credit {
+    color: rgba(255,255,255,0.7);
+}
+
+.footer-links {
+    text-align: center;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin: 0.5rem 0;
+}
+
+.footer-links a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: rgba(255,255,255,0.7);
+}
+
+.payment-methods {
+    text-align: right;
+}
+
+.payment-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    max-width: 300px;
+}
+
+.payment-icon {
+    width: 40px;
+    height: 25px;
+    background-color: var(--white);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-socials h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: var(--white); 
+}
+
+/* Container for the list of icons */
+.social-icons-list {
+    display: flex;      
+    flex-wrap: wrap;     
+    gap: 12px;          
+}
+
+/* Styling for each icon's link container */
+.social-icon-item {
+    display: inline-block; 
+    width: 30px;           
+    height: 30px;         
+    line-height: 0;        
+    transition: transform 0.2s ease; 
+}
+
+.social-icon-item:hover {
+    transform: scale(1.1); 
+}
+
+.social-icon-item img {
+    width: 100%;           
+    height: 100%;          
+    object-fit: contain;   
+    display: block;       
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .payment-methods, .footer-links, .footer-left {
+        text-align: center;
+        max-width: none;
+    }
+    
+    .payment-icons {
+        justify-content: center;
+        margin: 0 auto;
+    }
+}
