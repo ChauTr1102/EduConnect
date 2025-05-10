@@ -12,6 +12,8 @@ import asyncio
 from dotenv import load_dotenv
 import re
 import json
+from datetime import datetime
+import secrets
 
 load_dotenv()
 
@@ -34,6 +36,7 @@ def extract_clean_json(response_text: str):
 
 
 class StudentRequest(BaseModel):
+    user_id: str
     student_request: str
 
 

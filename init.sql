@@ -65,6 +65,7 @@ CREATE TABLE posts (
     post_id varchar(20) PRIMARY KEY,
     user_id varchar(20) REFERENCES users(user_id) ON DELETE CASCADE,
     content TEXT NOT NULL,
+    status varchar(20) default 'private' check(status in('private', 'public')),
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 

@@ -19,19 +19,26 @@ async def check_login(test: user_and_pass):
 @router.post("/recommender/")
 async def recommender(student_request: StudentRequest):
     recommender = RecommenderSystem(gemini_apikey=os.getenv("GEMINI_API_KEY"))
+    # insert vào bảng post nè
+    post_id = "po" + datetime.now().strftime("%Y%m%d%H%m") + secrets.token_hex(3)
+    sql_db.upload_post(post_id, student_request.user_id, student_request.student_request, status='private')
+    # lấy profile giáo viên
     teacher_profile = sql_db.get_teachers_profile()
+
     prompt_recommender = recommender.prompt_recommender(student_request.student_request, teacher_profile)
     response = await recommender.send_message_gemini(prompt_recommender)
-    result = extract_clean_json(response)
 
+    result = extract_clean_json(response)
     # Chuyển string thành list of dict
     parsed_result = json.loads(result)
 
+    for i in parsed_result:
+        sql_db.insert_suitable_teacher(post_id, i["teacher_id"], i["name"], i["email"], i["reason"])
     # Lưu lại thành file JSON đẹp
-    with open("suitable_teacher.json", "w", encoding="utf-8") as f:
-        json.dump(parsed_result, f, indent=4, ensure_ascii=False)
+    # with open("suitable_teacher.json", "w", encoding="utf-8") as f:
+    #     json.dump(parsed_result, f, indent=4, ensure_ascii=False)
 
-    return result
+    return post_id
 
 
 @router.post("/chat_get-answer/")

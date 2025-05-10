@@ -8,7 +8,7 @@ VALUES
   ('user_004','thu_hs','hashed_pw_04','Lê Thu','2007-09-15','Female','thu@gmail.com','Hoàng Mai, Hà Nội'),
   ('user_005','son_hs','hashed_pw_05','Đỗ Sơn','2008-04-22','Male','son@gmail.com','Hai Bà Trưng, Hà Nội'),
   ('user_006','hanh_hs','hashed_pw_06','Ngô Hạnh','2007-06-01','Female','hanh@gmail.com','Ba Đình, Hà Nội'),
-  ('user_007','binh','binhdaubuoi','Lê Nguyễn Thanh Bình','2008-07-19','Male','khoa@gmail.com','Long Biên, Hà Nội'),
+  ('user_007','binh','binh123','Lê Nguyễn Thanh Bình','2008-07-19','Male','khoa@gmail.com','Long Biên, Hà Nội'),
   ('user_008','chau','chauhehe','Trịnh Minh Châu','2007-12-30','Female','thao@gmail.com','Thanh Trì, Hà Nội'),
   ('user_009','manh','manhngoo','Ngô Đức Mạnh','2008-08-09','Male','hoang@gmail.com','Nam Từ Liêm, Hà Nội'),
   ('user_010','hieu','hieu123','Nguyễn Ngọc Hiếu','2007-11-17','Female','mai@gmail.com','Bắc Từ Liêm, Hà Nội'),
@@ -392,2374 +392,2090 @@ VALUES
 -- 2.3 Teachers
 INSERT INTO teachers (teacher_id, introduction, degree, experience, teaching_style, hobby)
 VALUES
-  ('user_011','GV Toán nhiều năm kinh nghiệm.','Thạc sĩ Toán học','5 năm dạy kèm THPT',
-   'Phong cách dạy chậm rãi, chắc chắn, giải thích từng bước bằng ví dụ cụ thể. Luôn bắt đầu từ nền tảng cơ bản rồi mới mở rộng nâng cao. Tạo môi trường thoải mái để học sinh không sợ sai.','Chạy bộ'),
-  ('user_012','Chuyên Văn, luyện thi đại học.','Cử nhân SP Văn','7 năm luyện thi',
-   'Ưu tiên phân tích theo chiều sâu, hướng học sinh tư duy phản biện và cảm thụ văn học qua trải nghiệm cá nhân. Luôn đưa ví dụ gần gũi để học sinh dễ liên hệ.','Du lịch'),
-  ('user_013','Giỏi Hóa, học viên cao học.','Thạc sĩ Hóa học','4 năm dạy thêm',
-   'Hướng dẫn qua sơ đồ tư duy và video minh họa. Bài giảng cô đọng, dễ hiểu, luôn kết hợp lý thuyết với bài tập thực tế. Tập trung giải thích bản chất phản ứng hoá học.','Nấu ăn'),
-  ('user_014','GV tiếng Anh, từng sống ở Anh.','Thạc sĩ Ngôn ngữ','6 năm giảng dạy',
-   'Tập trung vào giao tiếp thực tế, luyện phản xạ bằng cách đặt tình huống. Kết hợp nhiều công cụ học như podcast, phim ảnh. Học sinh được sửa lỗi cá nhân rất kỹ.','Xem phim nước ngoài'),
-  ('user_015','Chuyên ôn thi Toán lớp 9-12.','Cử nhân Toán','8 năm kinh nghiệm',
-   'Dạy theo chuyên đề, bám sát chương trình sách giáo khoa và các dạng đề thi. Có bộ đề riêng theo từng cấp độ. Luôn giúp học sinh nắm phương pháp giải chứ không học vẹt.','Cafe sách'),
-  ('user_016','Yêu Sinh học, truyền cảm hứng học.','Thạc sĩ Sinh học','5 năm đứng lớp',
-   'Luôn tạo liên kết giữa bài học và đời sống thực tế. Đặt câu hỏi mở để học sinh suy nghĩ chủ động. Tổ chức mini game, sơ đồ tư duy để nhớ lâu.','Leo núi'),
-  ('user_017','GV Lý sáng tạo, dùng ví dụ sinh động.','Cử nhân SP Lý','6 năm',
-   'Phân tích hiện tượng vật lý qua thí nghiệm mô phỏng. Giải thích các khái niệm bằng hoạt hình hoặc ví dụ gần gũi. Giúp học sinh hình dung được bài học chứ không học thuộc.','Làm mô hình'),
-  ('user_018','Hóa học vui, dễ hiểu.','Cử nhân SP Hóa','5 năm',
-   'Tạo hứng thú bằng cách giải thích hóa học qua trò chơi, hoạt hình. Nhấn mạnh các mẹo ghi nhớ nhanh. Mỗi buổi học đều có mini quiz để ôn tập.','DIY hóa học'),
-  ('user_019','Toán nền tảng tới nâng cao.','Thạc sĩ Toán học','9 năm luyện thi',
-   'Chú trọng việc làm chắc phần lý thuyết nền tảng. Sử dụng sơ đồ cây và các bộ đề phân loại. Theo sát tiến độ từng học sinh để điều chỉnh chiến lược ôn tập.','Đọc sách'),
-  ('user_020','Chuyên Văn sáng tác, tư duy phản biện.','Cử nhân Văn học','6 năm',
-   'Hướng dẫn học sinh viết theo khung ý rõ ràng, giúp nâng cao vốn từ. Tập trung luyện viết theo chủ đề xã hội và sáng tạo. Có phản biện nhóm để tăng kỹ năng lập luận.','Văn thơ'),
-   ('user_171','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Tiến sĩ chuyên ngành','7 năm giảng dạy',
-   'Tạo không khí học tích cực, khích lệ và không áp lực.','chụp ảnh, đi phượt'),
-('user_172','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Tiến sĩ chuyên ngành','14 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','nấu ăn, đi bộ'),
-('user_173','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Thạc sĩ chuyên ngành','4 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','thiết kế bài giảng, vẽ tay'),
-('user_174','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Tiến sĩ chuyên ngành','5 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','chụp ảnh, đi phượt'),
-('user_175','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Thạc sĩ chuyên ngành','15 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_176','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Thạc sĩ chuyên ngành','9 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','thiết kế bài giảng, vẽ tay'),
-('user_177','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Thạc sĩ chuyên ngành','15 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','chụp ảnh, đi phượt'),
-('user_178','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Tiến sĩ chuyên ngành','15 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','nấu ăn, đi bộ'),
-('user_179','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Tiến sĩ chuyên ngành','8 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','trồng cây, nghiên cứu giáo án'),
-('user_180','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Thạc sĩ chuyên ngành','13 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_181','Tôi thích kết hợp công nghệ vào giảng dạy để bài học sinh động, dễ hiểu.','Tiến sĩ chuyên ngành','7 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','thiết kế bài giảng, vẽ tay'),
-('user_182','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Tiến sĩ chuyên ngành','7 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','thiết kế bài giảng, vẽ tay'),
-('user_183','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Tiến sĩ chuyên ngành','13 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_184','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Tiến sĩ chuyên ngành','11 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','chụp ảnh, đi phượt'),
-('user_185','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Cử nhân chuyên ngành','7 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','thiết kế bài giảng, vẽ tay'),
-('user_186','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Tiến sĩ chuyên ngành','15 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','thiết kế bài giảng, vẽ tay'),
-('user_187','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Tiến sĩ chuyên ngành','13 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','trồng cây, nghiên cứu giáo án'),
-('user_188','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Thạc sĩ chuyên ngành','14 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','thiết kế bài giảng, vẽ tay'),
-('user_189','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Cử nhân chuyên ngành','3 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','nấu ăn, đi bộ'),
-('user_190','Tôi thích kết hợp công nghệ vào giảng dạy để bài học sinh động, dễ hiểu.','Tiến sĩ chuyên ngành','6 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','chụp ảnh, đi phượt'),
-('user_191','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Tiến sĩ chuyên ngành','11 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','nấu ăn, đi bộ'),
-('user_192','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Cử nhân chuyên ngành','3 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','chụp ảnh, đi phượt'),
-('user_193','Tôi thích kết hợp công nghệ vào giảng dạy để bài học sinh động, dễ hiểu.','Tiến sĩ chuyên ngành','12 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_194','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Tiến sĩ chuyên ngành','7 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','chụp ảnh, đi phượt'),
-('user_195','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Cử nhân chuyên ngành','6 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','thiết kế bài giảng, vẽ tay'),
-('user_196','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Tiến sĩ chuyên ngành','9 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','chụp ảnh, đi phượt'),
-('user_197','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Tiến sĩ chuyên ngành','8 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_198','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Thạc sĩ chuyên ngành','8 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','thiết kế bài giảng, vẽ tay'),
-('user_199','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Cử nhân chuyên ngành','7 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','trồng cây, nghiên cứu giáo án'),
-('user_200','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Thạc sĩ chuyên ngành','6 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','nấu ăn, đi bộ'),
-('user_201','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Cử nhân chuyên ngành','3 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','nấu ăn, đi bộ'),
-('user_202','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Tiến sĩ chuyên ngành','14 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_203','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Tiến sĩ chuyên ngành','10 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','thiết kế bài giảng, vẽ tay'),
-('user_204','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Tiến sĩ chuyên ngành','12 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','thiết kế bài giảng, vẽ tay'),
-('user_205','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Thạc sĩ chuyên ngành','5 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','nấu ăn, đi bộ'),
-('user_206','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Tiến sĩ chuyên ngành','3 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','trồng cây, nghiên cứu giáo án'),
-('user_207','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Thạc sĩ chuyên ngành','4 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','thiết kế bài giảng, vẽ tay'),
-('user_208','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Thạc sĩ chuyên ngành','7 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','trồng cây, nghiên cứu giáo án'),
-('user_209','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Thạc sĩ chuyên ngành','7 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','thiết kế bài giảng, vẽ tay'),
-('user_210','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Thạc sĩ chuyên ngành','12 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_211','Tôi thích kết hợp công nghệ vào giảng dạy để bài học sinh động, dễ hiểu.','Thạc sĩ chuyên ngành','12 năm giảng dạy',
-'Tạo không khí học tích cực, khích lệ và không áp lực.','thiết kế bài giảng, vẽ tay'),
-('user_212','Với nhiều năm giảng dạy, tôi hiểu cách giúp học sinh vượt qua khó khăn.','Thạc sĩ chuyên ngành','13 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','thiết kế bài giảng, vẽ tay'),
-('user_213','Tôi là giáo viên tâm huyết, luôn tìm cách đổi mới phương pháp dạy.','Cử nhân chuyên ngành','8 năm giảng dạy',
-'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_214','Tôi thích kết hợp công nghệ vào giảng dạy để bài học sinh động, dễ hiểu.','Tiến sĩ chuyên ngành','15 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','chụp ảnh, đi phượt'),
-('user_215','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Tiến sĩ chuyên ngành','8 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','chụp ảnh, đi phượt'),
-('user_216','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Cử nhân chuyên ngành','12 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','đọc sách chuyên ngành, nghe nhạc nhẹ'),
-('user_217','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Thạc sĩ chuyên ngành','11 năm giảng dạy',
-'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan.','trồng cây, nghiên cứu giáo án'),
-('user_218','Tôi tin rằng mỗi học sinh đều có thể tiến bộ nếu được truyền cảm hứng đúng cách.','Cử nhân chuyên ngành','12 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','thiết kế bài giảng, vẽ tay'),
-('user_219','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Tiến sĩ chuyên ngành','14 năm giảng dạy',
-'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ.','trồng cây, nghiên cứu giáo án'),
-('user_220','Dạy học với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh.','Thạc sĩ chuyên ngành','4 năm giảng dạy',
-'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao.','đọc sách chuyên ngành, nghe nhạc nhẹ');
-;
+  ('user_011','GV Toán nhiều năm kinh nghiệm, chuyên luyện thi đại học.','Thạc sĩ Toán học','5 năm dạy kèm THPT',
+    'Phong cách dạy chậm rãi, chắc chắn, giải thích từng bước bằng ví dụ cụ thể, giúp học sinh nắm vững nền tảng và phát triển tư duy logic. Luôn tạo môi trường thoải mái để học sinh không sợ sai.','Chạy bộ đường trường, giải các bài toán khó'),
+  ('user_012','Chuyên gia **Văn học**, giàu kinh nghiệm luyện thi đại học, khơi gợi niềm đam mê và tư duy phản biện cho học sinh.','Cử nhân SP Văn','7 năm luyện thi',
+    'Ưu tiên phân tích tác phẩm theo chiều sâu, hướng học sinh tư duy phản biện và cảm thụ văn học qua trải nghiệm cá nhân. Luôn đưa ví dụ gần gũi để học sinh dễ liên hệ và tự tin viết.','Du lịch khám phá văn hóa, đọc sách và viết nhật ký'),
+  ('user_013','Giáo viên **Hóa học** đầy nhiệt huyết, là học viên cao học với kiến thức chuyên sâu và khả năng truyền đạt dễ hiểu.','Thạc sĩ Hóa học','4 năm dạy thêm',
+    'Hướng dẫn qua sơ đồ tư duy và video minh họa, giúp bài giảng cô đọng, dễ hiểu. Luôn kết hợp lý thuyết với bài tập thực tế, tập trung giải thích bản chất phản ứng hoá học.','Nấu ăn các món phức tạp, nghiên cứu các phản ứng hóa học trong đời sống'),
+  ('user_014','Giáo viên **tiếng Anh** năng động, từng sống và làm việc ở Anh Quốc, mang đến môi trường học tập chuẩn quốc tế.','Thạc sĩ Ngôn ngữ','6 năm giảng dạy',
+    'Tập trung vào giao tiếp thực tế, luyện phản xạ bằng cách đặt tình huống giao tiếp. Kết hợp nhiều công cụ học như podcast, phim ảnh, giúp học sinh được sửa lỗi cá nhân rất kỹ và tự tin nói.','Xem phim nước ngoài không phụ đề, tìm hiểu văn hóa phương Tây'),
+  ('user_015','Chuyên ôn thi **Toán học** các khối lớp 9-12, với kinh nghiệm lâu năm và bộ đề luyện thi đa dạng.','Cử nhân Toán','8 năm kinh nghiệm',
+    'Dạy theo chuyên đề, bám sát chương trình sách giáo khoa và các dạng đề thi. Có bộ đề riêng theo từng cấp độ. Luôn giúp học sinh nắm phương pháp giải chứ không học vẹt.','Cafe sách, giải các bài toán logic'),
+  ('user_016','Giáo viên **Sinh học** yêu nghề, luôn tìm cách truyền cảm hứng để học sinh khám phá vẻ đẹp của thế giới tự nhiên.','Thạc sĩ Sinh học','5 năm đứng lớp',
+    'Luôn tạo liên kết giữa bài học và đời sống thực tế. Đặt câu hỏi mở để học sinh suy nghĩ chủ động. Tổ chức mini game, sơ đồ tư duy để nhớ lâu và vận dụng kiến thức.','Leo núi, tìm hiểu về các loài động thực vật quý hiếm'),
+  ('user_017','Giáo viên **Vật lý** sáng tạo, sử dụng các ví dụ sinh động và thí nghiệm mô phỏng để bài học trở nên trực quan, dễ hiểu.','Cử nhân SP Lý','6 năm',
+    'Phân tích hiện tượng vật lý qua thí nghiệm mô phỏng. Giải thích các khái niệm bằng hoạt hình hoặc ví dụ gần gũi. Giúp học sinh hình dung được bài học chứ không học thuộc.','Làm mô hình các thiết bị vật lý, sửa chữa đồ điện tử'),
+  ('user_018','Mang đến những buổi học **Hóa học** vui vẻ, dễ hiểu, giúp học sinh không còn e ngại môn học này.','Cử nhân SP Hóa','5 năm',
+    'Tạo hứng thú bằng cách giải thích hóa học qua trò chơi, hoạt hình. Nhấn mạnh các mẹo ghi nhớ nhanh và cách giải các bài tập khó. Mỗi buổi học đều có mini quiz để ôn tập hiệu quả.','DIY hóa học, sưu tầm các mẫu khoáng vật'),
+  ('user_019','Giáo viên **Toán học** có kinh nghiệm 9 năm luyện thi, giúp học sinh xây dựng nền tảng vững chắc và phát triển tư duy giải toán từ cơ bản đến nâng cao.','Thạc sĩ Toán học','9 năm luyện thi',
+    'Chú trọng việc làm chắc phần lý thuyết nền tảng. Sử dụng sơ đồ cây và các bộ đề phân loại theo từng dạng bài. Theo sát tiến độ từng học sinh để điều chỉnh chiến lược ôn tập phù hợp.','Đọc sách triết học, chơi cờ tướng'),
+  ('user_020','Giáo viên **Văn học** chuyên luyện thi sáng tác và rèn luyện tư duy phản biện, giúp học sinh viết văn mạch lạc và có chiều sâu.','Cử nhân Văn học','6 năm',
+    'Hướng dẫn học sinh viết theo khung ý rõ ràng, giúp nâng cao vốn từ. Tập trung luyện viết theo chủ đề xã hội và sáng tạo. Có phản biện nhóm để tăng kỹ năng lập luận và tư duy đa chiều.','Văn thơ, tham gia các câu lạc bộ đọc sách'),
+  ('user_171','Tôi là giáo viên **Văn học** tâm huyết, luôn tìm cách đổi mới phương pháp dạy để khơi gợi cảm xúc và tư duy văn chương trong học sinh.','Tiến sĩ Ngữ văn','7 năm giảng dạy',
+    'Tạo không khí học tích cực, khích lệ học sinh chia sẻ cảm nhận cá nhân. Giảng bài bằng cách phân tích sâu các tác phẩm, khuyến khích tư duy phản biện và sáng tạo.','Chụp ảnh phong cảnh, đi phượt khám phá văn hóa địa phương'),
+  ('user_172','Với nhiều năm kinh nghiệm giảng dạy **Sinh học**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng việc liên hệ kiến thức với đời sống và các thí nghiệm trực quan.','Tiến sĩ Sinh học','14 năm giảng dạy',
+    'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ minh họa sinh động. Khuyến khích học sinh đặt câu hỏi và tự tìm tòi.','Nấu ăn các món Healthy, đi bộ đường dài để quan sát thiên nhiên'),
+  ('user_173','Là một thầy giáo **Toán** tận tâm, tôi luôn chia nhỏ bài học theo từng dạng, luyện bài theo mức độ từ cơ bản đến nâng cao, giúp học sinh nắm vững kiến thức.','Thạc sĩ Toán học','4 năm giảng dạy',
+    'Phương pháp giảng dạy trực quan, đi sâu vào bản chất vấn đề. Tập trung vào việc xây dựng tư duy logic, không chỉ dừng lại ở việc giải bài tập.','Thiết kế bài giảng sáng tạo, vẽ tay các sơ đồ tư duy phức tạp'),
+  ('user_174','Tôi là giáo viên **Tiếng Anh** tâm huyết, luôn tìm cách đổi mới phương pháp dạy để học sinh yêu thích ngôn ngữ và tự tin giao tiếp.','Tiến sĩ Ngôn ngữ Anh','5 năm giảng dạy',
+    'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ từ cuộc sống thực. Tập trung luyện phát âm chuẩn và ngữ điệu tự nhiên.','Chụp ảnh đường phố, đi phượt khám phá các nền văn hóa'),
+  ('user_175','Với 15 năm kinh nghiệm giảng dạy **Vật Lý**, tôi tin rằng mọi khái niệm phức tạp đều có thể được đơn giản hóa thông qua sơ đồ tư duy và hình ảnh minh họa.','Thạc sĩ Vật Lý','15 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan để học sinh dễ hình dung. Khuyến khích tư duy logic và giải quyết vấn đề qua các bài tập thực tế.','Đọc sách chuyên ngành khoa học, nghe nhạc nhẹ cổ điển'),
+  ('user_176','Là một giáo viên **Hóa học**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng việc kết hợp lý thuyết và bài tập thực hành, đưa hóa học gần hơn với đời sống.','Thạc sĩ Hóa học','9 năm giảng dạy',
+    'Tạo không khí học tích cực, khích lệ học sinh làm thí nghiệm ảo và đặt câu hỏi. Giúp học sinh hiểu sâu bản chất phản ứng, không chỉ học thuộc lòng.','Thiết kế bài giảng tương tác, vẽ tay các công thức hóa học'),
+  ('user_177','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Văn học** nếu được truyền cảm hứng đúng cách, khơi gợi niềm đam mê đọc và viết.','Thạc sĩ Ngữ văn','15 năm giảng dạy',
+    'Tạo không khí học tích cực, khích lệ và không áp lực. Tập trung phát triển khả năng phân tích, cảm thụ và diễn đạt cá nhân của học sinh.','Chụp ảnh phong cảnh, đi phượt khám phá văn hóa dân gian'),
+  ('user_178','Tôi là giáo viên **Sinh học** tận tâm, luôn tìm cách đổi mới phương pháp dạy để biến những kiến thức khô khan thành những khám phá thú vị về thế giới tự nhiên.','Tiến sĩ Sinh học','15 năm giảng dạy',
+    'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ thực tế, kết nối bài học với môi trường sống.','Nấu ăn các món ăn truyền thống, đi bộ đường dài để tìm hiểu hệ sinh thái'),
+  ('user_179','Dạy học **Toán** với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh, giúp các em vượt qua nỗi sợ và chinh phục những con số.','Tiến sĩ Toán học','8 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan để học sinh dễ ghi nhớ. Tập trung vào việc rèn luyện tư duy giải quyết vấn đề và khả năng tự học.','Trồng cây cảnh trong vườn, nghiên cứu giáo án mới'),
+  ('user_180','Với nhiều năm giảng dạy **Tiếng Anh**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng cách xây dựng nền tảng vững chắc về ngữ pháp và từ vựng, đồng thời khuyến khích thực hành giao tiếp.','Thạc sĩ Ngôn ngữ Anh','13 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan. Lồng ghép các trò chơi ngôn ngữ và hoạt động nhóm để tăng cường tương tác.','Đọc sách chuyên ngành ngôn ngữ, nghe nhạc nhẹ quốc tế'),
+  ('user_181','Tôi thích kết hợp công nghệ vào giảng dạy **Vật lý** để bài học sinh động, dễ hiểu và hấp dẫn hơn với các thí nghiệm mô phỏng và video khoa học.','Tiến sĩ Vật Lý','7 năm giảng dạy',
+    'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao. Giúp học sinh phân tích hiện tượng vật lý một cách logic và sâu sắc.','Thiết kế bài giảng điện tử, vẽ tay các mô hình vật lý'),
+  ('user_182','Với nhiều năm giảng dạy **Hóa học**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng việc đơn giản hóa các khái niệm phức tạp và cung cấp nhiều bài tập luyện tập đa dạng.','Tiến sĩ Hóa học','7 năm giảng dạy',
+    'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao. Tập trung vào việc giải thích bản chất các phản ứng, không chỉ là công thức.','Thiết kế bài giảng tương tác, vẽ tay các cấu trúc phân tử'),
+  ('user_183','Dạy học **Văn học** với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh, giúp các em tìm thấy vẻ đẹp trong từng câu chữ và diễn đạt cảm xúc của mình.','Tiến sĩ Ngữ văn','13 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan để học sinh dễ ghi nhớ tác phẩm. Khuyến khích đọc sách, viết nhật ký văn học.','Đọc sách chuyên ngành, nghe nhạc nhẹ thư giãn'),
+  ('user_184','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Sinh học** nếu được truyền cảm hứng đúng cách, giúp các em khám phá thế giới sinh vật đầy kỳ diệu.','Tiến sĩ Sinh học','11 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan để học sinh dễ hình dung các quá trình sinh học. Liên hệ với thực tế y học, nông nghiệp.','Chụp ảnh thiên nhiên, đi phượt khám phá các hệ sinh thái'),
+  ('user_185','Với nhiều năm giảng dạy **Toán học**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng việc xây dựng nền tảng vững chắc và rèn luyện kỹ năng giải quyết vấn đề.','Cử nhân Toán học','7 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan. Tập trung vào việc luyện giải đề thi và các dạng bài khó.','Thiết kế bài giảng logic, vẽ tay các đồ thị hàm số'),
+  ('user_186','Tôi là giáo viên **Tiếng Anh** tâm huyết, luôn tìm cách đổi mới phương pháp dạy để tạo môi trường học tập hứng thú và hiệu quả cho học sinh.','Tiến sĩ Ngôn ngữ Anh','15 năm giảng dạy',
+    'Tạo không khí học tích cực, khích lệ và không áp lực. Tập trung vào kỹ năng nghe nói, luyện phản xạ giao tiếp trong các tình huống thực tế.','Thiết kế bài giảng sáng tạo, vẽ tay các biểu đồ từ vựng'),
+  ('user_187','Với nhiều năm giảng dạy **Vật lý**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng cách chia nhỏ bài học theo từng dạng, luyện bài theo mức độ từ dễ đến khó.','Tiến sĩ Vật Lý','13 năm giảng dạy',
+    'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ để học sinh không bị choáng ngợp. Giải thích sâu các định luật vật lý.','Trồng cây cảnh, nghiên cứu các công trình khoa học mới'),
+  ('user_188','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Hóa học** nếu được truyền cảm hứng đúng cách, giúp các em yêu thích môn học và giải quyết các bài tập phức tạp.','Thạc sĩ Hóa học','14 năm giảng dạy',
+    'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao. Tập trung vào các phản ứng quan trọng và tính toán stoichiometry.','Thiết kế bài giảng trực quan, vẽ tay các phân tử hóa học'),
+  ('user_189','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Văn học** nếu được truyền cảm hứng đúng cách, giúp các em cảm thụ sâu sắc vẻ đẹp của văn chương và thể hiện bản thân qua lời văn.','Cử nhân Ngữ văn','3 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan. Hướng dẫn viết các dạng bài văn nghị luận, cảm nhận.','Nấu ăn các món truyền thống, đi bộ thư giãn'),
+  ('user_190','Tôi thích kết hợp công nghệ vào giảng dạy **Sinh học** để bài học sinh động, dễ hiểu, đặc biệt là các kiến thức về di truyền và tiến hóa.','Tiến sĩ Sinh học','6 năm giảng dạy',
+    'Tạo không khí học tích cực, khích lệ và không áp lực. Sử dụng các ứng dụng mô phỏng để học sinh dễ hiểu hơn về cấu trúc tế bào, hệ gen.','Chụp ảnh động vật hoang dã, đi phượt khám phá đa dạng sinh học'),
+  ('user_191','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Toán học** nếu được truyền cảm hứng đúng cách, giúp các em tư duy logic và giải quyết vấn đề hiệu quả.','Tiến sĩ Toán học','11 năm giảng dạy',
+    'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ từ cơ bản đến nâng cao. Tập trung vào việc xây dựng phương pháp giải từng loại bài.','Nấu ăn các món lạ, đi bộ trong công viên'),
+  ('user_192','Với nhiều năm giảng dạy **Tiếng Anh**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng việc xây dựng lộ trình học cá nhân hóa và tạo môi trường thực hành giao tiếp thường xuyên.','Cử nhân Ngôn ngữ Anh','3 năm giảng dạy',
+    'Luôn bắt đầu từ cơ bản và củng cố dần lên nâng cao. Luyện ngữ pháp, từ vựng qua các bài tập đa dạng, kết hợp nghe nói đọc viết.','Chụp ảnh chân dung, đi phượt khám phá văn hóa các nước'),
+  ('user_193','Tôi thích kết hợp công nghệ vào giảng dạy **Vật lý** để bài học sinh động, dễ hiểu, đặc biệt là các kiến thức về điện học và quang học.','Tiến sĩ Vật Lý','12 năm giảng dạy',
+    'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ. Sử dụng các phần mềm mô phỏng thí nghiệm ảo để tăng tính trực quan.','Đọc sách chuyên ngành, nghe nhạc nhẹ thư giãn'),
+  ('user_194','Với nhiều năm giảng dạy **Hóa học**, tôi hiểu cách giúp học sinh vượt qua khó khăn bằng việc giải thích cặn kẽ bản chất vấn đề và cung cấp nhiều ví dụ thực tế.','Tiến sĩ Hóa học','7 năm giảng dạy',
+    'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ. Tập trung vào các phản ứng hóa học quan trọng và tính toán nồng độ, khối lượng.','Chụp ảnh thí nghiệm hóa học, đi phượt khám phá các mỏ khoáng sản'),
+  ('user_195','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Văn học** nếu được truyền cảm hứng đúng cách, giúp các em thể hiện sự sáng tạo và cảm xúc cá nhân qua ngòi bút.','Cử nhân Ngữ văn','6 năm giảng dạy',
+    'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ từ viết đoạn văn đến bài văn hoàn chỉnh. Tập trung vào kỹ năng phân tích, cảm thụ và diễn đạt.','Thiết kế bài giảng sáng tạo, vẽ tay các hình tượng văn học'),
+  ('user_196','Tôi tin rằng mỗi học sinh đều có thể tiến bộ trong **Sinh học** nếu được truyền cảm hứng đúng cách, giúp các em khám phá thế giới tự nhiên và các ứng dụng trong y học.','Tiến sĩ Sinh học','9 năm giảng dạy',
+    'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ. Tập trung vào các hệ cơ quan, di truyền và các bệnh phổ biến.','Chụp ảnh vi sinh vật, đi phượt khám phá hệ sinh thái rừng'),
+  ('user_197','Dạy học **Toán học** với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh, giúp các em phát triển tư duy logic và khả năng giải quyết vấn đề.','Tiến sĩ Toán học','8 năm giảng dạy',
+    'Tạo không khí học tích cực, khích lệ và không áp lực. Tập trung vào các dạng bài tập khó và phương pháp giải nhanh.','Đọc sách chuyên ngành, nghe nhạc nhẹ giúp tập trung'),
+  ('user_198','Tôi là giáo viên **Tiếng Anh** tâm huyết, luôn tìm cách đổi mới phương pháp dạy để giúp học sinh phát triển toàn diện 4 kỹ năng nghe, nói, đọc, viết.','Thạc sĩ Ngôn ngữ Anh','8 năm giảng dạy',
+    'Dạy bằng sơ đồ tư duy, hình ảnh minh họa, tạo sự trực quan. Luyện phản xạ giao tiếp qua các tình huống nhập vai và thảo luận nhóm.','Thiết kế bài giảng tương tác, vẽ tay các hình ảnh minh họa từ vựng'),
+  ('user_199','Dạy học **Vật lý** với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh, giúp các em hiểu rõ các định luật tự nhiên và áp dụng vào cuộc sống.','Cử nhân Vật Lý','7 năm giảng dạy',
+    'Lấy học sinh làm trung tâm, giảng chậm, rõ và nhiều ví dụ thực tế, giúp học sinh hình dung được các hiện tượng.','Trồng cây ăn quả, nghiên cứu giáo án và các thí nghiệm mới'),
+  ('user_200','Dạy học **Hóa học** với tôi là một hành trình đồng hành và khai phá tiềm năng học sinh, giúp các em yêu thích môn học và khám phá những bí ẩn của các nguyên tố.','Thạc sĩ Hóa học','6 năm giảng dạy',
+    'Chia nhỏ bài học theo từng dạng, luyện bài theo mức độ. Tập trung vào việc hiểu bản chất phản ứng, không chỉ học thuộc lòng.','Nấu ăn các món ăn đặc biệt, đi bộ thư giãn');
 
-INSERT INTO posts (post_id, user_id, content) VALUES
--- post_001 - Quang (Toán)
+
+INSERT INTO posts (post_id, user_id, content, status) VALUES
+-- post_001 - Quang (Toán) - private
 ('post_001', 'user_001',
-'📌 *TÌM GIA SƯ TOÁN LỚP 11 - CẦN NGƯỜI “HỒI SINH” TINH THẦN HỌC TẬP*\n\
-Em tên là Quang, học sinh lớp 11 trường THPT Nhân Chính. Em từng khá ổn môn Toán, nhưng từ học kỳ 1 lớp 11, khi chương trình bắt đầu chuyển sang các chuyên đề khó như hàm số, giới hạn, đạo hàm và hình học không gian, em tụt lại. Dù chăm chỉ nhưng em học không hiệu quả, làm bài sai nhiều, điểm kiểm tra thấp khiến em ngày càng mất tự tin và không còn động lực học.\n\n\
-Em mong muốn tìm được một anh/chị/thầy/cô có thể:\n\
-• Dạy lại em từ những phần nền tảng với cách tiếp cận gần gũi, dễ hiểu\n\
-• Giải thích bản chất, không chỉ đưa ra công thức rồi bắt chép\n\
-• Sửa lỗi sai trong cách trình bày, giúp em tránh lặp lại lỗi cũ\n\
-• Truyền cảm hứng để em cảm thấy Toán không còn khô khan, nhàm chán\n\n\
-🎯 Mục tiêu của em là: lấy lại kiến thức cơ bản lớp 11, chuẩn bị nền tảng ôn thi đại học, và đạt tối thiểu 7 điểm trong các bài thi học kỳ.\n\
-🕒 Em rảnh các buổi tối T2 - T4 - T6 sau 19h30, hoặc cả ngày Chủ nhật.\n\
-💰 Học phí: từ 200k - 250k/buổi. Em có thể học online (qua Google Meet) hoặc offline nếu gần khu vực Thanh Xuân, Hà Nội.\n\n\
-Em là người nghiêm túc, chịu khó, chỉ là đang bị “mất lửa”. Em mong sẽ tìm được người giúp em “bật lại mode học hành”.'),
+'📌 TÌM GIA SƯ TOÁN LỚP 11 - CẦN NGƯỜI “HỒI SINH” TINH THẦN HỌC TẬP
 
--- post_002 - Linh (Văn)
+Em tên là Quang, học sinh lớp 11 trường THPT Nhân Chính. Em từng khá ổn môn Toán, nhưng từ học kỳ 1 lớp 11, khi chương trình bắt đầu chuyển sang các chuyên đề khó như hàm số, giới hạn, đạo hàm và hình học không gian, em tụt lại. Dù chăm chỉ nhưng em học không hiệu quả, làm bài sai nhiều, điểm kiểm tra thấp khiến em ngày càng mất tự tin và không còn động lực học.
+
+Em mong muốn tìm được một anh/chị/thầy/cô có thể:
+• Dạy lại em từ những phần nền tảng với cách tiếp cận gần gũi, dễ hiểu
+• Giải thích bản chất, không chỉ đưa ra công thức rồi bắt chép
+• Sửa lỗi sai trong cách trình bày, giúp em tránh lặp lại lỗi cũ
+• Truyền cảm hứng để em cảm thấy Toán không còn khô khan, nhàm chán
+
+🎯 Mục tiêu của em là: lấy lại kiến thức cơ bản lớp 11, chuẩn bị nền tảng ôn thi đại học, và đạt tối thiểu 7 điểm trong các bài thi học kỳ.
+🕒 Em rảnh các buổi tối T2 - T4 - T6 sau 19h30, hoặc cả ngày Chủ nhật.
+💰 Học phí: từ 200k - 250k/buổi. Em có thể học online (qua Google Meet) hoặc offline nếu gần khu vực Thanh Xuân, Hà Nội.
+
+Em là người nghiêm túc, chịu khó, chỉ là đang bị “mất lửa”. Em mong sẽ tìm được người giúp em “bật lại mode học hành”.', 'private'),
+
+-- post_002 - Linh (Văn) - private
 ('post_002', 'user_002',
-'📖 *TÌM GIA SƯ VĂN ÔN THI ĐẠI HỌC - “VIẾT GÌ CŨNG DỞ” LÀ EM 😔*\n\
-Chào các thầy cô và anh chị, em là Linh – học sinh lớp 12, đang ôn thi đại học và cực kỳ khủng hoảng với môn Ngữ Văn. Em không ghét môn Văn, em thích đọc sách, xem phim, thậm chí rất hay suy nghĩ về cuộc sống. Nhưng đến khi viết bài thì em lại... “viết không ra chữ”. Em lạc đề, triển khai ý lộn xộn, bài văn không có trọng tâm, kết bài thì cạn từ. \n\n\
-Em cần một cô giáo có thể:\n\
-• Giúp em tư duy logic hơn trong việc lập dàn ý\n\
-• Luyện từng đoạn văn cụ thể (mở – thân – kết)\n\
-• Phân tích các tác phẩm trọng tâm sát đề thi\n\
-• Chỉnh sửa bài viết chi tiết, góp ý thẳng thắn nhưng nhẹ nhàng\n\
-• Truyền được cảm hứng viết – biến môn Văn từ “nỗi sợ” thành điều thú vị\n\n\
-🎯 Em đặt mục tiêu đạt ít nhất 7 điểm Văn trong kỳ thi tốt nghiệp. Em cần bắt đầu từ căn bản vì đang bị “mất nền”.\n\
-🕒 Thời gian học: tối 2 - 4 - 6 hoặc sáng cuối tuần.\n\
-💻 Ưu tiên học online qua Google Meet.\n\
-💰 Học phí: 200k - 230k/buổi.\n\n\
-Em rất mong tìm được một người có thể đồng hành và kiên nhẫn, vì em tin nếu có người hướng dẫn đúng cách, em có thể tiến bộ nhanh chóng.'),
+'📖 TÌM GIA SƯ VĂN ÔN THI ĐẠI HỌC - “VIẾT GÌ CŨNG DỞ” LÀ EM 😔
 
--- post_003 - Minh (Hóa)
+Chào các thầy cô và anh chị, em là Linh – học sinh lớp 12, đang ôn thi đại học và cực kỳ khủng hoảng với môn Ngữ Văn. Em không ghét môn Văn, em thích đọc sách, xem phim, thậm chí rất hay suy nghĩ về cuộc sống. Nhưng đến khi viết bài thì em lại... “viết không ra chữ”. Em lạc đề, triển khai ý lộn xộn, bài văn không có trọng tâm, kết bài thì cạn từ.
+
+Em cần một cô giáo có thể:
+• Giúp em tư duy logic hơn trong việc lập dàn ý
+• Luyện từng đoạn văn cụ thể (mở – thân – kết)
+• Phân tích các tác phẩm trọng tâm sát đề thi
+• Chỉnh sửa bài viết chi tiết, góp ý thẳng thắn nhưng nhẹ nhàng
+• Truyền được cảm hứng viết – biến môn Văn từ “nỗi sợ” thành điều thú vị
+
+🎯 Em đặt mục tiêu đạt ít nhất 7 điểm Văn trong kỳ thi tốt nghiệp. Em cần bắt đầu từ căn bản vì đang bị “mất nền”.
+🕒 Thời gian học: tối 2 - 4 - 6 hoặc sáng cuối tuần.
+💻 Ưu tiên học online qua Google Meet.
+💰 Học phí: 200k - 230k/buổi.
+
+Em rất mong tìm được một người có thể đồng hành và kiên nhẫn, vì em tin nếu có người hướng dẫn đúng cách, em có thể tiến bộ nhanh chóng.', 'private'),
+
+-- post_003 - Minh (Hóa) - private
 ('post_003', 'user_003',
-'🧪 *CẦN GIA SƯ HÓA CƠ BẢN - CỨU VỚT MỘT TÂM HỒN ĐANG MÊ MÀN HÌNH PHẢN ỨNG*\n\
-Em là Minh, học sinh lớp 10. Em thấy Hóa học rất... đẹp và kỳ diệu, nhưng chỉ là khi xem video TikTok 🤯. Còn khi vào bài học trên lớp thì em không hiểu gì, không biết bắt đầu từ đâu. Em bị rối khi học bảng tuần hoàn, không hiểu được phản ứng oxi hóa – khử và toàn bị nhầm lẫn giữa chất này với chất kia. Em đã thử học thêm online nhưng học mãi không vô đầu.\n\n\
-Em cần một gia sư có thể:\n\
-• Dạy lại từ gốc, kể cả những kiến thức lớp 8 – 9 nếu cần\n\
-• Giải thích bằng sơ đồ, ví dụ đời thường để em dễ nhớ\n\
-• Luyện em làm bài tập theo mức độ từ dễ → trung bình → nâng cao\n\
-• Động viên và cho bài tập thực hành ngắn sau mỗi buổi học\n\n\
-📚 Em muốn học các phần: hóa trị, phản ứng, dãy hoạt động kim loại, nhận biết chất.\n\
-🕒 Em học buổi tối từ 19h, các ngày chẵn trong tuần (T2 - T4 - T6).\n\
-💻 Online qua Zoom hoặc Google Meet là tốt nhất.\n\
-💰 Em có thể chi trả khoảng 200k/buổi.\n\n\
-Em học không nhanh, nhưng cực kỳ chăm chỉ. Mong thầy/cô kiên nhẫn và có phong cách dạy vui vẻ, khơi gợi được sự tò mò của em!'),
+'🧪 CẦN GIA SƯ HÓA CƠ BẢN - CỨU VỚT MỘT TÂM HỒN ĐANG MÊ MÀN HÌNH PHẢN ỨNG
 
--- post_004 - Thu (Tiếng Anh)
+Em là Minh, học sinh lớp 10. Em thấy Hóa học rất... đẹp và kỳ diệu, nhưng chỉ là khi xem video TikTok 🤯. Còn khi vào bài học trên lớp thì em không hiểu gì, không biết bắt đầu từ đâu. Em bị rối khi học bảng tuần hoàn, không hiểu được phản ứng oxi hóa – khử và toàn bị nhầm lẫn giữa chất này với chất kia. Em đã thử học thêm online nhưng học mãi không vô đầu.
+
+Em cần một gia sư có thể:
+• Dạy lại từ gốc, kể cả những kiến thức lớp 8 – 9 nếu cần
+• Giải thích bằng sơ đồ, ví dụ đời thường để em dễ nhớ
+• Luyện em làm bài tập theo mức độ từ dễ → trung bình → nâng cao
+• Động viên và cho bài tập thực hành ngắn sau mỗi buổi học
+
+📚 Em muốn học các phần: hóa trị, phản ứng, dãy hoạt động kim loại, nhận biết chất.
+🕒 Em học buổi tối từ 19h, các ngày chẵn trong tuần (T2 - T4 - T6).
+💻 Online qua Zoom hoặc Google Meet là tốt nhất.
+💰 Em có thể chi trả khoảng 200k/buổi.
+
+Em học không nhanh, nhưng cực kỳ chăm chỉ. Mong thầy/cô kiên nhẫn và có phong cách dạy vui vẻ, khơi gợi được sự tò mò của em!', 'private'),
+
+-- post_004 - Thu (Tiếng Anh) - private
 ('post_004', 'user_004',
-'🇬🇧 *TÌM CÔ GIÁO TIẾNG ANH ÔN THI - NGHE KHÔNG RA, VIẾT KHÔNG XONG* 😥\n\
-Em là Thu, lớp 12. Trong kỳ thi đại học sắp tới, em muốn lấy tiếng Anh làm điểm mạnh, nhưng hiện tại thì lại đang rất yếu. Em không nghe được audio, khi viết essay thì thiếu từ vựng, sai ngữ pháp, thiếu ý. Em đã thử học theo app, xem phim có phụ đề, nhưng không hiệu quả vì không có người chỉnh sửa.\n\n\
-Em muốn tìm cô giáo:\n\
-• Luyện phản xạ Listening bằng cách làm đề từng dạng (MCQ, điền từ…)\n\
-• Hướng dẫn viết từng dạng Writing task, sửa bài chi tiết\n\
-• Mở rộng vốn từ theo chủ đề: môi trường, giáo dục, xã hội, công nghệ\n\
-• Giúp em sửa phát âm và luyện nói nếu có thể\n\n\
-🕒 Em có thể học tối 3 - 5 hoặc sáng T7.\n\
-💻 Học online.\n\
-💰 Học phí từ 220k - 250k/buổi. \n\n\
-Em hy vọng cô giáo có thể truyền cảm hứng và động lực, giúp em vững tin để thi đạt 8.0+ môn tiếng Anh.'),
+'🇬🇧 TÌM CÔ GIÁO TIẾNG ANH ÔN THI - NGHE KHÔNG RA, VIẾT KHÔNG XONG 😥
 
--- post_005 - Sơn (Toán)
+Em là Thu, lớp 12. Trong kỳ thi đại học sắp tới, em muốn lấy tiếng Anh làm điểm mạnh, nhưng hiện tại thì lại đang rất yếu. Em không nghe được audio, khi viết essay thì thiếu từ vựng, sai ngữ pháp, thiếu ý. Em đã thử học theo app, xem phim có phụ đề, nhưng không hiệu quả vì không có người chỉnh sửa.
+
+Em muốn tìm cô giáo:
+• Luyện phản xạ Listening bằng cách làm đề từng dạng (MCQ, điền từ…)
+• Hướng dẫn viết từng dạng Writing task, sửa bài chi tiết
+• Mở rộng vốn từ theo chủ đề: môi trường, giáo dục, xã hội, công nghệ
+• Giúp em sửa phát âm và luyện nói nếu có thể
+
+🕒 Em có thể học tối 3 - 5 hoặc sáng T7.
+💻 Học online.
+💰 Học phí từ 220k - 250k/buổi.
+
+Em hy vọng cô giáo có thể truyền cảm hứng và động lực, giúp em vững tin để thi đạt 8.0+ môn tiếng Anh.', 'private'),
+
+-- post_005 - Sơn (Toán) - private
 ('post_005', 'user_005',
-'🔥 *GIA SƯ TOÁN CẦN LẮM NGƯỜI DẪN ĐƯỜNG – EM KHÔNG MUỐN TRẦM CẢM VÌ TOÁN NỮA*\n\
-Chào mọi người, em là Sơn – học lớp 11, một học sinh “sợ Toán nhưng lại bắt buộc phải giỏi Toán”. Học lực của em trung bình khá, nhưng riêng Toán thì rất chật vật. Em hiểu bài trên lớp nhưng không biết áp dụng, làm bài sai hoài. Em bị rối trong bất phương trình, cực trị, hệ phương trình, đạo hàm…\n\n\
-Em muốn có:\n\
-• Một thầy/cô dạy từ nền, phân tích từng dạng bài đơn giản trước rồi nâng cấp\n\
-• Có phương pháp luyện đề theo mức độ, giúp em không bị rối\n\
-• Đặc biệt là có sự kiên nhẫn, không la mắng khi em sai hoài 🙏\n\n\
-🕒 Thời gian: tối T2 - T4 - T6, sau 19h30. Cuối tuần thì buổi sáng.\n\
-💰 Học phí: 220k/buổi.\n\
-💻 Online học qua Google Meet hoặc Zalo call đều được.\n\n\
-Em cam kết học chăm, làm bài đầy đủ – chỉ cần có người hướng dẫn đúng cách thôi ạ!'),
+'🔥 GIA SƯ TOÁN CẦN LẮM NGƯỜI DẪN ĐƯỜNG – EM KHÔNG MUỐN TRẦM CẢM VÌ TOÁN NỮA
 
+Chào mọi người, em là Sơn – học lớp 11, một học sinh “sợ Toán nhưng lại bắt buộc phải giỏi Toán”. Học lực của em trung bình khá, nhưng riêng Toán thì rất chật vật. Em hiểu bài trên lớp nhưng không biết áp dụng, làm bài sai hoài. Em bị rối trong bất phương trình, cực trị, hệ phương trình, đạo hàm…
 
--- post_006 - Hạnh (Sinh học)
+Em muốn có:
+• Một thầy/cô dạy từ nền, phân tích từng dạng bài đơn giản trước rồi nâng cấp
+• Có phương pháp luyện đề theo mức độ, giúp em không bị rối
+• Đặc biệt là có sự kiên nhẫn, không la mắng khi em sai hoài 🙏
+
+🕒 Thời gian: tối T2 - T4 - T6, sau 19h30. Cuối tuần thì buổi sáng.
+💰 Học phí: 220k/buổi.
+💻 Online học qua Google Meet hoặc Zalo call đều được.
+
+Em cam kết học chăm, làm bài đầy đủ – chỉ cần có người hướng dẫn đúng cách thôi ạ!', 'private'),
+
+-- post_006 - Hạnh (Sinh học) - private
 ('post_006', 'user_006',
-'🧬 *CẦN GIA SƯ SINH CẤP TỐC - CỨU EM KHỎI “CHẾT CHÌM” TRONG DI TRUYỀN HỌC*\n\
-Em là Hạnh, học sinh lớp 12. Em chưa từng ghét môn Sinh học, nhưng vì thiếu người định hướng, em bị trôi giữa một “rừng” khái niệm: gen, mã di truyền, ADN, ARN, đột biến, biến dị tổ hợp... Em học rất chăm, ghi chép đầy đủ nhưng vẫn không hiểu, và sắp tới em có bài kiểm tra rất quan trọng.\n\n\
-Em muốn tìm một cô giáo có thể:\n\
-• Dạy thật chậm, từ vựng dễ hiểu, sử dụng sơ đồ tư duy và ví dụ minh họa\n\
-• Chia bài học theo chuyên đề, luyện các dạng trắc nghiệm nâng dần độ khó\n\
-• Hướng dẫn cách phân tích đề, làm nhanh mà không sai vặt\n\
-• Có thể truyền cho em chút cảm hứng để học không bị căng thẳng\n\n\
-🎯 Mục tiêu: ít nhất 7.5 điểm kiểm tra, dần hướng tới ôn thi tốt nghiệp.\n\
-🕒 Em rảnh sáng thứ 7, chiều CN, tối T3 - T5.\n\
-💰 Học phí mong muốn: 180k - 230k/buổi.\n\
-💻 Học online qua Zoom là tiện nhất.\n\n\
-Em là người kiên trì, nhưng cần cô giáo có tâm lý tốt để không tạo áp lực thêm. Mong được đồng hành ạ!'),
+'🧬 CẦN GIA SƯ SINH CẤP TỐC - CỨU EM KHỎI “CHẾT CHÌM” TRONG DI TRUYỀN HỌC
 
--- post_007 - Khoa (Vật lý)
+Em là Hạnh, học sinh lớp 12. Em chưa từng ghét môn Sinh học, nhưng vì thiếu người định hướng, em bị trôi giữa một “rừng” khái niệm: gen, mã di truyền, ADN, ARN, đột biến, biến dị tổ hợp... Em học rất chăm, ghi chép đầy đủ nhưng vẫn không hiểu, và sắp tới em có bài kiểm tra rất quan trọng.
+
+Em muốn tìm một cô giáo có thể:
+• Dạy thật chậm, từ vựng dễ hiểu, sử dụng sơ đồ tư duy và ví dụ minh họa
+• Chia bài học theo chuyên đề, luyện các dạng trắc nghiệm nâng dần độ khó
+• Hướng dẫn cách phân tích đề, làm nhanh mà không sai vặt
+• Có thể truyền cho em chút cảm hứng để học không bị căng thẳng
+
+🎯 Mục tiêu: ít nhất 7.5 điểm kiểm tra, dần hướng tới ôn thi tốt nghiệp.
+🕒 Em rảnh sáng thứ 7, chiều CN, tối T3 - T5.
+💰 Học phí mong muốn: 180k - 230k/buổi.
+💻 Học online qua Zoom là tiện nhất.
+
+Em là người kiên trì, nhưng cần cô giáo có tâm lý tốt để không tạo áp lực thêm. Mong được đồng hành ạ!', 'private'),
+
+-- post_007 - Khoa (Vật lý) - private
 ('post_007', 'user_007',
-'⚡ *TÌM GIA SƯ LÝ - GIẢI THÍCH GIÚP EM “KHÔNG HỌC VẸT” NỮA* 📉\n\
-Em là Khoa, học sinh lớp 11. Vật lý với em như một bài nhạc nước ngoài - có giai điệu hay, nhưng không hiểu lời. Những phần như dao động điều hòa, dòng điện xoay chiều, mạch RLC… đọc thì hiểu “na ná” nhưng vào bài tập là em không biết bắt đầu từ đâu.\n\n\
-Em cần một thầy/cô:\n\
-• Giải thích bản chất hiện tượng lý – ví dụ dễ hình dung (bằng hoạt hình, sơ đồ)\n\
-• Hướng dẫn kỹ cách lập phương trình, vẽ đồ thị, suy luận từ đề bài\n\
-• Dạy theo hướng ứng dụng thực tế – học là để hiểu, không phải học thuộc\n\
-• Luôn động viên khi em làm sai, và tạo môi trường học tích cực\n\n\
-📚 Em muốn được học từ cơ bản tới làm đề luyện thi học kỳ.\n\
-🕒 Tối T3 - T5 (sau 20h) hoặc sáng CN.\n\
-💰 200k - 250k/buổi là hợp lý với khả năng của em.\n\
-💻 Em học online hoặc offline nếu ở gần Long Biên, Hà Nội.\n\n\
-Hy vọng tìm được người “giải mã” được sự khó hiểu của môn Lý ạ!'),
+'⚡ TÌM GIA SƯ LÝ - GIẢI THÍCH GIÚP EM “KHÔNG HỌC VẸT” NỮA 📉
 
--- post_008 - Thảo (Hóa vào 10)
+Em là Khoa, học sinh lớp 11. Vật lý với em như một bài nhạc nước ngoài - có giai điệu hay, nhưng không hiểu lời. Những phần như dao động điều hòa, dòng điện xoay chiều, mạch RLC… đọc thì hiểu “na ná” nhưng vào bài tập là em không biết bắt đầu từ đâu.
+
+Em cần một thầy/cô:
+• Giải thích bản chất hiện tượng lý – ví dụ dễ hình dung (bằng hoạt hình, sơ đồ)
+• Hướng dẫn kỹ cách lập phương trình, vẽ đồ thị, suy luận từ đề bài
+• Dạy theo hướng ứng dụng thực tế – học là để hiểu, không phải học thuộc
+• Luôn động viên khi em làm sai, và tạo môi trường học tích cực
+
+📚 Em muốn được học từ cơ bản tới làm đề luyện thi học kỳ.
+🕒 Tối T3 - T5 (sau 20h) hoặc sáng CN.
+💰 200k - 250k/buổi là hợp lý với khả năng của em.
+💻 Em học online hoặc offline nếu ở gần Long Biên, Hà Nội.
+
+Hy vọng tìm được người “giải mã” được sự khó hiểu của môn Lý ạ!', 'private'),
+
+-- post_008 - Thảo (Hóa vào 10) - private
 ('post_008', 'user_008',
-'📚 *TÌM GIA SƯ HÓA ÔN VÀO 10 - HỌC NHIỀU MÀ VẪN LUÔN QUÊN 😓*\n\
-Em tên là Thảo, năm nay chuẩn bị thi vào lớp 10 chuyên nhưng lại khá yếu môn Hóa. Em đã học hết chương trình, ghi chép cẩn thận, làm đề nhưng lúc kiểm tra lại không làm được. Em bị loạn công thức, nhầm hóa trị, viết sai phương trình phản ứng. Em đang rất áp lực nhưng vẫn quyết tâm cải thiện.\n\n\
-Em cần:\n\
-• Một cô giáo thật dễ gần, dạy chắc phần lý thuyết – có sơ đồ hóa học giúp ghi nhớ\n\
-• Hướng dẫn cách giải bài tập phản ứng, dãy hoạt động kim loại, nhận biết chất\n\
-• Có đề luyện theo sát chương trình thi tuyển sinh lớp 10\n\
-• Có thể đưa ra kế hoạch học theo tuần để em theo sát mục tiêu\n\n\
-🕒 Em học chiều thứ 6 và sáng chủ nhật.\n\
-💰 Học phí em có thể trả từ 150k - 200k/buổi.\n\
-💻 Học online là tiện nhất vì em ở Thanh Trì.\n\n\
-Em hy vọng tìm được một cô giáo kiên nhẫn, nhẹ nhàng và có thể cùng em “cán đích” kỳ thi sắp tới!'),
+'📚 TÌM GIA SƯ HÓA ÔN VÀO 10 - HỌC NHIỀU MÀ VẪN LUÔN QUÊN 😓
 
--- post_009 - Hoàng (Toán 12)
+Em tên là Thảo, năm nay chuẩn bị thi vào lớp 10 chuyên nhưng lại khá yếu môn Hóa. Em đã học hết chương trình, ghi chép cẩn thận, làm đề nhưng lúc kiểm tra lại không làm được. Em bị loạn công thức, nhầm hóa trị, viết sai phương trình phản ứng. Em đang rất áp lực nhưng vẫn quyết tâm cải thiện.
+
+Em cần:
+• Một cô giáo thật dễ gần, dạy chắc phần lý thuyết – có sơ đồ hóa học giúp ghi nhớ
+• Hướng dẫn cách giải bài tập phản ứng, dãy hoạt động kim loại, nhận biết chất
+• Có đề luyện theo sát chương trình thi tuyển sinh lớp 10
+• Có thể đưa ra kế hoạch học theo tuần để em theo sát mục tiêu
+
+🕒 Em học chiều thứ 6 và sáng chủ nhật.
+💰 Học phí em có thể trả từ 150k - 200k/buổi.
+💻 Học online là tiện nhất vì em ở Thanh Trì.
+
+Em hy vọng tìm được một cô giáo kiên nhẫn, nhẹ nhàng và có thể cùng em “cán đích” kỳ thi sắp tới!', 'private'),
+
+-- post_009 - Hoàng (Toán 12) - private
 ('post_009', 'user_009',
-'📘 *GIA SƯ TOÁN 12 - HỌC TỪ NỀN TẢNG, HƯỚNG TỚI THI ĐẠI HỌC*\n\
-Em là Hoàng, học sinh lớp 12. Em đã “lướt” qua chương trình Toán lớp 12 một cách rất hời hợt, nên giờ em thấy mình không có đủ nền để bước vào giai đoạn luyện thi. Em muốn được học từ đầu – từng chuyên đề – theo lộ trình rõ ràng để cuối năm không phải “chạy nước rút”.\n\n\
-Em mong có:\n\
-• Một thầy/cô có kinh nghiệm luyện thi tốt nghiệp, dạy theo hệ thống\n\
-• Giải thích rõ ràng, không nhảy bước, sửa bài chi tiết\n\
-• Có tài liệu luyện đề và bài tập rèn kỹ năng trình bày\n\
-• Có thể tư vấn cách phân bổ thời gian học hiệu quả\n\n\
-🕒 Em học tối thứ 2 - 6, hoặc sáng thứ 7.\n\
-💻 Online là lựa chọn chính, nhưng nếu thầy/cô gần Nam Từ Liêm, em có thể học trực tiếp.\n\
-💰 220k - 270k/buổi.\n\n\
-Em không cần người “ép học”, em cần người “giúp học”. Rất mong gặp được thầy/cô phù hợp!'),
+'📘 GIA SƯ TOÁN 12 - HỌC TỪ NỀN TẢNG, HƯỚNG TỚI THI ĐẠI HỌC
 
--- post_010 - Mai (Văn)
+Em là Hoàng, học sinh lớp 12. Em đã “lướt” qua chương trình Toán lớp 12 một cách rất hời hợt, nên giờ em thấy mình không có đủ nền để bước vào giai đoạn luyện thi. Em muốn được học từ đầu – từng chuyên đề – theo lộ trình rõ ràng để cuối năm không phải “chạy nước rút”.
+
+Em mong có:
+• Một thầy/cô có kinh nghiệm luyện thi tốt nghiệp, dạy theo hệ thống
+• Giải thích rõ ràng, không nhảy bước, sửa bài chi tiết
+• Có tài liệu luyện đề và bài tập rèn kỹ năng trình bày
+• Có thể tư vấn cách phân bổ thời gian học hiệu quả
+
+🕒 Em học tối thứ 2 - 6, hoặc sáng thứ 7.
+💻 Online là lựa chọn chính, nhưng nếu thầy/cô gần Nam Từ Liêm, em có thể học trực tiếp.
+💰 220k - 270k/buổi.
+
+Em không cần người “ép học”, em cần người “giúp học”. Rất mong gặp được thầy/cô phù hợp!', 'private'),
+
+-- post_010 - Mai (Văn) - private
 ('post_010', 'user_010',
-'✍️ *CẦN GIA SƯ VĂN - GIÚP EM BIẾN LỜI NÓI THÀNH CÂU VĂN CÓ Ý NGHĨA* 🎤\n\
-Em là Mai, học sinh lớp 12. Em rất thích nói, thích chia sẻ suy nghĩ về các vấn đề xã hội, nhân vật trong tác phẩm văn học, nhưng khi chuyển thành bài viết thì mọi thứ rối tung. Câu không tròn ý, ý không bám đề, văn thiếu chiều sâu. Em cần cô giáo không chỉ giúp em học để thi mà còn học để thể hiện được cá tính trong văn chương.\n\n\
-Em mong muốn:\n\
-• Được luyện kỹ từng kiểu bài (nghị luận xã hội – nghị luận văn học)\n\
-• Được sửa bài viết theo cách góp ý xây dựng, không “gạch xóa” quá nhiều 😅\n\
-• Có cơ hội trao đổi và thảo luận để làm giàu ý tưởng viết\n\
-• Tạo môi trường học nhẹ nhàng, không căng thẳng\n\n\
-🕒 Chiều T4 - T6 hoặc sáng CN.\n\
-💻 Em học online qua Google Meet.\n\
-💰 Khoảng 200k - 230k/buổi.\n\n\
-Em tin nếu được chỉ đúng cách, em sẽ có thể viết được những bài văn có hồn, có chiều sâu hơn.'),
+'✍️ CẦN GIA SƯ VĂN - GIÚP EM BIẾN LỜI NÓI THÀNH CÂU VĂN CÓ Ý NGHĨA 🎤
 
-('post_021', 'user_021', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
+Em là Mai, học sinh lớp 12. Em rất thích nói, thích chia sẻ suy nghĩ về các vấn đề xã hội, nhân vật trong tác phẩm văn học, nhưng khi chuyển thành bài viết thì mọi thứ rối tung. Câu không tròn ý, ý không bám đề, văn thiếu chiều sâu. Em cần cô giáo không chỉ giúp em học để thi mà còn học để thể hiện được cá tính trong văn chương.
 
+Em mong muốn:
+• Được luyện kỹ từng kiểu bài (nghị luận xã hội – nghị luận văn học)
+• Được sửa bài viết theo cách góp ý xây dựng, không “gạch xóa” quá nhiều 😅
+• Có cơ hội trao đổi và thảo luận để làm giàu ý tưởng viết
+• Tạo môi trường học nhẹ nhàng, không căng thẳng
+
+🕒 Chiều T4 - T6 hoặc sáng CN.
+💻 Em học online qua Google Meet.
+💰 Khoảng 200k - 230k/buổi.
+
+Em tin nếu được chỉ đúng cách, em sẽ có thể viết được những bài văn có hồn, có chiều sâu hơn.', 'private'),
+
+-- post_021 - Học Sinh 021 (Văn) - private
+('post_021', 'user_021',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 021, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và phân tích tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 184k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_022', 'user_022', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_022 - Học Sinh 022 (Văn) - private
+('post_022', 'user_022',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 022, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như dàn ý và viết đoạn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 185k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_023', 'user_023', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_023 - Học Sinh 023 (Lý) - private
+('post_023', 'user_023',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 023, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 219k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_024', 'user_024', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_024 - Học Sinh 024 (Văn) - private
+('post_024', 'user_024',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 024, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và cảm thụ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 209k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_025', 'user_025', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_025 - Học Sinh 025 (Văn) - private
+('post_025', 'user_025',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 025, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào chiều thứ 3 - 5
 💰 Học phí mong muốn: 209k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_026', 'user_026', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_026 - Học Sinh 026 (Lý) - private
+('post_026', 'user_026',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 026, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như đồ thị và cảm ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào sáng thứ 7
 💰 Học phí mong muốn: 184k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_027', 'user_027', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_027 - Học Sinh 027 (Sinh) - private
+('post_027', 'user_027',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 027, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như ADN và di truyền, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào chiều thứ 3 - 5
 💰 Học phí mong muốn: 186k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_028', 'user_028', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_028 - Học Sinh 028 (Hóa) - public
+('post_028', 'user_028',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 028, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 216k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_029', 'user_029', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_029 - Học Sinh 029 (Toán) - public
+('post_029', 'user_029',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 029, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hàm số và hình học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào sáng thứ 7
 💰 Học phí mong muốn: 204k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_030', 'user_030', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_030 - Học Sinh 030 (Lý) - public
+('post_030', 'user_030',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 030, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện xoay chiều và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 200k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_031', 'user_031', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_031 - Học Sinh 031 (Toán) - public
+('post_031', 'user_031',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 031, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như tích phân và bất phương trình, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 223k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_032', 'user_032', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_032 - Học Sinh 032 (Hóa) - public
+('post_032', 'user_032',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 032, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và bảng tuần hoàn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào sáng thứ 7
 💰 Học phí mong muốn: 249k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_033', 'user_033', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_033 - Học Sinh 033 (Toán) - public
+('post_033', 'user_033',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 033, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học và hàm số, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
 • Kiểm tra định kỳ để em theo dõi tiến bộ
-
 🕒 Em có thể học vào chiều thứ 3 - 5
 💰 Học phí mong muốn: 206k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_034', 'user_034', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_034 - Học Sinh 034 (Văn) - public
+('post_034', 'user_034',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 034, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích tác phẩm và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 205k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_035', 'user_035', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_035 - Học Sinh 035 (Anh) - public
+('post_035', 'user_035',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 035, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Writing và Từ vựng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 226k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_036', 'user_036', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_036 - Học Sinh 036 (Văn) - public
+('post_036', 'user_036',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 036, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 215k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_037', 'user_037', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_037 - Học Sinh 037 (Lý) - public
+('post_037', 'user_037',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 037, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 242k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_038', 'user_038', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_038 - Học Sinh 038 (Anh) - public
+('post_038', 'user_038',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 038, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Nói và Listening, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 245k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_039', 'user_039', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_039 - Học Sinh 039 (Anh) - public
+('post_039', 'user_039',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 039, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Từ vựng và Nói, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 185k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_040', 'user_040', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_040 - Học Sinh 040 (Văn) - public
+('post_040', 'user_040',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 040, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và viết đoạn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 206k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_041', 'user_041', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_041 - Học Sinh 041 (Sinh) - public
+('post_041', 'user_041',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 041, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 218k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_042', 'user_042', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_042 - Học Sinh 042 (Anh) - public
+('post_042', 'user_042',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 042, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Writing và Từ vựng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 201k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_043', 'user_043', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_043 - Học Sinh 043 (Sinh) - public
+('post_043', 'user_043',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 043, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 196k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_044', 'user_044', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_044 - Học Sinh 044 (Sinh) - public
+('post_044', 'user_044',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 044, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 209k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_045', 'user_045', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_045 - Học Sinh 045 (Lý) - public
+('post_045', 'user_045',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 045, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như đồ thị và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 244k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_046', 'user_046', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_046 - Học Sinh 046 (Sinh) - public
+('post_046', 'user_046',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 046, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 220k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_047', 'user_047', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_047 - Học Sinh 047 (Lý) - public
+('post_047', 'user_047',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 047, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 200k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_048', 'user_048', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_048 - Học Sinh 048 (Sinh) - public
+('post_048', 'user_048',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 048, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 221k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_049', 'user_049', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_049 - Học Sinh 049 (Anh) - public
+('post_049', 'user_049',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 049, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Listening và Ngữ pháp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sáng thứ 7
 💰 Học phí mong muốn: 189k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_050', 'user_050', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_050 - Học Sinh 050 (Toán) - public
+('post_050', 'user_050',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 050, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học và đạo hàm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 201k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_051', 'user_051', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_051 - Học Sinh 051 (Hóa) - public
+('post_051', 'user_051',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 051, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như bảng tuần hoàn và tính chất hóa học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 244k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_052', 'user_052', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_052 - Học Sinh 052 (Văn) - public
+('post_052', 'user_052',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 052, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và phân tích tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
 💰 Học phí mong muốn: 188k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_053', 'user_053', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_053 - Học Sinh 053 (Lý) - public
+('post_053', 'user_053',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 053, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sau 19h mỗi ngày
 💰 Học phí mong muốn: 232k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_054', 'user_054', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_054 - Học Sinh 054 (Toán) - public
+('post_054', 'user_054',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 054, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như đạo hàm và hình học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào sáng thứ 7
 💰 Học phí mong muốn: 249k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_055', 'user_055', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
+-- post_055 - Học Sinh 055 (Lý) - public
+('post_055', 'user_055',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
 Em là Học Sinh 055, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và mạch điện, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 227k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_056', 'user_056', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 056, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 182k/buổi
+💰 Học phí mong muốn: 235k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_057', 'user_057', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 057, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Ngữ pháp và Từ vựng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_056 - Học Sinh 056 (Toán) - private
+('post_056', 'user_056',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 056, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như tích phân và hình học không gian, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 195k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 210k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_058', 'user_058', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 058, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như ADN và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_057 - Học Sinh 057 (Anh) - public
+('post_057', 'user_057',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 057, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Ngữ pháp và Reading comprehension, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 229k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_059', 'user_059', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 059, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như oxi hóa khử và phản ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 218k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_060', 'user_060', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 060, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 196k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_061', 'user_061', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 061, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và bảng tuần hoàn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 195k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_062', 'user_062', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 062, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Nói và Ngữ pháp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 229k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_063', 'user_063', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 063, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như ADN và di truyền, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 190k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_064', 'user_064', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 064, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 221k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_065', 'user_065', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 065, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 217k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_066', 'user_066', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 066, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 187k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_067', 'user_067', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 067, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hàm số và bất phương trình, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 200k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_068', 'user_068', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 068, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như đạo hàm và tích phân, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 183k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_069', 'user_069', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 069, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Listening và Từ vựng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 215k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_070', 'user_070', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 070, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 249k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_071', 'user_071', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 071, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như mạch điện và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 180k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_072', 'user_072', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 072, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như oxi hóa khử và tính chất hóa học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 233k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_073', 'user_073', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 073, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như bảng tuần hoàn và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 187k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_074', 'user_074', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 074, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 194k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_075', 'user_075', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 075, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và phân tích tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 181k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_076', 'user_076', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 076, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như bảng tuần hoàn và tính chất hóa học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 247k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_077', 'user_077', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 077, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như phản ứng và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 246k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_078', 'user_078', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 078, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Từ vựng và Nói, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 180k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_079', 'user_079', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 079, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Writing và Listening, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 199k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_080', 'user_080', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 080, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Nói và Từ vựng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 202k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_081', 'user_081', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 081, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như phản ứng và bảng tuần hoàn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 198k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_082', 'user_082', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 082, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như phản ứng và tính chất hóa học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 206k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_083', 'user_083', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 083, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hàm số và đạo hàm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 247k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_084', 'user_084', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 084, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như bảng tuần hoàn và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 226k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_085', 'user_085', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 085, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như bảng tuần hoàn và phản ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 192k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_086', 'user_086', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 086, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và phản ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 245k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_087', 'user_087', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 087, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và di truyền, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 214k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_088', 'user_088', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 088, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như phản ứng và tính chất hóa học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 250k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_089', 'user_089', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 089, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như đạo hàm và bất phương trình, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 237k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_090', 'user_090', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 090, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 249k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_091', 'user_091', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 091, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và cảm thụ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 191k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_092', 'user_092', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 092, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện xoay chiều và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 204k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_093', 'user_093', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 093, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và cảm thụ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 225k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_094', 'user_094', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 094, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Từ vựng và Ngữ pháp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_058 - Học Sinh 058 (Lý) - private
+('post_058', 'user_058',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 058, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như sóng cơ và điện một chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
+💰 Học phí mong muốn: 205k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_059 - Học Sinh 059 (Hóa) - public
+('post_059', 'user_059',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 059, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như axit-bazơ và dung dịch, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào chiều thứ 7, sáng chủ nhật
+💰 Học phí mong muốn: 195k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_060 - Học Sinh 060 (Văn) - private
+('post_060', 'user_060',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 060, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích nhân vật và nghị luận xã hội, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 215k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_061 - Học Sinh 061 (Sinh) - public
+('post_061', 'user_061',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 061, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh thái học và môi trường, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3, 5
+💰 Học phí mong muốn: 180k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_062 - Học Sinh 062 (Toán) - private
+('post_062', 'user_062',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 062, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như khảo sát hàm số và phương trình, bất phương trình mũ - logarit, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 2 - 4 - 6
+💰 Học phí mong muốn: 230k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_063 - Học Sinh 063 (Anh) - public
+('post_063', 'user_063',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 063, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Writing Task 1 & 2 (IELTS) và Speaking fluency, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 250k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_064 - Học Sinh 064 (Lý) - private
+('post_064', 'user_064',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 064, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như định luật Faraday và mạch điện RLC, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 210k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_065 - Học Sinh 065 (Hóa) - public
+('post_065', 'user_065',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 065, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như các loại phản ứng và chất hữu cơ đơn giản, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 200k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_066 - Học Sinh 066 (Văn) - private
+('post_066', 'user_066',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 066, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như lập dàn ý cho bài văn và phân tích thơ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi sáng trong tuần
+💰 Học phí mong muốn: 190k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_067 - Học Sinh 067 (Sinh) - public
+('post_067', 'user_067',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 067, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như cơ chế di truyền và biến dị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 2 - 4 - 6
+💰 Học phí mong muốn: 220k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_068 - Học Sinh 068 (Toán) - private
+('post_068', 'user_068',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 068, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học tọa độ trong không gian và số phức, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều thứ 7, Chủ nhật
 💰 Học phí mong muốn: 240k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_095', 'user_095', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 095, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và mạch điện, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_069 - Học Sinh 069 (Anh) - public
+('post_069', 'user_069',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 069, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như phát âm chuẩn và luyện nói tự nhiên, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 235k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
+-- post_070 - Học Sinh 070 (Lý) - private
+('post_070', 'user_070',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 070, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như quang học và hạt nhân nguyên tử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 215k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_071 - Học Sinh 071 (Hóa) - public
+('post_071', 'user_071',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 071, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như cân bằng phương trình và tính toán theo phương trình, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 205k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_072 - Học Sinh 072 (Văn) - private
+('post_072', 'user_072',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 072, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như nghị luận văn học về thơ và văn xuôi, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 206k/buổi
+💰 Học phí mong muốn: 210k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_096', 'user_096', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 096, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Ngữ pháp và Writing, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_073 - Học Sinh 073 (Toán) - public
+('post_073', 'user_073',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 073, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hệ phương trình và bất phương trình bậc cao, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 230k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
+-- post_074 - Học Sinh 074 (Anh) - private
+('post_074', 'user_074',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 074, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như phát âm chuẩn và kỹ năng viết email/thư, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 7, Chủ nhật
+💰 Học phí mong muốn: 245k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_075 - Học Sinh 075 (Lý) - public
+('post_075', 'user_075',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 075, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện trường và từ trường, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 220k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_076 - Học Sinh 076 (Sinh) - private
+('post_076', 'user_076',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 076, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học tế bào và phân tử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 207k/buổi
+💰 Học phí mong muốn: 200k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_097', 'user_097', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 097, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_077 - Học Sinh 077 (Hóa) - public
+('post_077', 'user_077',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 077, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hidrocacbon và dẫn xuất của hidrocacbon, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 214k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_098', 'user_098', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 098, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hàm số và bất phương trình, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 182k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_099', 'user_099', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 099, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như phản ứng và tính chất hóa học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 182k/buổi
+💰 Học phí mong muốn: 215k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_100', 'user_100', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 100, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_078 - Học Sinh 078 (Văn) - private
+('post_078', 'user_078',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 078, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như đọc hiểu và viết bài văn thuyết minh, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 195k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
+-- post_079 - Học Sinh 079 (Toán) - public
+('post_079', 'user_079',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 079, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như lượng giác và phương trình lượng giác, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 225k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_080 - Học Sinh 080 (Anh) - private
+('post_080', 'user_080',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 080, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như luyện đề thi thử và kỹ năng giải đề nhanh, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 250k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_081 - Học Sinh 081 (Lý) - public
+('post_081', 'user_081',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 081, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cơ học chất lỏng và khí, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 210k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_082 - Học Sinh 082 (Sinh) - private
+('post_082', 'user_082',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 082, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và phân loại thế giới sống, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi sáng trong tuần
+💰 Học phí mong muốn: 185k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_083 - Học Sinh 083 (Hóa) - public
+('post_083', 'user_083',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 083, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như kim loại và hợp chất của kim loại, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 183k/buổi
+💰 Học phí mong muốn: 220k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_101', 'user_101', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 101, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như mạch điện và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_084 - Học Sinh 084 (Văn) - private
+('post_084', 'user_084',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 084, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích truyện ngắn và cách xây dựng luận điểm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 199k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 200k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_102', 'user_102', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 102, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như đồ thị và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_085 - Học Sinh 085 (Toán) - public
+('post_085', 'user_085',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 085, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như ứng dụng đạo hàm để giải toán và hình học phẳng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 208k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 235k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_103', 'user_103', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 103, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như ADN và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_086 - Học Sinh 086 (Anh) - private
+('post_086', 'user_086',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 086, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như kỹ năng nghe hiểu và luyện dịch, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 186k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_104', 'user_104', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 104, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
 💰 Học phí mong muốn: 240k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_105', 'user_105', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 105, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Nói và Ngữ pháp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_087 - Học Sinh 087 (Lý) - public
+('post_087', 'user_087',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 087, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như sóng ánh sáng và hiện tượng giao thoa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 194k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 215k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_106', 'user_106', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 106, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Nói và Listening, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_088 - Học Sinh 088 (Sinh) - private
+('post_088', 'user_088',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 088, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như miễn dịch và bệnh tật, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 218k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_107', 'user_107', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 107, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Từ vựng và Writing, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 249k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_108', 'user_108', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 108, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện xoay chiều và cảm ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 207k/buổi
+💰 Học phí mong muốn: 190k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_109', 'user_109', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 109, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_089 - Học Sinh 089 (Hóa) - public
+('post_089', 'user_089',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 089, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như polime và vật liệu polime, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 181k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 210k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_110', 'user_110', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 110, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích tác phẩm và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_090 - Học Sinh 090 (Văn) - private
+('post_090', 'user_090',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 090, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích các tác phẩm văn học hiện đại và kỹ năng phản biện, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 218k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 205k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_111', 'user_111', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 111, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện xoay chiều và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_091 - Học Sinh 091 (Toán) - public
+('post_091', 'user_091',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 091, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như tổ hợp xác suất và phương pháp giải bài tập trắc nghiệm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 240k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_112', 'user_112', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 112, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 247k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_113', 'user_113', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 113, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 191k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_114', 'user_114', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 114, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và phản ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 240k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_115', 'user_115', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 115, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và cảm ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_092 - Học Sinh 092 (Anh) - private
+('post_092', 'user_092',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 092, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như viết lại câu và bài tập điền từ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 202k/buổi
+💰 Học phí mong muốn: 230k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_116', 'user_116', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 116, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Listening và Writing, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_093 - Học Sinh 093 (Lý) - public
+('post_093', 'user_093',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 093, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện từ học và các định luật về điện, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 225k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
+-- post_094 - Học Sinh 094 (Sinh) - private
+('post_094', 'user_094',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 094, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học vi sinh vật và ứng dụng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 195k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_117', 'user_117', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 117, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích tác phẩm và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_095 - Học Sinh 095 (Hóa) - public
+('post_095', 'user_095',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 095, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như điện phân và phản ứng oxi hóa - khử trong dung dịch, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 226k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_118', 'user_118', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 118, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như đạo hàm và hình học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 220k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_119', 'user_119', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 119, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và phân tích tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 200k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_120', 'user_120', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 120, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học và đạo hàm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 187k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_121', 'user_121', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 121, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 182k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_122', 'user_122', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 122, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như dao động và cảm ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 233k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_123', 'user_123', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 123, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Ngữ pháp và Listening, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 235k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_124', 'user_124', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 124, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 227k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_125', 'user_125', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 125, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như bất phương trình và tích phân, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 232k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_126', 'user_126', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 126, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích tác phẩm và viết đoạn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 239k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_127', 'user_127', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 127, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 230k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_128', 'user_128', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 128, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học và tích phân, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 242k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_129', 'user_129', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 129, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 181k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_130', 'user_130', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 130, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như dàn ý và viết đoạn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3 - 5 - 7
 💰 Học phí mong muốn: 215k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_131', 'user_131', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 131, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_096 - Học Sinh 096 (Văn) - private
+('post_096', 'user_096',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 096, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích tác phẩm truyện dài và cách xây dựng ý tưởng cho bài viết, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 204k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_132', 'user_132', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 132, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 218k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_133', 'user_133', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 133, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 209k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_134', 'user_134', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 134, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Ngữ pháp và Nói, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 184k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_135', 'user_135', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 135, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện xoay chiều và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 198k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_136', 'user_136', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 136, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Listening và Nói, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 192k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_137', 'user_137', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 137, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Từ vựng và Writing, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 219k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_138', 'user_138', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 138, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như đồ thị và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 191k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_139', 'user_139', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 139, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như bất phương trình và hình học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 247k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_140', 'user_140', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 140, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như ADN và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 244k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_141', 'user_141', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 141, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như oxi hóa khử và phản ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 211k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_142', 'user_142', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 142, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Ngữ pháp và Writing, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 219k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_143', 'user_143', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 143, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 196k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_144', 'user_144', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 144, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và đồ thị, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 238k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_145', 'user_145', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 145, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như đồ thị và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 194k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_146', 'user_146', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 146, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và bảng tuần hoàn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 227k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_147', 'user_147', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 147, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như dàn ý và phân tích tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
 💰 Học phí mong muốn: 210k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_148', 'user_148', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 148, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_097 - Học Sinh 097 (Toán) - public
+('post_097', 'user_097',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 097, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như giải tích tổ hợp và các bài toán thực tế, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 226k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 230k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_149', 'user_149', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 149, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và tiến hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_098 - Học Sinh 098 (Anh) - private
+('post_098', 'user_098',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 098, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như ngữ pháp nâng cao và cấu trúc câu phức tạp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 207k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_150', 'user_150', $$ 📌 *CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 150, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hàm số và đạo hàm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 194k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_151', 'user_151', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 151, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như oxi hóa khử và phản ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 194k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_152', 'user_152', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 152, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và dao động, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 211k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_153', 'user_153', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 153, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như viết đoạn và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 234k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_154', 'user_154', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 154, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như tính chất hóa học và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 183k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_155', 'user_155', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 155, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như tiến hóa và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 216k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_156', 'user_156', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 156, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và đột biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 187k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_157', 'user_157', $$ 📌 *CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 157, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như phản ứng và oxi hóa khử, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào chiều thứ 3 - 5
-💰 Học phí mong muốn: 226k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_158', 'user_158', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 158, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sau 19h mỗi ngày
-💰 Học phí mong muốn: 205k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_159', 'user_159', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 159, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Nói và Listening, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 217k/buổi
-💻 Em ưu tiên học online, nếu gần có thể học offline.
-
-Mong được thầy cô đồng hành ạ. $$),
-('post_160', 'user_160', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 160, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện xoay chiều và cảm ứng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
-Em mong muốn tìm một thầy/cô có thể:
-• Giúp em học từ nền tảng, giải thích dễ hiểu
-• Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 245k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_161', 'user_161', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 161, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và di truyền, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_099 - Học Sinh 099 (Lý) - public
+('post_099', 'user_099',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 099, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như vật lý hạt nhân và ứng dụng của vật lý hạt nhân, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
 💰 Học phí mong muốn: 220k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_162', 'user_162', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 162, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như đột biến và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_100 - Học Sinh 100 (Sinh) - private
+('post_100', 'user_100',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 100, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học vi rút và bệnh do vi rút gây ra, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 185k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
+-- post_101 - Học Sinh 101 (Toán) - public
+('post_101', 'user_101',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 101, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học giải tích trong không gian và tích phân hàm nhiều biến, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 250k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_102 - Học Sinh 102 (Anh) - private
+('post_102', 'user_102',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 102, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như IELTS General Training (viết thư, biểu đồ) và các mẫu câu giao tiếp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 226k/buổi
+💰 Học phí mong muốn: 260k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_163', 'user_163', $$ 📌 *CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 163, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như di truyền và ADN, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_103 - Học Sinh 103 (Lý) - public
+('post_103', 'user_103',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 103, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cơ học lượng tử và thuyết tương đối, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 230k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
+-- post_104 - Học Sinh 104 (Hóa) - private
+('post_104', 'user_104',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 104, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như các nguyên tố chuyển tiếp và phức chất, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 7, Chủ nhật
+💰 Học phí mong muốn: 225k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_105 - Học Sinh 105 (Văn) - public
+('post_105', 'user_105',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 105, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như phân tích các tác phẩm văn học trung đại và kỹ năng viết bài bình luận văn học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 215k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_106 - Học Sinh 106 (Sinh) - private
+('post_106', 'user_106',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 106, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học di truyền quần thể và ứng dụng trong thực tế, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 197k/buổi
+💰 Học phí mong muốn: 205k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_164', 'user_164', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 164, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như dàn ý và cảm thụ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_107 - Học Sinh 107 (Toán) - public
+('post_107', 'user_107',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 107, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như phương trình vi phân và chuỗi số, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 245k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
+-- post_108 - Học Sinh 108 (Anh) - private
+('post_108', 'user_108',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 108, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Writing (học thuật) và cách trình bày ý tưởng mạch lạc, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 255k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_109 - Học Sinh 109 (Lý) - public
+('post_109', 'user_109',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 109, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như các loại dao động và sóng, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 220k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_110 - Học Sinh 110 (Hóa) - private
+('post_110', 'user_110',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 110, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học vật liệu và ứng dụng trong công nghiệp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 230k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_111 - Học Sinh 111 (Văn) - public
+('post_111', 'user_111',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 111, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như lý luận văn học và cách phân tích phong cách nghệ thuật của tác giả, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 200k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_112 - Học Sinh 112 (Sinh) - private
+('post_112', 'user_112',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 112, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như công nghệ sinh học và ứng dụng trong y học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 190k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_113 - Học Sinh 113 (Toán) - public
+('post_113', 'user_113',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 113, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như đại số tuyến tính và không gian vector, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 260k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_114 - Học Sinh 114 (Anh) - private
+('post_114', 'user_114',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 114, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như TOEIC (nghe, đọc) và kỹ năng làm bài thi nhanh, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 2 - 4 - 6
+💰 Học phí mong muốn: 240k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_115 - Học Sinh 115 (Lý) - public
+('post_115', 'user_115',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 115, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như nhiệt động lực học và các quá trình nhiệt, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 225k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_116 - Học Sinh 116 (Hóa) - private
+('post_116', 'user_116',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 116, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học môi trường và các vấn đề ô nhiễm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 235k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_117 - Học Sinh 117 (Văn) - public
+('post_117', 'user_117',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 117, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như văn học dân gian và cách phân tích các thể loại ca dao, tục ngữ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3 - 5 - 7
+💰 Học phí mong muốn: 205k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_118 - Học Sinh 118 (Sinh) - private
+('post_118', 'user_118',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 118, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học thực vật và quá trình quang hợp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 195k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_119 - Học Sinh 119 (Toán) - public
+('post_119', 'user_119',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 119, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như lý thuyết đồ thị và ứng dụng trong thực tế, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 2 - 4 - 6
+💰 Học phí mong muốn: 255k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_120 - Học Sinh 120 (Anh) - private
+('post_120', 'user_120',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 120, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh thương mại và kỹ năng thuyết trình bằng tiếng Anh, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 270k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_121 - Học Sinh 121 (Lý) - public
+('post_121', 'user_121',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 121, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như quang phổ và tia X, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
 🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 230k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_165', 'user_165', $$ 📌 *CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 165, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như cảm ứng và điện xoay chiều, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_122 - Học Sinh 122 (Hóa) - private
+('post_122', 'user_122',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 122, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như điện hóa và ứng dụng của điện hóa trong thực tế, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào cuối tuần
-💰 Học phí mong muốn: 218k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào tối thứ 3 - 5 - 7
+💰 Học phí mong muốn: 240k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_166', 'user_166', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 166, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Listening và Writing, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_123 - Học Sinh 123 (Văn) - public
+('post_123', 'user_123',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 123, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như văn học nước ngoài và cách phân tích các tác phẩm kinh điển, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
 💰 Học phí mong muốn: 215k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_167', 'user_167', $$ 📌 *CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 167, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như Từ vựng và Nói, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_124 - Học Sinh 124 (Sinh) - private
+('post_124', 'user_124',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 124, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học động vật và hệ cơ quan, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 184k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 200k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_168', 'user_168', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 168, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_125 - Học Sinh 125 (Toán) - public
+('post_125', 'user_125',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 125, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như lý thuyết số và mật mã học cơ bản, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
-💰 Học phí mong muốn: 216k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 270k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_169', 'user_169', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 169, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như dàn ý và phân tích tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_126 - Học Sinh 126 (Anh) - private
+('post_126', 'user_126',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 126, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh du lịch và các cụm từ giao tiếp cơ bản, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
-
-🕒 Em có thể học vào sáng thứ 7
-💰 Học phí mong muốn: 181k/buổi
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 250k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$),
-('post_170', 'user_170', $$ 📌 *CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN*
-
-Em là Học Sinh 170, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như cảm thụ và dàn ý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
-
+-- post_127 - Học Sinh 127 (Lý) - public
+('post_127', 'user_127',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 127, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như vật lý thiên văn và vũ trụ, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
 Em mong muốn tìm một thầy/cô có thể:
 • Giúp em học từ nền tảng, giải thích dễ hiểu
 • Cho ví dụ sát thực tế và luyện tập từng bước
-• Kiểm tra định kỳ để em theo dõi tiến bộ
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 235k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
-🕒 Em có thể học vào tối thứ 2 - 4 - 6
+-- post_128 - Học Sinh 128 (Hóa) - private
+('post_128', 'user_128',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 128, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học phân tích và các phương pháp sắc ký, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 245k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_129 - Học Sinh 129 (Văn) - public
+('post_129', 'user_129',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 129, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như lịch sử văn học Việt Nam và các trào lưu văn học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3 - 5 - 7
+💰 Học phí mong muốn: 200k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_130 - Học Sinh 130 (Sinh) - private
+('post_130', 'user_130',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 130, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh lý học người và các hệ cơ quan, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 210k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_131 - Học Sinh 131 (Toán) - public
+('post_131', 'user_131',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 131, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như hình học phi Euclide và các khái niệm nâng cao, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 280k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_132 - Học Sinh 132 (Anh) - private
+('post_132', 'user_132',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 132, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh chuyên ngành y tế và các thuật ngữ y khoa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 275k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_133 - Học Sinh 133 (Lý) - public
+('post_133', 'user_133',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 133, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như vật lý trạng thái rắn và bán dẫn, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 240k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_134 - Học Sinh 134 (Hóa) - private
+('post_134', 'user_134',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 134, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học hữu cơ nâng cao và các phản ứng tổng hợp, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 255k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_135 - Học Sinh 135 (Văn) - public
+('post_135', 'user_135',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 135, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như so sánh các tác phẩm văn học và kỹ năng viết bài nghị luận so sánh, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 220k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_136 - Học Sinh 136 (Sinh) - private
+('post_136', 'user_136',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 136, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như vi sinh vật học và vai trò của chúng trong đời sống, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
 💰 Học phí mong muốn: 205k/buổi
 💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
-Mong được thầy cô đồng hành ạ. $$);
+-- post_137 - Học Sinh 137 (Toán) - public
+('post_137', 'user_137',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 137, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như toán rời rạc và logic, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3 - 5 - 7
+💰 Học phí mong muốn: 265k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
 
+-- post_138 - Học Sinh 138 (Anh) - private
+('post_138', 'user_138',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 138, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh chuyên ngành công nghệ thông tin và lập trình, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 280k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
 
+-- post_139 - Học Sinh 139 (Lý) - public
+('post_139', 'user_139',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 139, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như vật lý lượng tử và các khái niệm cơ bản, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 250k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_140 - Học Sinh 140 (Hóa) - private
+('post_140', 'user_140',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 140, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học dược phẩm và các quá trình tổng hợp thuốc, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 260k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_141 - Học Sinh 141 (Văn) - public
+('post_141', 'user_141',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 141, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như lý luận phê bình văn học và cách đánh giá tác phẩm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 225k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_142 - Học Sinh 142 (Sinh) - private
+('post_142', 'user_142',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 142, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học phân tử và công nghệ gen, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 210k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_143 - Học Sinh 143 (Toán) - public
+('post_143', 'user_143',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 143, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như lý thuyết nhóm và ứng dụng trong hình học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 275k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_144 - Học Sinh 144 (Anh) - private
+('post_144', 'user_144',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 144, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh chuyên ngành kế toán và tài chính, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 290k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_145 - Học Sinh 145 (Lý) - public
+('post_145', 'user_145',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 145, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như vật lý các hạt cơ bản và vũ trụ học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3 - 5 - 7
+💰 Học phí mong muốn: 255k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_146 - Học Sinh 146 (Hóa) - private
+('post_146', 'user_146',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 146, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học môi trường và các phương pháp xử lý ô nhiễm, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 265k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_147 - Học Sinh 147 (Văn) - public
+('post_147', 'user_147',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 147, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như văn học hiện đại và các tác giả tiêu biểu, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 230k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_148 - Học Sinh 148 (Sinh) - private
+('post_148', 'user_148',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 148, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học tế bào và cơ chế điều hòa gen, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 215k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_149 - Học Sinh 149 (Toán) - public
+('post_149', 'user_149',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 149, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như giải tích phức và các hàm phức, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 285k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_150 - Học Sinh 150 (Anh) - private
+('post_150', 'user_150',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 150, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh chuyên ngành marketing và truyền thông, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 295k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_151 - Học Sinh 151 (Lý) - public
+('post_151', 'user_151',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 151, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như vật lý hạt nhân và các ứng dụng trong y học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 260k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_152 - Học Sinh 152 (Hóa) - private
+('post_152', 'user_152',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 152, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học polyme và công nghệ sản xuất vật liệu, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 270k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_153 - Học Sinh 153 (Văn) - public
+('post_153', 'user_153',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 153, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như văn học cách mạng và các tác phẩm tiêu biểu, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 3 - 5 - 7
+💰 Học phí mong muốn: 235k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_154 - Học Sinh 154 (Sinh) - private
+('post_154', 'user_154',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 154, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học vi sinh vật và các phương pháp nuôi cấy, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 220k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_155 - Học Sinh 155 (Toán) - public
+('post_155', 'user_155',
+'📌 CẦN GIA SƯ MÔN TOÁN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 155, hiện đang gặp nhiều khó khăn khi học môn Toán. Đặc biệt là các phần như toán học tài chính và mô hình hóa, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 290k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_156 - Học Sinh 156 (Anh) - private
+('post_156', 'user_156',
+'📌 CẦN GIA SƯ MÔN ANH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 156, hiện đang gặp nhiều khó khăn khi học môn Anh. Đặc biệt là các phần như tiếng Anh chuyên ngành luật và các thuật ngữ pháp lý, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 300k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_157 - Học Sinh 157 (Lý) - public
+('post_157', 'user_157',
+'📌 CẦN GIA SƯ MÔN LÝ - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 157, hiện đang gặp nhiều khó khăn khi học môn Lý. Đặc biệt là các phần như điện tử học và vi mạch, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào sáng thứ 2 - 4 - 6
+💰 Học phí mong muốn: 265k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_158 - Học Sinh 158 (Hóa) - private
+('post_158', 'user_158',
+'📌 CẦN GIA SƯ MÔN HÓA - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 158, hiện đang gặp nhiều khó khăn khi học môn Hóa. Đặc biệt là các phần như hóa học thực phẩm và các phụ gia, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi chiều trong tuần
+💰 Học phí mong muốn: 275k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private'),
+
+-- post_159 - Học Sinh 159 (Văn) - public
+('post_159', 'user_159',
+'📌 CẦN GIA SƯ MÔN VĂN - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 159, hiện đang gặp nhiều khó khăn khi học môn Văn. Đặc biệt là các phần như văn học trẻ em và các thể loại văn học thiếu nhi, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào các buổi tối trong tuần
+💰 Học phí mong muốn: 240k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'public'),
+
+-- post_160 - Học Sinh 160 (Sinh) - private
+('post_160', 'user_160',
+'📌 CẦN GIA SƯ MÔN SINH - EM MUỐN HỌC HIỆU QUẢ HƠN
+Em là Học Sinh 160, hiện đang gặp nhiều khó khăn khi học môn Sinh. Đặc biệt là các phần như sinh học bảo tồn và đa dạng sinh học, em học không hiểu sâu, làm bài thường sai sót hoặc mất nhiều thời gian.
+Em mong muốn tìm một thầy/cô có thể:
+• Giúp em học từ nền tảng, giải thích dễ hiểu
+• Cho ví dụ sát thực tế và luyện tập từng bước
+• Kiểm tra định kỳ để em theo dõi tiến độ
+🕒 Em có thể học vào cuối tuần
+💰 Học phí mong muốn: 225k/buổi
+💻 Em ưu tiên học online, nếu gần có thể học offline.
+Mong được thầy cô đồng hành ạ.', 'private');
 
