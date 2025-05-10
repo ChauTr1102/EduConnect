@@ -1,4 +1,5 @@
 @import url("component/header.css");
+@import url("component/footer.css");
 :root {
     --primary-color: #0d1472;
     --secondary-color: #f0f4ff;
@@ -254,109 +255,7 @@ body {
         background-color: #2a3bb0; /* Slightly darker on hover */
 }
 
-footer {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 3rem 2rem;
-    margin-top: 4rem;
-}
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    gap: 2rem; /* Add gap between footer sections */
-}
-
-.footer-left {
-    max-width: 300px;
-    flex-basis: 300px; /* Give it a base width */
-    flex-grow: 1; /* Allow it to grow if needed */
-}
-
-.footer-logo {
-    margin-bottom: 1rem;
-    display: block;
-}
-
-.footer-logo img {
-    height: 60px;
-}
-
-.mission-statement {
-    margin-bottom: 1rem;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
-.team-credit {
-    color: rgba(255,255,255,0.7);
-    font-size: 0.9rem;
-}
-
-.footer-links {
-    text-align: left; /* Align left for consistency */
-    flex-basis: 200px; /* Give it a base width */
-    flex-grow: 1;
-}
-
-.footer-links ul {
-    list-style: none;
-    padding: 0; /* Remove default padding */
-}
-
-.footer-links li {
-    margin: 0.5rem 0;
-}
-
-.footer-links a {
-    color: var(--white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: rgba(255,255,255,0.7);
-}
-
-.footer-socials {
-    text-align: left; /* Align left */
-    flex-basis: 200px; /* Give it a base width */
-    flex-grow: 1;
-}
-
-.footer-socials h3 {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    color: var(--white);
-}
-
-.social-icons-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.social-icon-item {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 0;
-    transition: transform 0.2s ease;
-}
-
-.social-icon-item:hover {
-    transform: scale(1.1);
-}
-
-.social-icon-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
 
 
 /* Floating Action Buttons */

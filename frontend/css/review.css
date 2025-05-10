@@ -1,4 +1,14 @@
 @import url("component/header.css");
+:root {
+    --primary-color: #0d1472;
+    --secondary-color: #f0f4ff;
+    --accent-color: #3c4fe0;
+    --text-color: #333;
+    --light-text: #888;
+    --white: #fff;
+    --purple-gradient: linear-gradient(135deg, #1a0049 0%, #3c4fe0 100%);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -7,7 +17,9 @@
 }
 
 body {
-    background-color: #f0f2f5;
+    background-color: var(--white);
+    color: var(--text-color);
+    position: relative; /* For floating buttons positioning */
 }
 
 /* Header Styles */
