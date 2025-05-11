@@ -41,6 +41,14 @@ async def recommender(student_request: StudentRequest):
     return post_id
 
 
+@router.post("/get_suitable_teacher/")
+async def get_suitable_teacher(post_id: SuitableTeacher):
+    suitable_teachers = sql_db.get_suitable_teacher(post_id.post_id)
+    keys = ["post_id", "teacher_id", "name", "email", "reason"]
+    formated_suitable_teachers = [dict(zip(keys, item)) for item in suitable_teachers]
+    return formated_suitable_teachers
+
+
 @router.post("/chat_get-answer/")
 async def send_message(message: Message):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))

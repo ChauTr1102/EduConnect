@@ -60,4 +60,8 @@ class Teacher(BaseModel):
     reason: str
 
 
+class SuitableTeacher(BaseModel):
+    post_id: str
+
+
 
