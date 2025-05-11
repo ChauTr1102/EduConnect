@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusHideDelay = 2000;
 
     // API Endpoint
-    const SAVE_TEACHER_ENDPOINT = 'http://127.0.0.1:8000/save_chosen_teacher/'; // Your FastAPI endpoint
+    const SAVE_TEACHER_ENDPOINT = 'http://172.20.0.5:8000/save_chosen_teacher/'; // Your FastAPI endpoint
 
     // Get elements
     const loadingSpinner = document.getElementById('loadingSpinner');

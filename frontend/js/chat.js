@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // **IMPORTANT**: Replace with your actual API endpoint for sending messages
-            const response = await fetch("http://localhost:8000/chat_with_teacher/", {
+            const response = await fetch("http://172.20.0.5:8000/chat_with_teacher/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
