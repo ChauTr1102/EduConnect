@@ -119,21 +119,7 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
             print(f"Error fetching conversations for user {user_id}: {e}")
             return []
 
-    def add_message_to_conversation(self, conversation_id, sender_id, message_text):
-        try:
-            query = """
-                INSERT INTO messages (conversation_id, sender_id, message_text)
-                VALUES (%s, %s, %s, %s)
-                RETURNING message_id
-            """
-            
-            self.cur.execute(query, ( conversation_id, sender_id, message_text))
-            
-            # Return the generated message_id
-            return message_id
-        except Exception as e:
-            print(f"Error adding message to conversation {conversation_id}: {e}")
-            return None
+
 
 
     #get message
