@@ -41,29 +41,45 @@
     </header>
 
     <div class="chat-page-wrapper">
-        <aside class="sidebar">
-             <div class="sidebar-header">
-                 <span class="sidebar-user">Le Nguyen Thanh Binh</span> <!-- Assuming this is the logged-in user -->
-             </div>
-             <div class="sidebar-search">
-                  <i class="fas fa-search"></i>
-                 <input type="text" placeholder="Searching...">
-             </div>
-             <nav class="sidebar-nav">
-                 <a href="home.html" class="nav-item"><i class="fas fa-home"></i> Back to Home</a>
-                 <a href="#" class="nav-item"><i class="fas fa-tachometer-alt"></i> Dashboards</a>
-                 <div class="nav-category">Style</div>
-                 <a href="#" class="nav-item"><i class="fas fa-paint-brush"></i> Subject</a>
-                 <a href="#" class="nav-item"><i class="fas fa-bullseye"></i> Proficiency</a>
-                 <a href="#" class="nav-item"><i class="fas fa-wallet"></i> Budget</a>
-                 <a href="#" class="nav-item"><i class="fas fa-user-check"></i> User Profile</a>
-                 <a href="#" class="nav-item"><i class="fas fa-key"></i> Authentication</a>
-                 <a href="#" class="nav-item"><i class="fas fa-dollar-sign"></i> Pricing</a>
-                 <a href="#" class="nav-item"><i class="fas fa-tasks"></i> Task</a>
-                 <div class="nav-category">Tools</div>
-                 <a href="#" class="nav-item active"><i class="fas fa-comments"></i> Messages</a>
-                 <a href="#" class="nav-item"><i class="fas fa-calendar-alt"></i> Calendar</a>
-             </nav>
+        <aside class="chat-history-sidebar">
+            <div class="sidebar-header">
+                <span class="sidebar-title">Chat History</span>
+            </div>
+            <div class="sidebar-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search conversations...">
+            </div>
+            <div class="new-chat-button-container">
+                <button class="new-chat-button" id="newChatButton">
+                    <i class="fas fa-user-plus"></i>
+                    Select User to Chat
+                </button>
+            </div>
+            <div class="chat-history-list" id="chatHistoryList">
+                <!-- Empty state message when no chat history -->
+                <div class="empty-history-message">
+                    <i class="fas fa-comments empty-icon"></i>
+                    <p>No conversations yet</p>
+                    <span>Your chat history will appear here</span>
+                </div>
+                
+                <!-- Chat history items will be added dynamically by JavaScript -->
+                <!-- Example of how a chat history item would look:
+                <div class="chat-history-item">
+                    <div class="history-avatar">
+                        <img src="images/avatar.jpg" alt="User Avatar">
+                    </div>
+                    <div class="history-content">
+                        <div class="history-name">John Smith</div>
+                        <div class="history-preview">Last message preview...</div>
+                    </div>
+                    <div class="history-info">
+                        <div class="history-time">2:30 PM</div>
+                        <div class="unread-badge">3</div>
+                    </div>
+                </div>
+                -->
+            </div>
         </aside>
 
         <main class="main-content">
@@ -90,7 +106,7 @@
 
             <footer class="message-input-area">
                 <button class="attach-button"><i class="fas fa-paperclip"></i></button>
-                <input type="text" class="message-input" id="messageInput" placeholder="Type a message..."> <!-- Corrected placeholder -->
+                <input type="text" class="message-input" id="messageInput" placeholder="Type a message...">
                 <button class="emoji-button"><i class="far fa-smile"></i></button>
                 <button class="send-button" id="sendButton"><i class="fas fa-paper-plane"></i></button>
             </footer>
