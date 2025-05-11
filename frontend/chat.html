@@ -25,10 +25,10 @@
             </ul>
         </nav>
         <div class="right-actions">
-            <div class="credit-icon">0.0 $</div>
-            <a href="notification.html" class="notification-icon" style="text-decoration: none;">🔔</a>
+             <span class="credit-icon">0.0 $</span>
+            <i class="fas fa-bell notification-icon"></i>
             <div class="account-container">
-                <div class="account-icon">👤</div>
+                 <i class="fas fa-user-circle account-icon"></i>
                 <div class="account-dropdown">
                     <a href="profile.html" class="dropdown-item">Profile</a>
                     <a href="setting.html" class="dropdown-item">Setting</a>
@@ -48,6 +48,12 @@
             <div class="sidebar-search">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search conversations...">
+            </div>
+            <div class="new-chat-button-container">
+                <button class="new-chat-button" id="newChatButton">
+                    <i class="fas fa-user-plus"></i>
+                    Select User to Chat
+                </button>
             </div>
             <div class="chat-history-list" id="chatHistoryList">
                 <!-- Empty state message when no chat history -->
