@@ -10,7 +10,7 @@ def read_root():
     }
 
 
-@router.post("/check_login")
+@router.post("/check_login/")
 async def check_login(test: user_and_pass):
     result = sql_db.check_login(test.user_name, test.password)
     return result
@@ -49,7 +49,7 @@ async def get_suitable_teacher(post_id: SuitableTeacher):
     return formated_suitable_teachers
 
 
-@router.post("/chat_get-answer/")
+@router.post("/chat_get_answer/")
 async def send_message(message: Message):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
     try:

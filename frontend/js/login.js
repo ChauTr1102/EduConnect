@@ -9,7 +9,7 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
         password: password
     };
 
-    fetch("http://172.20.0.5:8000/check_login", {
+    fetch("/api/check_login/", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

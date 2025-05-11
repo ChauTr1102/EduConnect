@@ -244,11 +244,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         // --- Trigger the FastAPI endpoint ---
-        const recommenderUrl = 'http://172.20.0.5:8000/recommender/';
+        const recommenderUrl = '/api/recommender/';
         console.log(`Calling Recommender API at: ${recommenderUrl} with content.`);
 
         // Use fetch to send a POST request (adjust method if needed)
-        fetch(recommenderUrl, {
+        await fetch(recommenderUrl, {
             method: 'POST', // Or 'GET', 'PUT' depending on your API design
             headers: {
                 'Content-Type': 'application/json', // Assuming your API expects JSON

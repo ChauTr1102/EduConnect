@@ -4,7 +4,7 @@ const textarea = document.querySelector('.chat-input');
 const sendButton = document.querySelector('.send-button');
 
 // --- API Configuration ---
-const apiEndpoint = 'http://172.20.0.5:8000/chat_get-answer/';
+const apiEndpoint = "/api/chat_get_answer/";
 
 // --- Helper Functions ---
 

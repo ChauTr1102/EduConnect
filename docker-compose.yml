@@ -55,6 +55,8 @@ services:
     container_name: frontend
     ports:
       - "80:80"
+    networks:
+      - my_custom_network
 
 
 networks:
