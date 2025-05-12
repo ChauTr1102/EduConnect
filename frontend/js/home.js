@@ -44,6 +44,66 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: "Gia sư Phạm Thị D", description: "Du học sinh Mỹ, điểm SAT Toán 800/800.", avatar: "images/ảnh tutor 4.jpg" },
     ];
 
+        // --- Fetch Posts Function ---
+    async function fetchPosts() {
+        try {
+            // Replace with your actual backend endpoint
+            const response = await fetch('/api/posts', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Add any authentication headers if needed
+                    // 'Authorization': `Bearer ${yourAuthToken}`
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const posts = await response.json();
+
+            // Validate and transform posts to match expected structure
+            const formattedPosts = posts.map(post => ({
+                id: post.id || Date.now(), // Ensure unique ID
+                user: post.user || "Anonymous", 
+                avatar: post.avatar || placeholderAvatar, 
+                time: post.time || "Recently", 
+                content: post.content || "No content provided"
+            }));
+
+            // Update global posts data and display
+            allPostsData = [...formattedPosts].reverse();
+            displayPage(1);
+        } catch (error) {
+            console.error('Error fetching posts:', error);
+            
+            // Fallback to default posts if fetch fails
+            allPostsData = [...defaultPosts].reverse();
+            displayPage(1);
+
+            // Show user-friendly error message
+            messageListContainer.innerHTML = `
+                <div class="error-message">
+                    <p>Unable to load posts. Showing default posts.</p>
+                    <p>Error: ${error.message}</p>
+                </div>
+            `;
+        }
+    }
+
+    // Function to add a post refresh button
+    function addPostRefreshButton() {
+        const refreshButton = document.createElement('button');
+        refreshButton.textContent = 'Refresh Posts';
+        refreshButton.classList.add('refresh-posts-btn');
+        refreshButton.addEventListener('click', fetchPosts);
+
+        // Add this button to the pagination controls
+        if (paginationControls) {
+            paginationControls.appendChild(refreshButton);
+        }
+    }
     // --- Functions ---
 
     function renderPostCard(postData) {
