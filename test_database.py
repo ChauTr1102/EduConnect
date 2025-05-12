@@ -104,7 +104,6 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
             print(f"Error deleting conversation: {e}")
             return False
 
-
     def get_user_conversations(self, user_id):
         try:
             query = """
@@ -118,9 +117,6 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         except Exception as e:
             print(f"Error fetching conversations for user {user_id}: {e}")
             return []
-
-
-
 
     #get message
     def add_message_to_conversation(self, conversation_id, sender_id, message_text):

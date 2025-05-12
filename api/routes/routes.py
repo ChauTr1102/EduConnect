@@ -98,7 +98,7 @@ async def send_message_with_teacher(message: MessageWithTeacher):
 
 
 @router.post("/get_detail_teacher_info/")
-async def get_detail_teacher_info(teacher:TeacherID):
+async def get_detail_teacher_info(teacher: TeacherID):
     teacher_info = sql_db.get_teacher_info(teacher.teacher_id)
     keys = ["teacher_id", "name", "gender", "birthdate", "email", "address", "introduction", "degree", "experience",
             "teaching_style"]
@@ -106,8 +106,8 @@ async def get_detail_teacher_info(teacher:TeacherID):
     return formated_teacher_info
 
 
-@router.post("/return_user_posts")
-async def return_user_posts(user_id: str):
+@router.post("/return_user_posts/")
+async def return_user_posts():
     # Retrieve posts from the database
     posts = sql_db.get_posts_with_usernames()
     # Prepare formatted posts
@@ -116,7 +116,7 @@ async def return_user_posts(user_id: str):
         # Assume post is a tuple or list with [post_id, username, content]
         post_id, username, content = post[:3]
         # Generate a random time between 2 and 14 hours ago
-        time_ago =random.uniform(2, 14)
+        time_ago = random.uniform(2, 14)
         # Construct post dictionary with additional details
         formatted_post = {
             "post_id": str(post_id),

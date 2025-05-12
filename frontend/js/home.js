@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function fetchPosts() {
         try {
             // Replace with your actual backend endpoint
-            const response = await fetch('/api/posts', {
+            const response = await fetch('/api/return_user_posts/', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
