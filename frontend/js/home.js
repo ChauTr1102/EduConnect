@@ -244,9 +244,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
         // --- Trigger the FastAPI endpoint ---
-        const recommenderUrl = 'http://127.0.0.1:8000/recommender/';
+        const recommenderUrl = '/api/recommender/';
         console.log(`Calling Recommender API at: ${recommenderUrl} with content.`);
-
+        data = {
+            user_id:"user_001",
+            student_request: postText
+        };
         // Use fetch to send a POST request (adjust method if needed)
         fetch(recommenderUrl, {
             method: 'POST', // Or 'GET', 'PUT' depending on your API design
@@ -254,15 +257,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json', // Assuming your API expects JSON
                 // Add any other headers like Authorization if required
             },
-            body: JSON.stringify({ student_request: postText }) // Send the post content
+            body: JSON.stringify(data) // Send the post content
         })
-        .then(response => {
-            // We don't wait for the response body, but check if the request initiation was okay
+        .then(async (response) => {
             console.log(`Recommender API call initiated. Status: ${response.status}`);
             if (!response.ok) {
                 console.warn(`Recommender API returned status ${response.status}`);
-                // Optionally, you could try to read response.text() here for debugging,
-                // but it might delay navigation slightly.
+                return;
+            }
+
+            const postId = await response.json();
+//            const postId = resData.post_id;
+            console.log('🚀 postId=', postId);
+
+            if (postId) {
+                sessionStorage.setItem('selectedPostId', postId);
+                console.log("Saved post_id to sessionStorage:", postId);
+            } else {
+                console.warn("No post_id received from API response.");
             }
         })
         .catch(error => {

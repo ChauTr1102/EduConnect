@@ -22,7 +22,7 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         # Truy vấn kiểm tra user_id và password
         query = f"""
             SELECT EXISTS (
-                SELECT 1 
+                SELECT user_id 
                 FROM users 
                 WHERE username = '{username}' AND password = '{password}'
             ) AS user_exists;

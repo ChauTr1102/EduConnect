@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusHideDelay = 2000;
 
     // API Endpoint
-    const SAVE_TEACHER_ENDPOINT = 'http://172.20.0.5:8000/save_chosen_teacher/'; // Your FastAPI endpoint
+    const SAVE_TEACHER_ENDPOINT = '/api/save_chosen_teacher/'; // Your FastAPI endpoint
 
     // Get elements
     const loadingSpinner = document.getElementById('loadingSpinner');
@@ -239,30 +239,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Main Execution Logic ---
-    fetch('suitable_teacher.json') // Ensure this path is correct
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Make sure data is an array before processing
-            if (Array.isArray(data)) {
-                handleTeacherData(data);
-            } else {
-                // Handle cases where the JSON might be nested, e.g., { "teachers": [...] }
-                // Adjust this based on your actual JSON structure if needed
-                if (data && Array.isArray(data.teachers)) {
-                     handleTeacherData(data.teachers);
-                } else {
-                    console.error('Fetched data is not an array or expected structure:', data);
-                    handleNoMatch('Lỗi định dạng dữ liệu gia sư.');
-                }
-            }
-        })
-        .catch(error => {
+    const postId = sessionStorage.getItem('selectedPostId');
+    console.log('🚀 postId=', postId);
+    const postIdPayload = {post_id: postId};
+    fetch('/api/get_suitable_teacher/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(postIdPayload)
+    })
+    .then(async response => {
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`❌ Server trả về lỗi ${response.status}:`, errorText);
+            handleNoMatch('Không thể lấy dữ liệu từ server.');
+            return;
+        }
+
+        const data = await response.json();
+
+        if (Array.isArray(data)) {
+            handleTeacherData(data);
+        } else if (data && Array.isArray(data.teachers)) {
+            handleTeacherData(data.teachers);
+        } else {
+            console.error('❌ Dữ liệu không đúng định dạng:', data);
+            handleNoMatch('Lỗi định dạng dữ liệu gia sư.');
+        }
+    })
+    .catch(error => {
             console.error('Error fetching or parsing suitable_teacher.json:', error);
             handleNoMatch('Lỗi khi tải dữ liệu gia sư.');
-        });
+    });
 });
