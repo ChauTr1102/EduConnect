@@ -46,5 +46,13 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         return self.cur.fetchall()
 
 
-
+    def get_posts_with_usernames(self):
+        query = """
+        SELECT p.post_id, u.username, p.content 
+        FROM posts p
+        JOIN users u ON p.user_id = u.user_id
+        ORDER BY p.created_at DESC
+        """
+        self.cur.execute(query)
+        return self.cur.fetchall()
 
