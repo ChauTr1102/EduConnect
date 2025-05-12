@@ -64,7 +64,7 @@ class TeacherInfo(BaseModel):
 
 class MessageWithTeacher(BaseModel):
     student_question: str
-    teacher_info: TeacherInfo
+    teacher_info: str
 
 
 class Teacher(BaseModel):

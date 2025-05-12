@@ -128,16 +128,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
 //            Uncomment this when your API is ready
-            const teacher_info = sessionStorage.getItem("TeacherInformation")
+            const dataStr = sessionStorage.getItem("chosenTeacherData");
+            const teacherJsonString = JSON.stringify(teacherArray);
+
+            // 3. Gửi payload nguyên object teacherInfo
+            const payload = {
+              student_question: messageText,
+              teacher_info: teacherJsonString
+            };
+
             const response = await fetch("/api/chat_with_teacher/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    student_question: messageText,
-                    teacher_info: teacher_info
-                })
+                body: JSON.stringify(payload)
             });
 
             if (!response.ok) {

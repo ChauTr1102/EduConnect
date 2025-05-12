@@ -86,6 +86,7 @@ async def send_message_with_teacher(message: MessageWithTeacher):
     #         history = json.load(f)
     # except FileNotFoundError:
     #     history = []
+    history = []
     chat_prompt = chatbot.prompt_chat_with_teacher(message.teacher_info, message.student_question, history)
     response = await chatbot.send_message_gemini(chat_prompt)
 
