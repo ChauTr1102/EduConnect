@@ -77,24 +77,34 @@ async def save_chosen_teacher(teacher: Teacher):
 @router.post("/chat_with_teacher/")
 async def send_message_with_teacher(message: MessageWithTeacher):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
-    with open("chosen_teacher.json", "r", encoding="utf-8") as f:
-        teacher_profile_dict = json.load(f)
-    teacher_id = teacher_profile_dict["teacher_id"]
-    teacher_profile_str = json.dumps(teacher_profile_dict, indent=4, ensure_ascii=False)
-    try:
-        with open(f"./HistoryChat/cv_{teacher_id}.json", "r", encoding="utf-8") as f:
-            history = json.load(f)
-    except FileNotFoundError:
-        history = []
-    chat_prompt = chatbot.prompt_chat_with_teacher(teacher_profile_str, message.student_question, history)
+    # with open("chosen_teacher.json", "r", encoding="utf-8") as f:
+    #     teacher_profile_dict = json.load(f)
+    # teacher_id = teacher_profile_dict["teacher_id"]
+    # teacher_profile_str = json.dumps(teacher_profile_dict, indent=4, ensure_ascii=False)
+    # try:
+    #     with open(f"./HistoryChat/cv_{teacher_id}.json", "r", encoding="utf-8") as f:
+    #         history = json.load(f)
+    # except FileNotFoundError:
+    #     history = []
+    chat_prompt = chatbot.prompt_chat_with_teacher(message.teacher_info, message.student_question, history)
     response = await chatbot.send_message_gemini(chat_prompt)
 
-    history.append({"role": "user", "content": message.student_question})
-    history.append({"role": "teacher", "content": response})
+    # history.append({"role": "user", "content": message.student_question})
+    # history.append({"role": "teacher", "content": response})
 
-    with open(f"./HistoryChat/cv_{teacher_id}.json", "w", encoding="utf-8") as f:
-        json.dump(history, f, ensure_ascii=False, indent=4)
+    # with open(f"./HistoryChat/cv_{teacher_id}.json", "w", encoding="utf-8") as f:
+    #     json.dump(history, f, ensure_ascii=False, indent=4)
     return response
+
+
+@router.post("/get_detail_teacher_info/")
+async def get_detail_teacher_info(teacher:TeacherID):
+    teacher_info = sql_db.get_teacher_info(teacher.teacher_id)
+    keys = ["teacher_id", "name", "gender", "birthdate", "email", "address", "introduction", "degree", "experience",
+            "teaching_style"]
+    formated_teacher_info = [dict(zip(keys, item)) for item in teacher_info]
+    return formated_teacher_info
+
 
 
 

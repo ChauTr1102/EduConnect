@@ -36,38 +36,68 @@ document.addEventListener('DOMContentLoaded', () => {
         recipientAvatarElement.alt = `${name} Avatar`;
     }
 
-    // --- Get recipient info: Priority to URL param, fallback to JSON ---
     function loadRecipientInfo() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const userNameFromUrl = urlParams.get('user');
-        const userIdFromUrl = urlParams.get('userId');
+    const urlParams = new URLSearchParams(window.location.search);
+    const userNameFromUrl = urlParams.get('user');
+    const userIdFromUrl = urlParams.get('userId');
 
-        if (userNameFromUrl) {
-            // If 'user' is in URL, use it
-            const finalUserId = userIdFromUrl || userNameFromUrl.replace(/\s+/g, '').substring(0, 6).toUpperCase();
-            setRecipientDetails(userNameFromUrl, finalUserId);
-        } else {
-            // If no URL params, try sessionStorage
-            const dataStr = sessionStorage.getItem("chosenTeacherData");
-            if (dataStr) {
-                try {
-                    const data = JSON.parse(dataStr);
-                    if (data.name && data.teacher_id) {
-                        setRecipientDetails(data.name, data.teacher_id);
-                    } else {
-                        console.warn("Missing name or teacher_id in chosenTeacherData");
-                        setRecipientDetails("Default Tutor", "DEFAULTID");
-                    }
-                } catch (e) {
-                    console.error("Error parsing chosenTeacherData from sessionStorage", e);
+    if (userNameFromUrl) {
+        const finalUserId = userIdFromUrl || userNameFromUrl.replace(/\s+/g, '').substring(0, 6).toUpperCase();
+        setRecipientDetails(userNameFromUrl, finalUserId);
+    } else {
+        const dataStr = sessionStorage.getItem("chosenTeacherData");
+        if (dataStr) {
+            try {
+                const data = JSON.parse(dataStr);
+                if (data.name && data.teacher_id) {
+                    setRecipientDetails(data.name, data.teacher_id);
+
+                    // 🟢 Fetch thông tin chi tiết từ backend
+                    fetch("/api/get_detail_teacher_info/", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ teacher_id: data.teacher_id })
+                    })
+                    .then(async (response) => {
+                        console.log(`Teacher info API status: ${response.status}`);
+                        if (!response.ok) {
+                            const errorText = await response.text();
+                            console.warn(`❌ API error: ${response.status} - ${errorText}`);
+                            return;
+                        }
+
+                        const detailedInfo = await response.json();
+                        console.log("✅ Received detailed teacher info:", detailedInfo);
+
+                        // Ghi đè thông tin mới vào sessionStorage
+                        sessionStorage.setItem("TeacherInformation", JSON.stringify(detailedInfo));
+
+                        // Cập nhật lại giao diện nếu dữ liệu thay đổi
+                        if (detailedInfo.name && detailedInfo.teacher_id) {
+                            setRecipientDetails(detailedInfo.name, detailedInfo.teacher_id);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("❌ Lỗi khi gọi API lấy thông tin giáo viên:", error);
+                    });
+
+                } else {
+                    console.warn("Missing name or teacher_id in chosenTeacherData");
                     setRecipientDetails("Default Tutor", "DEFAULTID");
                 }
-            } else {
-                console.warn("No chosenTeacherData found in sessionStorage. Using default.");
+            } catch (e) {
+                console.error("Error parsing chosenTeacherData from sessionStorage", e);
                 setRecipientDetails("Default Tutor", "DEFAULTID");
             }
+        } else {
+            console.warn("No chosenTeacherData found in sessionStorage. Using default.");
+            setRecipientDetails("Default Tutor", "DEFAULTID");
         }
     }
+}
+
 
     // Load recipient info when page loads
     loadRecipientInfo();
@@ -98,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
 //            Uncomment this when your API is ready
+            const teacher_info = sessionStorage.getItem("TeacherInformation")
             const response = await fetch("/api/chat_with_teacher/", {
                 method: "POST",
                 headers: {
@@ -105,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: JSON.stringify({
                     student_question: messageText,
-                    teacher_id: recipientUserIdElement.textContent.substring(1)
+                    teacher_info: teacher_info
                 })
             });
 

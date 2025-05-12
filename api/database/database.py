@@ -45,6 +45,13 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         self.cur.execute(f"select * from suitable_teachers where post_id ='{post_id}'")
         return self.cur.fetchall()
 
+    # Lấy thông tin của teacher
+    def get_teacher_info(self, teacher_id):
+        self.cur.execute(f"""select u.user_id, u.name, u.gender,u.birth_date, u.email, u.address, t.introduction, t.degree, t.experience, t.teaching_style, t.hobby
+                            from teachers t join users u on t.teacher_id=u.user_id
+                            where t.teacher_id = '{teacher_id}'""")
+        return self.cur.fetchall()
+
 
 
 
