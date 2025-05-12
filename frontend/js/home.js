@@ -245,9 +245,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // --- Trigger the FastAPI endpoint ---
         const recommenderUrl = '/api/recommender/';
+        const userId = sessionStorage.getItem("user_id");
         console.log(`Calling Recommender API at: ${recommenderUrl} with content.`);
         data = {
-            user_id:"user_001",
+            user_id:userId,
             student_request: postText
         };
         // Use fetch to send a POST request (adjust method if needed)

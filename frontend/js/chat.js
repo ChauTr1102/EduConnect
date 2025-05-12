@@ -97,13 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messageInput.focus(); // Keep focus on input
 
         try {
-            // Simulate API response while endpoint is not available
-            setTimeout(() => {
-                const botResponse = "Thank you for your message. This is a simulated response since the API endpoint is not active. Your tutor will respond soon.";
-                addMessage(botResponse, 'received');
-            }, 1000);
-
-            /* Uncomment this when your API is ready
+//            Uncomment this when your API is ready
             const response = await fetch("/api/chat_with_teacher/", {
                 method: "POST",
                 headers: {
@@ -164,7 +158,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             addMessage(botResponse, 'received');
-            */
 
         } catch (error) {
             console.error("Fetch failed:", error);
@@ -258,7 +251,4 @@ document.addEventListener('DOMContentLoaded', () => {
     newChatButton.addEventListener('click', () => {
         alert("This would normally open a user selection interface. For demo purposes, refreshing the page will reset the chat.");
     });
-
-    // Add a welcome message
-    addMessage("Hello! Welcome to EduConnectGPT. How can I help you today?", 'received');
 });
