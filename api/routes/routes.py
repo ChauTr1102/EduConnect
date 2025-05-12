@@ -97,4 +97,24 @@ async def send_message_with_teacher(message: MessageWithTeacher):
     return response
 
 
-
+@router.post("/return_user_posts")
+async def return_user_posts(user_id: str):
+    # Retrieve posts from the database
+    posts = sql_db.get_posts_with_usernames()
+    # Prepare formatted posts
+    formated_posts = []
+    for post in posts:
+        # Assume post is a tuple or list with [post_id, username, content]
+        post_id, username, content = post[:3]
+        # Generate a random time between 2 and 14 hours ago
+        time_ago =random.uniform(2, 14)
+        # Construct post dictionary with additional details
+        formatted_post = {
+            "post_id": str(post_id),
+            "username": username,
+            "avatar": f"{username}.png",  # Assuming avatar is username-based
+            "content": content,
+            "time_posted": time_ago
+        }
+        formated_posts.append(formatted_post)
+    return formated_posts
