@@ -49,8 +49,22 @@ class Message(BaseModel):
     message: str
 
 
+class TeacherInfo(BaseModel):
+    teacher_id: str
+    name: str
+    gender: str
+    birthdate: str
+    email: str
+    address: str
+    introduction: str
+    degree: str
+    experience: str
+    teaching_style: str
+
+
 class MessageWithTeacher(BaseModel):
     student_question: str
+    teacher_info: TeacherInfo
 
 
 class Teacher(BaseModel):
@@ -63,5 +77,8 @@ class Teacher(BaseModel):
 class SuitableTeacher(BaseModel):
     post_id: str
 
+
+class TeacherID(BaseModel):
+    teacher_id: str
 
 
