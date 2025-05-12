@@ -32,30 +32,32 @@ document.addEventListener('DOMContentLoaded', () => {
         // You might want to fetch the correct avatar based on userNameFromUrl/userIdFromUrl if possible
     } else {
         // If 'user' is NOT in URL, fetch from chosen_teacher.json
-        fetch('chosen_teacher.json') // <<< Make sure this path is correct
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}. Could not load chosen_teacher.json`);
-                }
-                return response.json(); // Parse the JSON response
-            })
-            .then(data => {
-                if (data && data.name && data.teacher_id) {
-                    // Use data from JSON
+//        fetch('chosen_teacher.json') // <<< Make sure this path is correct
+//            .then(response => {
+//                if (!response.ok) {
+//                    throw new Error(`HTTP error! Status: ${response.status}. Could not load chosen_teacher.json`);
+//                }
+//                return response.json(); // Parse the JSON response
+//            })
+        const dataStr = sessionStorage.getItem("chosenTeacherData");
+        if (dataStr) {
+            try {
+                const data = JSON.parse(dataStr);
+                if (data.name && data.teacher_id) {
                     setRecipientDetails(data.name, data.teacher_id);
-                    // Optional: Update avatar based on teacher_id if you have a mapping or image naming convention
-                     // e.g., recipientAvatarElement.src = `images/tutors/${data.teacher_id}.jpg`;
                 } else {
-                    console.warn("chosen_teacher.json loaded but is missing 'name' or 'teacher_id'. Using default.");
-                    setRecipientDetails("Default Tutor", "DEFAULTID"); // Fallback if JSON is invalid
+                    console.warn("Missing name or teacher_id in chosenTeacherData");
+                    setRecipientDetails("Default Tutor", "DEFAULTID");
                 }
-            })
-            .catch(error => {
-                console.error('Error fetching or parsing chosen_teacher.json:', error);
-                setRecipientDetails("Tutor Error", "ERRORID"); // Fallback on fetch error
-                addMessage("Could not load tutor information. Please try again later.", 'received');
-            });
-    }
+            } catch (e) {
+                console.error("Error parsing chosenTeacherData from sessionStorage", e);
+                setRecipientDetails("Tutor Error", "ERRORID");
+            }
+        } else {
+            console.warn("No chosenTeacherData found in sessionStorage. Using default.");
+            setRecipientDetails("Default Tutor", "DEFAULTID");
+        };
+
 
     // 3. Hàm tạo tin nhắn
     function addMessage(text, type = 'sent') {

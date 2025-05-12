@@ -211,27 +211,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     reason: teacherReason
                 };
 
-                console.log('Sending data to API:', dataToSend);
+                sessionStorage.setItem('chosenTeacherData', JSON.stringify(dataToSend))
+                window.location.href = 'chat.html';
 
-                // Disable button temporarily
-                button.style.pointerEvents = 'none';
-                button.style.opacity = '0.7';
-
-                // Call the API
-                const success = await sendTeacherDataToAPI(dataToSend);
-
-                // Re-enable button
-                button.style.pointerEvents = 'auto';
-                button.style.opacity = '1';
-
-                // Navigate if successful
-                if (success) {
-                     console.log("API call successful, navigating to chat...");
-                     window.location.href = button.href; // Navigate to chat.html
-                } else {
-                    console.log("API call failed, staying on page.");
-                    // Error message shown by showTemporaryStatus
-                }
+//                console.log('Sending data to API:', dataToSend);
+//
+//                // Disable button temporarily
+//                button.style.pointerEvents = 'none';
+//                button.style.opacity = '0.7';
+//
+//                // Call the API
+//                const success = await sendTeacherDataToAPI(dataToSend);
+//
+//                // Re-enable button
+//                button.style.pointerEvents = 'auto';
+//                button.style.opacity = '1';
+//
+//                // Navigate if successful
+//                if (success) {
+//                     console.log("API call successful, navigating to chat...");
+//                     window.location.href = button.href; // Navigate to chat.html
+//                } else {
+//                    console.log("API call failed, staying on page.");
+//                    // Error message shown by showTemporaryStatus
+//                }
             }
         });
     } else {
