@@ -106,7 +106,7 @@ async def get_detail_teacher_info(teacher: TeacherID):
     return formated_teacher_info
 
 
-@router.post("/return_user_posts/")
+@router.get("/return_user_posts/") # <-- CHANGE HERE
 async def return_user_posts():
     # Retrieve posts from the database
     posts = sql_db.get_posts_with_usernames()
@@ -114,16 +114,17 @@ async def return_user_posts():
     formated_posts = []
     for post in posts:
         # Assume post is a tuple or list with [post_id, username, content]
-        post_id, username, content = post[:3]
-        # Generate a random time between 2 and 14 hours ago
-        time_ago = random.uniform(2, 14)
-        # Construct post dictionary with additional details
+        post_id, username, content = post[:3] 
+        # Get avatar path - ensure this logic works
+        avatar_path = f"images/{username}.png" # Example path, adjust as needed
+
         formatted_post = {
-            "post_id": str(post_id),
-            "username": username,
-            "avatar": f"{username}.png",  # Assuming avatar is username-based
-            "content": content,
-            "time_posted": time_ago
+            # Keys should match what JS expects OR adjust JS mapping
+            "id": str(post_id),       # Match JS 'id'
+            "user": username,         # Match JS 'user'
+            "avatar": avatar_path,    # Match JS 'avatar'
+            "content": content,       # Match JS 'content'
+            "time": f"{random.uniform(1, 10):.0f} hours ago" # Match JS 'time', simplified example
         }
         formated_posts.append(formatted_post)
-    return formated_posts
+    return formated_posts # FastAPI automatically converts list of dicts to JSON
