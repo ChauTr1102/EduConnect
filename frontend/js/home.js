@@ -267,9 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const postId = await response.json();
-//            const postId = resData.post_id;
-            console.log('🚀 postId=', postId);
-
+//          const postId = resData.post_id;
             if (postId) {
                 sessionStorage.setItem('selectedPostId', postId);
                 console.log("Saved post_id to sessionStorage:", postId);

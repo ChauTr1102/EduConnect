@@ -22,13 +22,11 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         # Truy vấn kiểm tra user_id và password
         query = f"SELECT user_id FROM users WHERE username = %s AND password = %s"
         try:
-            # Sử dụng tham số hóa để tránh SQL Injection
             self.cur.execute(query, (username, password))
             result = self.cur.fetchall()[0][0]
             return result
-        except psycopg2.Error as e:
-            print(f"Lỗi khi truy vấn: {e}")
-            return False
+        except:
+            return 0
 
     # Matching
     # upload post
