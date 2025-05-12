@@ -11,68 +11,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const cancelSelection = document.getElementById('cancelSelection');
     const joinClassBtn = document.getElementById('joinClassBtn');
     const timeOptions = document.querySelectorAll('.time-option');
-    const newChatButton = document.getElementById('newChatButton');
-    const chatHistoryList = document.getElementById('chatHistoryList');
 
     // --- Function to set recipient details ---
-    function setRecipientDetails(name, id, avatarSrc) {
+    function setRecipientDetails(name, id, avatarSrc ) { // Added avatar parameter
         recipientNameElement.textContent = name;
         recipientUserIdElement.textContent = `#${id}`;
-        
-        // Try to use provided avatar or fallback to a default image
-        if (avatarSrc) {
-            recipientAvatarElement.src = avatarSrc;
-        } else {
-            // Try to use name-based image or fallback to default
-            recipientAvatarElement.src = `images/${name}.png`;
-            
-            // Add error handler for avatar image
-            recipientAvatarElement.onerror = function() {
-                this.src = 'images/ảnh tutor 2.jpg'; // Fallback to default
-                console.log('Fallback to default avatar image');
-            };
-        }
-        
-        recipientAvatarElement.alt = `${name} Avatar`;
+        recipientAvatarElement.src = `images/${name}.png`; // Set avatar source
+         recipientAvatarElement.alt = `${name} Avatar`; // Update alt text
     }
 
     // --- Get recipient info: Priority to URL param, fallback to JSON ---
-    function loadRecipientInfo() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const userNameFromUrl = urlParams.get('user');
-        const userIdFromUrl = urlParams.get('userId');
+    const urlParams = new URLSearchParams(window.location.search);
+    const userNameFromUrl = urlParams.get('user');
+    const userIdFromUrl = urlParams.get('userId'); // Check for userId in URL too
 
-        if (userNameFromUrl) {
-            // If 'user' is in URL, use it
-            const finalUserId = userIdFromUrl || userNameFromUrl.replace(/\s+/g, '').substring(0, 6).toUpperCase();
-            setRecipientDetails(userNameFromUrl, finalUserId);
-        } else {
-            // If no URL params, try sessionStorage
-            const dataStr = sessionStorage.getItem("chosenTeacherData");
-            if (dataStr) {
-                try {
-                    const data = JSON.parse(dataStr);
-                    if (data.name && data.teacher_id) {
-                        setRecipientDetails(data.name, data.teacher_id);
-                    } else {
-                        console.warn("Missing name or teacher_id in chosenTeacherData");
-                        setRecipientDetails("Default Tutor", "DEFAULTID");
-                    }
-                } catch (e) {
-                    console.error("Error parsing chosenTeacherData from sessionStorage", e);
-                    setRecipientDetails("Default Tutor", "DEFAULTID");
+    if (userNameFromUrl) {
+        // If 'user' is in URL, use it (potentially get ID from URL too or generate)
+        const finalUserId = userIdFromUrl || userNameFromUrl.replace(/\s+/g, '').substring(0, 6).toUpperCase();
+        setRecipientDetails(userNameFromUrl, finalUserId);
+        // You might want to fetch the correct avatar based on userNameFromUrl/userIdFromUrl if possible
+    } else {
+        // If 'user' is NOT in URL, fetch from chosen_teacher.json
+        fetch('chosen_teacher.json') // <<< Make sure this path is correct
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}. Could not load chosen_teacher.json`);
                 }
-            } else {
-                console.warn("No chosenTeacherData found in sessionStorage. Using default.");
-                setRecipientDetails("Default Tutor", "DEFAULTID");
-            }
-        }
+                return response.json(); // Parse the JSON response
+            })
+            .then(data => {
+                if (data && data.name && data.teacher_id) {
+                    // Use data from JSON
+                    setRecipientDetails(data.name, data.teacher_id);
+                    // Optional: Update avatar based on teacher_id if you have a mapping or image naming convention
+                     // e.g., recipientAvatarElement.src = `images/tutors/${data.teacher_id}.jpg`;
+                } else {
+                    console.warn("chosen_teacher.json loaded but is missing 'name' or 'teacher_id'. Using default.");
+                    setRecipientDetails("Default Tutor", "DEFAULTID"); // Fallback if JSON is invalid
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching or parsing chosen_teacher.json:', error);
+                setRecipientDetails("Tutor Error", "ERRORID"); // Fallback on fetch error
+                addMessage("Could not load tutor information. Please try again later.", 'received');
+            });
     }
 
-    // Load recipient info when page loads
-    loadRecipientInfo();
-
-    // Function to add a message to the chat
+    // 3. Hàm tạo tin nhắn
     function addMessage(text, type = 'sent') {
         const bubble = document.createElement('div');
         bubble.className = `message-bubble message-${type}`;
@@ -87,7 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
         messagesArea.scrollTop = messagesArea.scrollHeight; // Auto-scroll to bottom
     }
 
-    // Handle sending messages
+    // 4. Gửi tin nhắn và gọi API
     async function sendMessageHandler() {
         const messageText = messageInput.value.trim();
         if (!messageText) return;
@@ -97,18 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
         messageInput.focus(); // Keep focus on input
 
         try {
-//            Uncomment this when your API is ready
+            // **IMPORTANT**: Replace with your actual API endpoint for sending messages
             const response = await fetch("/api/chat_with_teacher/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
+                    // Add any necessary authentication headers (tokens) here
                 },
                 body: JSON.stringify({
                     student_question: messageText,
-                    teacher_id: recipientUserIdElement.textContent.substring(1)
+                    // Optional: Send recipient ID if your backend needs it
+                    // teacher_id: recipientUserIdElement.textContent.substring(1) // Remove '#'
                 })
             });
 
+            // --- HANDLE ERROR ---
             if (!response.ok) {
                 let errorDetail = `HTTP error! Status: ${response.status}`;
                 try {
@@ -126,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
                     }
                 } catch (e) {
-                    try {
+                     try {
                         errorDetail = await response.text();
                         if (!errorDetail.startsWith('Error:')) errorDetail = `Error: ${errorDetail}`;
                     } catch (finalError) {
@@ -135,41 +123,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
                 console.error('API Error:', response.status, errorDetail);
-                addMessage(`Sorry, there was an error sending the message to the tutor. ${errorDetail}`, 'received');
+                addMessage(`Sorry, there was an error sending the message to the tutor. ${errorDetail}`, 'received'); // Corrected Vietnamese
                 return;
             }
 
+            // --- HANDLE SUCCESS ---
             const data = await response.json();
 
-            let botResponse = "Sorry, I couldn't understand the response.";
+            let botResponse = "Sorry, I couldn't understand the response."; // Default response
             if (typeof data === 'string' && data.trim() !== '') {
-                botResponse = data;
+                 botResponse = data; // Backend returns string directly
             } else if (data && typeof data === 'object') {
                 if (typeof data.response === 'string') {
-                    botResponse = data.response;
+                   botResponse = data.response; // Standard {"response": "..."}
                 } else if (typeof data.teacher_response === 'string') {
-                    botResponse = data.teacher_response;
+                    botResponse = data.teacher_response; // Alternative key
                 } else if (data.error) {
-                    botResponse = `Sorry, the system encountered an error: ${data.error}`;
+                     botResponse = `Sorry, the system encountered an error: ${data.error}`;
                 } else {
                     console.warn('Unexpected response structure:', data);
                     botResponse = "Received an unexpected response format from the server.";
                 }
             }
 
-            addMessage(botResponse, 'received');
+             addMessage(botResponse, 'received');
 
         } catch (error) {
             console.error("Fetch failed:", error);
-            addMessage("Network error or the server is not responding. Please try again later.", 'received');
+            addMessage("Network error or the server is not responding. Please try again later.", 'received'); // Corrected Vietnamese
         }
     }
 
-    // Setup study time modal
-    let selectedTimes = {
-        tuesday: null,
-        thursday: null
-    };
+
+    // 5. Giao diện chọn giờ học
+    sendRequestBtn.addEventListener('click', () => {
+        studyTimeModal.classList.add('active');
+    });
 
     function closeModalHandler() {
         studyTimeModal.classList.remove('active');
@@ -177,13 +166,13 @@ document.addEventListener('DOMContentLoaded', () => {
         timeOptions.forEach(opt => opt.classList.remove('selected'));
         selectedTimes = { tuesday: null, thursday: null };
     }
-
-    sendRequestBtn.addEventListener('click', () => {
-        studyTimeModal.classList.add('active');
-    });
-
     closeModal.addEventListener('click', closeModalHandler);
     cancelSelection.addEventListener('click', closeModalHandler);
+
+    let selectedTimes = {
+        tuesday: null,
+        thursday: null
+    };
 
     timeOptions.forEach(option => {
         option.addEventListener('click', () => {
@@ -199,14 +188,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Toggle selection for the clicked option
             if (option.classList.contains('selected')) {
-                option.classList.remove('selected');
-                selectedTimes[day] = null; // Remove selection
+                 option.classList.remove('selected');
+                 selectedTimes[day] = null; // Remove selection
             } else {
-                option.classList.add('selected');
-                selectedTimes[day] = time; // Set selection
+                 option.classList.add('selected');
+                 selectedTimes[day] = time; // Set selection
             }
 
-            console.log("Selected times:", selectedTimes);
+            console.log("Selected times:", selectedTimes); // For debugging
         });
     });
 
@@ -221,34 +210,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (selectedTimes.thursday) {
                 params.append('thursdayTime', selectedTimes.thursday);
             }
+            // Optionally add tutor info to the schedule page URL
             params.append('tutorName', recipientNameElement.textContent);
-            params.append('tutorId', recipientUserIdElement.textContent.substring(1));
+            params.append('tutorId', recipientUserIdElement.textContent.substring(1)); // Remove '#'
 
             window.location.href = `schedule.html?${params.toString()}`;
-            closeModalHandler();
+            closeModalHandler(); // Close modal after redirecting
         } else {
             alert('Please select at least one study time slot.');
         }
     });
 
-    // Event Listeners
+    // 6. Gửi khi nhấn nút hoặc nhấn Enter
     sendButton.addEventListener('click', sendMessageHandler);
-    
     messageInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
+        if (e.key === 'Enter' && !e.shiftKey) { // Send on Enter, allow Shift+Enter for newline
+            e.preventDefault(); // Prevent default form submission/newline
             sendMessageHandler();
         }
     });
 
+    // 7. Đóng modal khi click ra ngoài backdrop
     window.addEventListener('click', (e) => {
         if (e.target === studyTimeModal) {
             closeModalHandler();
         }
     });
 
-    // Example of adding a chat history item (for demo purposes)
-    newChatButton.addEventListener('click', () => {
-        alert("This would normally open a user selection interface. For demo purposes, refreshing the page will reset the chat.");
-    });
+    // Add a welcome message or initial state message if desired
+    // addMessage("Hello! How can I help you today?", 'received');
+
 });
