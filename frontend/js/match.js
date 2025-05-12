@@ -240,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Main Execution Logic ---
     const postId = sessionStorage.getItem('selectedPostId');
-    console.log('🚀 postId=', postId);
     const postIdPayload = {post_id: postId};
     fetch('/api/get_suitable_teacher/', {
         method: 'POST',
