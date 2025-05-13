@@ -539,23 +539,23 @@ document.addEventListener('DOMContentLoaded', function() {
     chatBtn.addEventListener('click', () => chatInterface.style.display = 'flex');
     closeChatBtn.addEventListener('click', () => chatInterface.style.display = 'none');
 
-    function sendUserMessageChat() {
-        const text = messageInputChat.value.trim();
-        if (!text) return;
-        const userMsgDiv = document.createElement('div');
-        userMsgDiv.className = 'message user-message';
-        userMsgDiv.innerHTML = `<div class="message-content"><p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div><div class="message-avatar">👤</div>`;
-        chatMessages.appendChild(userMsgDiv);
-        messageInputChat.value = '';
-        setTimeout(() => {
-            const botMsgDiv = document.createElement('div');
-            botMsgDiv.className = 'message bot-message';
-            botMsgDiv.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content"><p>Thanks for your message! A real agent will respond shortly.</p></div>`;
-            chatMessages.appendChild(botMsgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }, 1000);
-        chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+    // function sendUserMessageChat() {
+    //     const text = messageInputChat.value.trim();
+    //     if (!text) return;
+    //     const userMsgDiv = document.createElement('div');
+    //     userMsgDiv.className = 'message user-message';
+    //     userMsgDiv.innerHTML = `<div class="message-content"><p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div><div class="message-avatar">👤</div>`;
+    //     chatMessages.appendChild(userMsgDiv);
+    //     messageInputChat.value = '';
+    //     setTimeout(() => {
+    //         const botMsgDiv = document.createElement('div');
+    //         botMsgDiv.className = 'message bot-message';
+    //         botMsgDiv.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content"><p>Thanks for your message! A real agent will respond shortly.</p></div>`;
+    //         chatMessages.appendChild(botMsgDiv);
+    //         chatMessages.scrollTop = chatMessages.scrollHeight;
+    //     }, 1000);
+    //     chatMessages.scrollTop = chatMessages.scrollHeight;
+    // }
     // sendMessageChat.addEventListener('click', sendUserMessageChat);
     // messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
 
