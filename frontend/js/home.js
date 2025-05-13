@@ -25,26 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     const postsPerPage = 4; // Number of posts per page
 
-    // --- Default Data ---
+    // --- Default Config ---
     const placeholderAvatar = 'avatar-placeholder.png';
-    const defaultPosts = [
-         { id: 1, user: "Nguyen Thu Trang", avatar: "avatar1.png", time: "2 hours ago", content: "Cần tìm gia sư Toán lớp 10 khu vực Hà Nội. Mình cần tìm gia sư dạy Toán lớp 10, chủ yếu ôn Đại số, Hình học. Lương sẽ thỏa thuận tùy vào khả năng, ít theo kíp mỗi bài khó. Cần 1 anh/chị dạy dễ hiểu, hướng dẫn tận tình, giúp làm bài tập với ôn chuẩn bị cuối kì." },
-         { id: 2, user: "Mai Anh", avatar: "avatar2.png", time: "1 hour ago", content: "Hello mọi người, mình là Mai Anh, học lớp 11 mà Toán hơi lẹt đẹt nên muốn tìm một anh/chị gia sư cuối dạy mình phần Hàm số, Đạo hàm, Hình học không gian. Trên lớp nghe giảng mà đầu cứ quay quay, làm bài tập toán tuần này 😓." },
-         { id: 3, user: "Nguyen Trong Minh", avatar: "avatar3.png", time: "2 hours ago", content: "Hello mọi người, mình là Minh, học lớp 12 mà Toán đang hơi đuối, nhất là Hàm số, Tích phân, Hình không gian. Đi học trên lớp thì ngồi nghe mà đầu óc cứ như trên mây, về nhà làm đề toán sai 😓." },
-         { id: 4, user: "Đặng Quang", avatar: "avatar4.png", time: "1 hour ago", content: "Tìm gia sư Toán cứu với cuộc đời em 😓 Chào mọi người, em là Quang, học lớp 11 mà Toán cứ như một vòng luẩn quẩn → hoang mang → làm sai 😓." },
-         { id: 5, user: "Le Binh", avatar: "images/Lê Nguyễn Thanh Bình.jpg", time: "3 hours ago", content: "Cần tìm gia sư Toán lớp 10 gấp ạ 😭 Em là Lê Nguyễn Thanh Bình, mới lên lớp 10 mà Hình học với Đại số em mất gốc từ cấp 2 rồi, giờ nghe giảng không hiểu gì cả, bài tập thì nhìn như bức vách. Cần anh chị nào kiên nhẫn dạy lại giúp em với, em cảm ơn nhiều ạ." },
-         { id: 6, user: "Ngoc Hieu", avatar: "images/Ngoc Hieu.png", time: "4 hours ago", content: "Tìm gia sư Toán 12 ôn thi ĐH gấp!!! 😥 Mình là Hiếu, sắp thi rồi mà Toán còn yếu quá, nhất là mấy dạng vận dụng cao giải mãi không ra, thấy đề là hoang mang. Có anh chị nào kinh nghiệm ôn thi, hệ thống kiến thức tốt giúp mình với. Lo quá!" },
-         { id: 7, user: "Trinh Chau", avatar: "images/Trinh Chau.png", time: "5 hours ago", content: "Ai cứu em môn Hình không gian với ạ 🙏 Em là Châu lớp 11. Cứ học đến hình không gian là đầu óc em quay cuồng, trừu tượng quá không tưởng tượng nổi hình luôn, vẽ sai hoài 😵. Cần một gia sư dạy dễ hiểu phần này gấp ạ, SOS!" },
-         { id: 8, user: "Duc Manh", avatar: "images/Duc Manh.png", time: "6 hours ago", content: "Có ai nhận dạy kèm Toán cho học sinh yếu không ạ? 🥺 Em là Mạnh, lớp 10. Em sợ môn Toán lắm, làm bài toàn sai, điểm lúc nào cũng thấp lè tè. Muốn tìm gia sư tận tình, kiên nhẫn, nói dễ hiểu giúp em lấy lại căn bản với ạ, chứ tình hình này chắc em tiêu." },
-    ];
-    const suggestedTutors = [
-        { name: "Gia sư Nguyễn Văn A", description: "Sinh viên năm 3 ĐH Bách Khoa, chuyên Toán Lý Hóa, kinh nghiệm 2 năm.", avatar: "images/Lê Nguyễn Thanh Bình.jpg" },
-        { name: "Gia sư Trần Thị B", description: "Giáo viên về hưu, >10 năm kinh nghiệm dạy Toán cấp 2, 3.", avatar: "images/ảnh tutor 2.jpg" },
-        { name: "Gia sư Lê Văn C", description: "Thủ khoa đầu vào Sư Phạm Toán, nhiệt tình, phương pháp dễ hiểu.", avatar: "images/ảnh tutor 3.jpg" },
-        { name: "Gia sư Phạm Thị D", description: "Du học sinh Mỹ, điểm SAT Toán 800/800.", avatar: "images/ảnh tutor 4.jpg" },
-    ];
-
-        // --- Fetch Posts Function ---
+    
+    // --- Fetch Posts Function ---
     async function fetchPosts() {
         try {
             // Replace with your actual backend endpoint
@@ -78,17 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Error fetching posts:', error);
             
-            // Fallback to default posts if fetch fails
-            allPostsData = [...defaultPosts].reverse();
-            displayPage(1);
-
             // Show user-friendly error message
             messageListContainer.innerHTML = `
                 <div class="error-message">
-                    <p>Unable to load posts. Showing default posts.</p>
+                    <p>Unable to load posts. Please try again later.</p>
                     <p>Error: ${error.message}</p>
                 </div>
             `;
+            paginationControls.innerHTML = '';
         }
     }
 
@@ -115,10 +96,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const userAvatar = postData.avatar || placeholderAvatar;
         const postTime = postData.time || "Recently";
         const postText = (postData.content || "No content")
-                            .replace(/</g, "<") // More robust sanitization
-                            .replace(/>/g, ">")
+                            .replace(/</g, "&lt;") // More robust sanitization
+                            .replace(/>/g, "&gt;")
                             .replace(/\n/g, '<br>');
 
+        // Get suggested tutors from API or use a simple default
+        const suggestedTutors = [
+            { name: "Available Tutor 1", description: "Contact for details", avatar: placeholderAvatar },
+            { name: "Available Tutor 2", description: "Contact for details", avatar: placeholderAvatar }
+        ];
 
         card.innerHTML = `
             <div class="message-header">
@@ -221,14 +207,13 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButton.disabled = currentPage === totalPages;
         nextButton.onclick = () => { if (currentPage < totalPages) { displayPage(currentPage + 1); scrollToTop(); } };
         paginationControls.appendChild(nextButton);
+        
+        // Add refresh button
+        addPostRefreshButton();
     }
 
     function scrollToTop() {
         messageListContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    function initializePosts() {
-        allPostsData = [...defaultPosts].reverse();
     }
 
     function handlePostSubmit() {
@@ -246,7 +231,8 @@ document.addEventListener('DOMContentLoaded', function() {
              matchButton.style.pointerEvents = 'none'; // Prevent clicking match while posting
         }
 
-
+        // Here you would normally post to your backend
+        // For now we'll simulate it with a timeout
         setTimeout(() => {
             const newPostData = {
                 user: "Lê Nguyễn Thanh Bình",
@@ -284,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 800);
     }
 
-    // --- NEW: Function to handle Match button click ---
+    // --- Function to handle Match button click ---
     function handleMatchClick(event) {
         event.preventDefault(); // Prevent default <a> tag navigation
 
@@ -385,8 +371,8 @@ document.addEventListener('DOMContentLoaded', function() {
              newComment.classList.add('comment-item');
              const commenterName = "You";
              const sanitizedComment = commentText
-                                      .replace(/</g, "<")
-                                      .replace(/>/g, ">")
+                                      .replace(/</g, "&lt;")
+                                      .replace(/>/g, "&gt;")
                                       .replace(/\n/g, '<br>');
              newComment.innerHTML = `<strong>${commenterName}:</strong> ${sanitizedComment}`;
              commentsDisplay.appendChild(newComment);
@@ -443,21 +429,27 @@ document.addEventListener('DOMContentLoaded', function() {
     searchBtn.addEventListener('click', () => {
         const searchTerm = searchBar.value.trim().toLowerCase();
         if (!searchTerm) {
-            initializePosts(); displayPage(1); return;
+            fetchPosts(); // Fetch all posts if search is empty
+            return;
         }
-        const filteredPosts = defaultPosts.filter(post =>
+        
+        // Filter current posts - in a real app, you'd likely call the API with search params
+        const filteredPosts = allPostsData.filter(post =>
             post.user.toLowerCase().includes(searchTerm) ||
             post.content.toLowerCase().includes(searchTerm)
         );
-        allPostsData = [...filteredPosts].reverse();
-        displayPage(1);
-        if (allPostsData.length === 0) {
-             messageListContainer.innerHTML = '<p style="text-align: center; color: var(--light-text); padding: 2rem;">No posts found matching your search.</p>';
-             paginationControls.innerHTML = '';
-         }
+        
+        if (filteredPosts.length === 0) {
+            messageListContainer.innerHTML = '<p style="text-align: center; color: var(--light-text); padding: 2rem;">No posts found matching your search.</p>';
+            paginationControls.innerHTML = '';
+        } else {
+            allPostsData = filteredPosts;
+            displayPage(1);
+        }
     });
+    
     searchBar.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
-    searchBar.addEventListener('input', () => { if (searchBar.value.trim() === '') { initializePosts(); displayPage(1); } });
+    searchBar.addEventListener('input', () => { if (searchBar.value.trim() === '') { fetchPosts(); } });
 
     postBtn.addEventListener('click', () => {
         postModal.style.display = 'flex';
@@ -483,7 +475,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     submitPostBtn.addEventListener('click', handlePostSubmit);
 
-    // --- ADDED: Event Listener for the Match Button ---
+    // --- Event Listener for the Match Button ---
     if (matchButton) {
         matchButton.addEventListener('click', handleMatchClick);
     } else {
@@ -499,7 +491,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!text) return;
         const userMsgDiv = document.createElement('div');
         userMsgDiv.className = 'message user-message';
-        userMsgDiv.innerHTML = `<div class="message-content"><p>${text.replace(/</g, "<").replace(/>/g, ">")}</p></div><div class="message-avatar">👤</div>`;
+        userMsgDiv.innerHTML = `<div class="message-content"><p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div><div class="message-avatar">👤</div>`;
         chatMessages.appendChild(userMsgDiv);
         messageInputChat.value = '';
         setTimeout(() => {
@@ -515,7 +507,6 @@ document.addEventListener('DOMContentLoaded', function() {
     messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
 
     // --- Initial Page Load ---
-    initializePosts();
-    displayPage(1);
+    fetchPosts(); // Fetch posts from backend when page loads
 
 }); // End DOMContentLoaded
