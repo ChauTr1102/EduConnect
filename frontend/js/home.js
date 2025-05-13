@@ -199,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Always show first page
         showPageNums.push(1);
+        
         // Logic for middle pages
         const maxVisiblePages = 5; // Maximum number of page numbers to show at once
         
@@ -262,9 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButton.disabled = currentPage === totalPages;
         nextButton.onclick = () => { if (currentPage < totalPages) { displayPage(currentPage + 1); scrollToTop(); } };
         paginationControls.appendChild(nextButton);
-        
-        // Add refresh button
-        addPostRefreshButton();
     }
 
     function scrollToTop() {
