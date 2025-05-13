@@ -186,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const totalPages = Math.ceil(allPostsData.length / postsPerPage);
         if (totalPages <= 1) return;
 
+        // Previous button
         const prevButton = document.createElement('button');
         prevButton.className = 'page-item';
         prevButton.textContent = '«';
@@ -193,14 +194,68 @@ document.addEventListener('DOMContentLoaded', function() {
         prevButton.onclick = () => { if (currentPage > 1) { displayPage(currentPage - 1); scrollToTop(); } };
         paginationControls.appendChild(prevButton);
 
-        for (let i = 1; i <= totalPages; i++) {
-            const pageButton = document.createElement('button');
-            pageButton.className = `page-item ${i === currentPage ? 'active' : ''}`;
-            pageButton.textContent = i;
-            pageButton.onclick = () => { displayPage(i); scrollToTop(); };
-            paginationControls.appendChild(pageButton);
+        // Logic for which page buttons to show
+        const showPageNums = [];
+        
+        // Always show first page
+        showPageNums.push(1);
+        // Logic for middle pages
+        const maxVisiblePages = 5; // Maximum number of page numbers to show at once
+        
+        // Calculate range of pages to show around current page
+        let startPage = Math.max(2, currentPage - 1);
+        let endPage = Math.min(totalPages - 1, currentPage + 1);
+        
+        // Adjust if we're near the beginning
+        if (currentPage <= 3) {
+            endPage = Math.min(maxVisiblePages, totalPages - 1);
         }
+        
+        // Adjust if we're near the end
+        if (currentPage >= totalPages - 2) {
+            startPage = Math.max(2, totalPages - maxVisiblePages + 1);
+        }
+        
+        // Add ellipsis after page 1 if needed
+        if (startPage > 2) {
+            showPageNums.push('...');
+        }
+        
+        // Add middle page numbers
+        for (let i = startPage; i <= endPage; i++) {
+            showPageNums.push(i);
+        }
+        
+        // Add ellipsis before last page if needed
+        if (endPage < totalPages - 1) {
+            showPageNums.push('...');
+        }
+        
+        // Always show last page if there is more than one page
+        if (totalPages > 1) {
+            showPageNums.push(totalPages);
+        }
+        
+        // Create and append the page buttons
+        showPageNums.forEach(pageNum => {
+            const pageButton = document.createElement('button');
+            
+            if (pageNum === '...') {
+                // Create ellipsis (not clickable)
+                pageButton.className = 'page-item ellipsis';
+                pageButton.textContent = '...';
+                pageButton.disabled = true;
+            } else {
+                // Create normal page button
+                pageButton.className = `page-item ${pageNum === currentPage ? 'active' : ''}`;
+                pageButton.textContent = pageNum;
+                pageButton.onclick = () => { displayPage(pageNum); scrollToTop(); };
+            }
+            
+            paginationControls.appendChild(pageButton);
+        });
 
+        // Next button
         const nextButton = document.createElement('button');
         nextButton.className = 'page-item';
         nextButton.textContent = '»';
