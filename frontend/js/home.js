@@ -288,8 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // For now we'll simulate it with a timeout
         setTimeout(() => {
             const newPostData = {
-                user: "Lê Nguyễn Thanh Bình",
-                avatar: "images/Lê Nguyễn Thanh Bình.jpg",
+                user: "user",
+                avatar: "images/user.jpg",
                 time: "Just now",
                 content: content,
                 id: Date.now()
@@ -556,8 +556,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
-    sendMessageChat.addEventListener('click', sendUserMessageChat);
-    messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
+    // sendMessageChat.addEventListener('click', sendUserMessageChat);
+    // messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
 
     // --- Initial Page Load ---
     fetchPosts(); // Fetch posts from backend when page loads
