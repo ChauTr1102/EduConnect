@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusHideDelay = 2000;
 
     // API Endpoint
-    const SAVE_TEACHER_ENDPOINT = '/api/save_chosen_teacher/'; // Your FastAPI endpoint
+//    const SAVE_TEACHER_ENDPOINT = '/api/save_chosen_teacher/'; // Your FastAPI endpoint
 
     // Get elements
     const loadingSpinner = document.getElementById('loadingSpinner');
@@ -50,33 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Function to send teacher data to the API ---
-    async function sendTeacherDataToAPI(teacherData) {
-        try {
-            const response = await fetch(SAVE_TEACHER_ENDPOINT, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json' // Often helpful
-                },
-                body: JSON.stringify(teacherData)
-            });
-
-            if (!response.ok) {
-                let errorBody = 'No details available';
-                try { errorBody = await response.text(); } catch (parseError) { /* Ignore */ }
-                throw new Error(`API Error: ${response.status} ${response.statusText}. Body: ${errorBody}`);
-            }
-
-            const result = await response.json();
-            console.log('API Success:', result);
-            return true; // Indicate success
-
-        } catch (error) {
-            console.error('Error sending teacher data to API:', error);
-            showTemporaryStatus('Error contacting server. Please try again.', true);
-            return false; // Indicate failure
-        }
-    }
+//    async function sendTeacherDataToAPI(teacherData) {
+//        try {
+//            const response = await fetch(SAVE_TEACHER_ENDPOINT, {
+//                method: 'POST',
+//                headers: {
+//                    'Content-Type': 'application/json',
+//                    'Accept': 'application/json' // Often helpful
+//                },
+//                body: JSON.stringify(teacherData)
+//            });
+//
+//            if (!response.ok) {
+//                let errorBody = 'No details available';
+//                try { errorBody = await response.text(); } catch (parseError) { /* Ignore */ }
+//                throw new Error(`API Error: ${response.status} ${response.statusText}. Body: ${errorBody}`);
+//            }
+//
+//            const result = await response.json();
+//            console.log('API Success:', result);
+//            return true; // Indicate success
+//
+//        } catch (error) {
+//            console.error('Error sending teacher data to API:', error);
+//            showTemporaryStatus('Error contacting server. Please try again.', true);
+//            return false; // Indicate failure
+//        }
+//    }
 
     // --- Function to show a temporary status message ---
     function showTemporaryStatus(message, isError = false) {
