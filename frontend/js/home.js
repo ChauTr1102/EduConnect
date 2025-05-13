@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
         card.innerHTML = `
             <div class="message-header">
                 <div class="user-avatar">
-                   <img src="${userAvatar}" alt="${userName}" onerror="this.onerror=null;this.src='${placeholderAvatar}';">
+                <img src="${userAvatar}" alt="${userName}" onerror="this.onerror=null;this.src='${placeholderAvatar}';">
                 </div>
                 <div class="user-info"><h3>${userName}</h3><p class="message-time">${postTime}</p></div>
                 <button class="message-btn icon-btn tutor-menu-trigger" title="Show Suggested Tutors">
@@ -121,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="message-btn like-btn"><i class="far fa-thumbs-up"></i> Like</button>
                 <button class="message-btn comment-trigger-btn"><i class="far fa-comment"></i> Comment</button>
                 <div class="spacer"></div>
-                <a href="chat.html?user=${encodeURIComponent(userName)}&avatar=${encodeURIComponent(userAvatar)}" class="message-btn" style="text-decoration: none;">Send message</a>
+                <!-- Changed from anchor to button with distinctive class -->
+                <button class="message-btn send-message-btn"><i class="far fa-paper-plane"></i> Send message</button>
                 <button class="message-btn">Send Request</button>
             </div>
             <div class="comment-section">
@@ -539,25 +540,25 @@ document.addEventListener('DOMContentLoaded', function() {
     chatBtn.addEventListener('click', () => chatInterface.style.display = 'flex');
     closeChatBtn.addEventListener('click', () => chatInterface.style.display = 'none');
 
-    // function sendUserMessageChat() {
-    //     const text = messageInputChat.value.trim();
-    //     if (!text) return;
-    //     const userMsgDiv = document.createElement('div');
-    //     userMsgDiv.className = 'message user-message';
-    //     userMsgDiv.innerHTML = `<div class="message-content"><p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div><div class="message-avatar">👤</div>`;
-    //     chatMessages.appendChild(userMsgDiv);
-    //     messageInputChat.value = '';
-    //     setTimeout(() => {
-    //         const botMsgDiv = document.createElement('div');
-    //         botMsgDiv.className = 'message bot-message';
-    //         botMsgDiv.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content"><p>Thanks for your message! A real agent will respond shortly.</p></div>`;
-    //         chatMessages.appendChild(botMsgDiv);
-    //         chatMessages.scrollTop = chatMessages.scrollHeight;
-    //     }, 1000);
-    //     chatMessages.scrollTop = chatMessages.scrollHeight;
-    // }
-    // sendMessageChat.addEventListener('click', sendUserMessageChat);
-    // messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
+    function sendUserMessageChat() {
+        const text = messageInputChat.value.trim();
+        if (!text) return;
+        const userMsgDiv = document.createElement('div');
+        userMsgDiv.className = 'message user-message';
+        userMsgDiv.innerHTML = `<div class="message-content"><p>${text.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p></div><div class="message-avatar">👤</div>`;
+        chatMessages.appendChild(userMsgDiv);
+        messageInputChat.value = '';
+        setTimeout(() => {
+            const botMsgDiv = document.createElement('div');
+            botMsgDiv.className = 'message bot-message';
+            botMsgDiv.innerHTML = `<div class="message-avatar">🤖</div><div class="message-content"><p>Thanks for your message! A real agent will respond shortly.</p></div>`;
+            chatMessages.appendChild(botMsgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    sendMessageChat.addEventListener('click', sendUserMessageChat);
+    messageInputChat.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessageChat(); });
 
     // --- Initial Page Load ---
     fetchPosts(); // Fetch posts from backend when page loads
