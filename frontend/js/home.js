@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => {
             const newPostData = {
                 user: "user",
-                avatar: "images/user.jpg",
+                avatar: "images\images\4.png",
                 time: "Just now",
                 content: content,
                 id: Date.now()
