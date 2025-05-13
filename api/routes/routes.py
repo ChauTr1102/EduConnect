@@ -117,7 +117,8 @@ async def return_user_posts():
         # Assume post is a tuple or list with [post_id, username, content]
         post_id, username, content = post[:3] 
         # Get avatar path - ensure this logic works
-        avatar_path = f"images/{username}.png" # Example path, adjust as needed
+        random_number = random.randint(1, 20)
+        avatar_path = f"images/images/{random_number}.png" # Example path, adjust as needed
 
         formatted_post = {
             # Keys should match what JS expects OR adjust JS mapping
