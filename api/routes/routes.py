@@ -52,11 +52,12 @@ async def get_suitable_teacher(post_id: SuitableTeacher):
 @router.post("/chat_get_answer/")
 async def send_message(message: Message):
     chatbot = ChatBot(gemini_apikey=os.getenv("GEMINI_API_KEY"))
-    try:
-        with open("./HistoryChat/history_chat_bot.json", "r", encoding="utf-8") as f:
-            history = json.load(f)
-    except FileNotFoundError:
-        history = []
+    # try:
+    #     with open("./HistoryChat/history_chat_bot.json", "r", encoding="utf-8") as f:
+    #         history = json.load(f)
+    # except FileNotFoundError:
+    #     history = []
+    history = []
     prompt = chatbot.prompt_chat_with_bot(history=history[-6::], user_question=message.message)
     response = await chatbot.send_message_gemini(prompt)
 

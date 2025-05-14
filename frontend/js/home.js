@@ -387,7 +387,7 @@ document.addEventListener('DOMContentLoaded', function() {
              // by the browser before the page unloads.
              setTimeout(() => {
                 console.log("Navigating to match.html");
-                window.location.href = 'match.html';
+                window.location.href = '/match';
              }, 100); // 100ms delay is usually sufficient
         });
 
