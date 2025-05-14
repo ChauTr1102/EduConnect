@@ -23,7 +23,7 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
       // Store user ID and redirect
       sessionStorage.setItem('user_id', result);
       console.log("Saved user_id to sessionStorage:", result);
-      window.location.href = 'home.html';
+      window.location.href = '/home';
     } else {
       alert("Tên đăng nhập hoặc mật khẩu không đúng.");
     }

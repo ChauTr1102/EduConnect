@@ -1,7 +1,7 @@
 INSERT INTO users (user_id, username, password, name, birth_date, gender, email, address)
 VALUES
   -- students (user_001 - user_010)
-  ('user_001','quang11','hashed_pw_01','Nguyễn Minh Quang','2008-05-12','Male','user_001@example.com','Quận Thanh Xuân, Hà Nội'),
+  ('user_001','dataflow','educonnect','Nguyễn Minh Quang','2008-05-12','Male','user_001@example.com','Quận Thanh Xuân, Hà Nội'),
   ('user_002','linh_hs','hashed_pw_02','Trần Thùy Linh','2007-10-03','Female','user_002@example.com','Quận Đống Đa, Hà Nội'),
   ('user_003','minh_hs','hashed_pw_03','Phạm Gia Minh','2008-02-20','Male','user_003@example.com','Quận Cầu Giấy, Hà Nội'),
   ('user_004','thu_hs','hashed_pw_04','Lê Hải Thu','2007-09-15','Female','user_004@example.com','Quận Hoàng Mai, Hà Nội'),
