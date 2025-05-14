@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // --- DOM Elements ---
-    const searchBar = document.querySelector('.search-bar');
-    const searchBtn = document.querySelector('.search-btn');
+    // const searchBar = document.querySelector('.search-bar');
+    // const searchBtn = document.querySelector('.search-btn');
     const postBtn = document.getElementById('postBtn');
     const postModal = document.getElementById('postModal');
     const modalContent = postModal.querySelector('.modal-content'); // More specific selector
@@ -480,30 +480,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    searchBtn.addEventListener('click', () => {
-        const searchTerm = searchBar.value.trim().toLowerCase();
-        if (!searchTerm) {
-            fetchPosts(); // Fetch all posts if search is empty
-            return;
-        }
+    // searchBtn.addEventListener('click', () => {
+    //     const searchTerm = searchBar.value.trim().toLowerCase();
+    //     if (!searchTerm) {
+    //         fetchPosts(); // Fetch all posts if search is empty
+    //         return;
+    //     }
         
-        // Filter current posts - in a real app, you'd likely call the API with search params
-        const filteredPosts = allPostsData.filter(post =>
-            post.user.toLowerCase().includes(searchTerm) ||
-            post.content.toLowerCase().includes(searchTerm)
-        );
+    //     // Filter current posts - in a real app, you'd likely call the API with search params
+    //     const filteredPosts = allPostsData.filter(post =>
+    //         post.user.toLowerCase().includes(searchTerm) ||
+    //         post.content.toLowerCase().includes(searchTerm)
+    //     );
         
-        if (filteredPosts.length === 0) {
-            messageListContainer.innerHTML = '<p style="text-align: center; color: var(--light-text); padding: 2rem;">No posts found matching your search.</p>';
-            paginationControls.innerHTML = '';
-        } else {
-            allPostsData = filteredPosts;
-            displayPage(1);
-        }
-    });
+    //     if (filteredPosts.length === 0) {
+    //         messageListContainer.innerHTML = '<p style="text-align: center; color: var(--light-text); padding: 2rem;">No posts found matching your search.</p>';
+    //         paginationControls.innerHTML = '';
+    //     } else {
+    //         allPostsData = filteredPosts;
+    //         displayPage(1);
+    //     }
+    // });
     
-    searchBar.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
-    searchBar.addEventListener('input', () => { if (searchBar.value.trim() === '') { fetchPosts(); } });
+    // searchBar.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
+    // searchBar.addEventListener('input', () => { if (searchBar.value.trim() === '') { fetchPosts(); } });
 
     postBtn.addEventListener('click', () => {
         postModal.style.display = 'flex';
