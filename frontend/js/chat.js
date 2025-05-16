@@ -128,9 +128,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
 //            Uncomment this when your API is ready
-            const dataStr = sessionStorage.getItem("chosenTeacherData");
+            const dataStr = sessionStorage.getItem("TeacherInformation");
             const teacherJsonString = JSON.stringify(dataStr);
-
+            console.log(teacherJsonString)
             // 3. Gửi payload nguyên object teacherInfo
             const payload = {
               student_question: messageText,
