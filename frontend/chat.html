@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat - EduConnectGPT</title>
+    <title>Trò Chuyện - EduConnectGPT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/chat.css">
 </head>
@@ -11,17 +11,17 @@
     <!-- ===== HEADER ===== -->
     <header>
         <div class="logo">
-            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+            <img src="images/Educonnect_logo.png" alt="Logo EduConnectGPT">
         </div>
         <nav>
             <ul>
-                <li><a href="/home" class="nav-item animated-underline">Home</a></li>
-                <li><a href="/review" class="nav-item animated-underline">Tutors</a></li>
-                <li><a href="/ranking" class="nav-item animated-underline">Ranking</a></li>
-                <li><a href="/support" class="nav-item animated-underline">Support</a></li>
+                <li><a href="/home" class="nav-item animated-underline">Trang Chủ</a></li>
+                <li><a href="/review" class="nav-item animated-underline">Gia sư</a></li>
+                <li><a href="/ranking" class="nav-item animated-underline">Xếp Hạng</a></li>
+                <li><a href="/support" class="nav-item animated-underline">Hỗ trợ</a></li>
                 <li><a href="/educonnectGPT" class="nav-item animated-underline">EduconnectGPT</a></li>
-                <li><a href="#" class="active">Chat</a></li>
-                <li><a href="/schedule" class="nav-item animated-underline">Schedule</a></li>
+                <li><a href="#" class="active">Trò Chuyện</a></li>
+                <li><a href="/schedule" class="nav-item animated-underline">Lịch</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -31,11 +31,11 @@
             <div class="account-container">
                 <div class="account-icon">👤</div>
                 <div class="account-dropdown">
-                    <a href="/profile" class="dropdown-item">Profile</a>
-                    <a href="/setting" class="dropdown-item">Setting</a>
-                    <a href="/pricing" class="dropdown-item">Pricing</a>
+                    <a href="/profile" class="dropdown-item">Hồ Sơ</a>
+                    <a href="/setting" class="dropdown-item">Cài Đặt</a>
+                    <a href="/pricing" class="dropdown-item">Bảng Giá</a>
                     <div class="dropdown-divider"></div>
-                    <a href="/login" class="dropdown-item">Sign out</a>
+                    <a href="/login" class="dropdown-item">Đăng Xuất</a>
                 </div>
             </div>
         </div>
@@ -44,38 +44,38 @@
     <div class="chat-page-wrapper">
         <aside class="chat-history-sidebar">
             <div class="sidebar-header">
-                <span class="sidebar-title">Chat History</span>
+                <span class="sidebar-title">Lịch Sử Trò Chuyện</span>
             </div>
             <div class="sidebar-search">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Search conversations...">
+                <input type="text" placeholder="Tìm kiếm cuộc trò chuyện...">
             </div>
             <div class="new-chat-button-container">
                 <button class="new-chat-button" id="newChatButton">
                     <i class="fas fa-user-plus"></i>
-                    Select User to Chat
+                    Chọn Người Dùng Để Trò Chuyện
                 </button>
             </div>
             <div class="chat-history-list" id="chatHistoryList">
                 <!-- Empty state message when no chat history -->
                 <div class="empty-history-message">
                     <i class="fas fa-comments empty-icon"></i>
-                    <p>No conversations yet</p>
-                    <span>Your chat history will appear here</span>
+                    <p>Chưa có cuộc trò chuyện nào</p>
+                    <span>Lịch sử trò chuyện của bạn sẽ xuất hiện ở đây</span>
                 </div>
                 
                 <!-- Chat history items will be added dynamically by JavaScript -->
                 <!-- Example of how a chat history item would look:
                 <div class="chat-history-item">
                     <div class="history-avatar">
-                        <img src="images/avatar.jpg" alt="User Avatar">
+                        <img src="images/avatar.jpg" alt="Ảnh Đại Diện Người Dùng">
                     </div>
                     <div class="history-content">
-                        <div class="history-name">John Smith</div>
-                        <div class="history-preview">Last message preview...</div>
+                        <div class="history-name">Nguyễn Văn A</div>
+                        <div class="history-preview">Xem trước tin nhắn cuối...</div>
                     </div>
                     <div class="history-info">
-                        <div class="history-time">2:30 PM</div>
+                        <div class="history-time">14:30</div>
                         <div class="unread-badge">3</div>
                     </div>
                 </div>
@@ -87,15 +87,15 @@
             <header class="chat-header">
                 <div class="recipient-info">
                     <div class="recipient-avatar">
-                        <img id="recipientAvatar" src="images/ảnh tutor 2.jpg" alt="Recipient Avatar"> <!-- Placeholder avatar -->
+                        <img id="recipientAvatar" src="images/ảnh tutor 2.jpg" alt="Ảnh Đại Diện Người Nhận"> <!-- Placeholder avatar -->
                     </div>
                     <div>
-                        <div id="recipientName" class="recipient-name">Loading...</div> <!-- Default placeholder -->
-                        <div id="recipientUserId" class="recipient-id">#ID_Loading...</div> <!-- Default placeholder -->
+                        <div id="recipientName" class="recipient-name">Đang tải...</div> <!-- Default placeholder -->
+                        <div id="recipientUserId" class="recipient-id">#ID_Đang tải...</div> <!-- Default placeholder -->
                     </div>
                 </div>
                 <div class="chat-actions">
-                    <button class="send-request-btn" id="sendRequestBtn">Send Request</button>
+                    <button class="send-request-btn" id="sendRequestBtn">Gửi Yêu Cầu</button>
                     <i class="fas fa-phone-alt"></i>
                     <i class="fas fa-info-circle"></i>
                 </div>
@@ -107,7 +107,7 @@
 
             <footer class="message-input-area">
                 <button class="attach-button"><i class="fas fa-paperclip"></i></button>
-                <input type="text" class="message-input" id="messageInput" placeholder="Type a message...">
+                <input type="text" class="message-input" id="messageInput" placeholder="Nhập tin nhắn...">
                 <button class="emoji-button"><i class="far fa-smile"></i></button>
                 <button class="send-button" id="sendButton"><i class="fas fa-paper-plane"></i></button>
             </footer>
@@ -118,28 +118,28 @@
     <div class="modal-overlay" id="studyTimeModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Select Study Time</h3>
+                <h3 class="modal-title">Chọn Thời Gian Học</h3>
                 <button class="modal-close" id="closeModal">×</button>
             </div>
             <div class="modal-body">
                 <div class="day-selection">
-                    <h4 class="day-title">Tuesday</h4>
+                    <h4 class="day-title">Thứ Ba</h4>
                     <div class="time-options">
-                        <div class="time-option" data-day="tuesday" data-time="1:30PM-3:30PM">1:30PM - 3:30PM</div>
-                        <div class="time-option" data-day="tuesday" data-time="3:30PM-5:30PM">3:30PM - 5:30PM</div>
+                        <div class="time-option" data-day="tuesday" data-time="1:30PM-3:30PM">13:30 - 15:30</div>
+                        <div class="time-option" data-day="tuesday" data-time="3:30PM-5:30PM">15:30 - 17:30</div>
                     </div>
                 </div>
                 <div class="day-selection">
-                    <h4 class="day-title">Thursday</h4>
+                    <h4 class="day-title">Thứ Năm</h4>
                     <div class="time-options">
-                        <div class="time-option" data-day="thursday" data-time="1:30PM-3:30PM">1:30PM - 3:30PM</div>
-                        <div class="time-option" data-day="thursday" data-time="3:30PM-5:30PM">3:30PM - 5:30PM</div>
+                        <div class="time-option" data-day="thursday" data-time="1:30PM-3:30PM">13:30 - 15:30</div>
+                        <div class="time-option" data-day="thursday" data-time="3:30PM-5:30PM">15:30 - 17:30</div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-cancel" id="cancelSelection">Cancel</button>
-                <button class="btn btn-join" id="joinClassBtn">Join Class</button>
+                <button class="btn btn-cancel" id="cancelSelection">Hủy</button>
+                <button class="btn btn-join" id="joinClassBtn">Tham Gia Lớp Học</button>
             </div>
         </div>
     </div>

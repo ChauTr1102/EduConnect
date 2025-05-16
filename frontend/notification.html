@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Notifications</title>
+    <title>EduConnect - Thông Báo</title>
     <link rel="stylesheet" href="css/notification.css">
 </head>
 <body>
     <header>
         <div class="logo">
-            <img src="images\Educonnect_logo.png" alt="EduConnectGPT Logo">
+            <img src="images\Educonnect_logo.png" alt="Logo EduConnectGPT">
         </div>
         <nav>
             <ul>
-                <li><a href="/home" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
-                <li><a href="/review" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Tutors</a></li>
-                <li><a href="/ranking" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
-                <li><a href="/support" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="/home" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Trang Chủ</a></li>
+                <li><a href="/review" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Gia Sư</a></li>
+                <li><a href="/ranking" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Xếp Hạng</a></li>
+                <li><a href="/support" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Hỗ Trợ</a></li>
                 <li><a href="/educonnectGPT" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
-                <li><a href="/chat" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
-                <li><a href="/schedule" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline active">Schedule</a></li>
+                <li><a href="/chat" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Trò Chuyện</a></li>
+                <li><a href="/schedule" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline active">Lịch</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -28,48 +28,48 @@
             <div class="account-container">
                 <div class="account-icon">👤</div>
                 <div class="account-dropdown">
-                    <a href="/profile" class="dropdown-item">Profile</a>
-                    <a href="/setting" class="dropdown-item">Setting</a>
-                    <a href="/pricing" class="dropdown-item">Pricing</a>
+                    <a href="/profile" class="dropdown-item">Hồ Sơ</a>
+                    <a href="/setting" class="dropdown-item">Cài Đặt</a>
+                    <a href="/pricing" class="dropdown-item">Bảng Giá</a>
                     <div class="dropdown-divider"></div>
-                    <a href="/login" class="dropdown-item">Sign out</a>
+                    <a href="/login" class="dropdown-item">Đăng Xuất</a>
                 </div>
             </div>
         </div>
     </header>
 
     <div class="main-content">
-        <h1 class="page-title">Notifications</h1>
+        <h1 class="page-title">Thông Báo</h1>
         
         <div class="notification-filters">
-            <button class="filter-button active">All</button>
-            <button class="filter-button">Courses</button>
-            <button class="filter-button">Assignments</button>
-            <button class="filter-button">System</button>
-            <button class="filter-button">Announcements</button>
-            <div class="mark-all-read">Mark all as read</div>
+            <button class="filter-button active">Tất Cả</button>
+            <button class="filter-button">Khóa Học</button>
+            <button class="filter-button">Bài Tập</button>
+            <button class="filter-button">Hệ Thống</button>
+            <button class="filter-button">Thông Báo</button>
+            <div class="mark-all-read">Đánh dấu tất cả đã đọc</div>
         </div>
         
         <div class="notification-list">
             <div class="notification-item unread">
                 <div class="notification-icon-container">📚</div>
                 <div class="notification-content">
-                    <div class="notification-title">New course module available</div>
+                    <div class="notification-title">Có sẵn mô-đun khóa học mới</div>
                     <div class="notification-message">
-                        "Introduction to Machine Learning" has a new module available: "Neural Networks Basics".
+                        "Giới thiệu về Học Máy" có một mô-đun mới: "Cơ bản về Mạng Nơ-ron".
                     </div>
-                    <div class="notification-time">2 hours ago</div>
+                    <div class="notification-time">2 giờ trước</div>
                     <div class="notification-actions">
-                        <div class="notification-action">View Course</div>
-                        <div class="notification-action">Mark as Read</div>
+                        <div class="notification-action">Xem Khóa Học</div>
+                        <div class="notification-action">Đánh Dấu Đã Đọc</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Mark as Read</div>
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Đánh Dấu Đã Đọc</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -77,22 +77,22 @@
             <div class="notification-item unread">
                 <div class="notification-icon-container">✏️</div>
                 <div class="notification-content">
-                    <div class="notification-title">Assignment due soon</div>
+                    <div class="notification-title">Bài tập sắp đến hạn</div>
                     <div class="notification-message">
-                        "Data Analysis Project" for "Statistics for Data Science" is due in 48 hours.
+                        "Dự án Phân tích Dữ liệu" cho "Thống kê cho Khoa học Dữ liệu" sẽ đến hạn trong 48 giờ.
                     </div>
-                    <div class="notification-time">5 hours ago</div>
+                    <div class="notification-time">5 giờ trước</div>
                     <div class="notification-actions">
-                        <div class="notification-action">View Assignment</div>
-                        <div class="notification-action">Mark as Read</div>
+                        <div class="notification-action">Xem Bài Tập</div>
+                        <div class="notification-action">Đánh Dấu Đã Đọc</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Mark as Read</div>
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Đánh Dấu Đã Đọc</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -100,22 +100,22 @@
             <div class="notification-item unread">
                 <div class="notification-icon-container">🏆</div>
                 <div class="notification-content">
-                    <div class="notification-title">Achievement unlocked</div>
+                    <div class="notification-title">Thành tích đã mở khóa</div>
                     <div class="notification-message">
-                        Congratulations! You've completed your first quiz with a perfect score and earned the "Quick Learner" badge.
+                        Chúc mừng! Bạn đã hoàn thành bài kiểm tra đầu tiên với điểm số hoàn hảo và nhận được huy hiệu "Người Học Nhanh".
                     </div>
-                    <div class="notification-time">Yesterday</div>
+                    <div class="notification-time">Hôm qua</div>
                     <div class="notification-actions">
-                        <div class="notification-action">View Badge</div>
-                        <div class="notification-action">Mark as Read</div>
+                        <div class="notification-action">Xem Huy Hiệu</div>
+                        <div class="notification-action">Đánh Dấu Đã Đọc</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Mark as Read</div>
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Đánh Dấu Đã Đọc</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -123,20 +123,20 @@
             <div class="notification-item">
                 <div class="notification-icon-container">📢</div>
                 <div class="notification-content">
-                    <div class="notification-title">System maintenance scheduled</div>
+                    <div class="notification-title">Bảo trì hệ thống theo lịch</div>
                     <div class="notification-message">
-                        EduConnect will undergo scheduled maintenance on April 15th from 2:00 AM to 4:00 AM EST. Some features may be temporarily unavailable.
+                        EduConnect sẽ tiến hành bảo trì theo lịch vào ngày 15 tháng 4 từ 2:00 sáng đến 4:00 sáng giờ EST. Một số tính năng có thể tạm thời không khả dụng.
                     </div>
-                    <div class="notification-time">2 days ago</div>
+                    <div class="notification-time">2 ngày trước</div>
                     <div class="notification-actions">
-                        <div class="notification-action">Learn More</div>
+                        <div class="notification-action">Tìm Hiểu Thêm</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -144,22 +144,22 @@
             <div class="notification-item unread">
                 <div class="notification-icon-container">💬</div>
                 <div class="notification-content">
-                    <div class="notification-title">New comment on your discussion post</div>
+                    <div class="notification-title">Bình luận mới về bài đăng thảo luận của bạn</div>
                     <div class="notification-message">
-                        Sarah Johnson replied to your question in "Web Development Fundamentals" discussion forum.
+                        Sarah Johnson đã trả lời câu hỏi của bạn trong diễn đàn thảo luận "Cơ bản về Phát triển Web".
                     </div>
-                    <div class="notification-time">3 days ago</div>
+                    <div class="notification-time">3 ngày trước</div>
                     <div class="notification-actions">
-                        <div class="notification-action">View Comment</div>
-                        <div class="notification-action">Mark as Read</div>
+                        <div class="notification-action">Xem Bình Luận</div>
+                        <div class="notification-action">Đánh Dấu Đã Đọc</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Mark as Read</div>
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Đánh Dấu Đã Đọc</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -167,20 +167,20 @@
             <div class="notification-item">
                 <div class="notification-icon-container">📊</div>
                 <div class="notification-content">
-                    <div class="notification-title">Quiz graded</div>
+                    <div class="notification-title">Bài kiểm tra đã được chấm điểm</div>
                     <div class="notification-message">
-                        Your quiz for "Introduction to Python Programming" has been graded. You scored 85%.
+                        Bài kiểm tra của bạn cho "Giới thiệu về Lập trình Python" đã được chấm điểm. Bạn đạt 85%.
                     </div>
-                    <div class="notification-time">5 days ago</div>
+                    <div class="notification-time">5 ngày trước</div>
                     <div class="notification-actions">
-                        <div class="notification-action">View Results</div>
+                        <div class="notification-action">Xem Kết Quả</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -188,20 +188,20 @@
             <div class="notification-item">
                 <div class="notification-icon-container">🔔</div>
                 <div class="notification-content">
-                    <div class="notification-title">Live session reminder</div>
+                    <div class="notification-title">Nhắc nhở phiên trực tuyến</div>
                     <div class="notification-message">
-                        Don't miss the upcoming live Q&A session for "Advanced JavaScript" course tomorrow at 3:00 PM EST.
+                        Đừng bỏ lỡ phiên Hỏi & Đáp trực tuyến sắp tới cho khóa học "JavaScript Nâng cao" vào ngày mai lúc 3:00 chiều giờ EST.
                     </div>
-                    <div class="notification-time">1 week ago</div>
+                    <div class="notification-time">1 tuần trước</div>
                     <div class="notification-actions">
-                        <div class="notification-action">Add to Calendar</div>
+                        <div class="notification-action">Thêm vào Lịch</div>
                     </div>
                 </div>
                 <div class="notification-menu">
                     <div class="notification-menu-icon">⋮</div>
                     <div class="notification-dropdown">
-                        <div class="notification-dropdown-item">Delete</div>
-                        <div class="notification-dropdown-item">Mute</div>
+                        <div class="notification-dropdown-item">Xóa</div>
+                        <div class="notification-dropdown-item">Tắt Thông Báo</div>
                     </div>
                 </div>
             </div>
@@ -210,25 +210,25 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="/api/placeholder/80/80" alt="EduConnect Logo">
+            <img src="/api/placeholder/80/80" alt="Logo EduConnect">
             <div class="footer-tagline">
-                EduConnect - Connecting knowledge,<br>
-                stepping firmly into the future.<br>
-                —EduConnect team
+                EduConnect - Kết nối kiến thức,<br>
+                bước vững chắc vào tương lai.<br>
+                —Đội ngũ EduConnect
             </div>
         </div>
         <div class="footer-links">
-            <a href="#">All pages</a>
-            <a href="#">All Courses</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Refund and Returns Policy</a>
-            <a href="#">About Us</a>
-            <a href="#">FAQ</a>
-            <a href="#">Terms and Condition</a>
+            <a href="#">Tất cả trang</a>
+            <a href="#">Tất cả Khóa học</a>
+            <a href="#">Liên hệ</a>
+            <a href="#">Chính sách Bảo mật</a>
+            <a href="#">Chính sách Hoàn tiền và Trả hàng</a>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Câu hỏi thường gặp</a>
+            <a href="#">Điều khoản và Điều kiện</a>
         </div>
         <div class="footer-socials"> 
-            <h3>Follow Us</h3> 
+            <h3>Theo dõi chúng tôi</h3> 
             <div class="social-icons-list"> 
                 <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
                     <img src="images/Youtube.jpg" alt="YouTube"> 

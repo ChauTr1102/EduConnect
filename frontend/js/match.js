@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="tutor-info">
                     <h3 class="tutor-name">${teacherName}</h3>
                     <div class="tutor-buttons">
-                        <a href="#" class="tutor-seemore-btn">See more</a>
-                        <a href="chat.html" class="tutor-message-btn">Send message</a>
+                        <a href="#" class="tutor-seemore-btn">Xem Thêm</a>
+                        <a href="chat.html" class="tutor-message-btn">Gửi Tin Nhắn</a>
                     </div>
                     <!-- ADDED: Hidden details area -->
                     <div class="tutor-details">
