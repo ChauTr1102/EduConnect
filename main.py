@@ -9,6 +9,7 @@ app = FastAPI(
     description="Hello! This is EduConnect!!!"
 )
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Hoặc chỉ định frontend domain cụ thể
