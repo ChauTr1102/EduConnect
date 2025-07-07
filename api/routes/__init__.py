@@ -1,9 +1,12 @@
-from fastapi import UploadFile, File, Form, APIRouter
+from fastapi import UploadFile, File, Form, APIRouter, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 from api.database.database import SQLDatabase
 from api.services.recommender_system import RecommenderSystem
 from api.services.chatbot import ChatBot
+from typing import Dict, List
+import hashlib
+import uuid
 
 import pandas as pd
 import os

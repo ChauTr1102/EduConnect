@@ -30,10 +30,18 @@ Here is the teacher profile:
 """
 
 
+# DATABASE_CONFIG = {
+#     "dbname": "Educonnect",
+#     "user": "postgres",
+#     "password": "12345678",
+#     "host": "172.20.0.4",
+#     "port": 5432
+# }
+
 DATABASE_CONFIG = {
     "dbname": "Educonnect",
     "user": "postgres",
     "password": "12345678",
-    "host": "172.20.0.4",
+    "host": "localhost",
     "port": 5432
 }
