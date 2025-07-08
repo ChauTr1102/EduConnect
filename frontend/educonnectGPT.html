@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,17 +11,17 @@
     <!-- Header remains the same -->
     <header>
         <div class="logo">
-            <img src="images/Educonnect_logo.png" alt="EduConnectGPT Logo">
+            <img src="images/Educonnect_logo.png" alt="Logo EduConnectGPT">
         </div>
         <nav>
             <ul>
-                <li><a href="/home" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Home</a></li>
-                <li><a href="/review" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Tutors</a></li>
-                <li><a href="/ranking" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Ranking</a></li>
-                <li><a href="/support" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Support</a></li>
+                <li><a href="/home" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Trang Chủ</a></li>
+                <li><a href="/review" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Gia Sư</a></li>
+                <li><a href="/ranking" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Xếp Hạng</a></li>
+                <li><a href="/support" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Hỗ trợ</a></li>
                 <li><a href="#" class="active">EduconnectGPT</a></li>
-                <li><a href="/chat" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
-                <li><a href="/schedule" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Schedule</a></li>
+                <li><a href="/chat" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Trò Chuyện</a></li>
+                <li><a href="/schedule" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Lịch</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -30,11 +30,11 @@
             <div class="account-container">
                 <div class="account-icon">👤</div>
                 <div class="account-dropdown">
-                    <a href="/profile" class="dropdown-item">Profile</a>
-                    <a href="/setting" class="dropdown-item">Setting</a>
-                    <a href="/pricing" class="dropdown-item">Pricing</a>
+                    <a href="/profile" class="dropdown-item">Hồ Sơ</a>
+                    <a href="/setting" class="dropdown-item">Cài Đặt </a>
+                    <a href="/pricing" class="dropdown-item">Bảng Giá</a>
                     <div class="dropdown-divider"></div>
-                    <a href="/login" class="dropdown-item">Sign out</a>
+                    <a href="/login" class="dropdown-item">Đăng Xuất</a>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
             </div>
 
             <div class="model-selector">
-                <span>EduConnect Chatbot</span> <!-- Updated model name -->
+                <span>Trợ Lý EduConnect</span> <!-- Updated model name -->
         
             </div>
 
@@ -60,22 +60,22 @@
                  <a href="/quiz" style="text-decoration: none; color: inherit;">
                     <div class="agent-item" id="quiz-agent">
                         <div class="agent-icon">📝</div>
-                        <div class="agent-name">Quiz Generation</div>
+                        <div class="agent-name">Tạo Bài Kiểm Tra</div>
                     </div>
                 </a>
                 <a href="/summarization" style="text-decoration: none; color: inherit;">
                     <div class="agent-item" id="summarization-agent">
                         <div class="agent-icon">📄</div>
-                        <div class="agent-name">Lecture Summarization</div>
+                        <div class="agent-name">Tóm Tắt Bài Giảng</div>
                     </div>
                 </a>
                 <div class="agent-item">
                     <div class="agent-icon">🔍</div>
-                    <div class="agent-name">Explore Agents</div>
+                    <div class="agent-name">Khám Phá Trợ Lý</div>
                 </div>
             </div>
 
-             <div class="section-title">Today</div>
+             <div class="section-title">Hôm Nay</div>
             <div class="history-list">
                  <!-- History items can be dynamically added or loaded -->
                 <div class="agent-item"><div class="agent-name">K-Means Clustering Visualization</div></div>
@@ -84,17 +84,17 @@
                 <div class="agent-item"><div class="agent-name">Lỗi kết nối SQL Server</div></div>
             </div>
 
-             <div class="section-title">Previous 7 Days</div>
+             <div class="section-title">7 Ngày Trước</div>
              <div class="history-list">
-                <div class="agent-item"><div class="agent-name">Mobile app prototypes library</div></div>
-                <div class="agent-item"><div class="agent-name">ROM Types and uses</div></div>
-                <div class="agent-item"><div class="agent-name">Fix SSL/TLS Error</div></div>
+                <div class="agent-item"><div class="agent-name">Thư viện mẫu ứng dụng di động</div></div>
+                <div class="agent-item"><div class="agent-name">Các loại ROM và công dụng</div></div>
+                <div class="agent-item"><div class="agent-name">Sửa lỗi SSL/TLS</div></div>
             </div>
         </div>
 
         <div class="chat-container">
             <div class="chat-header">
-                <div>EduConnect Chatbot</div> <!-- Updated header title -->
+                <div>Trợ Lý EduConnect</div> <!-- Updated header title -->
                 <div class="theme-toggle">
                     <div class="theme-icon">☀️</div>
                     <div class="theme-icon">🌙</div>
@@ -108,7 +108,7 @@
 
             <div class="chat-input-container">
                 <div class="chat-input-wrapper">
-                    <textarea class="chat-input" placeholder="Message EduconnectGPT..."></textarea>
+                    <textarea class="chat-input" placeholder="Nhắn tin cho EduconnectGPT..."></textarea>
                     <div class="chat-actions">
                         <div class="chat-action">📎</div>
                         <div class="chat-action">🎤</div>
@@ -122,25 +122,25 @@
     <!-- Footer remains the same -->
     <footer>
         <div class="footer-logo">
-            <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+            <img src="images/Educonnect_logo.png" alt="Logo EduConnect">
             <div class="footer-tagline">
-                EduConnect - Connecting knowledge,<br>
-                stepping firmly into the future.<br>
-                —EduConnect team
+                EduConnect - Kết nối kiến thức,<br>
+                bước vững chắc vào tương lai.<br>
+                —Đội ngũ EduConnect
             </div>
         </div>
         <div class="footer-links">
-            <a href="#">All pages</a>
-            <a href="#">All Courses</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Refund and Returns Policy</a>
-            <a href="#">About Us</a>
-            <a href="#">FAQ</a>
-            <a href="#">Terms and Condition</a>
+            <a href="#">Tất cả trang</a>
+            <a href="#">Tất cả khóa học</a>
+            <a href="#">Liên hệ</a>
+            <a href="#">Chính sách bảo mật</a>
+            <a href="#">Chính sách hoàn trả</a>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Câu hỏi thường gặp</a>
+            <a href="#">Điều khoản và điều kiện</a>
         </div>
         <div class="footer-socials">
-            <h3>Follow Us</h3>
+            <h3>Theo dõi chúng tôi</h3>
             <div class="social-icons-list">
                 <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
                     <img src="images/Youtube.jpg" alt="YouTube">

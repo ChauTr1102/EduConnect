@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Quiz Generation</title>
+    <title>EduConnect - Tạo Bài Kiểm Tra</title>
     <link rel="stylesheet" href="css/quiz.css">
 </head>
 <body>
     <header>
         <div class="logo">
             <!-- Make sure the path to your logo is correct -->
-            <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+            <img src="images/Educonnect_logo.png" alt="Logo EduConnect">
         </div>
         <nav>
             <ul>
                 <!-- Use placeholder links or actual paths -->
-                <li><a href="/home" class="nav-item animated-underline">Home</a></li>
-                <li><a href="/review" class="nav-item animated-underline">Tutors</a></li>
-                <li><a href="/ranking" class="nav-item animated-underline">Ranking</a></li>
-                <li><a href="/support" class="nav-item animated-underline">Support</a></li>
+                <li><a href="/home" class="nav-item animated-underline">Trang chủ</a></li>
+                <li><a href="/review" class="nav-item animated-underline">Gia sư</a></li>
+                <li><a href="/ranking" class="nav-item animated-underline">Xếp hạng</a></li>
+                <li><a href="/support" class="nav-item animated-underline">Hỗ trợ</a></li>
                 <li><a href="/educonnectGPT" class="nav-item animated-underline">EduconnectGPT</a></li>
-                <li><a href="/chat" class="nav-item animated-underline">Chat</a></li>
-                <li><a href="/schedule" class="nav-item animated-underline">Schedule</a></li>
-                <li><a href="/quiz" class="nav-item active">Quiz Generation</a></li>
+                <li><a href="/chat" class="nav-item animated-underline">Trò chuyện</a></li>
+                <li><a href="/schedule" class="nav-item animated-underline">Lịch trình</a></li>
+                <li><a href="/quiz" class="nav-item active">Tạo Bài Kiểm Tra</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -31,11 +31,11 @@
             <div class="account-container">
                 <div class="account-icon">👤</div>
                 <div class="account-dropdown">
-                    <a href="/profile" class="dropdown-item">Profile</a>
-                    <a href="/setting" class="dropdown-item">Setting</a>
-                    <a href="/pricing" class="dropdown-item">Pricing</a>
+                    <a href="/profile" class="dropdown-item">Hồ sơ</a>
+                    <a href="/setting" class="dropdown-item">Cài đặt</a>
+                    <a href="/pricing" class="dropdown-item">Bảng Giá</a>
                     <div class="dropdown-divider"></div>
-                    <a href="/login" class="dropdown-item">Sign out</a>
+                    <a href="/login" class="dropdown-item">Đăng xuất</a>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
     <main class="quiz-interface">
         <aside class="sidebar">
             <div class="ai-title">
-                 <span>AI Tools</span>
+                 <span>Công cụ AI</span>
             </div>
 
             <nav class="agent-list">
@@ -57,169 +57,169 @@
                 <div class="agent-item selected" id="quiz-agent">
                     <!-- This item is selected, no link needed as it's the current page -->
                      <div class="agent-icon">📝</div> <!-- Quiz icon -->
-                    <div class="agent-name">Quiz Generation</div>
+                    <div class="agent-name">Tạo Bài Kiểm Tra</div>
                 </div>
                  <div class="agent-item" id="summarization-agent">
                     <a href="/summarization">
                         <div class="agent-icon">📄</div> <!-- Summarization icon -->
-                        <div class="agent-name">Lecture Summarization</div>
+                        <div class="agent-name">Tóm tắt Bài giảng</div>
                     </a>
                  </div>
                  <div class="agent-item">
                     <a href="#"> <!-- Link to explore page -->
                         <div class="agent-icon">🔍</div>
-                        <div class="agent-name">Explore Agents</div>
+                        <div class="agent-name">Khám phá Agents</div>
                     </a>
                  </div>
             </nav>
 
-            <div class="section-title">Recent Quizzes</div>
+            <div class="section-title">Bài kiểm tra gần đây</div>
             <div class="history-list">
                 <!-- Add links later if needed -->
                 <div class="agent-item">
-                    <div class="agent-name">Python Programming Basics</div>
+                    <div class="agent-name">Cơ bản về Lập trình Python</div>
                 </div>
                 <div class="agent-item">
-                    <div class="agent-name">Advanced Mathematics</div>
+                    <div class="agent-name">Toán học Nâng cao</div>
                 </div>
                 <div class="agent-item">
-                    <div class="agent-name">Data Structures Quiz</div>
+                    <div class="agent-name">Bài kiểm tra Cấu trúc Dữ liệu</div>
                 </div>
                 <div class="agent-item">
-                    <div class="agent-name">English Vocabulary Test</div>
+                    <div class="agent-name">Kiểm tra Từ vựng Tiếng Anh</div>
                 </div>
             </div>
 
-            <div class="section-title">Templates</div>
+            <div class="section-title">Mẫu</div>
             <div class="history-list">
                  <div class="agent-item">
-                    <div class="agent-name">Multiple Choice</div>
+                    <div class="agent-name">Trắc nghiệm</div>
                 </div>
                 <div class="agent-item">
-                    <div class="agent-name">True/False Quiz</div>
+                    <div class="agent-name">Đúng/Sai</div>
                 </div>
                 <div class="agent-item">
-                    <div class="agent-name">Short Answer Format</div>
+                    <div class="agent-name">Định dạng Trả lời Ngắn</div>
                 </div>
             </div>
         </aside>
 
         <section class="quiz-container">
             <div class="quiz-header">
-                <h1>Generate Custom Quiz</h1>
-                <p>Enter your topic, select options, and optionally upload a PDF for context. Our AI will generate a custom quiz tailored to your needs.</p>
+                <h1>Tạo Bài Kiểm Tra Tùy chỉnh</h1>
+                <p>Nhập chủ đề của bạn, chọn các tùy chọn và tải lên PDF để cung cấp ngữ cảnh nếu cần. AI của chúng tôi sẽ tạo bài kiểm tra tùy chỉnh phù hợp với nhu cầu của bạn.</p>
             </div>
 
             <form id="quiz-form">
                 <div class="form-group">
-                    <label for="quiz-topic">Quiz prompt</label>
-                    <input type="text" id="quiz-topic" class="form-input" placeholder="e.g., World War II, Python Basics, Cell Biology" required>
+                    <label for="quiz-topic">Đề bài kiểm tra</label>
+                    <input type="text" id="quiz-topic" class="form-input" placeholder="Ví dụ: Thế chiến II, Python cơ bản, Sinh học tế bào" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="pdf-upload">Upload PDF Content</label>
-                    <input type="file" id="pdf-upload" class="form-input" accept=".pdf" title="Upload a PDF file for context">
+                    <label for="pdf-upload">Tải lên nội dung PDF</label>
+                    <input type="file" id="pdf-upload" class="form-input" accept=".pdf" title="Tải lên tệp PDF để cung cấp ngữ cảnh">
                     <span id="file-name-display" class="file-info hidden"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="quiz-details">Additional Details or Instructions</label>
-                    <textarea id="quiz-details" class="form-textarea" placeholder="e.g., Focus on chapters 3-5, include questions about specific formulas, define key terms..."></textarea>
+                    <label for="quiz-details">Chi tiết hoặc Hướng dẫn Bổ sung</label>
+                    <textarea id="quiz-details" class="form-textarea" placeholder="Ví dụ: Tập trung vào chương 3-5, bao gồm các câu hỏi về công thức cụ thể, định nghĩa các thuật ngữ chính..."></textarea>
                 </div>
 
                 <div class="options-container">
                     <div class="form-group">
-                        <label for="difficulty">Difficulty Level</label>
+                        <label for="difficulty">Mức độ khó</label>
                         <select id="difficulty" class="form-select">
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate" selected>Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                            <option value="expert">Expert</option>
+                            <option value="beginner">Người mới</option>
+                            <option value="intermediate" selected>Trung cấp</option>
+                            <option value="advanced">Nâng cao</option>
+                            <option value="expert">Chuyên gia</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="num-questions">Number of Questions</label>
+                        <label for="num-questions">Số lượng câu hỏi</label>
                         <select id="num-questions" class="form-select">
-                            <option value="5">5 questions</option>
-                            <option value="10" selected>10 questions</option>
-                            <option value="15">15 questions</option>
-                            <option value="20">20 questions</option>
-                            <option value="25">25 questions</option>
+                            <option value="5">5 câu hỏi</option>
+                            <option value="10" selected>10 câu hỏi</option>
+                            <option value="15">15 câu hỏi</option>
+                            <option value="20">20 câu hỏi</option>
+                            <option value="25">25 câu hỏi</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="time-limit">Time Limit (minutes)</label>
+                        <label for="time-limit">Giới hạn thời gian (phút)</label>
                          <select id="time-limit" class="form-select">
-                             <option value="0">No Time Limit</option> <!-- Added no limit option -->
-                            <option value="5">5 minutes</option>
-                            <option value="10">10 minutes</option>
-                            <option value="15" selected>15 minutes</option>
-                            <option value="20">20 minutes</option>
-                            <option value="30">30 minutes</option>
-                            <option value="45">45 minutes</option>
-                            <option value="60">60 minutes</option>
+                             <option value="0">Không giới hạn thời gian</option> <!-- Added no limit option -->
+                            <option value="5">5 phút</option>
+                            <option value="10">10 phút</option>
+                            <option value="15" selected>15 phút</option>
+                            <option value="20">20 phút</option>
+                            <option value="30">30 phút</option>
+                            <option value="45">45 phút</option>
+                            <option value="60">60 phút</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="checkbox-group-container">
                     <div class="checkbox-section">
-                        <label>Question Types</label>
+                        <label>Loại câu hỏi</label>
                          <div class="checkbox-group">
                             <input type="checkbox" id="multiple-choice" checked>
-                            <label for="multiple-choice">Multiple Choice</label>
+                            <label for="multiple-choice">Trắc nghiệm</label>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="true-false">
-                            <label for="true-false">True/False</label>
+                            <label for="true-false">Đúng/Sai</label>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="short-answer">
-                            <label for="short-answer">Short Answer</label>
+                            <label for="short-answer">Trả lời ngắn</label>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="matching">
-                            <label for="matching">Matching</label>
+                            <label for="matching">Ghép đôi</label>
                         </div>
                     </div>
 
                     <div class="checkbox-section">
-                        <label>Options</label>
+                        <label>Tùy chọn</label>
                          <div class="checkbox-group">
                             <input type="checkbox" id="include-explanations" checked>
-                            <label for="include-explanations">Include Answer Explanations</label>
+                            <label for="include-explanations">Bao gồm giải thích đáp án</label>
                         </div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="randomize-questions">
-                            <label for="randomize-questions">Randomize Question Order</label>
+                            <label for="randomize-questions">Ngẫu nhiên thứ tự câu hỏi</label>
                         </div>
                     </div>
                  </div>
 
                 <button type="button" id="generate-btn" class="generate-btn">
                     <span>✨</span> <!-- Sparkle icon -->
-                    Generate Quiz
+                    Tạo bài kiểm tra
                 </button>
             </form>
 
             <div class="preview-container" id="preview-section" style="display: none;">
-                <h2>Generated Quiz Preview</h2>
+                <h2>Xem trước bài kiểm tra đã tạo</h2>
 
                 <div class="quiz-preview" id="quiz-preview">
                     <!-- Loading indicator or Quiz content will be inserted here -->
                 </div>
 
                 <div class="action-buttons">
-                    <button class="action-btn download-btn" title="Download quiz as PDF">
-                        <span>💾</span> Download Quiz
+                    <button class="action-btn download-btn" title="Tải xuống bài kiểm tra dưới dạng PDF">
+                        <span>💾</span> Tải xuống bài kiểm tra
                     </button>
-                    <button class="action-btn copy-btn" title="Copy quiz text to clipboard">
-                        <span>📋</span> Copy to Clipboard
+                    <button class="action-btn copy-btn" title="Sao chép văn bản bài kiểm tra vào clipboard">
+                        <span>📋</span> Sao chép vào Clipboard
                     </button>
-                    <button class="action-btn regenerate-btn" title="Generate a new quiz with the same settings">
-                        <span>🔄</span> Regenerate
+                    <button class="action-btn regenerate-btn" title="Tạo bài kiểm tra mới với cùng cài đặt">
+                        <span>🔄</span> Tạo lại
                     </button>
                 </div>
             </div>
@@ -228,28 +228,28 @@
 
     <footer>
         <div class="footer-section footer-logo">
-            <img src="images/Educonnect_logo.png" alt="EduConnect Logo">
+            <img src="images/Educonnect_logo.png" alt="Logo EduConnect">
             <div class="footer-tagline">
-                Connecting knowledge,<br>
-                stepping firmly into the future.
+                Kết nối kiến thức,<br>
+                tiến vững chắc vào tương lai.
             </div>
         </div>
         <div class="footer-section footer-links">
-             <h3>Quick Links</h3>
-            <a href="#">Home</a>
-            <a href="#">Courses</a>
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">FAQ</a>
+             <h3>Liên kết nhanh</h3>
+            <a href="#">Trang chủ</a>
+            <a href="#">Khóa học</a>
+            <a href="#">Về chúng tôi</a>
+            <a href="#">Liên hệ</a>
+            <a href="#">Câu hỏi thường gặp</a>
         </div>
          <div class="footer-section footer-links">
-             <h3>Legal</h3>
-             <a href="#">Privacy Policy</a>
-            <a href="#">Terms and Condition</a>
-            <a href="#">Refund Policy</a>
+             <h3>Pháp lý</h3>
+             <a href="#">Chính sách Bảo mật</a>
+            <a href="#">Điều khoản và Điều kiện</a>
+            <a href="#">Chính sách Hoàn tiền</a>
         </div>
         <div class="footer-section footer-socials">
-            <h3>Follow Us</h3>
+            <h3>Theo dõi chúng tôi</h3>
             <div class="social-icons-list">
                 <!-- Replace # with actual social media links -->
                 <a href="#" target="_blank" class="social-icon-item" title="YouTube">

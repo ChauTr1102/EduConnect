@@ -1,9 +1,12 @@
-from fastapi import UploadFile, File, Form, APIRouter
+from fastapi import UploadFile, File, Form, APIRouter, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from fastapi.responses import StreamingResponse
 from api.database.database import SQLDatabase
 from api.services.recommender_system import RecommenderSystem
 from api.services.chatbot import ChatBot
+from typing import Dict, List
+import hashlib
+import uuid
 
 import pandas as pd
 import os
@@ -12,7 +15,7 @@ import asyncio
 from dotenv import load_dotenv
 import re
 import json
-from datetime import datetime
+import datetime
 import secrets
 import random
 load_dotenv()
@@ -81,4 +84,13 @@ class SuitableTeacher(BaseModel):
 class TeacherID(BaseModel):
     teacher_id: str
 
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class StartConversationRequest(BaseModel):
+    user1: str
+    user2: str
 
