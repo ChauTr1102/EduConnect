@@ -15,7 +15,7 @@ import asyncio
 from dotenv import load_dotenv
 import re
 import json
-from datetime import datetime
+import datetime
 import secrets
 import random
 load_dotenv()
@@ -84,4 +84,13 @@ class SuitableTeacher(BaseModel):
 class TeacherID(BaseModel):
     teacher_id: str
 
+
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class StartConversationRequest(BaseModel):
+    user1: str
+    user2: str
 

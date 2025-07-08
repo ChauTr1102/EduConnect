@@ -6,6 +6,33 @@
     <title>Trò Chuyện - EduConnectGPT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/chat.css">
+<!--    <style>-->
+<!--      .message-self, .message-other {-->
+<!--        margin: 10px;-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        align-items: flex-end;-->
+<!--      }-->
+<!--      .message-other {-->
+<!--        align-items: flex-start;-->
+<!--      }-->
+<!--      .message-bubble {-->
+<!--        padding: 0.6rem 1rem;-->
+<!--        background: #5b5bdc;-->
+<!--        border-radius: 12px;-->
+<!--        color: white;-->
+<!--        max-width: 70%;-->
+<!--        word-wrap: break-word;-->
+<!--      }-->
+<!--      .message-other .message-bubble {-->
+<!--        background: #383a5a;-->
+<!--      }-->
+<!--      .message-time {-->
+<!--        font-size: 0.75rem;-->
+<!--        margin-top: 0.25rem;-->
+<!--        color: #aaa;-->
+<!--      }-->
+<!--    </style>-->
 </head>
 <body>
     <!-- ===== HEADER ===== -->
@@ -46,52 +73,31 @@
             <div class="sidebar-header">
                 <span class="sidebar-title">Lịch Sử Trò Chuyện</span>
             </div>
+            <!-- Trong phần .sidebar-search -->
             <div class="sidebar-search">
                 <i class="fas fa-search"></i>
-                <input type="text" placeholder="Tìm kiếm cuộc trò chuyện...">
-            </div>
-            <div class="new-chat-button-container">
-                <button class="new-chat-button" id="newChatButton">
-                    <i class="fas fa-user-plus"></i>
-                    Chọn Người Dùng Để Trò Chuyện
-                </button>
+                <input type="text" id="userSearchInput" placeholder="Tìm kiếm cuộc trò chuyện..." />
+                <span class="clear-search" id="clearSearch">✖</span>
             </div>
             <div class="chat-history-list" id="chatHistoryList">
-                <!-- Empty state message when no chat history -->
                 <div class="empty-history-message">
                     <i class="fas fa-comments empty-icon"></i>
                     <p>Chưa có cuộc trò chuyện nào</p>
                     <span>Lịch sử trò chuyện của bạn sẽ xuất hiện ở đây</span>
                 </div>
-                
-                <!-- Chat history items will be added dynamically by JavaScript -->
-                <!-- Example of how a chat history item would look:
-                <div class="chat-history-item">
-                    <div class="history-avatar">
-                        <img src="images/avatar.jpg" alt="Ảnh Đại Diện Người Dùng">
-                    </div>
-                    <div class="history-content">
-                        <div class="history-name">Nguyễn Văn A</div>
-                        <div class="history-preview">Xem trước tin nhắn cuối...</div>
-                    </div>
-                    <div class="history-info">
-                        <div class="history-time">14:30</div>
-                        <div class="unread-badge">3</div>
-                    </div>
-                </div>
-                -->
             </div>
+            <div id="userSearchList"></div>
         </aside>
 
         <main class="main-content">
             <header class="chat-header">
                 <div class="recipient-info">
                     <div class="recipient-avatar">
-                        <img id="recipientAvatar" src="images/ảnh tutor 2.jpg" alt="Ảnh Đại Diện Người Nhận"> <!-- Placeholder avatar -->
+                        <img id="recipientAvatar" src="images/ảnh tutor 2.jpg" alt="Ảnh Đại Diện Người Nhận">
                     </div>
                     <div>
-                        <div id="recipientName" class="recipient-name">Đang tải...</div> <!-- Default placeholder -->
-                        <div id="recipientUserId" class="recipient-id">#ID_Đang tải...</div> <!-- Default placeholder -->
+                        <div id="recipientName" class="recipient-name">Đang tải...</div>
+                        <div id="recipientUserId" class="recipient-id">#ID_Đang tải...</div>
                     </div>
                 </div>
                 <div class="chat-actions">
@@ -101,9 +107,7 @@
                 </div>
             </header>
 
-            <div class="messages-area" id="messagesArea">
-                <!-- Messages will be added dynamically by JavaScript -->
-            </div>
+            <div class="messages-area" id="messagesArea"></div>
 
             <footer class="message-input-area">
                 <button class="attach-button"><i class="fas fa-paperclip"></i></button>
@@ -114,7 +118,6 @@
         </main>
     </div>
 
-    <!-- Study Time Selection Modal -->
     <div class="modal-overlay" id="studyTimeModal">
         <div class="modal-content">
             <div class="modal-header">

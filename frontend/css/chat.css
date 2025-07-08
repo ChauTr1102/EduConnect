@@ -1,4 +1,5 @@
 @import url("component/header.css");
+
 :root {
     --primary-color: #0d1472;
     --secondary-color: #f0f4ff;
@@ -9,26 +10,31 @@
     --border-color: #e5e7eb;
     --sidebar-bg: #f8f9fa;
     --chat-bg: #ffffff;
-    --message-sent-bg: #d1e7ff; 
+    --message-sent-bg: #d1e7ff;
     --message-received-bg: #f8f9fa;
     --header-height: 65px;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-/* ----- Body Layout ----- */
+/* ===== Body Layout ===== */
 body {
     background-color: var(--secondary-color);
     color: var(--text-color);
 }
 
-/* ----- Wrapper Layout ----- */
+/* ===== Wrapper Layout ===== */
 .chat-page-wrapper {
     display: flex;
     height: calc(100vh - var(--header-height));
 }
 
-/* ----- Chat History Sidebar Styles ----- */
+/* ===== Sidebar ===== */
 .chat-history-sidebar {
     width: 280px;
     background-color: var(--sidebar-bg);
@@ -76,38 +82,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* New Chat Button */
-.new-chat-button-container {
-    padding: 0.75rem 1.5rem;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.new-chat-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    padding: 0.7rem 1rem;
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.new-chat-button:hover {
-    background-color: #2a3bb0;
-}
-
-.new-chat-button i {
-    margin-right: 0.5rem;
-    font-size: 0.9rem;
-}
-
-/* Chat History List */
+/* Chat List */
 .chat-history-list {
     flex-grow: 1;
     overflow-y: auto;
@@ -146,7 +121,7 @@ body {
 
 .history-content {
     flex-grow: 1;
-    min-width: 0; /* Allows text truncation */
+    min-width: 0;
 }
 
 .history-name {
@@ -165,31 +140,7 @@ body {
     text-overflow: ellipsis;
 }
 
-.history-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    margin-left: 0.5rem;
-}
-
-.history-time {
-    font-size: 0.75rem;
-    color: var(--light-text);
-    margin-bottom: 0.3rem;
-}
-
-.unread-badge {
-    background-color: var(--accent-color);
-    color: white;
-    font-size: 0.7rem;
-    font-weight: 500;
-    padding: 0.15rem 0.4rem;
-    border-radius: 10px;
-    min-width: 18px;
-    text-align: center;
-}
-
-/* Empty state styling */
+/* Empty state */
 .empty-history-message {
     display: flex;
     flex-direction: column;
@@ -217,7 +168,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* ----- Main Content Area ----- */
+/* ===== Main Content ===== */
 .main-content {
     flex-grow: 1;
     display: flex;
@@ -227,7 +178,7 @@ body {
     overflow: hidden;
 }
 
-/* ----- Chat Header ----- */
+/* Chat Header */
 .chat-header {
     display: flex;
     align-items: center;
@@ -236,7 +187,7 @@ body {
     border-bottom: 1px solid var(--border-color);
     background-color: var(--white);
     flex-shrink: 0;
-    z-index: 1; /* Lower z-index than the dropdown */
+    z-index: 1;
 }
 
 .recipient-info {
@@ -262,6 +213,7 @@ body {
     color: var(--light-text);
 }
 
+/* Chat actions */
 .chat-actions {
     display: flex;
     align-items: center;
@@ -290,7 +242,7 @@ body {
     font-weight: 500;
 }
 
-/* ----- Messages Area ----- */
+/* ===== Message Area ===== */
 .messages-area {
     flex-grow: 1;
     overflow-y: auto;
@@ -300,46 +252,63 @@ body {
     flex-direction: column;
 }
 
-.message-bubble {
+/* ===== Message Bubble Styles ===== */
+.message-self, .message-other {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
     max-width: 70%;
-    padding: 0.8rem 1rem;
-    border-radius: 15px;
-    margin-bottom: 1rem;
-    line-height: 1.4;
-    position: relative;
-    font-size: 0.95rem;
-    word-wrap: break-word;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-.message-sent {
-    background-color: var(--accent-color);
-    color: var(--white);
+.message-self {
     align-self: flex-end;
-    border-bottom-right-radius: 5px;
+    align-items: flex-end;
 }
 
-.message-received {
-    background-color: var(--white);
-    color: var(--text-color);
+.message-other {
     align-self: flex-start;
-    border: 1px solid var(--border-color);
-    border-bottom-left-radius: 5px;
+    align-items: flex-start;
 }
 
-.message-timestamp {
-    font-size: 0.75rem;
-    color: var(--light-text);
-    display: block;
-    margin-top: 5px;
+.message-bubble {
+    padding: 0.7rem 1rem;
+    border-radius: 14px;
+    word-wrap: break-word;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+
+.message-self .message-bubble {
+    background-color: #3c4fe0;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.message-other .message-bubble {
+    background-color: #e6e8ff;
+    color: #222222;
+    border-bottom-left-radius: 4px;
+    border: 1px solid #d8dbf5;
+}
+
+.message-time {
+    font-size: 0.7rem;
+    margin-top: 4px;
+    color: #888;
+}
+
+.message-self .message-time {
     text-align: right;
+    align-self: flex-end;
 }
 
-.message-sent .message-timestamp {
-    color: rgba(255, 255, 255, 0.7);
+.message-other .message-time {
+    text-align: left;
+    align-self: flex-start;
 }
 
-/* ----- Message Input Area ----- */
+/* ===== Input Area ===== */
 .message-input-area {
     display: flex;
     align-items: center;
@@ -395,135 +364,18 @@ body {
     flex-shrink: 0;
 }
 
-/* ----- Modal for Study Time Selection ----- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal-content {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 500px;
-    padding: 2rem;
-    transform: translateY(-20px);
-    transition: transform 0.3s ease;
-}
-
-.modal-overlay.active .modal-content {
-    transform: translateY(0);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-}
-
-.modal-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--primary-color);
-}
-
-.modal-close {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
+/* Clear search button (nút x) */
+.clear-search {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
     color: var(--light-text);
-}
-
-.modal-body {
-    margin-bottom: 1.5rem;
-}
-
-.day-selection {
-    margin-bottom: 1.5rem;
-}
-
-.day-title {
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-    color: var(--primary-color);
-}
-
-.time-options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 1rem;
-}
-
-.time-option {
-    background-color: var(--secondary-color);
-    border: 2px solid transparent;
-    border-radius: 6px;
-    padding: 0.6rem 1rem;
     cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s ease;
+    display: none;
 }
 
-.time-option:hover {
-    background-color: #e0e7ff;
-}
-
-.time-option.selected {
-    border-color: var(--accent-color);
-    background-color: rgba(60, 79, 224, 0.1);
-    font-weight: 500;
-}
-
-.modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-}
-
-.btn {
-    padding: 0.7rem 1.5rem;
-    border-radius: 5px;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.btn-cancel {
-    background-color: #f1f1f1;
-    color: var(--text-color);
-}
-
-.btn-cancel:hover {
-    background-color: #e1e1e1;
-}
-
-.btn-join {
-    background-color: var(--accent-color);
-    color: white;
-    font-weight: 500;
-}
-
-.btn-join:hover {
-    background-color: #2a3bb0;
+.sidebar-search input:not(:placeholder-shown) ~ .clear-search {
+    display: block;
 }

@@ -20,7 +20,7 @@ async def check_login(test: user_and_pass):
 async def recommender(student_request: StudentRequest):
     recommender = RecommenderSystem(gemini_apikey=os.getenv("GEMINI_API_KEY"))
     # insert vào bảng post nè
-    post_id = "po" + datetime.now().strftime("%Y%m%d%H%m") + secrets.token_hex(3)
+    post_id = "po" + datetime.datetime.now().strftime("%Y%m%d%H%m") + secrets.token_hex(3)
     sql_db.upload_post(post_id, student_request.user_id, student_request.student_request, status='private')
     # lấy profile giáo viên
     teacher_profile = sql_db.get_teachers_profile()
@@ -134,14 +134,14 @@ async def return_user_posts():
 
 
 
-def get_connection():
-    return psycopg2.connect(
-        dbname="Educonnect",
-        user="postgres",
-        password="12345678",
-        host="localhost",
-        port=5432
-    )
+# def get_connection():
+#     return psycopg2.connect(
+#         dbname="Educonnect",
+#         user="postgres",
+#         password="12345678",
+#         host="localhost",
+#         port=5432
+#     )
 
 class ConnectionManager:
     def __init__(self):
@@ -176,27 +176,16 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
-
-class LoginRequest(BaseModel):
-    username: str
-    password: str
-
-
-class StartConversationRequest(BaseModel):
-    user1: str
-    user2: str
-
-
 @router.post("/check_login")
 def check_login(req: LoginRequest):
     # conn = get_connection()
     # cur = conn.cursor()
 
-    sql_db.cur.execute("SELECT password FROM users WHERE username = %s", (req.username,))
+    sql_db.cur.execute("SELECT user_id, password FROM users WHERE username = %s", (req.username,))
     row = sql_db.cur.fetchone()
     # sql_db.conn.close()
-    if row and row[0] == hashlib.sha256(req.password.encode()).hexdigest():
-        return {"success": True}
+    if row and row[1] == req.password:  # hashlib.sha256(req.password.encode()).hexdigest():
+        return {"success": True, "user_id": row[0]}
     return {"success": False}, 401
 
 
@@ -205,16 +194,21 @@ def search_users(keyword: str, exclude: str):
     # conn = get_connection()
     # cur = conn.cursor()
     sql_db.cur.execute("""
-        SELECT username, name FROM users
-        WHERE username != %s AND (username ILIKE %s OR name ILIKE %s)
+        SELECT username, name, user_id, avatar_url FROM users
+        WHERE user_id != %s AND (username ILIKE %s OR name ILIKE %s)
         LIMIT 20
     """, (exclude, f"%{keyword}%", f"%{keyword}%"))
     results = sql_db.cur.fetchall()
     # conn.close()
-    return [{"username": r[0], "name": r[1]} for r in results]
+    return [{
+        "username": r[0],
+        "name": r[1],
+        "user_id": r[2],
+        "avatar_url": r[3]
+    } for r in results]
 
 @router.post("/start_conversation")
-def start_conversation(data: StartConversationRequest):
+async def start_conversation(data: StartConversationRequest):
     user1 = data.user1
     user2 = data.user2
     # conn = get_connection()
@@ -224,12 +218,10 @@ def start_conversation(data: StartConversationRequest):
         SELECT c.conversation_id
         FROM conversations c
         JOIN participants_conversation p1 ON c.conversation_id = p1.conversation_id
-        JOIN users u1 ON p1.user_id = u1.user_id
         JOIN participants_conversation p2 ON c.conversation_id = p2.conversation_id
-        JOIN users u2 ON p2.user_id = u2.user_id
-        WHERE u1.username = %s AND u2.username = %s
+        WHERE p1.user_id = %s AND p2.user_id = %s
         GROUP BY c.conversation_id
-        HAVING COUNT(DISTINCT u1.user_id || u2.user_id) = 1
+        HAVING COUNT(DISTINCT p1.user_id || p2.user_id) = 1
     """, (user1, user2))
     row = sql_db.cur.fetchone()
     if row:
@@ -238,19 +230,19 @@ def start_conversation(data: StartConversationRequest):
         # Create new conversation
         conv_id = "conv_" + str(uuid.uuid4())[:8]
         conv_name = f"Chat: {user1}, {user2}"
-        sql_db.cur.execute("INSERT INTO conversations (conversation_id, conversation_name) VALUES (%s, %s)", (conv_id, conv_name))
-        for u in (user1, user2):
-            sql_db.cur.execute("SELECT user_id FROM users WHERE username = %s", (u,))
-            user_id = sql_db.cur.fetchone()[0]
-            sql_db.cur.execute("INSERT INTO participants_conversation (conversation_id, user_id) VALUES (%s, %s)", (conv_id, user_id))
+        sql_db.cur.execute("INSERT INTO conversations (conversation_id, conversation_name) VALUES (%s, %s)",
+                    (conv_id, conv_name))
+        for uid in (user1, user2):
+            sql_db.cur.execute("INSERT INTO participants_conversation (conversation_id, user_id) VALUES (%s, %s)",
+                                (conv_id, uid))
         # conn.commit()
         # Notify user2 if online
         import asyncio
-        asyncio.create_task(manager.notify_user(user2, {
+        await manager.notify_user(user2, {
             "type": "new_conversation",
             "conversation_id": conv_id,
             "conversation_name": conv_name
-        }))
+        })
     # conn.close()
     return {"conversation_id": conv_id}
 
@@ -270,7 +262,7 @@ def get_conversations(user: str):
         JOIN users u1 ON p1.user_id = u1.user_id
         JOIN participants_conversation p2 ON c.conversation_id = p2.conversation_id
         JOIN users u2 ON p2.user_id = u2.user_id
-        WHERE u1.username = %s AND u2.username != %s
+        WHERE u1.user_id = %s AND u2.user_id != %s
     """, (user, user))
     rows = sql_db.cur.fetchall()
     # conn.close()
@@ -284,26 +276,24 @@ def get_conversations(user: str):
 
 @router.get("/messages")
 def get_messages(conversation_id: str):
-    # conn = get_connection()
-    # cur = conn.cursor()
     sql_db.cur.execute("""
-        SELECT u.username, m.message_text, m.created_at
+        SELECT m.sender_id, m.message_text, m.created_at
         FROM messages m
-        JOIN users u ON u.user_id = m.sender_id
         WHERE conversation_id = %s
         ORDER BY m.created_at ASC
     """, (conversation_id,))
     rows = sql_db.cur.fetchall()
-    # conn.close()
     return [{"sender": row[0], "message": row[1], "created_at": str(row[2])} for row in rows]
 
 
-@router.websocket("/ws/user/{username}")
-async def user_websocket(websocket: WebSocket, username: str):
+
+@router.websocket("/ws/user/{user_id}")
+async def user_websocket(websocket: WebSocket, user_id: str):
     await websocket.accept()
-    if username not in manager.user_sockets:
-        manager.user_sockets[username] = []
-    manager.user_sockets[username].append(websocket)
+
+    if user_id not in manager.user_sockets:
+        manager.user_sockets[user_id] = []
+    manager.user_sockets[user_id].append(websocket)
 
     try:
         while True:
@@ -318,61 +308,59 @@ async def user_websocket(websocket: WebSocket, username: str):
                 # conn = get_connection()
                 # cur = conn.cursor()
 
-                # Lấy sender_id từ username
-                sql_db.cur.execute("SELECT user_id FROM users WHERE username = %s", (username,))
-                sender_id = sql_db.cur.fetchone()[0]
-
                 # Ghi vào bảng messages
                 sql_db.cur.execute("""
                     INSERT INTO messages (conversation_id, sender_id, message_text, created_at)
                     VALUES (%s, %s, %s, %s)
-                """, (conversation_id, sender_id, message_text, datetime.datetime.now(datetime.timezone.utc)))
+                """, (conversation_id, user_id, message_text, datetime.datetime.now(datetime.timezone.utc)))
                 # conn.commit()
 
                 # Lấy danh sách participant usernames (ngoại trừ chính người gửi)
                 sql_db.cur.execute("""
-                    SELECT u.username, u.name
+                    SELECT u.user_id, u.username, u.name
                     FROM participants_conversation pc
                     JOIN users u ON pc.user_id = u.user_id
                     WHERE pc.conversation_id = %s
                 """, (conversation_id,))
                 rows = sql_db.cur.fetchall()
-                participants = [r[0] for r in rows if r[0] != username]
+                participants = [(r[0], r[1], r[2]) for r in rows if r[0] != user_id]
+                username_map = {r[0]: r[1] for r in rows}
+                name_map = {r[0]: r[2] for r in rows}
 
                 # Tên cuộc trò chuyện, bạn có thể load từ DB nếu cần
-                conversation_name = f"Chat: {username}, {', '.join(participants)}"
+                conversation_name = f"Chat with {', '.join([p[2] for p in participants])}"
 
                 # conn.close()
 
                 # Gửi đến các participant
-                for participant in participants:
+                for pid, uname, _ in participants:
                     # Gửi tin nhắn
-                    await manager.notify_user(participant, {
+                    await manager.notify_user(pid, {
                         "type": "chat",
                         "conversation_id": conversation_id,
-                        "sender": username,
+                        "sender": user_id,
                         "message": message_text,
                         "created_at": str(datetime.datetime.now())
                     })
 
-                    # Gửi "new_conversation" để frontend load vào danh sách
-                    await manager.notify_user(participant, {
+                    # Gửi "new_conversation"
+                    await manager.notify_user(pid, {
                         "type": "new_conversation",
                         "conversation_id": conversation_id,
                         "conversation_name": conversation_name
                     })
 
-                # Gửi tin nhắn về cho chính người gửi
+                # Gửi về cho chính người gửi
                 await websocket.send_json({
                     "type": "chat",
                     "conversation_id": conversation_id,
-                    "sender": username,
+                    "sender": user_id,
                     "message": message_text,
                     "created_at": str(datetime.datetime.now())
                 })
 
 
     except WebSocketDisconnect:
-        if websocket in manager.user_sockets.get(username, []):
-            manager.user_sockets[username].remove(websocket)
+        if websocket in manager.user_sockets.get(user_id, []):
+            manager.user_sockets[user_id].remove(websocket)
 
