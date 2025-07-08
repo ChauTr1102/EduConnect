@@ -2,5 +2,27 @@
 
 .idea
 
-.env
+venv/
+env/
+.venv/
+.env/
 
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+config.py
+local_settings.py
+
+# Cache and temporary files
+*.cache
+*.log
+*.pid
+*.bak
+*.swp
+*~
+.pytest_cache/
+.coverage
+coverage.xml
+*.cover
