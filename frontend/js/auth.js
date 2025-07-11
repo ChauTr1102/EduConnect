@@ -1,46 +1,3 @@
-// Xử lý form đăng nhập truyền thống
-document.getElementById('login-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  const form = e.target;
-  const username = form.querySelector('input[type="text"]').value;
-  const password = form.querySelector('input[type="password"]').value;
-
-  const data = {
-    user_name: username,
-    password: password
-  };
-
-  fetch("/api/check_login/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(result => {
-    console.log("Server response:", result);
-    if (result !== 0) {
-      sessionStorage.setItem('user_id', result);
-      console.log("Redirecting to http://localhost:8080/home with user_id:", result);
-      window.location.href = 'http://localhost:8080/home';
-    } else {
-      alert("Tên đăng nhập hoặc mật khẩu không đúng.");
-    }
-  })
-  .catch(error => {
-    console.error("Error sending data:", error);
-    alert("Lỗi kết nối: " + error.message);
-  });
-});
-
-// Back to account selection page
-document.querySelector('.register-link').addEventListener('click', (e) => {
-  e.preventDefault();
-  window.location.href = 'account_registration.html'; // Thay đổi từ index.html sang account_registration.html
-});
-
-// Google OAuth integration
 ///auth/userinfo.email
 ///auth/userinfo.profile
 const CLIENT_ID = "353112133927-rfs7v2f19lqrt5d5ina11dqpchaqtqhr.apps.googleusercontent.com";
@@ -48,9 +5,9 @@ const CLIENT_ID = "353112133927-rfs7v2f19lqrt5d5ina11dqpchaqtqhr.apps.googleuser
 const LINK_GET_TOKEN = `https://accounts.google.com/o/oauth2/v2/auth?` +
   `scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile` +
   `&response_type=token` +
-  `&redirect_uri=http://localhost:8080/` +
+  `&redirect_uri=http://http://localhost:8080/` + // URI tĩnh
   `&client_id=${CLIENT_ID}` +
-  `&state=state_parameter_passthrough_value`;
+  `&state=state_parameter_passthrough_value`; // Thêm state để bảo mật
 
 // Hàm xử lý đăng nhập Google
 function handleGoogleLogin() {
@@ -65,13 +22,15 @@ function handleGoogleLogin() {
     return;
   }
 
+  // Lắng nghe tin nhắn từ popup khi hoàn tất
   window.addEventListener('message', (event) => {
-    if (event.origin === 'http://localhost:8080') {
-      const hash = event.data || window.location.hash.substring(1);
+    if (event.origin === 'http://localhost:63342') { // Kiểm tra nguồn hợp lệ
+      const hash = event.data || window.location.hash.substring(1); // Lấy hash từ popup hoặc URL
       const params = new URLSearchParams(hash);
       const accessToken = params.get('access_token');
       if (accessToken) {
         console.log('Access Token:', accessToken);
+        // Gọi API để lấy thông tin người dùng
         fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
           headers: { Authorization: `Bearer ${accessToken}` }
         })
@@ -81,9 +40,10 @@ function handleGoogleLogin() {
         })
         .then(data => {
           console.log('User Info:', data);
-          sessionStorage.setItem('user_id', data.email);
-          console.log("Redirecting to http://localhost:8080/home with user_id:", data.email);
-          window.location.href = 'http://localhost:8080/home'; // Chuyển hướng đến trang chủ
+          // Lưu thông tin người dùng (ví dụ: email) và chuyển hướng
+          sessionStorage.setItem('user_id', data.email); // Sử dụng email làm user_id tạm thời
+          console.log("Saved user_id to sessionStorage:", data.email);
+          window.location.href = '/home'; // Chuyển hướng sau khi đăng nhập
           authWindow.close();
         })
         .catch(error => {
@@ -95,7 +55,7 @@ function handleGoogleLogin() {
         alert('Login failed. Please try again.');
       }
     }
-  }, { once: true });
+  }, { once: true }); // Chỉ lắng nghe một lần
 }
 
 // Gắn sự kiện cho nút Google khi DOM sẵn sàng

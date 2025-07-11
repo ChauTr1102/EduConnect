@@ -364,3 +364,40 @@ async def user_websocket(websocket: WebSocket, user_id: str):
         if websocket in manager.user_sockets.get(user_id, []):
             manager.user_sockets[user_id].remove(websocket)
 
+#
+# @router.get("/api/check_username")
+# async def check_username(username: str):
+#     exists = sql_db.check_username_exists(username)
+#     return {"exists": exists}
+#
+#
+# @router.get("/api/check_email")
+# async def check_email(email: EmailStr):
+#     exists = sql_db.check_email_exists(email)
+#     return {"exists": exists}
+#
+#
+# @router.post("/api/register_student")
+# async def register_student(student: StudentRegisterRequest):
+#     # Kiểm tra username và email
+#     if sql_db.check_username_exists(student.username):
+#         raise HTTPException(status_code=400, detail="Username already exists")
+#
+#     if sql_db.check_email_exists(student.email):
+#         raise HTTPException(status_code=400, detail="Email already exists")
+#
+#     try:
+#         # Chuyển Pydantic model thành dict
+#         student_data = student.dict()
+#         user_id = sql_db.register_student(student_data)
+#
+#         return {
+#             "success": True,
+#             "user_id": user_id,
+#             "message": "Registration successful"
+#         }
+#     except Exception as e:
+#         raise HTTPException(
+#             status_code=500,
+#             detail=f"Registration failed: {str(e)}"
+#         )

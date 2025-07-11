@@ -20,7 +20,6 @@ import secrets
 import random
 load_dotenv()
 
-
 router = APIRouter()
 sql_db = SQLDatabase()
 
@@ -94,3 +93,25 @@ class StartConversationRequest(BaseModel):
     user1: str
     user2: str
 
+# class StudentRegisterRequest(BaseModel):
+#     username: str
+#     password: str
+#     name: str
+#     birth_date: date
+#     gender: str
+#     email: EmailStr
+#     address: Optional[str] = None
+#     introduction: Optional[str] = None
+#     hobby: Optional[str] = None
+#
+#     @validator('gender')
+#     def validate_gender(cls, v):
+#         if v not in ['Male', 'Female']:
+#             raise ValueError('Gender must be Male or Female')
+#         return v
+#
+#     @validator('password')
+#     def validate_password(cls, v):
+#         if len(v) < 6:
+#             raise ValueError('Password must be at least 6 characters')
+#         return v
