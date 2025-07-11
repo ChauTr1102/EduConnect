@@ -64,62 +64,62 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         return self.cur.fetchall()
 
 
-    # def check_username_exists(self, username: str) -> bool:
-    #     self.cur.execute("SELECT EXISTS(SELECT 1 FROM users WHERE username = %s)", (username.lower(),))
-    #     return self.cur.fetchone()[0]
-    #
-    # def check_email_exists(self, email: str) -> bool:
-    #     self.cur.execute("SELECT EXISTS(SELECT 1 FROM users WHERE email = %s)", (email.lower(),))
-    #     return self.cur.fetchone()[0]
-    #
-    # def register_student(self, student_data: dict) -> str:
-    #     try:
-    #         # Bắt đầu transaction
-    #         self.cur.execute("BEGIN")
-    #
-    #         # Tạo user_id ngẫu nhiên
-    #         user_id = f"stu_{secrets.token_hex(8)}"
-    #
-    #         # Thêm vào bảng users
-    #         self.cur.execute("""
-    #             INSERT INTO users (
-    #                 user_id, username, password, name,
-    #                 birth_date, gender, email, address, avatar_url
-    #             )
-    #             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-    #             """,
-    #                          (
-    #                              user_id,
-    #                              student_data['username'].lower(),
-    #                              student_data['password'],  # Lưu ý: nên mã hóa password
-    #                              student_data['name'],
-    #                              student_data['birth_date'],
-    #                              student_data['gender'],
-    #                              student_data['email'].lower(),
-    #                              student_data.get('address'),
-    #                              student_data.get('avatar_url',
-    #                                               'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Image.png')
-    #                          )
-    #                          )
-    #
-    #         # Thêm vào bảng students
-    #         self.cur.execute("""
-    #             INSERT INTO students (
-    #                 student_id, introduction, hobby
-    #             )
-    #             VALUES (%s, %s, %s)
-    #             """,
-    #                          (
-    #                              user_id,
-    #                              student_data.get('introduction'),
-    #                              student_data.get('hobby')
-    #                          )
-    #                          )
-    #
-    #         # Commit transaction
-    #         self.cur.execute("COMMIT")
-    #         return user_id
-    #
-    #     except Exception as e:
-    #         self.cur.execute("ROLLBACK")
-    #         raise e
+    def check_username_exists(self, username: str) -> bool:
+        self.cur.execute("SELECT EXISTS(SELECT 1 FROM users WHERE username = %s)", (username.lower(),))
+        return self.cur.fetchone()[0]
+
+    def check_email_exists(self, email: str) -> bool:
+        self.cur.execute("SELECT EXISTS(SELECT 1 FROM users WHERE email = %s)", (email.lower(),))
+        return self.cur.fetchone()[0]
+
+    def register_student(self, student_data: dict) -> str:
+        try:
+            # Bắt đầu transaction
+            self.cur.execute("BEGIN")
+
+            # Tạo user_id ngẫu nhiên
+            user_id = f"stu_{secrets.token_hex(8)}"
+
+            # Thêm vào bảng users
+            self.cur.execute("""
+                INSERT INTO users (
+                    user_id, username, password, name,
+                    birth_date, gender, email, address, avatar_url
+                )
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """,
+                             (
+                                 user_id,
+                                 student_data['username'].lower(),
+                                 student_data['password'],  # Lưu ý: nên mã hóa password
+                                 student_data['name'],
+                                 student_data['birth_date'],
+                                 student_data['gender'],
+                                 student_data['email'].lower(),
+                                 student_data.get('address'),
+                                 student_data.get('avatar_url',
+                                                  'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Image.png')
+                             )
+                             )
+
+            # Thêm vào bảng students
+            self.cur.execute("""
+                INSERT INTO students (
+                    student_id, introduction, hobby
+                )
+                VALUES (%s, %s, %s)
+                """,
+                             (
+                                 user_id,
+                                 student_data.get('introduction'),
+                                 student_data.get('hobby')
+                             )
+                             )
+
+            # Commit transaction
+            self.cur.execute("COMMIT")
+            return user_id
+
+        except Exception as e:
+            self.cur.execute("ROLLBACK")
+            raise e

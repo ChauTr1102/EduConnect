@@ -1,13 +1,13 @@
-from fastapi import UploadFile, File, Form, APIRouter, WebSocket, WebSocketDisconnect
-from pydantic import BaseModel
+from fastapi import UploadFile, File, Form, APIRouter, WebSocket, WebSocketDisconnect ,HTTPException
+from pydantic import BaseModel, EmailStr, validator
 from fastapi.responses import StreamingResponse
 from api.database.database import SQLDatabase
 from api.services.recommender_system import RecommenderSystem
 from api.services.chatbot import ChatBot
-from typing import Dict, List
+from typing import Dict, List , Optional
 import hashlib
 import uuid
-
+from datetime import date
 import pandas as pd
 import os
 import shutil
@@ -19,6 +19,9 @@ import datetime
 import secrets
 import random
 load_dotenv()
+
+
+
 
 router = APIRouter()
 sql_db = SQLDatabase()
@@ -93,25 +96,25 @@ class StartConversationRequest(BaseModel):
     user1: str
     user2: str
 
-# class StudentRegisterRequest(BaseModel):
-#     username: str
-#     password: str
-#     name: str
-#     birth_date: date
-#     gender: str
-#     email: EmailStr
-#     address: Optional[str] = None
-#     introduction: Optional[str] = None
-#     hobby: Optional[str] = None
-#
-#     @validator('gender')
-#     def validate_gender(cls, v):
-#         if v not in ['Male', 'Female']:
-#             raise ValueError('Gender must be Male or Female')
-#         return v
-#
-#     @validator('password')
-#     def validate_password(cls, v):
-#         if len(v) < 6:
-#             raise ValueError('Password must be at least 6 characters')
-#         return v
+class StudentRegisterRequest(BaseModel):
+    username: str
+    password: str
+    name: str
+    birth_date: date
+    gender: str
+    email: EmailStr
+    address: Optional[str] = None
+    introduction: Optional[str] = None
+    hobby: Optional[str] = None
+
+    @validator('gender')
+    def validate_gender(cls, v):
+        if v not in ['Male', 'Female']:
+            raise ValueError('Gender must be Male or Female')
+        return v
+
+    @validator('password')
+    def validate_password(cls, v):
+        if len(v) < 6:
+            raise ValueError('Password must be at least 6 characters')
+        return v
