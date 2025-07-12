@@ -92,3 +92,7 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         query = "UPDATE users SET balance = balance + %s WHERE user_id = %s"
         self.cur.execute(query, (amount, user_id))
 
+    def get_user_balance(self, user_id):
+        self.cur.execute(f"select balance from users where user_id = {user_id}")
+        return self.cur.fetchone()[0]
+

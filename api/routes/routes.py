@@ -365,6 +365,12 @@ async def user_websocket(websocket: WebSocket, user_id: str):
             manager.user_sockets[user_id].remove(websocket)
 
 
+@router.get("/get_user_balance")
+async def get_user_balance(user_id:str):
+    user_balance = sql_db.get_user_balance(user_id)
+    return user_balance
+
+
 # Deposit money
 @router.post("/create-payment-link")
 async def create_payment_link(payment_detail: PaymentInfo):
@@ -378,8 +384,8 @@ async def create_payment_link(payment_detail: PaymentInfo):
             description=payment_detail.message,
             buyerName=payment_detail.user_id,
             # items=[item],
-            cancelUrl=f"/cancel.html",
-            returnUrl=f"/success.html",
+            cancelUrl=f"http://educonnect.id.vn/cancel",
+            returnUrl=f"http://educonnect.id.vn/success",
             expiredAt=int(time.time()) + 900
         )
         payment_link_response = payos.createPaymentLink(payment_data)
