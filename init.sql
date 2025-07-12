@@ -144,7 +144,6 @@ CREATE TABLE transactions (
 -- Tạo INDEX để tăng tốc độ truy vấn theo order_code, user_id, và payos_reference_id
 CREATE INDEX idx_transactions_order_code ON transactions(order_code);
 CREATE INDEX idx_transactions_user_id ON transactions(user_id);
-CREATE INDEX idx_transactions_payos_reference_id ON transactions(payos_reference_id);
 
 -- Trigger để tự động cập nhật updated_at mỗi khi có thay đổi trên bản ghi (giữ nguyên)
 CREATE OR REPLACE FUNCTION update_updated_at_column()
