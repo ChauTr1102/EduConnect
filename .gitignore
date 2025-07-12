@@ -26,3 +26,5 @@ local_settings.py
 .coverage
 coverage.xml
 *.cover
+
+docker-compose.yml
