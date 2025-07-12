@@ -65,7 +65,7 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
     def insert_payment_info(self, user_id, order_code, amount, description_text, payment_link_id):
         query = """
         INSERT INTO transactions (user_id, order_code, amount, system_transaction_status, transaction_type, description, paymentLinkId)
-        VALUES (%s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
         """
         self.cur.execute(query, (user_id, order_code, amount, 'PENDING', 'DEPOSIT', description_text, payment_link_id))
 

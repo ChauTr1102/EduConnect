@@ -376,7 +376,6 @@ async def get_user_balance(user_id:str):
 async def create_payment_link(payment_detail: PaymentInfo):
     try:
         # Thiết lập thông tin mặt hàng
-        # item = ItemData(name="Nạp tiền vào EduConnect", price=2000)
         order_id = int(time.time())
         payment_data = PaymentData(
             orderCode=order_id,
