@@ -37,6 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   depositBtn.addEventListener('click', async () => {
+    const userId = sessionStorage.getItem("user_id");
     const amountValue = Number(amountInput.value);
     let message = noteInput.value.trim(); // Get the note content
     if (message === "") {
@@ -52,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const res = await fetch('http://127.0.0.1:8000/create-payment-link', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount: amountValue, message: message })
+        body: JSON.stringify({user_id: userId, amount: amountValue, message: message })
       });
       const data = await res.json();
 
