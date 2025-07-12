@@ -28,3 +28,5 @@ coverage.xml
 *.cover
 
 docker-compose.yml
+dockerfile.backend
+dockerfile.frontend
