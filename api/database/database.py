@@ -64,27 +64,27 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
 
     def insert_payment_info(self, user_id, order_code, amount, description_text, payment_link_id):
         query = """
-        INSERT INTO transactions (user_id, order_code, amount, system_transaction_status, transaction_type, description, paymentLinkId)
+        INSERT INTO transactions (user_id, order_code, amount, transaction_status, transaction_type, description, paymentLinkId)
         VALUES (%s, %s, %s, %s, %s, %s, %s)
         """
         self.cur.execute(query, (user_id, order_code, amount, 'PENDING', 'DEPOSIT', description_text, payment_link_id))
 
 
     def get_payment_info(self, order_code):
-        self.cur.execute(f"SELECT user_id, system_transaction_status, amount FROM transactions WHERE order_code = {order_code}")
+        self.cur.execute(f"SELECT user_id, transaction_status, amount FROM transactions WHERE order_code = {order_code}")
         return self.cur.fetchall()
 
-    def update_transactions(self, system_transaction_status, payos_payment_link_id, payos_transaction_time,
+    def update_transactions(self, transaction_status, payos_payment_link_id, payos_transaction_time,
                             payos_status_code, payos_status_description, order_code):
         query = """UPDATE transactions
-        SET system_transaction_status = %s,
+        SET transaction_status = %s,
         payos_payment_link_id = %s,
         payos_transaction_time = %s,
         payos_status_code = %s,
         payos_status_description = %s,
         WHERE order_code = %s
         """
-        self.cur.execute(query, (system_transaction_status, payos_payment_link_id, payos_transaction_time,
+        self.cur.execute(query, (transaction_status, payos_payment_link_id, payos_transaction_time,
                             payos_status_code, payos_status_description, order_code))
 
 
