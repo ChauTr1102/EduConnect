@@ -52,7 +52,6 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
                             where t.teacher_id = '{teacher_id}'""")
         return self.cur.fetchall()
 
-
     def get_posts_with_usernames(self):
         query = """
         SELECT p.post_id, u.username, p.content 
@@ -62,4 +61,34 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         """
         self.cur.execute(query)
         return self.cur.fetchall()
+
+    def insert_payment_info(self, user_id, order_code, amount, description_text, payment_link_id):
+        query = """
+        INSERT INTO transactions (user_id, order_code, amount, system_transaction_status, transaction_type, description, paymentLinkId)
+        VALUES (%s, %s, %s, %s, %s)
+        """
+        self.cur.execute(query, (user_id, order_code, amount, 'PENDING', 'DEPOSIT', description_text, payment_link_id))
+
+
+    def get_payment_info(self, order_code):
+        self.cur.execute(f"SELECT user_id, system_transaction_status, amount FROM transactions WHERE order_code = {order_code}")
+        return self.cur.fetchall()
+
+    def update_transactions(self, system_transaction_status, payos_payment_link_id, payos_transaction_time,
+                            payos_status_code, payos_status_description, order_code):
+        query = """UPDATE transactions
+        SET system_transaction_status = %s,
+        payos_payment_link_id = %s,
+        payos_transaction_time = %s,
+        payos_status_code = %s,
+        payos_status_description = %s,
+        WHERE order_code = %s
+        """
+        self.cur.execute(query, (system_transaction_status, payos_payment_link_id, payos_transaction_time,
+                            payos_status_code, payos_status_description, order_code))
+
+
+    def update_user_balance(self,amount, user_id):
+        query = "UPDATE users SET balance = balance + %s WHERE user_id = %s"
+        self.cur.execute(query, (amount, user_id))
 

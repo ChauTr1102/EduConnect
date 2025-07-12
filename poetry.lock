@@ -2177,6 +2177,19 @@ test = ["hypothesis (>=6.46.1)", "pytest (>=7.3.2)", "pytest-xdist (>=2.2.0)"]
 xml = ["lxml (>=4.9.2)"]
 
 [[package]]
+name = "payos"
+version = "0.1.8"
+description = "A library for create Payment Link of payOS and more"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "payos-0.1.8.tar.gz", hash = "sha256:f6120c7a10a45ff16f779038b5be2716dc8a1e2d2cff14225888d2af27f37da6"},
+]
+
+[package.dependencies]
+requests = "*"
+
+[[package]]
 name = "pillow"
 version = "11.1.0"
 description = "Python Imaging Library (Fork)"
@@ -3985,4 +3998,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "545b1058a200b02862267c5a83b981b1255d817fd01eb4b96450b703c5cfefee"
+content-hash = "5a7ad353d1ad0e97259d3117cab49c54c3ceab0d1bda014230bf0de34ca18286"
