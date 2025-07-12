@@ -27,7 +27,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- Default Config ---
     const placeholderAvatar = 'avatar-placeholder.png';
-    
+
+    const userId = sessionStorage.getItem('user_id'); // Lấy user_id đã lưu
+    if (userId) {
+        console.log(userId);
+        fetch(`/api/get_user_balance?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Nếu trả về dạng { balance: ... }
+                document.querySelector('.credit-icon').textContent = `${data} VND`;
+                sessionStorage.setItem('user_balance', data);
+            })
+            .catch(error => {
+                console.error("Không lấy được số dư tài khoản:", error);
+                document.querySelector('.credit-icon').textContent = "0.0 VND";
+            });
+    } else {
+        // Nếu không tìm thấy user_id thì cho hiện mặc định
+        document.querySelector('.credit-icon').textContent = "0.0 VND";
+    }
+
+    document.querySelector('.credit-icon').addEventListener('click', function() {
+    window.location.href = '/deposit';});
+
     // --- Fetch Posts Function ---
     async function fetchPosts() {
         try {

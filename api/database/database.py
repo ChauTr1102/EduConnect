@@ -87,12 +87,11 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         self.cur.execute(query, (transaction_status, payos_payment_link_id, payos_transaction_time,
                             payos_status_code, payos_status_description, order_code))
 
-
     def update_user_balance(self,amount, user_id):
         query = "UPDATE users SET balance = balance + %s WHERE user_id = %s"
         self.cur.execute(query, (amount, user_id))
 
     def get_user_balance(self, user_id):
-        self.cur.execute(f"select balance from users where user_id = {user_id}")
+        self.cur.execute(f"select balance from users where user_id = '{user_id}'")
         return self.cur.fetchone()[0]
 

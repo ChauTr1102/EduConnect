@@ -182,6 +182,12 @@ async function sendMessage() {
 // (Keep the rest of your JavaScript code as it was, including event listeners setup)
 document.addEventListener('DOMContentLoaded', function() {
     // Clear any previous messages on load (optional)
+    const userBalance = sessionStorage.getItem('user_balance');
+    document.querySelector('.credit-icon').textContent = `${userBalance} VND`;
+
+    document.querySelector('.credit-icon').addEventListener('click', function() {
+    window.location.href = '/deposit';});
+
     clearMessages();
 
     // Add an initial welcome message from the AI

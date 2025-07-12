@@ -1,27 +1,31 @@
-//window.addEventListener('message', e => {
-//  const { status, cancel, orderCode } = e.data || {};
-//  if (!status) return;
-//
-//  // Ẩn iframe
-//  const payFrame = document.getElementById('payFrame');
-//  payFrame.style.display = 'none';
-//
-//  if (cancel === 'true' || status === 'CANCELLED') {
-//    alert('⚠️ Giao dịch đã bị hủy.');
-//  } else if (status === 'PAID') {
-//    alert('✅ Nạp tiền thành công! (orderCode: ' + orderCode + ')');
-//    // TODO: Gọi API để cập nhật số dư hoặc reload dữ liệu
-//  } else {
-//    alert('ℹ️ Giao dịch trạng thái: ' + status);
-//  }
-//});
-
 document.addEventListener('DOMContentLoaded', () => {
   const amountInput = document.getElementById('amountInput');
   const noteInput = document.getElementById('noteInput'); // Thêm này
   const depositBtn = document.getElementById('depositBtn');
   const errorMsg = document.getElementById('errorMsg');
   const payFrame = document.getElementById('payFrame');
+
+  const userId = sessionStorage.getItem('user_id'); // Lấy user_id đã lưu
+    if (userId) {
+        console.log(userId);
+        fetch(`/api/get_user_balance?user_id=${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                // Nếu trả về dạng { balance: ... }
+                document.querySelector('.credit-icon').textContent = `${data} VND`;
+                sessionStorage.setItem('user_balance', data);
+            })
+            .catch(error => {
+                console.error("Không lấy được số dư tài khoản:", error);
+                document.querySelector('.credit-icon').textContent = "0.0 VND";
+            });
+    } else {
+        // Nếu không tìm thấy user_id thì cho hiện mặc định
+        document.querySelector('.credit-icon').textContent = "0.0 VND";
+    }
+
+    document.querySelector('.credit-icon').addEventListener('click', function() {
+    window.location.href = '/deposit';});
 
   amountInput.addEventListener('input', () => {
     const val = Number(amountInput.value);

@@ -6,6 +6,12 @@ window.addEventListener("DOMContentLoaded", () => {
   openUserSocket();
   loadConversations();
 
+  const userBalance = sessionStorage.getItem('user_balance');
+  document.querySelector('.credit-icon').textContent = `${userBalance} VND`;
+
+  document.querySelector('.credit-icon').addEventListener('click', function() {
+  window.location.href = '/deposit';});
+
   document.getElementById("sendButton").onclick = sendMessage;
   document.getElementById("messageInput").addEventListener("keypress", function(e) {
     if (e.key === "Enter") sendMessage();

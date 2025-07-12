@@ -15,6 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const tutorArea = document.getElementById('tutorArea');
     const finalStatusBox = document.getElementById('finalStatusBox');
 
+    const userBalance = sessionStorage.getItem('user_balance');
+    document.querySelector('.credit-icon').textContent = `${userBalance} VND`;
+
+    document.querySelector('.credit-icon').addEventListener('click', function() {
+    window.location.href = '/deposit';});
+
+
     // --- Function to create a Tutor Card HTML ---
     function createTutorCardHTML(teacher) {
         const placeholderImage = `images/${teacher.name}.png`; // Default image if teacher.image is missing

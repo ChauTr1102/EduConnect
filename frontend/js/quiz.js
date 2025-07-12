@@ -7,6 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileNameDisplay = document.getElementById('file-name-display');
     const quizForm = document.getElementById('quiz-form'); // Reference to the form
 
+    const userBalance = sessionStorage.getItem('user_balance');
+    document.querySelector('.credit-icon').textContent = `${userBalance} VND`;
+
+    document.querySelector('.credit-icon').addEventListener('click', function() {
+    window.location.href = '/deposit';});
+
     // --- Event Listener for File Input Change ---
     pdfInput.addEventListener('change', function() {
         if (pdfInput.files.length > 0) {
