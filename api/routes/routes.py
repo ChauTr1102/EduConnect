@@ -383,8 +383,8 @@ async def create_payment_link(payment_detail: PaymentInfo):
             description=payment_detail.message,
             buyerName=payment_detail.user_id,
             # items=[item],
-            cancelUrl=f"http://educonnect.id.vn/cancel",
-            returnUrl=f"http://educonnect.id.vn/success",
+            cancelUrl=f"https://educonnect.id.vn/cancel",
+            returnUrl=f"https://educonnect.id.vn/success",
             expiredAt=int(time.time()) + 900
         )
         payment_link_response = payos.createPaymentLink(payment_data)
