@@ -1,104 +1,177 @@
-const API_BASE_URL = 'http://localhost:8000'; // Địa chỉ API server
-
-async function registerStudent() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('registrationForm');
-    const requiredFields = ['username', 'password', 'name', 'birthDate', 'gender', 'email'];
+    const formStatus = document.getElementById('formStatus');
 
-    // Kiểm tra các trường bắt buộc
-    for (const field of requiredFields) {
-        const value = document.getElementById(field).value.trim();
-        if (!value) {
-            alert(`Vui lòng điền vào trường ${getFieldNameVi(field)}`);
-            return;
-        }
-    }
+    // Lấy các element input
+    const nameInput = document.getElementById('name');
+    const usernameInput = document.getElementById('username');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
 
-    // Kiểm tra độ dài mật khẩu
-    if (document.getElementById('password').value.length < 6) {
-        alert('Mật khẩu phải có ít nhất 6 ký tự');
-        return;
-    }
-
-    const studentData = {
-        username: document.getElementById('username').value.trim(),
-        password: document.getElementById('password').value,
-        name: document.getElementById('name').value.trim(),
-        birth_date: document.getElementById('birthDate').value,
-        gender: document.getElementById('gender').value,
-        email: document.getElementById('email').value.trim(),
-        address: document.getElementById('address').value.trim() || null,
-        introduction: document.getElementById('introduction').value.trim() || null,
-        hobby: document.getElementById('hobby').value.trim() || null
+    // --- Debounce function để tránh gọi API liên tục ---
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return (...args) => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
+        };
     };
 
-    try {
-        // Hiển thị trạng thái đang xử lý
-        const resultElement = document.getElementById('registrationResult');
-        resultElement.textContent = 'Đang xử lý đăng ký...';
-        resultElement.className = 'info';
+    // --- Hàm hiển thị lỗi ---
+    const showError = (input, message) => {
+        const formGroup = input.parentElement;
+        const errorElement = formGroup.querySelector('.error-message');
+        errorElement.textContent = message;
+        input.classList.remove('valid');
+        input.classList.add('invalid');
+    };
 
-        const response = await fetch(`${API_BASE_URL}/api/register_student`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(studentData)
+    // --- Hàm hiển thị thành công ---
+    const showSuccess = (input) => {
+        const formGroup = input.parentElement;
+        const errorElement = formGroup.querySelector('.error-message');
+        errorElement.textContent = '';
+        input.classList.remove('invalid');
+        input.classList.add('valid');
+    };
+
+    // --- Hàm kiểm tra Tên đăng nhập (API) ---
+    const checkUsername = async () => {
+        const username = usernameInput.value.trim();
+        if (username.length < 3) {
+            showError(usernameInput, 'Tên đăng nhập phải có ít nhất 3 ký tự.');
+            return false;
+        }
+        try {
+            const response = await fetch(`/api/check_username?username=${encodeURIComponent(username)}`);
+            const data = await response.json();
+            if (data.exists) {
+                showError(usernameInput, 'Tên đăng nhập này đã tồn tại.');
+                return false;
+            } else {
+                showSuccess(usernameInput);
+                return true;
+            }
+        } catch (error) {
+            showError(usernameInput, 'Lỗi khi kiểm tra tên đăng nhập.');
+            return false;
+        }
+    };
+
+    // --- Hàm kiểm tra Email (API) ---
+    const checkEmail = async () => {
+        const email = emailInput.value.trim();
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            showError(emailInput, 'Định dạng email không hợp lệ.');
+            return false;
+        }
+        try {
+            const response = await fetch(`/api/check_email?email=${encodeURIComponent(email)}`);
+            const data = await response.json();
+            if (data.exists) {
+                showError(emailInput, 'Email này đã được sử dụng.');
+                return false;
+            } else {
+                showSuccess(emailInput);
+                return true;
+            }
+        } catch (error) {
+            showError(emailInput, 'Lỗi khi kiểm tra email.');
+            return false;
+        }
+    };
+
+    // --- Hàm kiểm tra Mật khẩu ---
+    const validatePassword = () => {
+        const password = passwordInput.value;
+        if (password.length < 6) {
+            showError(passwordInput, 'Mật khẩu phải có ít nhất 6 ký tự.');
+            return false;
+        } else {
+            showSuccess(passwordInput);
+            return true;
+        }
+    };
+
+    // --- Hàm kiểm tra mật khẩu trùng khớp ---
+    const validatePasswordConfirmation = () => {
+        // Chạy lại validatePassword để đảm bảo message lỗi được cập nhật đúng
+        validatePassword();
+        if (passwordInput.value !== confirmPasswordInput.value) {
+            showError(confirmPasswordInput, 'Mật khẩu xác nhận không khớp.');
+            return false;
+        } else if (confirmPasswordInput.value) {
+            showSuccess(confirmPasswordInput);
+            return true;
+        }
+        return false;
+    };
+
+    // --- Gắn sự kiện vào các trường input ---
+    usernameInput.addEventListener('input', debounce(checkUsername, 500));
+    emailInput.addEventListener('input', debounce(checkEmail, 500));
+    passwordInput.addEventListener('input', validatePasswordConfirmation);
+    confirmPasswordInput.addEventListener('input', validatePasswordConfirmation);
+
+    // --- Xử lý khi submit form ---
+    form.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        // Kiểm tra tất cả các trường bắt buộc
+        let isFormValid = true;
+        form.querySelectorAll('input[required], select[required]').forEach(input => {
+            if (!input.value.trim()) {
+                showError(input, 'Trường này là bắt buộc.');
+                isFormValid = false;
+            }
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            resultElement.textContent = `Đăng ký thành công! Mã người dùng: ${data.user_id}`;
-            resultElement.className = 'success';
+        // Chạy lại các hàm validation chính
+        const isPasswordValid = validatePassword();
+        const isPasswordConfirmed = validatePasswordConfirmation();
+        const isUsernameOk = await checkUsername();
+        const isEmailOk = await checkEmail();
 
-            // Tự động chuyển hướng sau 2 giây
-            setTimeout(() => {
-                window.location.href = 'http://localhost:8080/home'; // Chuyển đến trang đăng nhập
-            }, 2000);
-
-            form.reset();
-        } else {
-            const errorData = await response.json();
-            const errorMessage = translateError(errorData.detail);
-            resultElement.textContent = `Đăng ký thất bại: ${errorMessage}`;
-            resultElement.className = 'error';
+        if (!isFormValid || !isPasswordValid || !isPasswordConfirmed || !isUsernameOk || !isEmailOk) {
+            showFormStatus('Vui lòng kiểm tra lại các thông tin đã nhập.', 'error');
+            return;
         }
-    } catch (error) {
-        console.error('Lỗi trong quá trình đăng ký:', error);
-        const resultElement = document.getElementById('registrationResult');
-        resultElement.textContent = 'Lỗi kết nối máy chủ. Vui lòng thử lại sau.';
-        resultElement.className = 'error';
-    }
-}
 
-// Hàm chuyển đổi tên trường sang tiếng Việt
-function getFieldNameVi(field) {
-    const fieldNames = {
-        'username': 'tên đăng nhập',
-        'password': 'mật khẩu',
-        'name': 'họ và tên',
-        'birthDate': 'ngày sinh',
-        'gender': 'giới tính',
-        'email': 'email'
-    };
-    return fieldNames[field] || field;
-}
+        const formData = new FormData(form);
+        const studentData = Object.fromEntries(formData.entries());
 
-// Hàm dịch các thông báo lỗi từ API
-function translateError(errorMessage) {
-    const errorTranslations = {
-        'Username already exists': 'Tên đăng nhập đã tồn tại',
-        'Email already exists': 'Email đã được sử dụng',
-        'Invalid email format': 'Định dạng email không hợp lệ',
-        'Password must be at least 6 characters': 'Mật khẩu phải có ít nhất 6 ký tự',
-        'Gender must be Male or Female': 'Giới tính phải là Nam hoặc Nữ'
-    };
-    return errorTranslations[errorMessage] || errorMessage;
-}
+        // Xóa trường xác nhận mật khẩu không cần thiết
+        delete studentData.confirmPassword;
 
-// Thêm sự kiện click cho nút đăng ký
-document.addEventListener('DOMContentLoaded', () => {
-    const registerButton = document.querySelector('#registrationForm button');
-    if (registerButton) {
-        registerButton.addEventListener('click', registerStudent);
+        // Gửi dữ liệu lên server
+        try {
+            const response = await fetch('/api/register_student', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(studentData),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                showFormStatus('Đăng ký thành công! Bạn sẽ được chuyển hướng trong giây lát.', 'success');
+                form.reset();
+                form.querySelectorAll('.valid, .invalid').forEach(el => el.classList.remove('valid', 'invalid'));
+                // Optional: Redirect after success
+                // setTimeout(() => { window.location.href = '/login'; }, 3000);
+            } else {
+                showFormStatus(`Đăng ký thất bại: ${result.detail}`, 'error');
+            }
+        } catch (error) {
+            showFormStatus('Đã có lỗi mạng xảy ra. Vui lòng thử lại sau.', 'error');
+        }
+    });
+
+    function showFormStatus(message, type) {
+        formStatus.textContent = message;
+        formStatus.className = `form-status ${type}`;
     }
 });

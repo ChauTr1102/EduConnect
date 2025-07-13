@@ -96,6 +96,13 @@ class StartConversationRequest(BaseModel):
     user1: str
     user2: str
 
+class CheckUsernameRequest(BaseModel):
+    username: str
+
+class CheckEmailRequest(BaseModel):
+    email: EmailStr
+
+
 class StudentRegisterRequest(BaseModel):
     username: str
     password: str
@@ -106,6 +113,8 @@ class StudentRegisterRequest(BaseModel):
     address: Optional[str] = None
     introduction: Optional[str] = None
     hobby: Optional[str] = None
+
+
 
     @validator('gender')
     def validate_gender(cls, v):

@@ -22,8 +22,7 @@ document.getElementById('login-form').addEventListener('submit', (e) => {
     console.log("Server response:", result);
     if (result !== 0) {
       sessionStorage.setItem('user_id', result);
-      console.log("Redirecting to http://localhost:8080/home with user_id:", result);
-      window.location.href = 'http://localhost:8080/home';
+      window.location.href = '/home';
     } else {
       alert("Tên đăng nhập hoặc mật khẩu không đúng.");
     }

@@ -365,19 +365,19 @@ async def user_websocket(websocket: WebSocket, user_id: str):
             manager.user_sockets[user_id].remove(websocket)
 
 
-@router.get("/api/check_username")
+@router.get("/check_username")
 async def check_username(username: str):
     exists = sql_db.check_username_exists(username)
     return {"exists": exists}
 
 
-@router.get("/api/check_email")
+@router.get("/check_email")
 async def check_email(email: EmailStr):
     exists = sql_db.check_email_exists(email)
     return {"exists": exists}
 
 
-@router.post("/api/register_student")
+@router.post("/register_student")
 async def register_student(student: StudentRegisterRequest):
     # Kiểm tra username và email
     if sql_db.check_username_exists(student.username):

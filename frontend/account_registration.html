@@ -3,60 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký tài khoản</title>
+    <title>Đăng Ký Tài Khoản Học Sinh</title>
     <link rel="stylesheet" href="css/account_registration.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Đăng ký tài khoản mới</h1>
+    <div class="registration-container">
+        <form id="registrationForm" class="registration-form" novalidate>
+            <h1>Đăng Ký Học Sinh</h1>
+            <p class="form-description">Vui lòng điền đầy đủ thông tin để tạo tài khoản mới.</p>
 
-        <div class="form-section">
-            <h2>Vui lòng điền đầy đủ thông tin</h2>
-            <form id="registrationForm">
-                <div class="input-group">
-                    <label for="username">Tên đăng nhập*</label>
-                    <input type="text" id="username" required>
-                </div>
-                <div class="input-group">
-                    <label for="password">Mật khẩu* (tối thiểu 6 ký tự)</label>
-                    <input type="password" id="password" required>
-                </div>
-                <div class="input-group">
-                    <label for="name">Họ và tên*</label>
-                    <input type="text" id="name" required>
-                </div>
-                <div class="input-group">
-                    <label for="birthDate">Ngày sinh*</label>
-                    <input type="date" id="birthDate" required>
-                </div>
-                <div class="input-group">
-                    <label for="gender">Giới tính*</label>
-                    <select id="gender" required>
-                        <option value="">Chọn giới tính</option>
-                        <option value="Male">Nam</option>
-                        <option value="Female">Nữ</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="email">Email*</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="input-group">
-                    <label for="address">Địa chỉ</label>
-                    <input type="text" id="address">
-                </div>
-                <div class="input-group">
-                    <label for="introduction">Giới thiệu bản thân</label>
-                    <textarea id="introduction"></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="hobby">Sở thích</label>
-                    <input type="text" id="hobby">
-                </div>
-                <button type="button" onclick="registerStudent()">Đăng ký</button>
-            </form>
-            <div id="registrationResult"></div>
-        </div>
+            <!-- Thông tin bắt buộc -->
+            <div class="form-group">
+                <label for="name">Họ và Tên</label>
+                <input type="text" id="name" name="name" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Tên đăng nhập</label>
+                <input type="text" id="username" name="username" required>
+                <small class="error-message" id="usernameError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                <small class="error-message" id="emailError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mật khẩu</label>
+                <input type="password" id="password" name="password" required>
+                <small class="error-message" id="passwordError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Xác nhận mật khẩu</label>
+                <input type="password" id="confirmPassword" required>
+                <small class="error-message" id="confirmPasswordError"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="birthDate">Ngày sinh</label>
+                <input type="date" id="birthDate" name="birth_date" required>
+                <small class="error-message"></small>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Giới tính</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Chọn giới tính</option>
+                    <option value="Male">Nam</option>
+                    <option value="Female">Nữ</option>
+                </select>
+                <small class="error-message"></small>
+            </div>
+
+            <!-- Thông tin tùy chọn -->
+            <hr class="divider">
+            <p class="optional-section-title">Thông tin bổ sung (Tùy chọn)</p>
+
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" name="address">
+            </div>
+
+            <div class="form-group">
+                <label for="hobby">Sở thích</label>
+                <input type="text" id="hobby" name="hobby">
+            </div>
+
+            <div class="form-group">
+                <label for="introduction">Giới thiệu bản thân</label>
+                <textarea id="introduction" name="introduction" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Đăng Ký</button>
+
+            <div id="formStatus" class="form-status"></div>
+        </form>
     </div>
 
     <script src="js/account_registration.js"></script>
