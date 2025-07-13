@@ -48,6 +48,7 @@ services:
     volumes: # Thêm volume để Nginx có thể truy cập chứng chỉ
       - ./nginx-certs:/etc/nginx/certs
       - ./frontend:/usr/share/nginx/html # Đảm bảo frontend vẫn được copy
+      - ./nginx-data:/var/www/certbot
 
   certbot:
     image: certbot/certbot
