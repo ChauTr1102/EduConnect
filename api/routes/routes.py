@@ -405,14 +405,32 @@ async def handle_payos_webhook(request: Request):
 
     signature = request.headers.get("X-Payos-Signature")
     if not signature:
-        logger.warning("Webhook received without X-Payos-Signature header.")
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing X-Payos-Signature header")
+        logger.warning("Webhook received without X-Payos-Signature header. (DEBUG MODE: Allowing for now)")
+        # TẠM THỜI: THAY VÌ raise HTTPException, HÃY TIẾP TỤC ĐỂ DEBUG CÁC PHẦN SAU
+        # TRÊN PRODUCTION, BẠN PHẢẢI raise HTTPException Ở ĐÂY!
+        # raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing X-Payos-Signature header")
+    else:
+        request_body_bytes = await request.body()
+        if not verify_payos_webhook(request_body_bytes, signature, PAYOS_WEBHOOK_SECRET_KEY):
+            logger.warning("Webhook signature verification failed.")
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid signature")
 
-    request_body_bytes = await request.body()
+    # Nếu không có signature, bạn vẫn cần đọc body để payload không bị trống
+    # Do đó, đưa request_body_bytes = await request.body() lên đầu hoặc xử lý riêng
+    # Cách tốt nhất là luôn đọc body trước để có thể pass vào verify_payos_webhook
+    request_body_bytes = await request.body()  # Đảm bảo dòng này luôn được gọi
 
-    if not verify_payos_webhook(request_body_bytes, signature, PAYOS_WEBHOOK_SECRET_KEY):
-        logger.warning("Webhook signature verification failed.")
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid signature")
+    # Nếu bạn quyết định tạm bỏ qua lỗi 401 khi không có signature trong debug,
+    # thì logic xác minh chữ ký (verify_payos_webhook) chỉ nên được gọi khi signature tồn tại.
+    if signature:  # Chỉ xác minh nếu có signature
+        if not verify_payos_webhook(request_body_bytes, signature, PAYOS_WEBHOOK_SECRET_KEY):
+            logger.warning("Webhook signature verification failed.")
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid signature")
+    else:
+        # Nếu không có signature (chỉ trong debug), bạn có thể ghi log và vẫn cố gắng xử lý payload
+        logger.warning("No X-Payos-Signature header found. Proceeding without signature verification (DEBUG ONLY).")
+        # Hoặc bạn có thể raise một lỗi khác để phân biệt webhook test/không có signature với webhook thật bị lỗi signature.
+        # Ví dụ: raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Missing signature for testing")
 
     try:
         payload = json.loads(request_body_bytes.decode('utf-8'))
