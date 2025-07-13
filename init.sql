@@ -132,6 +132,9 @@ CREATE TABLE transactions (
     description TEXT, -- Nội dung chuyển khoản/ghi chú
     paymentLinkId VARCHAR(50), -- ID giao dịch của PayOS (nếu có, dùng để tra cứu trên PayOS)
 
+    customer_account_name VARCHAR(100),
+    customer_account_number VARCHAR(50),
+
     transaction_status VARCHAR(20) NOT NULL CHECK (transaction_status IN ('PENDING', 'COMPLETED', 'CANCELED', 'EXPIRED', 'FAILED')),
     transaction_type VARCHAR(20) NOT NULL DEFAULT 'DEPOSIT' CHECK (transaction_type IN ('DEPOSIT', 'WITHDRAWAL', 'PURCHASE', 'REFUND')),
     -- Loại giao dịch. Ở đây chủ yếu là 'DEPOSIT'

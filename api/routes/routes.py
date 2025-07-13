@@ -494,13 +494,13 @@ async def handle_payos_webhook(request: Request):
                 logger.error(
                     f"Amount mismatch for order {order_code}. Expected: {original_amount}, Received: {amount}. Investigate immediately!")
                 # Cập nhật trạng thái thành FAILED hoặc gửi cảnh báo
-                await sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time, payos_status_code,
+                await sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time,
                                                  payos_status_description, order_code)
                 return JSONResponse(content={"message": "Amount mismatch, action required"},
                                     status_code=status.HTTP_200_OK)
 
             # Cập nhật trạng thái giao dịch và các thông tin chi tiết
-            await sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time, payos_status_code,
+            await sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time,
                                                  payos_status_description, order_code)
             logger.info(f"Transaction {order_code} status updated to COMPLETED. Amount: {amount}")
 
@@ -518,7 +518,7 @@ async def handle_payos_webhook(request: Request):
             }
             mapped_status = system_status_map.get(payos_status_code, 'FAILED')  # Mặc định là FAILED nếu không khớp
 
-            await sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time, payos_status_code,
+            await sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time,
                                                  payos_status_description, order_code)
             logger.info(
                 f"Transaction {order_code} status updated to {mapped_status} (PayOS code: {payos_status_code}).")

@@ -76,17 +76,16 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         return self.cur.fetchall()
 
     def update_transactions(self, transaction_status, payos_payment_link_id, payos_transaction_time,
-                            payos_status_code, payos_status_description, order_code):
+                            payos_status_description, order_code):
         query = """UPDATE transactions
         SET transaction_status = %s,
-            payos_payment_link_id = %s,
-            payos_transaction_time = %s,
-            payos_status_code = %s,
-            payos_status_description = %s
+            paymentLinkId = %s,
+            updated_at = %s,
+            description = %s
         WHERE order_code = %s
         """
         self.cur.execute(query, (transaction_status, payos_payment_link_id, payos_transaction_time,
-                            payos_status_code, payos_status_description, str(order_code),))
+                            payos_status_description, str(order_code),))
 
     def update_user_balance(self,amount, user_id):
         query = "UPDATE users SET balance = balance + %s WHERE user_id = %s"
