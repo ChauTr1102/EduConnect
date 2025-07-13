@@ -71,10 +71,8 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
 
 
     def get_payment_info(self, order_code):
-        self.cur.execute(
-            "SELECT user_id, transaction_status, amount FROM transactions WHERE order_code = %s",
-            (str(order_code))
-        )
+        self.cur.execute("SELECT user_id, transaction_status, amount FROM transactions WHERE order_code = %s",
+            (str(order_code),))
         return self.cur.fetchall()
 
     def update_transactions(self, transaction_status, payos_payment_link_id, payos_transaction_time,
