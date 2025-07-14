@@ -33,7 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function openUserSocket() {
-  userSocket = new WebSocket(`ws://api/ws/user/${user_id}`);
+  userSocket = new WebSocket(`${protocol}://api/ws/user/${user_id}`);
   userSocket.onmessage = (event) => {
     const msg = JSON.parse(event.data);
     if (msg.type === "new_conversation") {
