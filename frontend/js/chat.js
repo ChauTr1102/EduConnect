@@ -34,7 +34,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function openUserSocket() {
   const protocol = window.location.protocol === "https:" ? "wss" : "ws";
-  userSocket = new WebSocket(`${protocol}:educonnect.id.vn/ws/user/${user_id}`);
+  userSocket = new WebSocket(`${protocol}://educonnect.id.vn/api/ws/user/${user_id}`);
   userSocket.onmessage = (event) => {
     const msg = JSON.parse(event.data);
     if (msg.type === "new_conversation") {
