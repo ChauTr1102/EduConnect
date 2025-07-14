@@ -47,7 +47,7 @@ const CLIENT_ID = "353112133927-rfs7v2f19lqrt5d5ina11dqpchaqtqhr.apps.googleuser
 const LINK_GET_TOKEN = `https://accounts.google.com/o/oauth2/v2/auth?` +
   `scope=https://www.googleapis.com/auth/userinfo.email%20https://www.googleapis.com/auth/userinfo.profile` +
   `&response_type=token` +
-  `&redirect_uri=http://localhost:8080/` +
+  `&redirect_uri=https://educonnect.id.vn/` +
   `&client_id=${CLIENT_ID}` +
   `&state=state_parameter_passthrough_value`;
 
@@ -65,7 +65,7 @@ function handleGoogleLogin() {
   }
 
   window.addEventListener('message', (event) => {
-    if (event.origin === 'http://localhost:8080') {
+    if (event.origin === 'https://educonnect.id.vn') {
       const hash = event.data || window.location.hash.substring(1);
       const params = new URLSearchParams(hash);
       const accessToken = params.get('access_token');
@@ -81,8 +81,7 @@ function handleGoogleLogin() {
         .then(data => {
           console.log('User Info:', data);
           sessionStorage.setItem('user_id', data.email);
-          console.log("Redirecting to http://localhost:8080/home with user_id:", data.email);
-          window.location.href = 'http://localhost:8080/home'; // Chuyển hướng đến trang chủ
+          window.location.href = 'https://educonnect.id.vn/home'; // Chuyển hướng đến trang chủ
           authWindow.close();
         })
         .catch(error => {
