@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduConnectGPT - Đăng nhập</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0VSLVH953G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-0VSLVH953G');
+    </script>
     <style>
         :root {
             --primary-color: #0d1472;
@@ -13,19 +22,19 @@
             --light-text: #888;
             --white: #fff;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
             background-color: var(--white);
             color: var(--text-color);
         }
-
+        
         header {
             display: flex;
             justify-content: space-between;
@@ -33,56 +42,56 @@
             padding: 1rem 2rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
         }
-
+        
         .logo img {
             height: 40px;
         }
-
+        
         nav ul {
             display: flex;
             list-style: none;
         }
-
+        
         nav ul li {
             margin: 0 1rem;
         }
-
+        
         nav ul li a {
             text-decoration: none;
             color: var(--text-color);
             font-weight: 500;
             padding: 0.5rem 0;
         }
-
+        
         .nav-dropdown::after {
             content: "▼";
             font-size: 0.7em;
             margin-left: 5px;
             color: var(--light-text);
         }
-
+        
         .right-actions {
             display: flex;
             align-items: center;
         }
-
+        
         .right-actions > * {
             margin-left: 1rem;
         }
-
-
+        
+        
         .main-content {
             max-width: 800px;
             margin: 0 auto;
             padding: 3rem 1rem;
             text-align: center;
         }
-
+        
         /* Login Form Styles */
         .login-container {
             max-width: 400px;
@@ -92,17 +101,17 @@
             background-color: var(--white);
             box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
-
+        
         .login-header {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             text-align: left;
         }
-
+        
         .form-group {
             margin-bottom: 1rem;
         }
-
+        
         .form-control {
             width: 100%;
             padding: 0.75rem;
@@ -110,23 +119,23 @@
             border-radius: 4px;
             font-size: 1rem;
         }
-
+        
         .form-control:focus {
             outline: none;
             border-color: var(--accent-color);
         }
-
+        
         .form-checkbox {
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
             text-align: left;
         }
-
+        
         .form-checkbox input {
             margin-right: 0.5rem;
         }
-
+        
         .forgot-link {
             display: block;
             text-align: right;
@@ -135,7 +144,7 @@
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
-
+        
         .sign-in-btn {
             width: 100%;
             padding: 0.75rem;
@@ -147,18 +156,18 @@
             cursor: pointer;
             margin-bottom: 1rem;
         }
-
+        
         .register-prompt {
             font-size: 0.9rem;
             margin-bottom: 1rem;
         }
-
+        
         .register-link {
             color: var(--accent-color);
             text-decoration: none;
             font-weight: 500;
         }
-
+        
         .google-btn {
             width: 100%;
             padding: 0.75rem;
@@ -172,7 +181,7 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         .google-icon {
             margin-right: 0.75rem;
             display: inline-flex;
@@ -186,68 +195,68 @@
             width: 100%;
             height: 100%;
         }
-
+        
         footer {
             background-color: var(--primary-color);
             color: var(--white);
             padding: 3rem 2rem;
         }
-
+        
         .footer-content {
             display: flex;
             justify-content: space-between;
             max-width: 1200px;
             margin: 0 auto;
         }
-
+        
         .footer-left {
             max-width: 300px;
         }
-
+        
         .footer-logo {
             margin-bottom: 1rem;
             display: block;
         }
-
+        
         .footer-logo img {
             height: 60px;
         }
-
+        
         .mission-statement {
             margin-bottom: 1rem;
             font-weight: 500;
         }
-
+        
         .team-credit {
             color: rgba(255,255,255,0.7);
         }
-
+        
         .footer-links {
             text-align: center;
         }
-
+        
         .footer-links ul {
             list-style: none;
         }
-
+        
         .footer-links li {
             margin: 0.5rem 0;
         }
-
+        
         .footer-links a {
             color: var(--white);
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
+        
         .footer-links a:hover {
             color: rgba(255,255,255,0.7);
         }
-
+        
         .payment-methods {
             text-align: right;
         }
-
+        
         .payment-icons {
             display: flex;
             flex-wrap: wrap;
@@ -255,7 +264,7 @@
             gap: 0.5rem;
             max-width: 300px;
         }
-
+        
         .payment-icon {
             width: 40px;
             height: 25px;
@@ -271,12 +280,12 @@
                 flex-direction: column;
                 gap: 2rem;
             }
-
+            
             .payment-methods, .footer-links, .footer-left {
                 text-align: center;
                 max-width: none;
             }
-
+            
             .payment-icons {
                 justify-content: center;
                 margin: 0 auto;
@@ -338,48 +347,54 @@
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-left">
-                <div class="footer-logo">
-                    <img src="images\Educonnect_logo.png" alt="Logo EduConnectGPT">
-                </div>
-                <p class="mission-statement">EduConnect - Kết nối kiến thức, vững bước vào tương lai."</p>
-                <p class="team-credit">—Đội ngũ EduConnect</p>
-            </div>
-
-            <div class="footer-links">
-                <ul>
-                    <li><a href="#">Tất cả trang</a></li>
-                    <li><a href="#">Tất cả khóa học</a></li>
-                    <li><a href="#">Liên hệ</a></li>
-                    <li><a href="#">Chính sách bảo mật</a></li>
-                    <li><a href="#">Chính sách hoàn trả</a></li>
-                    <li><a href="#">Về chúng tôi</a></li>
-                    <li><a href="#">Câu hỏi thường gặp</a></li>
-                    <li><a href="#">Điều khoản và điều kiện</a></li>
-                </ul>
-            </div>
-
-            <div class="payment-methods">
-                <div class="payment-icons">
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-icon">💳</div>
-                </div>
-            </div>
+      <div class="footer-grid">
+        <div class="footer-left">
+          <div class="footer-logo">
+            <img src="images/Educonnect_logo.png" alt="Logo EduConnectGPT">
+          </div>
+          <p class="mission-statement">EduConnect - Kết nối kiến thức, vững bước vào tương lai.</p>
+          <p class="team-credit">— Đội ngũ EduConnect</p>
         </div>
+        <div class="footer-links">
+          <h3>Liên Kết Nhanh</h3>
+          <ul>
+            <li><a href="#">Tất cả trang</a></li>
+            <li><a href="#">Tất cả khóa học</a></li>
+            <li><a href="#">Liên hệ</a></li>
+            <li><a href="#">Chính sách bảo mật</a></li>
+            <li><a href="#">Chính sách hoàn tiền và đổi trả</a></li>
+            <li><a href="#">Về chúng tôi</a></li>
+            <li><a href="#">Câu hỏi thường gặp</a></li>
+            <li><a href="#">Điều khoản và Điều kiện</a></li>
+          </ul>
+        </div>
+        <div class="footer-socials">
+          <h3>Theo Dõi Chúng Tôi</h3>
+          <div class="social-icons-list">
+            <a href="YOUR_YOUTUBE_LINK" target="_blank" class="social-icon-item" title="YouTube">
+              <img src="images/Youtube.jpg" alt="YouTube">
+            </a>
+            <a href="YOUR_FACEBOOK_LINK" target="_blank" class="social-icon-item" title="Facebook">
+              <img src="images/facebook.jpg" alt="Facebook">
+            </a>
+            <a href="YOUR_LINKEDIN_LINK" target="_blank" class="social-icon-item" title="LinkedIn">
+              <img src="images/linkedln.jpg" alt="LinkedIn">
+            </a>
+            <a href="YOUR_TIKTOK_LINK" target="_blank" class="social-icon-item" title="TikTok">
+              <img src="images/tiktok.jpg" alt="TikTok">
+            </a>
+            <a href="YOUR_INSTAGRAM_LINK" target="_blank" class="social-icon-item" title="Instagram">
+              <img src="images/insta.jpg" alt="Instagram">
+            </a>
+            <a href="YOUR_DISCORD_LINK" target="_blank" class="social-icon-item" title="Discord">
+              <img src="images/discord.jpg" alt="Discord">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2025 EduConnect. All rights reserved.
+      </div>
     </footer>
     <script src="js/login.js"></script>
 </body>

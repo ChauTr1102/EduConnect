@@ -15,7 +15,8 @@ CREATE TABLE users(
     gender varchar(6) not null check(gender in ('Male', 'Female')),
     email VARCHAR(100) UNIQUE,
     address text,
-    avatar_url TEXT DEFAULT 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Image.png'
+    avatar_url TEXT DEFAULT 'https://www.pngall.com/wp-content/uploads/12/Avatar-Profile-PNG-Image.png',
+    balance float default 0
 );
 
 CREATE TABLE students(
@@ -124,6 +125,44 @@ CREATE TABLE messages (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE transactions (
+    order_code VARCHAR(50) PRIMARY key, -- Mã đơn hàng từ PayOS (rất quan trọng để đối soát)
+    user_id VARCHAR(20) REFERENCES users(user_id) ON DELETE SET NULL, -- ID của người dùng thực hiện giao dịch
+    amount NUMERIC(15, 2) NOT NULL, -- Số tiền của giao dịch
+    description TEXT, -- Nội dung chuyển khoản/ghi chú
+    paymentLinkId VARCHAR(50), -- ID giao dịch của PayOS (nếu có, dùng để tra cứu trên PayOS)
+
+    customer_account_name VARCHAR(100),
+    customer_account_number VARCHAR(50),
+
+    transaction_status VARCHAR(20) NOT NULL CHECK (transaction_status IN ('PENDING', 'COMPLETED', 'CANCELED', 'EXPIRED', 'FAILED')),
+    transaction_type VARCHAR(20) NOT NULL DEFAULT 'DEPOSIT' CHECK (transaction_type IN ('DEPOSIT', 'WITHDRAWAL', 'PURCHASE', 'REFUND')),
+    -- Loại giao dịch. Ở đây chủ yếu là 'DEPOSIT'
+
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, -- Thời gian giao dịch được tạo (bên hệ thống của bạn)
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP -- Thời gian trạng thái giao dịch được cập nhật
+);
+
+-- Trigger cho transactions
+-- Tạo INDEX để tăng tốc độ truy vấn theo order_code, user_id, và payos_reference_id
+CREATE INDEX idx_transactions_order_code ON transactions(order_code);
+CREATE INDEX idx_transactions_user_id ON transactions(user_id);
+
+-- Trigger để tự động cập nhật updated_at mỗi khi có thay đổi trên bản ghi (giữ nguyên)
+CREATE OR REPLACE FUNCTION update_updated_at_column()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.updated_at = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_transactions_updated_at
+BEFORE UPDATE ON transactions
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at_column();
+
+-- Trigger cho message
 -- tạo index cho bảng messages để mỗi khi query tin nhắn trong một conversations thì việc order by sẽ nhanh chóng hơn so với tạo trigger tự động tăng message_id
 CREATE INDEX idx_messages_convo_created_at
 ON messages(conversation_id, created_at);

@@ -52,7 +52,6 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
                             where t.teacher_id = '{teacher_id}'""")
         return self.cur.fetchall()
 
-
     def get_posts_with_usernames(self):
         query = """
         SELECT p.post_id, u.username, p.content 
@@ -62,6 +61,39 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         """
         self.cur.execute(query)
         return self.cur.fetchall()
+
+    def insert_payment_info(self, user_id, order_code, amount, description_text, payment_link_id):
+        query = """
+        INSERT INTO transactions (user_id, order_code, amount, transaction_status, transaction_type, description, paymentLinkId)
+        VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """
+        self.cur.execute(query, (user_id, order_code, amount, 'PENDING', 'DEPOSIT', description_text, payment_link_id))
+
+
+    def get_payment_info(self, order_code):
+        self.cur.execute("SELECT user_id, transaction_status, amount FROM transactions WHERE order_code = %s",
+            (str(order_code),))
+        return self.cur.fetchall()
+
+    def update_transactions(self, transaction_status, payos_payment_link_id, payos_transaction_time,
+                            payos_status_description, order_code):
+        query = """UPDATE transactions
+        SET transaction_status = %s,
+            paymentLinkId = %s,
+            updated_at = %s,
+            description = %s
+        WHERE order_code = %s
+        """
+        self.cur.execute(query, (transaction_status, payos_payment_link_id, payos_transaction_time,
+                            payos_status_description, str(order_code),))
+
+    def update_user_balance(self,amount, user_id):
+        query = "UPDATE users SET balance = balance + %s WHERE user_id = %s"
+        self.cur.execute(query, (amount, user_id))
+
+    def get_user_balance(self, user_id):
+        self.cur.execute(f"select balance from users where user_id = '{user_id}'")
+        return self.cur.fetchone()[0]
 
 
     def check_username_exists(self, username: str) -> bool:

@@ -176,17 +176,17 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
-@router.post("/check_login")
-def check_login(req: LoginRequest):
-    # conn = get_connection()
-    # cur = conn.cursor()
-
-    sql_db.cur.execute("SELECT user_id, password FROM users WHERE username = %s", (req.username,))
-    row = sql_db.cur.fetchone()
-    # sql_db.conn.close()
-    if row and row[1] == req.password:  # hashlib.sha256(req.password.encode()).hexdigest():
-        return {"success": True, "user_id": row[0]}
-    return {"success": False}, 401
+# @router.post("/check_login")
+# def check_login(req: LoginRequest):
+#     # conn = get_connection()
+#     # cur = conn.cursor()
+#
+#     sql_db.cur.execute("SELECT user_id, password FROM users WHERE username = %s", (req.username,))
+#     row = sql_db.cur.fetchone()
+#     # sql_db.conn.close()
+#     if row and row[1] == req.password:  # hashlib.sha256(req.password.encode()).hexdigest():
+#         return {"success": True, "user_id": row[0]}
+#     return {"success": False}, 401
 
 
 @router.get("/search_users")
@@ -401,3 +401,172 @@ async def register_student(student: StudentRegisterRequest):
             status_code=500,
             detail=f"Registration failed: {str(e)}"
         )
+
+
+@router.get("/get_user_balance")
+async def get_user_balance(user_id:str):
+    user_balance = sql_db.get_user_balance(user_id)
+    return user_balance
+
+
+# Deposit money
+@router.post("/create-payment-link")
+async def create_payment_link(payment_detail: PaymentInfo):
+    try:
+        # Thiết lập thông tin mặt hàng
+        order_id = int(time.time())
+        payment_data = PaymentData(
+            orderCode=order_id,
+            amount=payment_detail.amount,
+            description=payment_detail.message,
+            buyerName=payment_detail.user_id,
+            # items=[item],
+            cancelUrl=f"https://educonnect.id.vn/cancel",
+            returnUrl=f"https://educonnect.id.vn/success",
+            expiredAt=int(time.time()) + 900
+        )
+        payment_link_response = payos.createPaymentLink(payment_data)
+        sql_db.insert_payment_info(payment_detail.user_id, order_id, payment_detail.amount, payment_detail.message,
+                                   payment_link_response.paymentLinkId)
+    except Exception as e:
+        # Trả về lỗi nếu gặp vấn đề
+        raise HTTPException(status_code=500, detail=str(e))
+
+    # Redirect học viên sang link thanh toán của PayOS
+    # return RedirectResponse(payment_link_response.checkoutUrl)
+    return JSONResponse({"checkoutUrl": payment_link_response.checkoutUrl})
+
+# --- Endpoint xử lý Webhook ---
+@router.post("/payos-webhook")
+async def handle_payos_webhook(request: Request):
+    logger.info("Received PayOS webhook.")
+
+    signature = request.headers.get("X-Payos-Signature")
+    if not signature:
+        logger.warning("Webhook received without X-Payos-Signature header. (DEBUG MODE: Allowing for now)")
+        # TẠM THỜI: THAY VÌ raise HTTPException, HÃY TIẾP TỤC ĐỂ DEBUG CÁC PHẦN SAU
+        # TRÊN PRODUCTION, BẠN PHẢẢI raise HTTPException Ở ĐÂY!
+        # raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing X-Payos-Signature header")
+    else:
+        request_body_bytes = await request.body()
+        if not verify_payos_webhook(request_body_bytes, signature, PAYOS_WEBHOOK_SECRET_KEY):
+            logger.warning("Webhook signature verification failed.")
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid signature")
+
+    # Nếu không có signature, bạn vẫn cần đọc body để payload không bị trống
+    # Do đó, đưa request_body_bytes = await request.body() lên đầu hoặc xử lý riêng
+    # Cách tốt nhất là luôn đọc body trước để có thể pass vào verify_payos_webhook
+    request_body_bytes = await request.body()  # Đảm bảo dòng này luôn được gọi
+
+    # Nếu bạn quyết định tạm bỏ qua lỗi 401 khi không có signature trong debug,
+    # thì logic xác minh chữ ký (verify_payos_webhook) chỉ nên được gọi khi signature tồn tại.
+    if signature:  # Chỉ xác minh nếu có signature
+        if not verify_payos_webhook(request_body_bytes, signature, PAYOS_WEBHOOK_SECRET_KEY):
+            logger.warning("Webhook signature verification failed.")
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Invalid signature")
+    else:
+        # Nếu không có signature (chỉ trong debug), bạn có thể ghi log và vẫn cố gắng xử lý payload
+        logger.warning("No X-Payos-Signature header found. Proceeding without signature verification (DEBUG ONLY).")
+        # Hoặc bạn có thể raise một lỗi khác để phân biệt webhook test/không có signature với webhook thật bị lỗi signature.
+        # Ví dụ: raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Missing signature for testing")
+
+    try:
+        payload = json.loads(request_body_bytes.decode('utf-8'))
+        logger.info(f"Webhook payload: {payload}")
+
+        # Lấy thông tin từ trường "data" trong payload chính
+        data = payload.get("data")
+        # Mã lỗi của giao dịch (level cao nhất) - không phải code trong data
+        top_level_code = payload.get("code")
+        top_level_desc = payload.get("desc")
+
+        if not data:
+            logger.warning("Webhook payload 'data' field is missing.")
+            return JSONResponse(content={"message": "No data in payload"}, status_code=status.HTTP_200_OK)
+
+        # Trích xuất các trường từ 'data' theo tài liệu bạn cung cấp
+        order_code = data.get("orderCode")
+        amount = data.get("amount")  # Số tiền từ webhook
+        payment_link_id = data.get("paymentLinkId")
+
+        # Chuyển đổi transactionDateTime sang đối tượng datetime có múi giờ
+        transaction_datetime_str = data.get("transactionDateTime")
+        payos_transaction_time = None
+        if transaction_datetime_str:
+            try:
+                # PayOS có thể trả về UTC hoặc múi giờ cụ thể. Giả định UTC nếu không rõ.
+                # Nếu định dạng là YYYY-MM-DD HH:MM:SS, không có timezone info:
+                payos_transaction_time = datetime.datetime.strptime(transaction_datetime_str, '%Y-%m-%d %H:%M:%S')
+                # Nếu PayOS trả về UTC, có thể cần chuyển đổi:
+                payos_transaction_time = pytz.utc.localize(payos_transaction_time)
+            except ValueError:
+                logger.warning(f"Could not parse transactionDateTime: {transaction_datetime_str}")
+
+        payos_status_code = data.get("code")  # Mã lỗi của giao dịch trong 'data'
+        payos_status_description = data.get("desc")  # Mô tả lỗi/kết quả trong 'data'
+
+        if not order_code:
+            logger.warning("Webhook payload 'orderCode' is missing.")
+            return JSONResponse(content={"message": "No orderCode in payload"}, status_code=status.HTTP_200_OK)
+
+
+        transaction_record = sql_db.get_payment_info(order_code)
+        if not transaction_record:
+            logger.warning(f"Webhook received for unknown order code: {order_code}. Skipping processing.")
+            return JSONResponse(content={"message": "Order code not found"}, status_code=status.HTTP_200_OK)
+
+        current_system_status = transaction_record[0][1]
+        user_id = transaction_record[0][0]
+        original_amount = transaction_record[0][2]
+
+        # Đảm bảo tính idempotency: Chỉ xử lý nếu trạng thái chưa được COMPLETED
+        if current_system_status == 'COMPLETED':
+            logger.info(f"Transaction {order_code} already completed. Skipping update.")
+            return JSONResponse(content={"message": "Transaction already completed"},
+                                status_code=status.HTTP_200_OK)
+
+        # 2. Xử lý logic nghiệp vụ dựa trên trạng thái (từ 'code' trong data của PayOS)
+        # PayOS tài liệu thường nói '00' là thành công.
+        if payos_status_code == "00":  # Mã thành công từ PayOS
+            if amount != original_amount:
+                logger.error(
+                    f"Amount mismatch for order {order_code}. Expected: {original_amount}, Received: {amount}. Investigate immediately!")
+                # Cập nhật trạng thái thành FAILED hoặc gửi cảnh báo
+                sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time,
+                                                 payos_status_description, order_code)
+                return JSONResponse(content={"message": "Amount mismatch, action required"},
+                                    status_code=status.HTTP_200_OK)
+
+            # Cập nhật trạng thái giao dịch và các thông tin chi tiết
+            sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time,
+                                                 payos_status_description, order_code)
+            logger.info(f"Transaction {order_code} status updated to COMPLETED. Amount: {amount}")
+
+            # Cộng tiền vào số dư của người dùng
+            sql_db.update_user_balance(amount, user_id)
+            logger.info(f"User {user_id} balance increased by {amount}.")
+
+        else:  # Các trạng thái khác ngoài '00' (thất bại, hủy, hết hạn)
+            # Mapping trạng thái PayOS sang trạng thái hệ thống của bạn
+            system_status_map = {
+                "CANCELED": "CANCELED",
+                "EXPIRED": "EXPIRED"
+                # Thêm các mapping khác nếu PayOS có các mã lỗi cụ thể
+                # Ví dụ: "10": "FAILED_PAYMENT_METHOD"
+            }
+            mapped_status = system_status_map.get(payos_status_code, 'FAILED')  # Mặc định là FAILED nếu không khớp
+
+            sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time,
+                                                 payos_status_description, order_code)
+            logger.info(
+                f"Transaction {order_code} status updated to {mapped_status} (PayOS code: {payos_status_code}).")
+
+        return JSONResponse(content={"message": "Webhook processed successfully"}, status_code=status.HTTP_200_OK)
+
+    except json.JSONDecodeError:
+        logger.error("Failed to parse webhook JSON body.")
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid JSON body")
+    except Exception as e:
+        logger.error(f"Error processing webhook: {e}", exc_info=True)
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Internal server error: {e}")
+

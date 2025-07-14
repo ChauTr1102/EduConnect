@@ -1,4 +1,3 @@
-
 services:
   postgres:
     image: postgres
@@ -14,7 +13,7 @@ services:
       - "9999:5432"
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-      - ./pgdata/data:/var/lib/postgresql/data  # Volume để lưu trữ database PostgreSQL
+      - ./pgdata/data:/var/lib/postgresql/data # Volume để lưu trữ database PostgreSQL
       - ./insert_test_data.sql:/docker-entrypoint-initdb.d/insert_test_data.sql
 
   fastapi:
@@ -42,9 +41,27 @@ services:
     container_name: frontend
     ports:
       - "80:80"
+      - "443:443" # Thêm cổng 443 cho HTTPS
     networks:
       - my_custom_network
     restart: on-failure
+#    volumes: # Thêm volume để Nginx có thể truy cập chứng chỉ
+#      - ./nginx-certs:/etc/nginx/certs
+#      - ./frontend:/usr/share/nginx/html # Đảm bảo frontend vẫn được copy
+#      - ./nginx-data:/var/www/certbot
+
+#  certbot:
+#    image: certbot/certbot
+#    container_name: certbot
+#    volumes:
+#      - ./nginx-certs:/etc/letsencrypt # Nơi Certbot lưu trữ chứng chỉ
+#      - ./nginx-data:/var/www/certbot # Để Certbot xác minh quyền sở hữu domain
+#    command: certonly --webroot --webroot-path=/var/www/certbot --email superappolo@gmail.com --agree-tos --no-eff-email -d educonnect.id.vn
+#    networks:
+#      - my_custom_network
+#    depends_on:
+#      - frontend # Certbot cần frontend chạy để xác minh
+
 #
 #  pgadmin:
 #    image: dpage/pgadmin4
@@ -67,4 +84,3 @@ networks:
     ipam:
       config:
         - subnet: 172.20.0.0/24
-

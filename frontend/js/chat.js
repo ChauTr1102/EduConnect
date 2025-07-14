@@ -6,6 +6,12 @@ window.addEventListener("DOMContentLoaded", () => {
   openUserSocket();
   loadConversations();
 
+  const userBalance = sessionStorage.getItem('user_balance');
+  document.querySelector('.credit-icon').textContent = `${userBalance} VND`;
+
+  document.querySelector('.credit-icon').addEventListener('click', function() {
+  window.location.href = '/deposit';});
+
   document.getElementById("sendButton").onclick = sendMessage;
   document.getElementById("messageInput").addEventListener("keypress", function(e) {
     if (e.key === "Enter") sendMessage();
@@ -27,7 +33,8 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 function openUserSocket() {
-  userSocket = new WebSocket(`ws://localhost:8000/ws/user/${user_id}`);
+  const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+  userSocket = new WebSocket(`${protocol}://api/ws/user/${user_id}`);
   userSocket.onmessage = (event) => {
     const msg = JSON.parse(event.data);
     if (msg.type === "new_conversation") {

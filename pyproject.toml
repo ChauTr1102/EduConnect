@@ -19,6 +19,7 @@ nltk = "^3.9.1"
 python-dotenv = "^1.1.0"
 pydantic = {extras = ["email"], version = "^2.11.7"}
 email-validator = "2.2.0"
+payos = "^0.1.8"
 
 [build-system]
 requires = ["poetry-core"]

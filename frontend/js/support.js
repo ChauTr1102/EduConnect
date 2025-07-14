@@ -3,6 +3,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const faqQuestions = document.querySelectorAll('.faq-question');
 
+    const userBalance = sessionStorage.getItem('user_balance');
+    document.querySelector('.credit-icon').textContent = `${userBalance} VND`;
+
+    document.querySelector('.credit-icon').addEventListener('click', function() {
+    window.location.href = '/deposit';});
+
     faqQuestions.forEach(question => {
         question.addEventListener('click', function() {
             const answer = this.nextElementSibling;

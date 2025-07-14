@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduConnect - Ghép Đôi Gia Sư</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/match.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EduConnectGPT — Nạp Tiền</title>
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0VSLVH953G"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
+      gtag('config', 'G-0VSLVH953G');
+    </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/deposit.css" />
 </head>
 <body>
-    <!-- Tiêu đề (Không thay đổi) -->
-    <header>
+  <!-- Header -->
+  <header>
         <div class="logo">
+            <!-- Make sure the path to your logo is correct -->
             <img src="images/Educonnect_logo.png" alt="Logo EduConnectGPT">
         </div>
         <nav>
             <ul>
-                 <li><a href="/home" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline active">Trang Chủ</a></li>
-                 <li><a href="/review" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Gia Sư</a></li>
-                 <li><a href="/ranking" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Xếp Hạng</a></li>
-                 <li><a href="/support" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Hỗ trợ</a></li>
-                 <li><a href="/educonnectGPT" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
-                 <li><a href="/chat" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
-                 <li><a href="/schedule" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Lịch</a></li>
+                <li><a href="/home" class="active">Trang Chủ</a></li>
+                <li><a href="/review" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Gia Sư</a></li>
+                <li><a href="/ranking" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Xếp Hạng</a></li>
+                <li><a href="/support" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Hỗ Trợ</a></li>
+                <li><a href="/educonnectGPT" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">EduconnectGPT</a></li>
+                <li><a href="/chat" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Chat</a></li>
+                <li><a href="/schedule" class="nav-item px-2 py-1 text-gray-700 hover:text-blue-900 animated-underline">Lịch</a></li>
             </ul>
         </nav>
         <div class="right-actions">
@@ -31,7 +40,7 @@
             <div class="account-container">
                 <div class="account-icon">👤</div>
                 <div class="account-dropdown">
-                    <a href="/profile" class="dropdown-item">Hồ Sơ</a>
+                    <a href="/profile" class="dropdown-item">Hỗ Trợ</a>
                     <a href="/setting" class="dropdown-item">Cài Đặt</a>
                     <a href="/pricing" class="dropdown-item">Bảng Giá</a>
                     <div class="dropdown-divider"></div>
@@ -40,43 +49,37 @@
             </div>
         </div>
     </header>
-
-    <!-- Khu vực nội dung chính -->
-    <main>
-        <div class="match-container" id="matchContainer">
-            <div class="final-status-box" id="finalStatusBox">
-                <!-- Văn bản sẽ được thiết lập bởi JavaScript -->
-            </div>
-
-            <!-- Biểu tượng đang tải -->
-            <div class="loading-spinner" id="loadingSpinner">
-                <i class="fas fa-spinner"></i>
-            </div>
-
-            <!-- Khu vực Gia sư -->
-            <div class="tutor-area" id="tutorArea">
-                <!-- Thẻ học sinh -->
-                <div class="tutor-card" id="tutor1">
-                    <div class="tutor-label">Học Sinh</div>
-                    <div class="tutor-image">
-                        <img src="images\images\4.png" alt="người dùng">
-                    </div>
-                    <div class="tutor-info">
-                        <h3 class="tutor-name">người dùng</h3>
-                        <div class="tutor-buttons">
-                            <a href="#" class="tutor-seemore-btn">Xem thêm</a>
-                            <!-- Lưu ý: Thẻ học sinh không có nút nhắn tin hoặc khu vực chi tiết -->
-                        </div>
-                    </div>
-                </div>
-                <!-- Thẻ giáo viên sẽ được thêm vào đây bởi JavaScript -->
-
-            </div>
+  <div class="main-content">
+<!--  <h2>Nạp Tiền Vào EduConnect</h2>-->
+  <div class="deposit-container">
+  <!-- Cột trái: form nhập liệu -->
+      <div class="deposit-left">
+          <h2>Nạp tiền vào Educonnect</h2>
+        <div class="form-group">
+          <label for="amountInput">Số tiền (VNĐ)</label>
+          <input type="number" id="amountInput" min="1000" placeholder="Nhập số tiền">
         </div>
-    </main>
+        <div class="form-group">
+          <label for="noteInput">Ghi chú (tuỳ chọn)</label>
+          <textarea id="noteInput" rows="4" placeholder="Ví dụ: Khoá học Toán"></textarea>
+        </div>
+        <button id="depositBtn" disabled>Nạp Tiền</button>
+        <div class="error-message" id="errorMsg"></div>
+      </div>
 
-    <!-- Chân trang (Không thay đổi) -->
-    <footer>
+      <!-- Cột phải: iframe PayOS -->
+      <div class="deposit-right">
+        <h2>Thông tin giao dịch</h2>
+        <div class="iframe-wrapper">
+          <iframe id="payFrame" src="" frameborder="0" style="display:none;"></iframe>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<!--   Footer -->
+  <footer>
       <div class="footer-grid">
         <div class="footer-left">
           <div class="footer-logo">
@@ -126,6 +129,6 @@
         &copy; 2025 EduConnect. All rights reserved.
       </div>
     </footer>
-    <script src="js/match.js"></script>
+  <script src="js/deposit.js"></script>
 </body>
 </html>
