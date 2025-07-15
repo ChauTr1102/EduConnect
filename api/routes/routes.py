@@ -445,7 +445,7 @@ async def handle_payos_webhook(request: Request):
     if not signature:
         logger.warning("Webhook received without X-Payos-Signature header. (DEBUG MODE: Allowing for now)")
         # TẠM THỜI: THAY VÌ raise HTTPException, HÃY TIẾP TỤC ĐỂ DEBUG CÁC PHẦN SAU
-        # TRÊN PRODUCTION, BẠN PHẢẢI raise HTTPException Ở ĐÂY!
+        # TRÊN PRODUCTION, BẠN PHẢI raise HTTPException Ở ĐÂY!
         # raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing X-Payos-Signature header")
     else:
         request_body_bytes = await request.body()
@@ -488,6 +488,9 @@ async def handle_payos_webhook(request: Request):
         order_code = data.get("orderCode")
         amount = data.get("amount")  # Số tiền từ webhook
         payment_link_id = data.get("paymentLinkId")
+        customer_bank_name = data.get("customer_bank_name")
+        customer_account_name = data.get("customer_account_name")
+        customer_account_number = data.get("customer_account_number")
 
         # Chuyển đổi transactionDateTime sang đối tượng datetime có múi giờ
         transaction_datetime_str = data.get("transactionDateTime")
@@ -532,14 +535,14 @@ async def handle_payos_webhook(request: Request):
                 logger.error(
                     f"Amount mismatch for order {order_code}. Expected: {original_amount}, Received: {amount}. Investigate immediately!")
                 # Cập nhật trạng thái thành FAILED hoặc gửi cảnh báo
-                sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time,
-                                                 payos_status_description, order_code)
+                sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time, payos_status_description,
+                                           order_code, customer_bank_name, customer_account_name, customer_account_number)
                 return JSONResponse(content={"message": "Amount mismatch, action required"},
                                     status_code=status.HTTP_200_OK)
 
             # Cập nhật trạng thái giao dịch và các thông tin chi tiết
-            sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time,
-                                                 payos_status_description, order_code)
+            sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time, payos_status_description,
+                                       order_code, customer_bank_name, customer_account_name, customer_account_number)
             logger.info(f"Transaction {order_code} status updated to COMPLETED. Amount: {amount}")
 
             # Cộng tiền vào số dư của người dùng
@@ -556,8 +559,8 @@ async def handle_payos_webhook(request: Request):
             }
             mapped_status = system_status_map.get(payos_status_code, 'FAILED')  # Mặc định là FAILED nếu không khớp
 
-            sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time,
-                                                 payos_status_description, order_code)
+            sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time, payos_status_description,
+                                       order_code, customer_bank_name, customer_account_name, customer_account_number)
             logger.info(
                 f"Transaction {order_code} status updated to {mapped_status} (PayOS code: {payos_status_code}).")
 

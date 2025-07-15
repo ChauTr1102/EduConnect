@@ -132,6 +132,7 @@ CREATE TABLE transactions (
     description TEXT, -- Nội dung chuyển khoản/ghi chú
     paymentLinkId VARCHAR(50), -- ID giao dịch của PayOS (nếu có, dùng để tra cứu trên PayOS)
 
+    customer_bank_name VARCHAR(100),
     customer_account_name VARCHAR(100),
     customer_account_number VARCHAR(50),
 
