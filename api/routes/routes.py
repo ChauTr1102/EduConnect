@@ -488,9 +488,9 @@ async def handle_payos_webhook(request: Request):
         order_code = data.get("orderCode")
         amount = data.get("amount")  # Số tiền từ webhook
         payment_link_id = data.get("paymentLinkId")
-        customer_bank_name = data.get("customer_bank_name")
-        customer_account_name = data.get("customer_account_name")
-        customer_account_number = data.get("customer_account_number")
+        customer_bank_name = data.get("counterAccountBankName")
+        customer_account_name = data.get("counterAccountName")
+        customer_account_number = data.get("counterAccountNumber")
 
         # Chuyển đổi transactionDateTime sang đối tượng datetime có múi giờ
         transaction_datetime_str = data.get("transactionDateTime")
