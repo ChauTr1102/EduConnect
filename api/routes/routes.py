@@ -487,6 +487,7 @@ async def handle_payos_webhook(request: Request):
         # Trích xuất các trường từ 'data' theo tài liệu bạn cung cấp
         order_code = data.get("orderCode")
         amount = data.get("amount")  # Số tiền từ webhook
+        description = data.get("description")
         payment_link_id = data.get("paymentLinkId")
         customer_bank_name = data.get("counterAccountBankName")
         customer_account_name = data.get("counterAccountName")
@@ -535,13 +536,13 @@ async def handle_payos_webhook(request: Request):
                 logger.error(
                     f"Amount mismatch for order {order_code}. Expected: {original_amount}, Received: {amount}. Investigate immediately!")
                 # Cập nhật trạng thái thành FAILED hoặc gửi cảnh báo
-                sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time, payos_status_description,
+                sql_db.update_transactions('FAILED', payment_link_id, payos_transaction_time, description,
                                            order_code, customer_bank_name, customer_account_name, customer_account_number)
                 return JSONResponse(content={"message": "Amount mismatch, action required"},
                                     status_code=status.HTTP_200_OK)
 
             # Cập nhật trạng thái giao dịch và các thông tin chi tiết
-            sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time, payos_status_description,
+            sql_db.update_transactions('COMPLETED', payment_link_id, payos_transaction_time, description,
                                        order_code, customer_bank_name, customer_account_name, customer_account_number)
             logger.info(f"Transaction {order_code} status updated to COMPLETED. Amount: {amount}")
 
@@ -559,7 +560,7 @@ async def handle_payos_webhook(request: Request):
             }
             mapped_status = system_status_map.get(payos_status_code, 'FAILED')  # Mặc định là FAILED nếu không khớp
 
-            sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time, payos_status_description,
+            sql_db.update_transactions(mapped_status, payment_link_id, payos_transaction_time, description,
                                        order_code, customer_bank_name, customer_account_name, customer_account_number)
             logger.info(
                 f"Transaction {order_code} status updated to {mapped_status} (PayOS code: {payos_status_code}).")

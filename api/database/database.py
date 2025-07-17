@@ -88,7 +88,7 @@ from users u join teachers t on u.user_id = t.teacher_id where t.is_finding_stud
         WHERE order_code = %s
         """
         self.cur.execute(query, (transaction_status, payos_payment_link_id, payos_transaction_time, payos_status_description,
-                                 str(order_code), customer_bank_name, customer_account_name, customer_account_number))
+                                 customer_bank_name, customer_account_name, customer_account_number, str(order_code)))
 
     def update_user_balance(self,amount, user_id):
         query = "UPDATE users SET balance = balance + %s WHERE user_id = %s"
