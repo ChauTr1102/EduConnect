@@ -1,0 +1,5 @@
+Hướng dẫn khi chạy local:
+
+1. Comment dòng cuối của file dockerfile.frontend
+2. vào nginx.config comment những dòng đầu và uncomment những dòng cuối
+3. chạy docker compose up --build
